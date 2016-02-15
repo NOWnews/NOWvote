@@ -13,6 +13,10 @@ app.use(apis(app));
 let controllers = require('./controllers');
 app.use(controllers(app));
 
+// admins
+let admins = require('./admins');
+app.use(admins(app));
+
 // errorHandles
 let errorHandles = require('./errorHandles');
 app.use(errorHandles(app));

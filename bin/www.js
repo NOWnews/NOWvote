@@ -9,6 +9,7 @@
 // }
 
 require('babel-core/register');
+require('babel-polyfill');
 require('../global.js');
 console.log('global done');
 
