@@ -9,6 +9,8 @@
 // }
 
 require('babel-core/register');
+require('../global.js');
+console.log('global done');
 
 var app = require('../app');
 var http = require('http');
@@ -20,4 +22,4 @@ app.set('port', port);
 var server = http.createServer(app);
 
 server.listen(port);
-console.log(`Start Listen Port ${port}`);
+console.log(`Start Listen Port ${port} and ${NODE_ENV} mode`);

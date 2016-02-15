@@ -94,10 +94,7 @@
   ],
   "globals": {
       "models": false,
-      "Models": false,
       "Debug": false,
-      "expect": false,
-      "co": false,
       "moment": false,
       "_": false,
       "config": false,
@@ -105,7 +102,6 @@
       "rootPath": false,
       "async": false,
       "await": false,
-      "db": false,
-      "React": false
+      "NODE_ENV": false
   }
 }
