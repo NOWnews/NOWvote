@@ -44,6 +44,8 @@ module.exports = function(app) {
         }
     }));
 
+    app.use(logger('dev'));
+
     return function(req, res, next) {
         return next();
     };

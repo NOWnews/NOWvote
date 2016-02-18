@@ -10,5 +10,6 @@ Promise.promisifyAll(redis.Multi.prototype);
 const client = redis.createClient();
 
 client.set('foo', 'bar');
+client.expire('foo', 10);
 
 module.exports = client;
