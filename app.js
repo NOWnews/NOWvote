@@ -1,24 +1,25 @@
+
 import express from 'express';
+import middlewares from './middlewares';
+import apis from './apis';
+import controllers from './controllers';
+import admins from './admins';
+import errorHandles from './errorHandles';
 let app = express();
 
 // middlewares
-let middlewares = require('./middlewares');
 app.use(middlewares(app));
 
 // apis
-let apis = require('./apis');
 app.use(apis(app));
 
 // controllers
-let controllers = require('./controllers');
 app.use(controllers(app));
 
 // admins
-let admins = require('./admins');
 app.use(admins(app));
 
 // errorHandles
-let errorHandles = require('./errorHandles');
 app.use(errorHandles(app));
 
 module.exports = app;
