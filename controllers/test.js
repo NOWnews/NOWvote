@@ -26,7 +26,8 @@ router.route('/:sn')
             }
 
             return res.json(user);
-        });
+        })
+        .catch(next);
     });
 
 module.exports = router;

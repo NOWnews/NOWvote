@@ -20,7 +20,8 @@ router.route('/')
             });
 
             return res.json(newUser);
-        });
+        })
+        .catch(next);
     });
 
 module.exports = router;
