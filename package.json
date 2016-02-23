@@ -1,6 +1,6 @@
 {
-  "name": "vote",
-  "version": "0.0.0",
+  "name": "NOWvote",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "npm install && DEBUG=NOWvote* ./node_modules/nodemon/bin/nodemon.js ./bin/www.js",
