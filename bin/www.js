@@ -20,6 +20,5 @@ var port = process.env.PORT || '8998';
 app.set('port', port);
 
 var server = http.createServer(app);
-
 server.listen(port);
 console.log(`Start Listen Port ${port} and ${NODE_ENV} mode`);
