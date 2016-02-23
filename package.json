@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "DEBUG=NOWvote* ./node_modules/nodemon/bin/nodemon.js ./bin/www.js"
+    "start": "npm install && DEBUG=NOWvote* ./node_modules/nodemon/bin/nodemon.js ./bin/www.js",
+    "admin": "npm install && DEBUG=NOWvote* ./node_modules/nodemon/bin/nodemon.js ./bin/admin.js"
   },
   "dependencies": {
     "babel-core": "^6.4.5",

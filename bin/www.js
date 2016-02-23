@@ -21,4 +21,10 @@ app.set('port', port);
 
 var server = http.createServer(app);
 server.listen(port);
-console.log(`Start Listen Port ${port} and ${NODE_ENV} mode`);
+console.log('-------------------------------');
+console.log('Start NOWvote website');
+console.log(`Listen Port ${port}`);
+console.log(`${NODE_ENV} mode`);
+console.log('-------------------------------');
+// console.log(`Start NOWvote website and Listen Port ${port} and ${NODE_ENV} mode`);
+// console.log(`Start Listen Port ${port} and ${NODE_ENV} mode`);
