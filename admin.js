@@ -1,9 +1,11 @@
 
+/*
+ * NOWvote Admin
+ */
+
 import express from 'express';
 import middlewares from './admin/middlewares';
-// import apis from './apis';
 import controllers from './admin/controllers';
-// import admins from './admins';
 import errorHandles from './admin/errorHandles';
 let app = express();
 
