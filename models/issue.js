@@ -16,6 +16,11 @@ const schema = new Schema({
         required: true
     },
 
+    type: {
+        type: Schema.Types.ObjectId,
+        ref: 'type'
+    },
+
     startTime: {
         type: Date,
         required: true

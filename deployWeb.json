@@ -1,0 +1,54 @@
+{
+    "apps": [
+        {
+            "name": "NOWvote",
+            "script": "bin/www.js",
+            "env": {
+                "COMMON_VARIABLE": "true"
+            },
+            "env_production" : {
+              "NODE_ENV": "production"
+            },
+            "env_staging" : {
+              "NODE_ENV": "staging"
+            }
+        }
+    ],
+
+    "deploy": {
+        "production": {
+            "user" : "chutnoc",
+            "host" : [
+                {
+                    "host" : "121.201.7.226",
+                    "port": "60022"
+                }
+            ],
+            "ref": "origin/master",
+            "repo" : "git@try.gogs.io:nownews/NOWvote.git",
+            "path" : "/home/chutnoc/NOWvote",
+            "post-deploy" : "source ~/.nvm/nvm.sh && npm install && pm2 startOrRestart deployWeb.json --env production",
+            "env"  : {
+                "NODE_ENV": "production",
+                "DEBUG": "NOWvote*",
+            }
+        },
+        "staging": {
+            "user" : "chutnoc",
+            "host" : [
+                {
+                    "host" : "121.201.7.226",
+                    "port": "60022"
+                }
+            ],
+            "ref": "origin/develop",
+            "repo" : "git@try.gogs.io:nownews/NOWvote.git",
+            "path" : "/home/chutnoc/NOWvote",
+            "post-deploy" : "source ~/.nvm/nvm.sh && npm install && pm2 startOrRestart deployWeb.json --env staging",
+            "env"  : {
+                "NODE_ENV": "staging",
+                "DEBUG": "NOWvote*",
+            }
+        }
+    }
+}

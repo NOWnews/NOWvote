@@ -37,4 +37,4 @@ const schema = new Schema({
     }
 });
 
-module.exports = mongoose.model('menu', schema);
+module.exports = mongoose.model('type', schema);
