@@ -1,14 +1,14 @@
 
 import co from 'co';
 
-const debug = require('debug')('NOWvote:server:controllers:type:pageShow');
+const debug = require('debug')('NOWvote:server:controllers:category:pageShow');
 
 module.exports = function(req, res, next) {
 
     co(function*() {
-        debug('type is %s', req.params.type);
+        debug('category is %s', req.params.category);
         debug('sn is %s', req.params.sn);
-        return res.render('type/show', { type: req.params.type, sn: req.params.sn });
+        return res.render('category/show', { category: req.params.category, sn: req.params.sn });
     })
     .catch(next);
 };

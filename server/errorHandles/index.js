@@ -16,7 +16,7 @@ module.exports = function(app) {
             // error:err.code,
             // name: err.name,
             message: err.message,
-            stack: err.stack.split('\n')
+            stack: err.stack
         };
 
         return res.render('503', { error: errObject });
