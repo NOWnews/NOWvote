@@ -49,6 +49,7 @@ module.exports = function(app) {
     app.use(auth(app));
 
     app.use(logger('dev'));
+    // app.use(logger(':method :url :response-time'));
 
     return function(req, res, next) {
         return next();

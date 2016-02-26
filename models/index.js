@@ -19,7 +19,7 @@ autoIncrement.initialize(connection);
  * 因為用 import 會在程式啟動前，就把所有的 code 先做一次，所以這邊只能用 require，要不然 autoIncrement 會出錯
  */
 const user = require('./user');
-const type = require('./type');
+const category = require('./category');
 const issue = require('./issue');
 const option = require('./option');
 const tag = require('./tag');
@@ -28,7 +28,7 @@ const tagRelation = require('./tagRelation');
 
 module.exports = {
     user: user,
-    type: type,
+    category: category,
     issue: issue,
     option: option,
     tag: tag,

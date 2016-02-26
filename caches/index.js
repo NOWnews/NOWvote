@@ -2,6 +2,9 @@
 import co from 'co';
 import Promise from 'bluebird';
 import redis from 'redis';
+import models from '../models';
+
+const debug = require('debug')('NOWvote:caches:index');
 
 
 /*
@@ -34,5 +37,30 @@ const setRedisValue = co.wrap(function*(key, value, expire) {
     return yield Promise.resolve(valueObject);
 });
 
+/*
+ * 去 redis 找所有分類清單，沒有的話會去 mongodb 要，並存回 redis
+ */
+const getCategoryMenu = co.wrap(function*() {
+
+    let menu = yield getRedisValue('categoryMenu');
+
+    if(menu) {
+        debug('redis menu data = %j', menu);
+        return yield Promise.resolve(menu);
+    }
+
+    let menuFromModels = yield models.category.find()
+        .where('trashed').equals(false)
+        .where('status').equals(true)
+        .sort('weight')
+        .execAsync();
+    debug('mongod menu data = %j', menuFromModels);
+
+    let updateRedisMenu = yield setRedisValue('categoryMenu', menuFromModels, 3600);
+
+    return Promise.resolve(updateRedisMenu);
+});
+
 module.exports.set = setRedisValue;
 module.exports.get = getRedisValue;
+module.exports.getCategoryMenu = getCategoryMenu;
