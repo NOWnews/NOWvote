@@ -9,8 +9,10 @@ import multer from 'multer';
 import cookieSession from 'cookie-session';
 import nunjucks from 'nunjucks';
 import methodOverride from 'method-override';
+import passport from 'passport';
 
 const upload = multer({ dest: '/tmp' });
+const auth = require('./auth');
 
 module.exports = function(app) {
 
@@ -43,6 +45,8 @@ module.exports = function(app) {
             return method;
         }
     }));
+
+    app.use(auth(app));
 
     app.use(logger('dev'));
 

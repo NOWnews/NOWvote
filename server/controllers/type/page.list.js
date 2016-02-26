@@ -1,13 +1,13 @@
 
 import co from 'co';
 
-const debug = require('debug')('NOWvote:server:controllers:tag:pageList');
+const debug = require('debug')('NOWvote:server:controllers:type:pageList');
 
 module.exports = function(req, res, next) {
 
     co(function*() {
-        debug('tag is %s', req.params.tag);
-        return res.render('type/list', { tag: req.params.tag });
+        debug('type is %s', req.params.type);
+        return res.render('type/list', { type: req.params.type });
     })
     .catch(next);
 };
