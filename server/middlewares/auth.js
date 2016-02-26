@@ -11,8 +11,20 @@ module.exports = function(app) {
     app.use(passport.session());
 
     app.get('/auth/facebook',
+        function(req, res, next){
+            console.log(req.query);
+            return next();
+        },
         passport.authenticate('facebook')
     );
+
+    // app.get('/auth/facebook', function(req, res, next) {
+    //     passport.authenticate('facebook');
+    // });
+
+    // app.get('/auth/facebook/callback', function(req, res, next) {
+
+    // });
 
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', {
