@@ -1,6 +1,8 @@
 
 const moveFile = require('./moveFile');
+const checkExt = require('./checkExt');
 
 module.exports = {
-    moveFile: moveFile
+    moveFile: moveFile,
+    checkExt: checkExt
 };
