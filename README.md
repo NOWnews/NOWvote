@@ -12,9 +12,9 @@ redis v3.0.7
 
 這個 project 一共分為幾個部分
 
-- [NOWnews Website](#nowvote-website) 
+- [NOWvote Website](#nowvote-website)
 
-- [NOWnews Admin](#nowvote-admin) 
+- [NOWvote Admin](#nowvote-admin)
 
 
 ## <a name="nowvote-website"></a>NOWvote Website
