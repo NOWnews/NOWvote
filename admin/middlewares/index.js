@@ -11,6 +11,7 @@ import nunjucks from 'nunjucks';
 import methodOverride from 'method-override';
 
 const upload = multer({ dest: '/tmp' });
+const defaultUser = require('./defaultUser');
 
 module.exports = function(app) {
 
@@ -45,6 +46,8 @@ module.exports = function(app) {
     }));
 
     app.use(logger('dev'));
+
+    app.use(defaultUser());
 
     return function(req, res, next) {
         return next();
