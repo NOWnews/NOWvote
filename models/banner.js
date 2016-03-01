@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 
 const schema = new Schema({
 
-    title: {
+    image: {
         type: String,
         required: true
     },
@@ -26,6 +26,11 @@ const schema = new Schema({
         default: 0
     },
 
+    status: {
+        type: Boolean,
+        default: true
+    },
+
     startTime: {
         type: Date,
         default: Date.now
@@ -36,11 +41,6 @@ const schema = new Schema({
         default: Date.now
     },
 
-    status: {
-        type: Boolean,
-        default: true
-    },
-
     trashed: {
         type: Boolean,
         default: false
@@ -48,9 +48,9 @@ const schema = new Schema({
 });
 
 schema.plugin(autoIncrement.plugin, {
-    model: 'category',
+    model: 'banner',
     field: 'sn',
     startAt: 1
 });
 
-module.exports = mongoose.model('category', schema);
+module.exports = mongoose.model('banner', schema);

@@ -37,30 +37,67 @@ const setRedisValue = co.wrap(function*(key, value, expire) {
     return yield Promise.resolve(valueObject);
 });
 
+
 /*
+ * 從 redis 要 menu 清單
  * 去 redis 找所有分類清單，沒有的話會去 mongodb 要，並存回 redis
  */
 const getCategoryMenu = co.wrap(function*() {
 
     let menu = yield getRedisValue('categoryMenu');
 
-    if(menu) {
+    if(menu !== 0) {
         debug('redis menu data = %j', menu);
         return yield Promise.resolve(menu);
     }
 
+    let now = Date.now();
+
     let menuFromModels = yield models.category.find()
         .where('trashed').equals(false)
         .where('status').equals(true)
+        .where('startTime').lte(now)
+        .where('endTime').gte(now)
         .sort('weight')
         .execAsync();
-    debug('mongod menu data = %j', menuFromModels);
+    debug('mongodb menu data = %j', menuFromModels);
 
     let updateRedisMenu = yield setRedisValue('categoryMenu', menuFromModels, 3600);
 
     return Promise.resolve(updateRedisMenu);
 });
 
+
+/*
+ * 從 redis 要 banner 清單
+ * 去 redis 找所有分類清單，沒有的話會去 mongodb 要，並存回 redis
+ */
+const getBanners = co.wrap(function*() {
+
+    let banners = yield getRedisValue('banners');
+
+    if(banners.length !== 0) {
+        debug('redis banners data = %j', banners);
+        return yield Promise.resolve(banners);
+    }
+
+    let now = Date.now();
+
+    let bannersFromModels = yield models.banner.find()
+        .where('trashed').equals(false)
+        .where('status').equals(true)
+        .where('startTime').lte(now)
+        .where('endTime').gte(now)
+        .sort('weight')
+        .execAsync();
+    debug('mongodb banners data = %j', bannersFromModels);
+
+    let updateRedisBanners = yield setRedisValue('banners', bannersFromModels, 3600);
+
+    return Promise.resolve(updateRedisBanners);
+});
+
 module.exports.set = setRedisValue;
 module.exports.get = getRedisValue;
 module.exports.getCategoryMenu = getCategoryMenu;
+module.exports.getBanners = getBanners;

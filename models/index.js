@@ -20,6 +20,7 @@ autoIncrement.initialize(connection);
  */
 const user = require('./user');
 const category = require('./category');
+const banner = require('./banner');
 const issue = require('./issue');
 const option = require('./option');
 const tag = require('./tag');
