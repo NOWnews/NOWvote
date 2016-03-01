@@ -51,7 +51,7 @@ const getCategoryMenu = co.wrap(function*() {
 
     let menu = yield getRedisValue('categoryMenu');
 
-    if(menu !== 0) {
+    if(menu.length !== 0) {
         debug('redis menu data = %j', menu);
         return yield Promise.resolve(menu);
     }
