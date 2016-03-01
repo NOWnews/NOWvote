@@ -28,7 +28,7 @@ const schema = new Schema({
 });
 
 schema.plugin(autoIncrement.plugin, {
-    model: 'option',
+    model: 'tag',
     field: 'sn',
     startAt: 1
 });

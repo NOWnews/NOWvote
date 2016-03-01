@@ -36,6 +36,7 @@ module.exports = function(app) {
 
     // 靜態檔案位置
     app.use('/static', express.static(rootPath + '/server/public/'));
+    app.use('/images', express.static(rootPath + '/imageStorage/'));
 
     // overwrite put and delete method
     app.use(methodOverride(function(req, res) {
