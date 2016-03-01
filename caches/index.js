@@ -29,6 +29,11 @@ const getRedisValue = co.wrap(function*(key) {
  * 利用 key 與 value 將資料存入 redis，並設定過期時間
  */
 const setRedisValue = co.wrap(function*(key, value, expire) {
+
+    // 如果沒有帶過期時間，預設 3600 毫秒
+    if(!expire) {
+        let expire = 3600;
+    }
     let valueString = JSON.stringify(value);
     client.set(key, valueString);
     client.expire(key, expire);

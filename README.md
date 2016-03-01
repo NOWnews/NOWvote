@@ -36,3 +36,19 @@ redis v3.0.7
 - 主要程式: admin.js
 - 相關資料夾: /admin
 - 快速啟動指令: `npm run admin`
+
+## Redis 共用 method
+
+- cache.set(key, value, expire)
+  - key: 存入 redis 的 key 值
+  - value: 存入 redis 的值
+  - expire: 過期時間(ms)，預設 3600ms
+
+- cache.get(key)
+  - key: 取得 redis 資料的 key 值
+
+- cache.getCategoryMenu()
+  - 取得 redis 裡面的 menu
+
+- cache.getBanners()
+  - 取得 redis 裡面的 banners
