@@ -93,15 +93,13 @@
     "expect"
   ],
   "globals": {
-      "models": false,
+      "models": true,
       "Debug": false,
       "moment": false,
       "_": false,
       "config": false,
-      "libs": false,
+      "libs": true,
       "rootPath": false,
-      "async": false,
-      "await": false,
       "NODE_ENV": false
   }
 }
