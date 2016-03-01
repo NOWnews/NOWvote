@@ -8,6 +8,8 @@ mongodb v3.2.1
 
 redis v3.0.7
 
+imagemagick v6.9.3-0_2
+
 ## 服務項目
 
 這個 project 一共分為幾個部分
