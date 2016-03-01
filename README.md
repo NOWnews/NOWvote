@@ -54,3 +54,15 @@ imagemagick v6.9.3-0_2
 
 - cache.getBanners()
   - 取得 redis 裡面的 banners
+
+## Libs 共用 method
+
+- libs.hashPwd(password)
+  - password: 要 hash 的密碼
+
+- libs.moveFile(source, target)
+  - source: 檔案原本的位置
+  - target: 欲搬移檔案的位置，目前會幫你自動取名字
+
+- libs.checkExt(req.file)
+  - req.file: 傳入的檔案資訊
