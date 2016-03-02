@@ -1,13 +1,23 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-    {% include "./blocks/head.html" %}
-</head>
-<body>
-    <h1>THIS IS ADMIN</h1>
-    {% include "./blocks/header.html" %}
-    {% block container %}{% endblock %}
-    {% include "./blocks/footer.html" %}
-</body>
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
+<html class="no-js" lang="zh">
+    <head>
+        <title></title>
+        {% include "./blocks/head.html" %}
+        {% block head %}{% endblock %}
+    </head>
+    <body>
+        {% include "./blocks/header.html" %}
+        <div class="row">
+            <div class="large-9 columns" role="content">
+                {% block container %}{% endblock %}
+            </div>
+            <aside class="large-3 columns">
+                {% include "./blocks/slides.html" %}
+            </aside>
+        </div>
+        {% include "./blocks/footer.html" %}
+    </body>
 </html>
+
+<body>

@@ -36,6 +36,9 @@ module.exports = function(app) {
     // 靜態檔案位置
     app.use('/static', express.static(rootPath + '/server/public/'));
 
+    // TODO 暫時用此方法引入 foundation
+    app.use('/bower', express.static(rootPath + '/bower_components/'));
+
     // overwrite put and delete method
     app.use(methodOverride(function(req, res) {
         if (req.body && typeof req.body === 'object' && '_method' in req.body) {
