@@ -10,7 +10,7 @@ module.exports = function(req, res, next) {
         let issues = yield models.issue.find().execAsync();
         debug('issues = %j', issues);
         let data = ['a','b','c','d'];
-        return res.render('container', { issues: data });
+        return res.render('home', { issues: data });
     })
     .catch(next);
 
