@@ -1,0 +1,20 @@
+{
+  "name": "NOWvote",
+  "version": "0.0.0",
+  "authors": [
+    "webber0928 <bird23074035@gmail.com>"
+  ],
+  "description": "NOWvote Bower",
+  "license": "MIT",
+  "homepage": "index.html",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.6"
+  }
+}
