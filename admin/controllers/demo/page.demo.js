@@ -1,0 +1,17 @@
+
+const debug = require('debug')('NOWvote:admin:controllers:home');
+
+import co from 'co';
+import models from '../../../models';
+
+module.exports = function(req, res, next) {
+
+    co(function*() {
+        let issues = yield models.issue.find().execAsync();
+        debug('issues = %j', issues);
+        let data = ['a','b','c','d'];
+        return res.render('home', { issues: data });
+    })
+    .catch(next);
+
+};
