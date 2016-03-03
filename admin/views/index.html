@@ -10,6 +10,10 @@
         {% include "./blocks/header.html" %}
         <div class="row">
             <div class="large-9 columns" role="content">
+                <ul class="breadcrumbs">
+                    <li><a href="/">Home</a></li>
+                    {% block breadcrumbs %}{% endblock %}
+                </ul>
                 {% block container %}{% endblock %}
             </div>
             <aside class="large-3 columns">
