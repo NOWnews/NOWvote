@@ -55,6 +55,9 @@ imagemagick v6.9.3-0_2
 - cache.getBanners()
   - 取得 redis 裡面的 banners
 
+- cache.updateRedisByKey(key)
+  - key: 目前能代入 `banners`, `categoryMenu`，更新相對應的資料
+
 ## Libs 共用 method
 
 - libs.hashPwd(password)
