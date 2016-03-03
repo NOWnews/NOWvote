@@ -1,9 +1,9 @@
 import express from 'express';
 let router = express.Router();
 
-import pageDemo from './page.demo';
+import pageCarousel from './page.carousel';
 
 router.route('/')
-    .get(pageDemo);
+    .get(pageCarousel);
 
 module.exports = router;

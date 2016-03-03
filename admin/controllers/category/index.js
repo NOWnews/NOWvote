@@ -1,9 +1,9 @@
 import express from 'express';
 let router = express.Router();
 
-import pageDemo from './page.demo';
+import pageCategory from './page.category';
 
 router.route('/')
-    .get(pageDemo);
+    .get(pageCategory);
 
 module.exports = router;

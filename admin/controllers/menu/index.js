@@ -1,9 +1,9 @@
 import express from 'express';
 let router = express.Router();
 
-import pageDemo from './page.demo';
+import pageMenu from './page.menu';
 
 router.route('/')
-    .get(pageDemo);
+    .get(pageMenu);
 
 module.exports = router;
