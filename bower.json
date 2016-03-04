@@ -17,6 +17,7 @@
   "dependencies": {
     "foundation": "~5.5.3",
     "jquery-ui": "~1.11.4",
-    "ckeditor": "~4.5.7"
+    "ckeditor": "~4.5.7",
+    "taggingJS": "~1.3.3"
   }
 }
