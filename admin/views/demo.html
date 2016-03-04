@@ -2,8 +2,10 @@
 
 {% block head %}
     <script src="/bower/jquery-ui/jquery-ui.min.js"></script>
+    <script src="/bower/taggingJS/example/tagging.js"></script>
     <script>
         $(function () {
+            // jquery-ui Sortable
             $(".column").sortable({connectWith: ".column", handle: ".portlet-header", cancel: ".portlet-toggle", placeholder: "portlet-placeholder ui-corner-all"});
             $(".portlet").addClass("ui-widget ui-widget-content ui-helper-clearfix ui-corner-all").find(".portlet-header").addClass("ui-widget-header ui-corner-all").prepend("<span class='ui-icon ui-icon-minusthick portlet-toggle'></span>");
             $(".portlet-toggle").click(function () {
@@ -11,10 +13,24 @@
                 icon.toggleClass("ui-icon-minusthick ui-icon-plusthick");
                 icon.closest(".portlet").find(".portlet-content").toggle();
             });
+
+            // taggingJS
+            var my_custom_options = {
+                "no-duplicate": true,
+                "no-backspace": true,
+                "tag-char": '',
+                "tags-input-name": "taggone",
+                "edit-on-delete": false,
+                "forbidden-chars": ["," , ".", "_", "?"]
+            };
+            $(".tag-box").tagging(my_custom_options);
         });
     </script>
+    <!-- ckeditor -->
     <script src="/bower/ckeditor/ckeditor.js"></script>
+    <link rel="stylesheet" href="/bower/taggingJS/example/tag-basic-style.css">
     <style>
+        /* jquery-ui Sortable */
         .portlet-placeholder {
             border: 1px dotted black;
             margin: 0 1em 1em 0;
@@ -33,26 +49,29 @@
 {% block container %}
 <article>
     <h2>DEMO</h2>
-    <ul class="accordion" data-accordion>
-        <li class="accordion-navigation">
-            <a href="#panel1a">Accordion 1</a>
+    <div id="tagBox2" class="tag-box">preexisting-tag</div>
+
+    <ul class="accordion column" data-accordion>
+        <li class="portlet accordion-navigation">
+            <a class="portlet-header" href="#panel1a">Accordion 1</a>
             <div id="panel1a" class="content active">
                 Panel 1. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
             </div>
         </li>
-        <li class="accordion-navigation">
-            <a href="#panel2a">Accordion 2</a>
+        <li class="portlet accordion-navigation">
+            <a class="portlet-header" href="#panel2a">Accordion 2</a>
             <div id="panel2a" class="content">
                 Panel 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
             </div>
         </li>
-        <li class="accordion-navigation">
-            <a href="#panel3a">Accordion 3</a>
+        <li class="portlet accordion-navigation">
+            <a class="portlet-header" href="#panel3a">Accordion 3</a>
             <div id="panel3a" class="content">
                 Panel 3. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
             </div>
         </li>
     </ul>
+    <div class="clearfix"></div>
     <form action="/" method="post">
         <textarea class="ckeditor" id="editor1" cols="80" rows="10" name="editor1"></textarea>
         <textarea class="ckeditor" id="editor2" cols="80" rows="10" name="editor2"></textarea>
