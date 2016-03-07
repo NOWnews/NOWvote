@@ -4,7 +4,7 @@ import account from './account';
 import carousel from './carousel';
 import category from './category';
 import content from './content';
-import menu from './menu';
+import menuCategory from './menuCategory';
 import demo from './demo';
 
 module.exports = function(app) {
@@ -14,7 +14,7 @@ module.exports = function(app) {
     app.use('/carousel', carousel);
     app.use('/category', category);
     app.use('/content', content);
-    app.use('/menu', menu);
+    app.use('/menuCategory', menuCategory);
     app.use('/demo', demo);
 
     return function(req, res, next) {
