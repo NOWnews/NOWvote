@@ -15,9 +15,8 @@ router.route('/')
 router.route('/:id')
     .delete(activeRemove);
 
-
-// router.route('/create')
-//     .get(pageCreate.show)
+router.route('/create')
+    .get(pageCreate)
 //     .post(pageCreate.create);
 //
 // router.route('/edit/:id')
