@@ -6,6 +6,11 @@ import models from '../models';
 
 const debug = require('debug')('NOWvote:caches:index');
 
+/*
+ * Redis 資料過期時間為 1 小時
+ */
+const redisExpireSeconds = 3600;
+
 
 /*
  * 利用 bluebird 將 redis 轉換成可以使用 promise 
@@ -32,7 +37,7 @@ const setRedisValue = co.wrap(function*(key, value, expire) {
 
     // 如果沒有帶過期時間，預設 3600 毫秒
     if(!expire) {
-        let expire = 3600;
+        let expire = redisExpireSeconds;
     }
     let valueString = JSON.stringify(value);
     client.set(key, valueString);
@@ -41,6 +46,35 @@ const setRedisValue = co.wrap(function*(key, value, expire) {
     let valueObject = JSON.parse(cacheValue);
     return yield Promise.resolve(valueObject);
 });
+
+/*
+ * 重新從 models 取得 menu 的資料
+ */
+const getMenuFromModels = co.wrap(function*() {
+    let now = Date.now();
+    return yield models.category.find()
+        .where('trashed').equals(false)
+        .where('status').equals(true)
+        .where('startTime').lte(now)
+        .where('endTime').gte(now)
+        .sort('weight')
+        .execAsync();
+});
+
+/*
+ * 重新從 models 取得 banners 的資料
+ */
+const getBannersFromModels = co.wrap(function*() {
+    let now = Date.now();
+    return yield models.banner.find()
+        .where('trashed').equals(false)
+        .where('status').equals(true)
+        .where('startTime').lte(now)
+        .where('endTime').gte(now)
+        .sort('weight')
+        .execAsync();
+});
+// bannersFromModels
 
 
 /*
@@ -56,18 +90,10 @@ const getCategoryMenu = co.wrap(function*() {
         return yield Promise.resolve(menu);
     }
 
-    let now = Date.now();
-
-    let menuFromModels = yield models.category.find()
-        .where('trashed').equals(false)
-        .where('status').equals(true)
-        .where('startTime').lte(now)
-        .where('endTime').gte(now)
-        .sort('weight')
-        .execAsync();
+    let menuFromModels = yield getMenuFromModels();
     debug('mongodb menu data = %j', menuFromModels);
 
-    let updateRedisMenu = yield setRedisValue('categoryMenu', menuFromModels, 3600);
+    let updateRedisMenu = yield setRedisValue('categoryMenu', menuFromModels, redisExpireSeconds);
 
     return Promise.resolve(updateRedisMenu);
 });
@@ -86,23 +112,35 @@ const getBanners = co.wrap(function*() {
         return yield Promise.resolve(banners);
     }
 
-    let now = Date.now();
-
-    let bannersFromModels = yield models.banner.find()
-        .where('trashed').equals(false)
-        .where('status').equals(true)
-        .where('startTime').lte(now)
-        .where('endTime').gte(now)
-        .sort('weight')
-        .execAsync();
+    let bannersFromModels = getBannersFromModels();
     debug('mongodb banners data = %j', bannersFromModels);
 
-    let updateRedisBanners = yield setRedisValue('banners', bannersFromModels, 3600);
+    let updateRedisBanners = yield setRedisValue('banners', bannersFromModels, redisExpireSeconds);
 
     return Promise.resolve(updateRedisBanners);
+});
+
+const updateRedisByKey = co.wrap(function*(key) {
+
+    const validateArray = ['banners', 'categoryMenu'];
+
+    if(!key || _.indexOf(validateArray, key) === -1) {
+        return yield Promise.reject(new Error('update redis data need key'));
+    }
+
+    if(key === 'banners') {
+        let banners = yield getBannersFromModels();
+        return yield setRedisValue('banners', banners, redisExpireSeconds);
+    }
+
+    if(key === 'categoryMenu') {
+        let menu = yield getMenuFromModels();
+        return yield setRedisValue('categoryMenu', menu, redisExpireSeconds);
+    }
 });
 
 module.exports.set = setRedisValue;
 module.exports.get = getRedisValue;
 module.exports.getCategoryMenu = getCategoryMenu;
 module.exports.getBanners = getBanners;
+module.exports.updateRedisByKey = updateRedisByKey;
