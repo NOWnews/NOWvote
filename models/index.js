@@ -20,7 +20,7 @@ autoIncrement.initialize(connection);
  */
 const user = require('./user');
 const adminUser = require('./adminUser');
-const category = require('./category');
+const menuCategory = require('./menuCategory');
 const sliderBanner = require('./sliderBanner');
 const issue = require('./issue');
 const option = require('./option');
@@ -31,7 +31,7 @@ const tagRelation = require('./tagRelation');
 module.exports = {
     user: user,
     adminUser: adminUser,
-    category: category,
+    menuCategory: menuCategory,
     issue: issue,
     option: option,
     tag: tag,
