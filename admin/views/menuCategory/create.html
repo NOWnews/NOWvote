@@ -1,4 +1,4 @@
-{% extends "./index.html" %}
+{% extends "../index.html" %}
 
 {% block head %}
     <script>
@@ -31,7 +31,7 @@
 
         {# :: hrefSet - 可以設置預設的 url 加上 type #}
         {% macro hrefSet(type, id) %}
-            /menu/{{ type }}/{{ id }}
+            /menuCategory/{{ type }}/{{ id }}
         {% endmacro %}
 
         <div class="row">
