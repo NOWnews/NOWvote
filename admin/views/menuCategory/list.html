@@ -1,0 +1,105 @@
+{% extends "../index.html" %}
+
+{% block head %}
+    <script src="/bower/jquery-ui/jquery-ui.min.js"></script>
+    <script>
+        $(function () {
+            // jquery-ui Sortable
+            var recordWeight = function(weightList){
+                $('input[name="weightList"]').val(weightList);
+            };
+
+            $(".column").sortable({
+                connectWith: ".column",
+                handle: ".portlet-header",
+                cancel: ".portlet-toggle",
+                placeholder: "portlet-placeholder ui-corner-all",
+                stop: function( event, ui ) {
+                    var sortedWeight = $( ".column" ).sortable( "toArray", {attribute: "item-sn"} );
+                    recordWeight(sortedWeight);
+                }
+            });
+            $(".portlet").addClass("ui-widget ui-widget-content ui-helper-clearfix ui-corner-all").find(".portlet-header").addClass("ui-widget-header ui-corner-all").prepend("<span class='ui-icon ui-icon-minusthick portlet-toggle'></span>");
+            $(".portlet-toggle").click(function () {
+                var icon = $(this);
+                icon.toggleClass("ui-icon-minusthick ui-icon-plusthick");
+                icon.closest(".portlet").find(".portlet-content").toggle();
+            });
+
+        });
+    </script>
+    <style>
+        /* jquery-ui Sortable */
+        .portlet-placeholder {
+            border: 1px dotted black;
+            margin: 0 1em 1em 0;
+            height: 50px;
+        }
+        .switch.round,
+        .columns.pricing-table {
+            margin: 0;
+        }
+
+    </style>
+{% endblock %}
+
+{% block breadcrumbs %}
+<li class="current">
+    <a href="#">選單管理系統</a>
+</li>
+{% endblock %}
+
+{% block container %}
+<article>
+    {# :: hrefSet - 可以設置預設的 url 加上 type #}
+    {% macro hrefSet(type, id) %}
+        {% if id %}
+            /menuCategory/{{ type }}/{{ id }}
+        {% else %}
+            /menuCategory/{{ type }}
+        {% endif %}
+    {% endmacro %}
+
+    <h3>選單管理系統</h3>
+    <form id="menuList" method="post" action="/menuCategory">
+        <input type="hidden" name="_method" value="put"/>
+        <input type="hidden" name="weightList" value=""/>
+        <ul class="large-12 columns pricing-table">
+            <li class="title row">
+                <div class="large-6 columns">標題</div>
+                <div class="large-3 columns">狀態</div>
+                <div class="large-3 columns">操作</div>
+            </li>
+        </ul>
+
+        <ul class="large-12 column pricing-table">
+            {% for item in items %}
+                <li class="portlet bullet-item" item-sn="sort-{{ item.sn }}">
+                    <div class="portlet-header row">
+                        <div class="large-6 columns">{{ item.title }}</div>
+                        <div class="large-3 columns">
+                            <div class="switch round small">
+                                {% if item.status %}
+                                    {% set status = "checked" %}
+                                {% else %}
+                                    {% set status = "" %}
+                                {% endif %}
+                                <input name="status[]" id="list{{ item.sn }}" type="checkbox" value="{{ item.sn }}" {{ status }}>
+                                <label for="list{{ item.sn }}"></label>
+                            </div>
+                        </div>
+                        <div class="large-3 columns">
+                            <a href="{{ hrefSet('edit', item.sn) }}">EDIT</a>/
+                            <a href="{{ hrefSet('delete', item.sn) }}">DEL</a>
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+        <div class="columns row btn-box text-right">
+            <a href="{{ hrefSet('create') }}" class="button alert">新增選單</a>
+            <button type="submit" class="button success save-btn">儲存列表</button>
+        </div>
+    </form>
+</article>
+{% endblock %}
