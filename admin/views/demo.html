@@ -5,8 +5,10 @@
     <!--timepicker start-->
     <script src="/bower/foundation-datepicker/js/foundation-datepicker.js"></script>
     <script src="/bower/foundation-datepicker/js/locales/foundation-datepicker.zh-TW.js"></script>
+    <!--timepicker end-->
     <script>
     $(function() {
+        // timepicker start
         $(document).foundation({
             "magellan-expedition": {
                 active_class: 'active', // specify the class used for active sections
@@ -28,7 +30,6 @@
             maxView: 4,
             pickTime: true
         });
-
         // datepicker limited to months
         $('#dpMonths').fdatepicker();
         // implementation of custom elements instead of inputs
@@ -37,12 +38,8 @@
         // implementation of disabled form fields
         var nowTemp = new Date();
         var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+        // timepicker end
 
-    });
-    </script>
-    <!--timepicker end-->
-    <script>
-    $(function() {
         // jquery-ui Sortable
         $(".column").sortable({
             connectWith: ".column",
