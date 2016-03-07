@@ -5,7 +5,7 @@
     <script>
         $(function () {
             // jquery-ui Sortable
-            var recordWeight = function(weightList){
+            var recordWeight = function (weightList) {
                 $('input[name="weightList"]').val(weightList);
             };
 
@@ -14,8 +14,8 @@
                 handle: ".portlet-header",
                 cancel: ".portlet-toggle",
                 placeholder: "portlet-placeholder ui-corner-all",
-                stop: function( event, ui ) {
-                    var sortedWeight = $( ".column" ).sortable( "toArray", {attribute: "item-sn"} );
+                stop: function (event, ui) {
+                    var sortedWeight = $(".column").sortable("toArray", {attribute: "item-sn"});
                     recordWeight(sortedWeight);
                 }
             });
@@ -26,6 +26,26 @@
                 icon.closest(".portlet").find(".portlet-content").toggle();
             });
 
+            $('.remove-btn').on('click', function () {
+                event.preventDefault();
+                var sn = $(this).attr('item-sn');
+                var url = '/menuCategory/' + sn;
+                $.ajax({
+                    url: url,
+                    type: 'DELETE',
+                    success: function (data, err) {
+                        if(data.trashed) {
+                            $('.bullet-item[item-sn=' + sn + ']').remove();
+                            $( ".column" ).sortable( "refresh" );
+                            $('#deleteModal' + sn).foundation('reveal', 'close');
+                            var sortedWeight = $(".column").sortable("toArray", {attribute: "item-sn"});
+                            recordWeight(sortedWeight);
+                        } else {
+                            alert('資料有誤 請重新整理！');
+                        }
+                    }
+                })
+            })
         });
     </script>
     <style>
@@ -74,7 +94,7 @@
 
         <ul class="large-12 column pricing-table">
             {% for item in items %}
-                <li class="portlet bullet-item" item-sn="sort-{{ item.sn }}">
+                <li class="portlet bullet-item" item-sn="{{ item.sn }}">
                     <div class="portlet-header row">
                         <div class="large-6 columns">{{ item.title }}</div>
                         <div class="large-3 columns">
@@ -90,7 +110,15 @@
                         </div>
                         <div class="large-3 columns">
                             <a href="{{ hrefSet('edit', item.sn) }}">EDIT</a>/
-                            <a href="{{ hrefSet('delete', item.sn) }}">DEL</a>
+                            <a href="#" item-sn={{ item.sn }} data-reveal-id="deleteModal{{ item.sn }}">DEL</a>
+                            <div id="deleteModal{{ item.sn }}" class="tiny reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+                                <h2 id="modalTitle" class="alert">刪除確認</h2>
+                                <div class="panel callout radius">
+                                    <h5>{{ item.title }}</h5>
+                                </div>
+                                <p><a href="#" item-sn={{ item.sn }} class="button alert remove-btn right">刪除</a></p>
+                                <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+                            </div>
                         </div>
                     </div>
                 </li>
@@ -102,4 +130,5 @@
         </div>
     </form>
 </article>
+
 {% endblock %}
