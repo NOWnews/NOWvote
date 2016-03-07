@@ -1,267 +1,270 @@
-{% extends "./index.html" %} {% block head %}
-<script src="/bower/jquery-ui/jquery-ui.min.js"></script>
-<script src="/bower/taggingJS/tagging.js"></script>
-<!--timepicker start-->
-<script src="/bower/foundation-datepicker/js/foundation-datepicker.js"></script>
-<script src="/bower/foundation-datepicker/js/locales/foundation-datepicker.zh-TW.js"></script>
-<script>
-$(function() {
-    $(document).foundation({
-        "magellan-expedition": {
-            active_class: 'active', // specify the class used for active sections
-            threshold: 0, // how many pixels until the magellan bar sticks, 0 = auto
-            destination_threshold: 20, // pixels from the top of destination for it to be considered active
-            throttle_delay: 50, // calculation throttling to increase framerate
-            fixed_top: 0, // top distance in pixels assigend to the fixed element on scroll
-            offset_by_height: true // whether to offset the destination by the expedition height. Usually you want this to be true, unless your expedition is on the side.
-        }
+{% extends "./index.html" %}
+{% block head %}
+    <script src="/bower/jquery-ui/jquery-ui.min.js"></script>
+    <script src="/bower/taggingJS/tagging.js"></script>
+    <!--timepicker start-->
+    <script src="/bower/foundation-datepicker/js/foundation-datepicker.js"></script>
+    <script src="/bower/foundation-datepicker/js/locales/foundation-datepicker.zh-TW.js"></script>
+    <script>
+    $(function() {
+        $(document).foundation({
+            "magellan-expedition": {
+                active_class: 'active', // specify the class used for active sections
+                threshold: 0, // how many pixels until the magellan bar sticks, 0 = auto
+                destination_threshold: 20, // pixels from the top of destination for it to be considered active
+                throttle_delay: 50, // calculation throttling to increase framerate
+                fixed_top: 0, // top distance in pixels assigend to the fixed element on scroll
+                offset_by_height: true // whether to offset the destination by the expedition height. Usually you want this to be true, unless your expedition is on the side.
+            }
+        });
+
+        window.prettyPrint && prettyPrint();
+        $('#dpt').fdatepicker({
+            format: 'mm-dd-yyyy hh:ii',
+            disableDblClickSelection: true,
+            language: 'vi',
+            startView: "month",
+            minView: 1,
+            maxView: 4,
+            pickTime: true
+        });
+
+        // datepicker limited to months
+        $('#dpMonths').fdatepicker();
+        // implementation of custom elements instead of inputs
+        var startDate = new Date(2012, 1, 20);
+        var endDate = new Date(2012, 1, 25);
+        // implementation of disabled form fields
+        var nowTemp = new Date();
+        var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+
     });
+    </script>
+    <!--timepicker end-->
+    <script>
+    $(function() {
+        // jquery-ui Sortable
+        $(".column").sortable({
+            connectWith: ".column",
+            handle: ".portlet-header",
+            cancel: ".portlet-toggle",
+            placeholder: "portlet-placeholder ui-corner-all"
+        });
+        $(".portlet").addClass("ui-widget ui-widget-content ui-helper-clearfix ui-corner-all").find(".portlet-header").addClass("ui-widget-header ui-corner-all").prepend("<span class='ui-icon ui-icon-minusthick portlet-toggle'></span>");
+        $(".portlet-toggle").click(function() {
+            var icon = $(this);
+            icon.toggleClass("ui-icon-minusthick ui-icon-plusthick");
+            icon.closest(".portlet").find(".portlet-content").toggle();
+        });
 
-    window.prettyPrint && prettyPrint();
-    $('#dpt').fdatepicker({
-        format: 'mm-dd-yyyy hh:ii',
-        disableDblClickSelection: true,
-        language: 'vi',
-        startView: "month",
-        minView: 1,
-        maxView: 4,
-        pickTime: true
+        // taggingJS
+        var my_custom_options = {
+            "no-duplicate": true,
+            "no-backspace": true,
+            "tag-char": '',
+            "tags-input-name": "taggone",
+            "edit-on-delete": false,
+            "forbidden-chars": [",", ".", "_", "?"]
+        };
+        $(".tag-box").tagging(my_custom_options);
     });
+    </script>
+    <!-- ckeditor -->
+    <script src="/bower/ckeditor/ckeditor.js"></script>
+    <link rel="stylesheet" href="/bower/taggingJS/example/tag-basic-style.css">
+    <!-- CDN - you can use font awesome or fonudation icon via this, or use your own version: -->
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="/bower/foundation-datepicker/css/foundation-datepicker.min.css">
+    <style>
+    /* jquery-ui Sortable */
 
-    // datepicker limited to months
-    $('#dpMonths').fdatepicker();
-    // implementation of custom elements instead of inputs
-    var startDate = new Date(2012, 1, 20);
-    var endDate = new Date(2012, 1, 25);
-    // implementation of disabled form fields
-    var nowTemp = new Date();
-    var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
-
-});
-</script>
-<!--timepicker end-->
-<script>
-$(function() {
-    // jquery-ui Sortable
-    $(".column").sortable({
-        connectWith: ".column",
-        handle: ".portlet-header",
-        cancel: ".portlet-toggle",
-        placeholder: "portlet-placeholder ui-corner-all"
-    });
-    $(".portlet").addClass("ui-widget ui-widget-content ui-helper-clearfix ui-corner-all").find(".portlet-header").addClass("ui-widget-header ui-corner-all").prepend("<span class='ui-icon ui-icon-minusthick portlet-toggle'></span>");
-    $(".portlet-toggle").click(function() {
-        var icon = $(this);
-        icon.toggleClass("ui-icon-minusthick ui-icon-plusthick");
-        icon.closest(".portlet").find(".portlet-content").toggle();
-    });
-
-    // taggingJS
-    var my_custom_options = {
-        "no-duplicate": true,
-        "no-backspace": true,
-        "tag-char": '',
-        "tags-input-name": "taggone",
-        "edit-on-delete": false,
-        "forbidden-chars": [",", ".", "_", "?"]
-    };
-    $(".tag-box").tagging(my_custom_options);
-});
-</script>
-<!-- ckeditor -->
-<script src="/bower/ckeditor/ckeditor.js"></script>
-<link rel="stylesheet" href="/bower/taggingJS/example/tag-basic-style.css">
-<!-- CDN - you can use font awesome or fonudation icon via this, or use your own version: -->
-<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-<link rel="stylesheet" href="/bower/foundation-datepicker/css/foundation-datepicker.min.css">
-<style>
-/* jquery-ui Sortable */
-
-.portlet-placeholder {
-    border: 1px dotted black;
-    margin: 0 1em 1em 0;
-    height: 50px;
-}
-</style>
-{% endblock %} {% block breadcrumbs %}
-<li class="current">
-    <a href="#">demo</a>
-</li>
-{% endblock %} {% block container %}
-<article>
-    <h2>DEMO</h2>
-    <h3>timepicker</h3>
-    <p>With time picking enabled and vietnamese language used.</p>
-    <input type="text" class="span2" value="02-12-1989 12" id="dpt">
-    <hr>
-    <div id="tagBox2" class="tag-box">preexisting-tag</div>
-    <ul class="accordion column" data-accordion>
-        <li class="portlet accordion-navigation">
-            <a class="portlet-header" href="#panel1a">Accordion 1</a>
-            <div id="panel1a" class="content active">
-                Panel 1. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </div>
-        </li>
-        <li class="portlet accordion-navigation">
-            <a class="portlet-header" href="#panel2a">Accordion 2</a>
-            <div id="panel2a" class="content">
-                Panel 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </div>
-        </li>
-        <li class="portlet accordion-navigation">
-            <a class="portlet-header" href="#panel3a">Accordion 3</a>
-            <div id="panel3a" class="content">
-                Panel 3. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </div>
-        </li>
-    </ul>
-    <div class="clearfix"></div>
-    <form action="/" method="post">
-        <textarea class="ckeditor" id="editor1" cols="80" rows="10" name="editor1"></textarea>
-        <textarea class="ckeditor" id="editor2" cols="80" rows="10" name="editor2"></textarea>
-        </from>
-        <ul class="large-12 column pricing-table">
-            <li class="title row">
-                <div class="large-6 columns">標題</div>
-                <div class="large-3 columns">狀態</div>
-                <div class="large-3 columns">操作</div>
-            </li>
-            <li class="portlet bullet-item">
-                <div class="portlet-header row">
-                    <div class="large-6 columns">標題A</div>
-                    <div class="large-3 columns">
-                        <div class="switch round small">
-                            <input id="exampleCheckboxSwitch1" type="checkbox">
-                            <label for="exampleCheckboxSwitch1"></label>
-                        </div>
-                    </div>
-                    <div class="large-3 columns">EDIT/DEL</div>
-                </div>
-                <!-- <div class="portlet-content">something</div> -->
-            </li>
-            <li class="portlet bullet-item">
-                <div class="portlet-header row">
-                    <div class="large-6 columns">標題B</div>
-                    <div class="large-3 columns">
-                        <div class="switch round small">
-                            <input id="exampleCheckboxSwitch2" type="checkbox">
-                            <label for="exampleCheckboxSwitch2"></label>
-                        </div>
-                    </div>
-                    <div class="large-3 columns">EDIT/DEL</div>
+    .portlet-placeholder {
+        border: 1px dotted black;
+        margin: 0 1em 1em 0;
+        height: 50px;
+    }
+    </style>
+{% endblock %}
+{% block breadcrumbs %}
+    <li class="current">
+        <a href="#">demo</a>
+    </li>
+{% endblock %}
+{% block container %}
+    <article>
+        <h2>DEMO</h2>
+        <h3>timepicker</h3>
+        <p>With time picking enabled and vietnamese language used.</p>
+        <input type="text" class="span2" value="02-12-1989 12" id="dpt">
+        <hr>
+        <div id="tagBox2" class="tag-box">preexisting-tag</div>
+        <ul class="accordion column" data-accordion>
+            <li class="portlet accordion-navigation">
+                <a class="portlet-header" href="#panel1a">Accordion 1</a>
+                <div id="panel1a" class="content active">
+                    Panel 1. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                 </div>
             </li>
-            <li class="portlet bullet-item">
-                <div class="portlet-header row">
-                    <div class="large-6 columns">標題C</div>
-                    <div class="large-3 columns">
-                        <div class="switch round small">
-                            <input id="exampleCheckboxSwitch2" type="checkbox">
-                            <label for="exampleCheckboxSwitch2"></label>
-                        </div>
-                    </div>
-                    <div class="large-3 columns">EDIT/DEL</div>
+            <li class="portlet accordion-navigation">
+                <a class="portlet-header" href="#panel2a">Accordion 2</a>
+                <div id="panel2a" class="content">
+                    Panel 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                 </div>
             </li>
-            <li class="portlet bullet-item">
-                <div class="portlet-header row">
-                    <div class="large-6 columns">標題D</div>
-                    <div class="large-3 columns">
-                        <div class="switch round small">
-                            <input id="exampleCheckboxSwitch2" type="checkbox">
-                            <label for="exampleCheckboxSwitch2"></label>
-                        </div>
-                    </div>
-                    <div class="large-3 columns">EDIT/DEL</div>
+            <li class="portlet accordion-navigation">
+                <a class="portlet-header" href="#panel3a">Accordion 3</a>
+                <div id="panel3a" class="content">
+                    Panel 3. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                 </div>
             </li>
         </ul>
         <div class="clearfix"></div>
-        <form>
-            <div class="row">
-                <div class="large-12 columns">
-                    <label>標題
-                        <input type="text" placeholder="large-12.columns" />
-                    </label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="large-4 columns">
-                    <label>URL
-                        <input type="url" placeholder="large-4.columns" />
-                    </label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="large-4 columns">
-                    <label>圖片(images)
-                        <input type="file" placeholder="large-4.columns" />
-                    </label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="large-12 columns">
-                    <label>內文
-                        <textarea placeholder="small-12.columns"></textarea>
-                    </label>
-                </div>
-            </div>
-        </form>
-        <div data-alert class="alert-box warning">
-            <strong>Caution</strong> - A word I don't understand.
-            <a href="#" class="close">&times;</a>
-        </div>
-        <div class="tags row panel" data-clearing>
-            <div data-alert class="alert-box info radius large-4 columns">
-                標題A
-                <a href="#" class="close">&times;</a>
-            </div>
-            <div data-alert class="alert-box info radius large-4 columns">
-                標題B
-                <a href="#" class="close">&times;</a>
-            </div>
-            <div data-alert class="alert-box info radius large-4 columns">
-                標題C
-                <a href="#" class="close">&times;</a>
-            </div>
-            </ul>
-        </div>
-        <div class="pagination-centered">
-            <ul class="pagination">
-                <li class="arrow unavailable">
-                    <a href="">&laquo;</a>
+        <form action="/" method="post">
+            <textarea class="ckeditor" id="editor1" cols="80" rows="10" name="editor1"></textarea>
+            <textarea class="ckeditor" id="editor2" cols="80" rows="10" name="editor2"></textarea>
+            </from>
+            <ul class="large-12 column pricing-table">
+                <li class="title row">
+                    <div class="large-6 columns">標題</div>
+                    <div class="large-3 columns">狀態</div>
+                    <div class="large-3 columns">操作</div>
                 </li>
-                <li class="current">
-                    <a href="">1</a>
+                <li class="portlet bullet-item">
+                    <div class="portlet-header row">
+                        <div class="large-6 columns">標題A</div>
+                        <div class="large-3 columns">
+                            <div class="switch round small">
+                                <input id="exampleCheckboxSwitch1" type="checkbox">
+                                <label for="exampleCheckboxSwitch1"></label>
+                            </div>
+                        </div>
+                        <div class="large-3 columns">EDIT/DEL</div>
+                    </div>
+                    <!-- <div class="portlet-content">something</div> -->
                 </li>
-                <li>
-                    <a href="">2</a>
+                <li class="portlet bullet-item">
+                    <div class="portlet-header row">
+                        <div class="large-6 columns">標題B</div>
+                        <div class="large-3 columns">
+                            <div class="switch round small">
+                                <input id="exampleCheckboxSwitch2" type="checkbox">
+                                <label for="exampleCheckboxSwitch2"></label>
+                            </div>
+                        </div>
+                        <div class="large-3 columns">EDIT/DEL</div>
+                    </div>
                 </li>
-                <li>
-                    <a href="">3</a>
+                <li class="portlet bullet-item">
+                    <div class="portlet-header row">
+                        <div class="large-6 columns">標題C</div>
+                        <div class="large-3 columns">
+                            <div class="switch round small">
+                                <input id="exampleCheckboxSwitch2" type="checkbox">
+                                <label for="exampleCheckboxSwitch2"></label>
+                            </div>
+                        </div>
+                        <div class="large-3 columns">EDIT/DEL</div>
+                    </div>
                 </li>
-                <li>
-                    <a href="">4</a>
-                </li>
-                <li class="unavailable">
-                    <a href="">&hellip;</a>
-                </li>
-                <li>
-                    <a href="">12</a>
-                </li>
-                <li>
-                    <a href="">13</a>
-                </li>
-                <li class="arrow">
-                    <a href="">&raquo;</a>
+                <li class="portlet bullet-item">
+                    <div class="portlet-header row">
+                        <div class="large-6 columns">標題D</div>
+                        <div class="large-3 columns">
+                            <div class="switch round small">
+                                <input id="exampleCheckboxSwitch2" type="checkbox">
+                                <label for="exampleCheckboxSwitch2"></label>
+                            </div>
+                        </div>
+                        <div class="large-3 columns">EDIT/DEL</div>
+                    </div>
                 </li>
             </ul>
-        </div>
-        <div class="clearfix"></div>
-        <div class="columns row btn-box text-right">
-            <a href="#" class="button alert">ADD</a>
-            <a href="#" class="button success">SAVE</a>
-            <a href="#" class="button secondary">CANCLE</a>
-        </div>
-</article>
+            <div class="clearfix"></div>
+            <form>
+                <div class="row">
+                    <div class="large-12 columns">
+                        <label>標題
+                            <input type="text" placeholder="large-12.columns" />
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="large-4 columns">
+                        <label>URL
+                            <input type="url" placeholder="large-4.columns" />
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="large-4 columns">
+                        <label>圖片(images)
+                            <input type="file" placeholder="large-4.columns" />
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="large-12 columns">
+                        <label>內文
+                            <textarea placeholder="small-12.columns"></textarea>
+                        </label>
+                    </div>
+                </div>
+            </form>
+            <div data-alert class="alert-box warning">
+                <strong>Caution</strong> - A word I don't understand.
+                <a href="#" class="close">&times;</a>
+            </div>
+            <div class="tags row panel" data-clearing>
+                <div data-alert class="alert-box info radius large-4 columns">
+                    標題A
+                    <a href="#" class="close">&times;</a>
+                </div>
+                <div data-alert class="alert-box info radius large-4 columns">
+                    標題B
+                    <a href="#" class="close">&times;</a>
+                </div>
+                <div data-alert class="alert-box info radius large-4 columns">
+                    標題C
+                    <a href="#" class="close">&times;</a>
+                </div>
+                </ul>
+            </div>
+            <div class="pagination-centered">
+                <ul class="pagination">
+                    <li class="arrow unavailable">
+                        <a href="">&laquo;</a>
+                    </li>
+                    <li class="current">
+                        <a href="">1</a>
+                    </li>
+                    <li>
+                        <a href="">2</a>
+                    </li>
+                    <li>
+                        <a href="">3</a>
+                    </li>
+                    <li>
+                        <a href="">4</a>
+                    </li>
+                    <li class="unavailable">
+                        <a href="">&hellip;</a>
+                    </li>
+                    <li>
+                        <a href="">12</a>
+                    </li>
+                    <li>
+                        <a href="">13</a>
+                    </li>
+                    <li class="arrow">
+                        <a href="">&raquo;</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+            <div class="columns row btn-box text-right">
+                <a href="#" class="button alert">ADD</a>
+                <a href="#" class="button success">SAVE</a>
+                <a href="#" class="button secondary">CANCLE</a>
+            </div>
+    </article>
 {% endblock %}
