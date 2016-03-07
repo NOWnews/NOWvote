@@ -8,8 +8,11 @@ module.exports = function(req, res, next) {
 
     co(function*() {
         let issues = yield models.issue.find().execAsync();
-        var items = [{ title: "foo", id: 1 }, { title: "bar", id: 2}, { title: "cool", id: 3 }];
-        return res.render('menu', {items: items});
+        let paramsId = req.params['id'];
+        let deleteData = yield models.menuCategory.findOne({sn: paramsId}).execAsync();
+        deleteData.trashed = true;
+        deleteData.save();
+        return res.json(deleteData);
     })
     .catch(next);
 
