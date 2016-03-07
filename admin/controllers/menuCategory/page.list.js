@@ -43,7 +43,7 @@ module.exports = function(req, res, next) {
         }
         // -----------
 
-        let items = yield models.menuCategory.find().execAsync();
+        let items = yield models.menuCategory.find({ trashed: false }).execAsync();
         return res.render('menuCategory/list', {items: items});
     })
     .catch(next);
