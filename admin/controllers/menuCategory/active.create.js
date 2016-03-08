@@ -19,7 +19,7 @@ module.exports = function(req, res, next) {
             startTime: startTime,
             endTime: endTime,
             status: status,
-            weight: 0
+            weight: 99999
         });
 
         return res.redirect('/menuCategory');
