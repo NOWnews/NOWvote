@@ -1,4 +1,4 @@
-const debug = require('debug')('NOWvote:admin:controllers:menuCategory:creat');
+const debug = require('debug')('NOWvote:admin:controllers:menuCategory:active.create');
 
 import co from 'co';
 import models from '../../../models';
