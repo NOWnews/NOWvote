@@ -1,15 +1,21 @@
 
-const debug = require('debug')('NOWvote:admin:controllers:menu');
+const debug = require('debug')('NOWvote:admin:controllers:menu:menuCategory:page.update');
 
 import co from 'co';
 import models from '../../../models';
 
 module.exports = function(req, res, next) {
 
+    let sn = parseInt(req.params.sn, 10);
+
     co(function*() {
-        let issues = yield models.issue.find().execAsync();
-        var items = [{ title: "foo", id: 1 }, { title: "bar", id: 2}, { title: "cool", id: 3 }];
-        return res.render('menu', {items: items});
+
+        let menuCategory = models.menuCategory.findOne()
+            .where('sn').equals(sn)
+            .where('trashed').equals(false)
+            .execAsync();
+
+        return res.render('menuCategory/create', {item: menuCategory});
     })
     .catch(next);
 
