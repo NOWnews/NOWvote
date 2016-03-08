@@ -10,13 +10,9 @@ module.exports = function(req, res, next) {
 
     co(function*() {
 
-        debug('sn = %s', sn);
-        // let issues = yield models.issue.find().execAsync();
         let menuCategory = yield models.menuCategory.findOne()
             .where('sn').equals(sn)
             .execAsync();
-
-        debug('menuCategory = %j', menuCategory);
 
         menuCategory.set('trashed', true);
         let removedMenuCategory = yield menuCategory
