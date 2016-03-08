@@ -5,32 +5,49 @@
     <script src="/bower/foundation-datepicker/js/locales/foundation-datepicker.zh-TW.js"></script>
     <script>
         $(function () {
-			var nowTemp = new Date();
-			var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
-			var checkin = $('#dpd1').fdatepicker({
-				onRender: function (date) {
-					return date.valueOf() < now.valueOf() ? 'disabled' : '';
-				},
-                format: 'yyyy-mm-dd',
-                language: 'zh-TW'
-			}).on('changeDate', function (ev) {
-				if (ev.date.valueOf() > checkout.date.valueOf()) {
-					var newDate = new Date(ev.date)
-					checkout.update(newDate);
-				}
-				checkin.hide();
-				$('#dpd2')[0].focus();
-			}).data('datepicker');
-			var checkout = $('#dpd2').fdatepicker({
-				onRender: function (date) {
-					return date.valueOf() != checkin.date.valueOf() ? 'disabled' : '';
-				},
-                format: 'hh:ii',
-                startView: "day",
-                language: 'zh-TW'
-			}).on('changeDate', function (ev) {
-				checkout.hide();
-			}).data('datepicker');
+            // datepicker
+            var nowTemp = new Date();
+            var startTime = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+            var setTimepicker = function (type, dayElement, hourElement) {
+                var day = dayElement.fdatepicker({
+                    onRender: function (date) {
+                        return date.valueOf() < startTime.valueOf()
+                            ? 'disabled'
+                            : '';
+                    },
+                    format: 'yyyy-mm-dd',
+                    language: 'zh-TW'
+                }).on('changeDate', function (ev) {
+                    if (ev.date.valueOf() > hour.date.valueOf()) {
+                        var newDate = new Date(ev.date)
+                        hour.update(newDate);
+                    }
+                    day.hide();
+                    hourElement[0].focus();
+                }).data('datepicker');
+                var hour = hourElement.fdatepicker({
+                    onRender: function (date) {
+                        return date.valueOf() != day.date.valueOf()
+                            ? 'disabled'
+                            : '';
+                    },
+                    format: 'hh:ii',
+                    startView: "day",
+                    language: 'zh-TW'
+                }).on('changeDate', function (ev) {
+                    hour.hide();
+                }).data('datepicker');
+            }
+            setTimepicker('start', $('#start-day'), $('#start-hour'));
+            setTimepicker('end', $('#end-day'), $('#end-hour'));
+
+            // status
+            $("#create-status").change(function () {
+                if (this.checked) {
+                    return $("#create-status").val('checked');
+                }
+                return $("#create-status").val('');
+            });
         });
     </script>
     <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
@@ -40,11 +57,13 @@
         .columns.pricing-table {
             margin: 0;
         }
-        .datepicker-hours thead, .datepicker-hours thead .prev, .datepicker-hours thead .next {
+        .datepicker-hours thead,
+        .datepicker-hours thead .prev,
+        .datepicker-hours thead .next {
             visibility: hidden !important;
         }
-
-        input.start-time, input.end-time {
+        input.start-time,
+        input.end-time {
             float: left;
             width: inherit;
             margin-right: 10px;
@@ -53,12 +72,24 @@
             font-size: 0.875rem;
             margin: 0;
         }
+        .time-title {
+            clear: both;
+            display: block;
+            float: left;
+            line-height: 37px;
+            margin-right: 10px;
+        }
+        .status.row {
+            position: relative;
+            margin-top: -38px;
+        }
+
     </style>
 {% endblock %}
 
 {% block breadcrumbs %}
 <li>
-    <a href="/menu">選單管理系統</a>
+    <a href="/menuCategory">選單管理系統</a>
 </li>
 <li class="current">
     <a href="#">新增選單</a>
@@ -67,8 +98,16 @@
 
 {% block container %}
 <article>
-    <h3>新增選單</h3>
-    <form method="post" href="/menu/create/">
+    <form method="post" href="/menuCategory/create">
+        <h3>新增選單</h3>
+        <div class="status row right">
+            <div class="large-4 columns">
+                <div class="switch round small">
+                    <input name="status" id="create-status" type="checkbox">
+                    <label for="create-status"></label>
+                </div>
+            </div>
+        </div>
 
         {# :: hrefSet - 可以設置預設的 url 加上 type #}
         {% macro hrefSet(type, id) %}
@@ -78,31 +117,21 @@
         <div class="row">
             <div class="large-12 columns">
                 <label>標題
-                    <input name="bbb" type="text" placeholder="標題"/>
+                    <input name="title" type="text" placeholder="請輸入標題"/>
                 </label>
             </div>
         </div>
         <div class="row">
-            <div class="large-4 columns">
+            <div class="large-12 columns">
                 <label>URL
-                    <input name="aaa" type="url" placeholder="URL"/>
+                    <input name="url" type="url" placeholder="請輸入URL"/>
                 </label>
             </div>
         </div>
         <div class="row">
-            <div class="large-4 columns">
-                <label>圖片(images)
-                    <input type="file" placeholder="large-4.columns"/>
-                </label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="large-4 columns">
-                <label>狀態 (on/off)
-                    <div class="switch round small">
-                        <input name="123" id="exampleCheckboxSwitch2" type="checkbox">
-                        <label for="exampleCheckboxSwitch2"></label>
-                    </div>
+            <div class="large-12 columns">
+                <label>描述
+                    <textarea name="desc" placeholder="請輸入描述"></textarea>
                 </label>
             </div>
         </div>
@@ -110,13 +139,19 @@
             <div class="columns">
                 <label>
                     <p class="timepicker-title">有效期間</p>
-                    <input type="text" class="start-time" value="" id="dpd1">
-                    <input type="text" class="end-time" value="" id="dpd2">
+                    <span class="time-title">on:
+                    </span>
+                    <input name="start-day" type="text" class="start-time" value="" id="start-day">
+                    <input name="start-hour" type="text" class="start-time" value="" id="start-hour">
+                    <span class="time-title">off:
+                    </span>
+                    <input name="end-day" type="text" class="end-time" value="" id="end-day">
+                    <input name="end-hour" type="text" class="end-time" value="" id="end-hour">
                 </label>
             </div>
         </div>
-        <div class="columns row btn-box text-right">
-            <input type="submit" value="新增" class="button alert" />
+        <div class="columns row btn-box right">
+            <input type="submit" value="儲存" class="button alert"/>
             <a href="{{ hrefSet('') }}" class="button secondary">取消</a>
         </div>
     </form>
