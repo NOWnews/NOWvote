@@ -1,18 +1,30 @@
 
-const debug = require('debug')('NOWvote:admin:controllers:menu');
+const debug = require('debug')('NOWvote:admin:controllers:menuCategory:action.remove');
 
 import co from 'co';
 import models from '../../../models';
 
 module.exports = function(req, res, next) {
 
+    let sn = parseInt(req.params.sn, 10);
+
     co(function*() {
-        let issues = yield models.issue.find().execAsync();
-        let paramsId = req.params['id'];
-        let deleteData = yield models.menuCategory.findOne({sn: paramsId}).execAsync();
-        deleteData.trashed = true;
-        deleteData.save();
-        return res.json(deleteData);
+
+        debug('sn = %s', sn);
+        // let issues = yield models.issue.find().execAsync();
+        let menuCategory = yield models.menuCategory.findOne()
+            .where('sn').equals(sn)
+            .execAsync();
+
+        debug('menuCategory = %j', menuCategory);
+
+        menuCategory.set('trashed', true);
+        let removedMenuCategory = yield menuCategory
+            .saveAsync();
+
+        debug('removedMenuCategory = %j', removedMenuCategory);
+
+        return res.json(removedMenuCategory);
     })
     .catch(next);
 

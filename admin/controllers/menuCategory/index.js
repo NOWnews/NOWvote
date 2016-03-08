@@ -12,7 +12,7 @@ router.route('/')
     .get(pageList)
     .put(activeUpdateList);
 
-router.route('/:id')
+router.route('/:sn')
     .delete(activeRemove);
 
 router.route('/create')
