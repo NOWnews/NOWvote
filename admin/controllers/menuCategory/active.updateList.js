@@ -1,26 +1,50 @@
 
-const debug = require('debug')('NOWvote:admin:controllers:menu');
+const debug = require('debug')('NOWvote:admin:controllers:menuCategory:updateList');
 
 import co from 'co';
+import Promise from 'bluebird';
+import _ from 'lodash';
 import models from '../../../models';
 
 module.exports = function(req, res, next) {
 
+    let data = req.body;
+
+    debug('data = %j', data);
+
     co(function*() {
-        let data = req.body;
+        // let data = req.body;
         let weightList = req.body.weightList.split(',');
         let statusList = req.body['status[]'];
-        let menuCategorys = yield models.menuCategory.update({ trashed: false }).execAsync();
-        menuCategorys = menuCategorys.map(function( menuCategory, index ){
-            menuCategory.weight = weightList.indexOf(menuCategory.sn);
-            if(menuCategory.sn in statusList){
-                menuCategory.status = true;
-            } else {
-                menuCategory.status = false;
+
+        let menuCategories = yield models.menuCategory.find()
+            .where('trashed').equals(false)
+            .execAsync();
+
+        debug('menuCategories = %j', menuCategories);
+
+        debug('statusList = %j', statusList);
+        let updatedMenuList = yield Promise.map(menuCategories, function(menuItem) {
+            debug('sn = %j', menuItem.sn);
+
+            menuItem.weight = _.indexOf(weightList, menuItem.sn + '');
+
+            if(_.indexOf(statusList, menuItem.sn + '') !== -1){
+                debug('menuItem = %j', menuItem);
+                menuItem.set('status', true);
+                return menuItem.saveAsync();
+            }else{
+                menuItem.set('status', false);
+                return menuItem.saveAsync();
             }
-            return menuCategory;
         })
-        menuCategorys.save();
+        .spread(function(doc) {
+            debug('doc = %j', doc);
+            return Promise.resolve(doc);
+        });
+
+        debug('updatedMenuList = %j', updatedMenuList);
+
         return res.redirect('/menuCategory');
     })
     .catch(next);
