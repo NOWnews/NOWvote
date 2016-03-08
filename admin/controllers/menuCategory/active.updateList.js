@@ -37,10 +37,6 @@ module.exports = function(req, res, next) {
                 menuItem.set('status', false);
                 return menuItem.saveAsync();
             }
-        })
-        .spread(function(doc) {
-            debug('doc = %j', doc);
-            return Promise.resolve(doc);
         });
 
         debug('updatedMenuList = %j', updatedMenuList);
