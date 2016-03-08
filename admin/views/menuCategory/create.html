@@ -1,17 +1,58 @@
 {% extends "../index.html" %}
 
 {% block head %}
+    <script src="/bower/foundation-datepicker/js/foundation-datepicker.js"></script>
+    <script src="/bower/foundation-datepicker/js/locales/foundation-datepicker.zh-TW.js"></script>
     <script>
         $(function () {
-
+			var nowTemp = new Date();
+			var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+			var checkin = $('#dpd1').fdatepicker({
+				onRender: function (date) {
+					return date.valueOf() < now.valueOf() ? 'disabled' : '';
+				},
+                format: 'yyyy-mm-dd',
+                language: 'zh-TW'
+			}).on('changeDate', function (ev) {
+				if (ev.date.valueOf() > checkout.date.valueOf()) {
+					var newDate = new Date(ev.date)
+					checkout.update(newDate);
+				}
+				checkin.hide();
+				$('#dpd2')[0].focus();
+			}).data('datepicker');
+			var checkout = $('#dpd2').fdatepicker({
+				onRender: function (date) {
+					return date.valueOf() != checkin.date.valueOf() ? 'disabled' : '';
+				},
+                format: 'hh:ii',
+                startView: "day",
+                language: 'zh-TW'
+			}).on('changeDate', function (ev) {
+				checkout.hide();
+			}).data('datepicker');
         });
     </script>
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="/bower/foundation-datepicker/css/foundation-datepicker.min.css">
     <style>
         .switch.round,
         .columns.pricing-table {
             margin: 0;
         }
+        .datepicker-hours thead, .datepicker-hours thead .prev, .datepicker-hours thead .next {
+            visibility: hidden !important;
+        }
 
+        input.start-time, input.end-time {
+            float: left;
+            width: inherit;
+            margin-right: 10px;
+        }
+        .timepicker-title {
+            font-size: 0.875rem;
+            margin: 0;
+        }
     </style>
 {% endblock %}
 
@@ -66,9 +107,11 @@
             </div>
         </div>
         <div class="row">
-            <div class="large-4 columns">
-                <label>有效期間
-                    <input type="url" placeholder="URL"/>
+            <div class="columns">
+                <label>
+                    <p class="timepicker-title">有效期間</p>
+                    <input type="text" class="start-time" value="" id="dpd1">
+                    <input type="text" class="end-time" value="" id="dpd2">
                 </label>
             </div>
         </div>
