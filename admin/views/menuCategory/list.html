@@ -90,8 +90,9 @@
             <ul class="large-12 columns pricing-table">
                 <li class="title row">
                     <div class="large-6 columns">標題</div>
-                    <div class="large-3 columns">狀態</div>
-                    <div class="large-3 columns">操作</div>
+                    <div class="large-2 columns">狀態</div>
+                    <div class="large-2 columns">編輯</div>
+                    <div class="large-2 columns">刪除</div>
                 </li>
             </ul>
             <ul class="large-12 column pricing-table">
@@ -99,7 +100,7 @@
                     <li class="portlet bullet-item" item-sn="{{ item.sn }}">
                         <div class="portlet-header row">
                             <div class="large-6 columns">{{ item.title }}</div>
-                            <div class="large-3 columns">
+                            <div class="large-2 columns">
                                 <div class="switch round small">
                                     {% if item.status %}
                                         {% set status = "checked" %}
@@ -110,8 +111,11 @@
                                     <label for="list{{ item.sn }}"></label>
                                 </div>
                             </div>
-                            <div class="large-3 columns">
-                                <a href="{{ hrefSet('update', item.sn) }}">EDIT</a>/
+                            <div class="large-2 columns">
+                                <a href="{{ hrefSet('update', item.sn) }}">EDIT</a>
+
+                            </div>
+                            <div class="large-2 columns">
                                 <a href="#" item-sn={{ item.sn }} data-reveal-id="deleteModal{{ item.sn }}">DEL</a>
                                 <div id="deleteModal{{ item.sn }}" class="tiny reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
                                     <h2 id="modalTitle" class="alert">刪除確認</h2>

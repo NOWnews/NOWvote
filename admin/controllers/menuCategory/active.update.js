@@ -9,9 +9,6 @@ module.exports = function(req, res, next) {
     let sn = parseInt(req.params.sn, 10);
     let data = req.body;
 
-    debug('sn = %s', sn);
-    debug('data = %s', data);
-
     co(function*() {
 
         let status = data.status ? true : false;
@@ -22,19 +19,16 @@ module.exports = function(req, res, next) {
             .where('sn').equals(sn)
             .execAsync();
 
-        _.map(menuCategory, function (value, key) {
-            debug('value = %s', value);
-            debug('key = %s', key);
-            return value;
-        });
+        menuCategory.set('title', data.title);
+        menuCategory.set('url', data.url);
+        menuCategory.set('desc', data.desc);
+        menuCategory.set('startTime', startTime);
+        menuCategory.set('endTime', endTime);
+        menuCategory.set('status', status);
 
-        menuCategory.set('trashed', true);
-        let updateMenuCategory = yield menuCategory
-            .saveAsync();
+        yield menuCategory.saveAsync();
 
-        debug('removedMenuCategory = %j', removedMenuCategory);
-
-        return res.json(removedMenuCategory);
+        return res.redirect('/menuCategory');
     })
     .catch(next);
 
