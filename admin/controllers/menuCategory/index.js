@@ -18,7 +18,7 @@ router.route('/:sn')
 
 router.route('/create')
     .get(pageCreate)
-    .post(pageCreate)
+    .post(activeCreate)
 
 //     .post(pageCreate.create);
 //
