@@ -13,8 +13,7 @@ router.route('/')
     .post(actionCreate);
 
 router.route('/create')
-    .get(pageCreate)
-    .post(actionCreate);
+    .get(pageCreate);
 
 router.route('/:sn')
     .get(pageShow)
