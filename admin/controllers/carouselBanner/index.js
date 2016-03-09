@@ -6,9 +6,14 @@ import actionUpdate from './action.update';
 import actionRemove from './action.remove';
 import pageList from './page.list';
 import pageShow from './page.show';
+import pageCreate from './page.create';
 
 router.route('/')
     .get(pageList)
+    .post(actionCreate);
+
+router.route('/create')
+    .get(pageCreate)
     .post(actionCreate);
 
 router.route('/:sn')

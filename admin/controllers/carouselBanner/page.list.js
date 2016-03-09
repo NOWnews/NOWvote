@@ -9,7 +9,7 @@ module.exports = function(req, res, next) {
     co(function*() {
         let issues = yield models.issue.find().execAsync();
         debug('issues = %j', issues);
-        return res.render('carousel');
+        return res.render('carouselBanner/list');
     })
     .catch(next);
 
