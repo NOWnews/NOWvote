@@ -160,21 +160,21 @@
                     <p class="timepicker-title">有效期間</p>
                     <span class="time-title">on:
                     </span>
-                    {% if item['start-day'] %}
-                        <input name="start-day" type="text" class="start-time" value="{{item['start-day']}}" id="start-day" required>
-                        <input name="start-hour" type="text" class="start-time" value="{{item['start-hour']}}" id="start-hour" required>
+                    {% if item.startAtDay %}
+                        <input name="startAtDay" type="text" class="start-time" value="{{item['start-day']}}" id="start-day" required>
+                        <input name="startAtHour" type="text" class="start-time" value="{{item['start-hour']}}" id="start-hour" required>
                     {% else %}
-                        <input name="start-day" type="text" class="start-time" value="" id="start-day" required>
-                        <input name="start-hour" type="text" class="start-time" value="" id="start-hour" required>
+                        <input name="startAtDay" type="text" class="start-time" value="" id="start-day" required>
+                        <input name="startAtHour" type="text" class="start-time" value="" id="start-hour" required>
                     {% endif %}
                     <span class="time-title">off:
                     </span>
-                    {% if item['end-day'] %}
-                        <input name="end-day" type="text" class="end-time" value="{{item['end-day']}}" id="end-day" required>
-                        <input name="end-hour" type="text" class="end-time" value="{{item['end-hour']}}" id="end-hour" required>
+                    {% if item.startAtDay %}
+                        <input name="endAtDay" type="text" class="end-time" value="{{item['end-day']}}" id="end-day" required>
+                        <input name="endAtHour" type="text" class="end-time" value="{{item['end-hour']}}" id="end-hour" required>
                     {% else %}
-                        <input name="end-day" type="text" class="end-time" value="" id="end-day" required>
-                        <input name="end-hour" type="text" class="end-time" value="" id="end-hour" required>
+                        <input name="endAtDay" type="text" class="end-time" value="" id="end-day" required>
+                        <input name="endAtHour" type="text" class="end-time" value="" id="end-hour" required>
                     {% endif %}
                 </label>
             </div>
