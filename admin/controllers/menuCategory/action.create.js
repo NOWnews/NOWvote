@@ -1,0 +1,28 @@
+import co from 'co';
+import moment from 'moment-timezone';
+import models from '../../../models';
+
+const debug = require('debug')('NOWvote:admin:controllers:menuCategory:action.create');
+
+module.exports = function(req, res, next) {
+
+    let data = req.body;
+
+    co(function*() {
+
+        let status = data.status ? true : false;
+        let startTime = moment( `${data.startAtDay} ${data.startAtHour}` );
+        let endTime = moment( `${data.endAtDay} ${data.endAtHour}` );
+        let newMenuCategory = yield models.menuCategory.createAsync({
+            title: data.title,
+            desc: data.desc,
+            url: data.url,
+            startTime: startTime,
+            endTime: endTime,
+            status: status
+        });
+
+        return res.redirect('/menuCategory');
+    })
+    .catch(next);
+}

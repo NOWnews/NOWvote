@@ -14,7 +14,7 @@ const schema = new Schema({
         required: true
     },
 
-    title: {
+    image: {
         type: String,
         required: true
     },
@@ -34,6 +34,11 @@ const schema = new Schema({
         default: 0
     },
 
+    status: {
+        type: Boolean,
+        default: true
+    },
+
     startTime: {
         type: Date,
         default: Date.now
@@ -42,11 +47,6 @@ const schema = new Schema({
     endTime: {
         type: Date,
         default: Date.now
-    },
-
-    status: {
-        type: Boolean,
-        default: true
     },
 
     trashed: {
@@ -71,9 +71,9 @@ schema.statics.findBySn = co.wrap(function*(sn) {
 });
 
 schema.plugin(autoIncrement.plugin, {
-    model: 'category',
+    model: 'sliderBanner',
     field: 'sn',
     startAt: 1
 });
 
-module.exports = mongoose.model('category', schema);
+module.exports = mongoose.model('sliderBanner', schema);

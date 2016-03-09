@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 import autoIncrement from 'mongoose-auto-increment';
 
 /*
- * 利用 bluebird 將 mongoose 轉換成可以使用 promise 
+ * 利用 bluebird 將 mongoose 轉換成可以使用 promise
  */
 Promise.promisifyAll(mongoose);
 
@@ -20,8 +20,8 @@ autoIncrement.initialize(connection);
  */
 const user = require('./user');
 const adminUser = require('./adminUser');
-const category = require('./category');
-const banner = require('./banner');
+const menuCategory = require('./menuCategory');
+const sliderBanner = require('./sliderBanner');
 const issue = require('./issue');
 const option = require('./option');
 const tag = require('./tag');
@@ -31,7 +31,7 @@ const tagRelation = require('./tagRelation');
 module.exports = {
     user: user,
     adminUser: adminUser,
-    category: category,
+    menuCategory: menuCategory,
     issue: issue,
     option: option,
     tag: tag,
