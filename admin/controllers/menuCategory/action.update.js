@@ -1,5 +1,5 @@
 
-const debug = require('debug')('NOWvote:admin:controllers:menu:menuCategory:active.update');
+const debug = require('debug')('NOWvote:admin:controllers:menu:menuCategory:action.update');
 
 import co from 'co';
 import models from '../../../models';

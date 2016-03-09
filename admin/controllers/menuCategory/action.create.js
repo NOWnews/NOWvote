@@ -1,4 +1,4 @@
-const debug = require('debug')('NOWvote:admin:controllers:menuCategory:active.create');
+const debug = require('debug')('NOWvote:admin:controllers:menuCategory:action.create');
 
 import co from 'co';
 import models from '../../../models';
@@ -18,8 +18,7 @@ module.exports = function(req, res, next) {
             url: data.url,
             startTime: startTime,
             endTime: endTime,
-            status: status,
-            weight: 99999
+            status: status
         });
 
         return res.redirect('/menuCategory');

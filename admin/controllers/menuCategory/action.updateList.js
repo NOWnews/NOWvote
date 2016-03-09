@@ -1,5 +1,5 @@
 
-const debug = require('debug')('NOWvote:admin:controllers:menuCategory:active.updateList');
+const debug = require('debug')('NOWvote:admin:controllers:menuCategory:action.updateList');
 
 import co from 'co';
 import Promise from 'bluebird';
