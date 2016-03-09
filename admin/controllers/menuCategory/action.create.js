@@ -1,12 +1,14 @@
 import co from 'co';
 import moment from 'moment-timezone';
 import models from '../../../models';
+import redis from '../../../caches';
 
 const debug = require('debug')('NOWvote:admin:controllers:menuCategory:action.create');
 
 module.exports = function(req, res, next) {
 
     let data = req.body;
+    debug('req body = %j', data);
 
     co(function*() {
 
@@ -22,7 +24,12 @@ module.exports = function(req, res, next) {
             status: status
         });
 
+        debug('new menu category = %j', newMenuCategory);
+
+        // 讓 redis 重整資料，只更新前台會用到的資料
+        yield redis.updateRedisByKey('categoryMenu');
+
         return res.redirect('/menuCategory');
     })
     .catch(next);
-}
+};
