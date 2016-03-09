@@ -1,8 +1,7 @@
-
-const debug = require('debug')('NOWvote:admin:controllers:menuCategory:page.list');
-
 import co from 'co';
 import models from '../../../models';
+
+const debug = require('debug')('NOWvote:admin:controllers:menuCategory:page.list');
 
 module.exports = function(req, res, next) {
 

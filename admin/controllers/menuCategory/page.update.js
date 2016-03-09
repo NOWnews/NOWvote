@@ -4,10 +4,13 @@ import models from '../../../models';
 
 const debug = require('debug')('NOWvote:admin:controllers:menu:menuCategory:page.update');
 const formatUpdateFrontData = function (menuCategory) {
-    menuCategory['start-day'] = moment(menuCategory.startTime).tz('Asia/Taipei').format('YYYY-MM-DD');
-    menuCategory['start-hour'] = moment(menuCategory.startTime).tz('Asia/Taipei').format('HH:mm');
-    menuCategory['end-day'] = moment(menuCategory.endTime).tz('Asia/Taipei').format('YYYY-MM-DD');
-    menuCategory['end-hour'] = moment(menuCategory.endTime).tz('Asia/Taipei').format('HH:mm');
+    let startTime = moment(menuCategory.startTime).tz('Asia/Taipei');
+    let endTime = moment(menuCategory.endTime).tz('Asia/Taipei');
+
+    menuCategory.startAtDay = startTime.format('YYYY-MM-DD');
+    menuCategory.startAtHour = startTime.format('HH:mm');
+    menuCategory.endAtDay = endTime.format('YYYY-MM-DD');
+    menuCategory.endAtHour = endTime.format('HH:mm');
     return menuCategory;
 };
 
