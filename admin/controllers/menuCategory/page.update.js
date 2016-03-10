@@ -25,7 +25,7 @@ module.exports = function(req, res, next) {
             .lean()
             .execAsync();
         formatUpdateFrontData(menuCategory);
-        return res.render('menuCategory/create', {item: menuCategory});
+        return res.render('menuCategory/update', {item: menuCategory});
     })
     .catch(next);
 
