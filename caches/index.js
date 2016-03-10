@@ -52,7 +52,8 @@ const setRedisValue = co.wrap(function*(key, value, expire) {
  */
 const getMenuFromModels = co.wrap(function*() {
     let now = Date.now();
-    return yield models.category.find()
+
+    return yield models.menuCategory.find()
         .where('trashed').equals(false)
         .where('status').equals(true)
         .where('startTime').lte(now)

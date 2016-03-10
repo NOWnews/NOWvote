@@ -2,6 +2,7 @@ import co from 'co';
 import Promise from 'bluebird';
 import _ from 'lodash';
 import models from '../../../models';
+import redis from '../../../caches';
 
 const debug = require('debug')('NOWvote:admin:controllers:menuCategory:action.updateList');
 
@@ -31,6 +32,9 @@ module.exports = function(req, res, next) {
         });
 
         debug('updatedMenuList = %j', updatedMenuList);
+
+        // 讓 redis 重整資料，只更新前台會用到的資料
+        yield redis.updateRedisByKey('categoryMenu');
 
         return res.redirect('/menuCategory');
     })

@@ -98,7 +98,7 @@
 
 {% block container %}
 <article>
-    <form method="post" href="/menuCategory/create">
+    <form method="post" action="/menuCategory/create">
         {% if item %}
             <input type="hidden" name="_method" value="put"/>
         {% endif %}
@@ -136,9 +136,9 @@
             <div class="large-12 columns">
                 <label>URL
                     {% if item.url %}
-                        <input name="url" type="url" value="{{item.url}}" placeholder="請輸入URL" required/>
+                        <input name="url" type="text" value="{{item.url}}" placeholder="請輸入URL" required/>
                     {% else %}
-                        <input name="url" type="url" placeholder="請輸入URL" required/>
+                        <input name="url" type="text" placeholder="請輸入URL" required/>
                     {% endif %}
                 </label>
             </div>

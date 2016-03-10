@@ -1,6 +1,7 @@
 import co from 'co';
 import moment from 'moment-timezone';
 import models from '../../../models';
+import redis from '../../../caches';
 
 const debug = require('debug')('NOWvote:admin:controllers:menu:menuCategory:action.update');
 
@@ -27,6 +28,9 @@ module.exports = function(req, res, next) {
         menuCategory.set('status', status);
 
         yield menuCategory.saveAsync();
+
+        // 讓 redis 重整資料，只更新前台會用到的資料
+        yield redis.updateRedisByKey('categoryMenu');
 
         return res.redirect('/menuCategory');
     })
