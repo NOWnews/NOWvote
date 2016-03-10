@@ -98,7 +98,7 @@
 
 {% block container %}
 <article>
-    <form method="post" href="/menuCategory/create">
+    <form method="post" action="/menuCategory/create">
         {% if item %}
             <input type="hidden" name="_method" value="put"/>
         {% endif %}
