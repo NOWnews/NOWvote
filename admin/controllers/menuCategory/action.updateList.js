@@ -19,9 +19,9 @@ module.exports = function(req, res, next) {
             .execAsync();
 
         let updatedMenuList = yield Promise.map(menuCategories, function(menuItem) {
-            let weight = _.indexOf(weightList, String(menuItem.sn));
+            let index = _.indexOf(weightList, String(menuItem.sn));
 
-            menuItem.weight = weight === -1 ? menuItem.weight: weight;
+            menuItem.weight = index === -1 ? menuItem.weight: index;
 
             if(_.indexOf(statusList, String(menuItem.sn)) !== -1){
                 menuItem.set('status', true);
