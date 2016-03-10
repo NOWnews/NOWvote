@@ -11,18 +11,19 @@ module.exports = function(req, res, next) {
     let data = req.body;
 
     co(function*() {
-        let weightList = req.body.weightList.split(',');
-        let statusList = _.isArray(req.body['status[]']) ? req.body['status[]'] : [req.body['status[]']];
+        let weightList = data.weightList.split(',');
+        let statusList = _.isArray(data['status[]']) ? data['status[]'] : [data['status[]']];
 
         let menuCategories = yield models.menuCategory.find()
             .where('trashed').equals(false)
             .execAsync();
 
         let updatedMenuList = yield Promise.map(menuCategories, function(menuItem) {
+            let weight = _.indexOf(weightList, String(menuItem.sn));
 
-            menuItem.weight = _.indexOf(weightList, menuItem.sn + '');
+            menuItem.weight = weight === -1 ? menuItem.weight: weight;
 
-            if(_.indexOf(statusList, menuItem.sn + '') !== -1){
+            if(_.indexOf(statusList, String(menuItem.sn)) !== -1){
                 menuItem.set('status', true);
                 return menuItem.saveAsync();
             }else{
