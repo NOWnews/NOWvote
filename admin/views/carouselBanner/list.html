@@ -2,7 +2,7 @@
 
 {% block head %}
     <script src="/bower/jquery-ui/jquery-ui.min.js"></script>
-    <!--<script>
+    <script>
         $(function () {
             // jquery-ui Sortable
             var recordWeight = function (weightList) {
@@ -29,7 +29,7 @@
             $('.remove-btn').on('click', function () {
                 event.preventDefault();
                 var sn = $(this).attr('item-sn');
-                var url = '/menuCategory/' + sn;
+                var url = '/carouselBanner/' + sn;
                 $.ajax({
                     url: url,
                     type: 'DELETE',
@@ -47,7 +47,7 @@
                 })
             })
         });
-    </script>-->
+    </script>
     <style>
         /* jquery-ui Sortable */
         .portlet-placeholder {
