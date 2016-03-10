@@ -1,5 +1,5 @@
 
-const debug = require('debug')('NOWvote:admin:controllers:carouselBanner');
+const debug = require('debug')('NOWvote:admin:controllers:category');
 
 import co from 'co';
 import models from '../../../models';
@@ -7,7 +7,7 @@ import models from '../../../models';
 
 module.exports = function(req, res, next) {
     co(function*() {
-        return res.render('carouselBanner/create');
+        return res.render('category');
     })
     .catch(next);
 }

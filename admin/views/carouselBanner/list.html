@@ -86,19 +86,23 @@
         <input type="hidden" name="weightList" value=""/>
 
 
-
+        {% if items[0] %}
             <ul class="large-12 columns pricing-table">
                 <li class="title row">
-                    <div class="large-6 columns">標題</div>
+                    <div class="large-4 columns">圖片</div>
+                    <div class="large-2 columns">標題</div>
                     <div class="large-2 columns">狀態</div>
                     <div class="large-2 columns">編輯</div>
                     <div class="large-2 columns">刪除</div>
                 </li>
             </ul>
             <ul class="large-12 column pricing-table">
+
+                {% for item in items %}
                     <li class="portlet bullet-item" item-sn="{{ item.sn }}">
                         <div class="portlet-header row">
-                            <div class="large-6 columns">物件標題</div>
+                            <div class="large-4 columns"><img src="{{ item.image }}"></div>
+                            <div class="large-2 columns">{{ item.title }}</div>
                             <div class="large-2 columns">
                                 <div class="switch round small">
                                     {% if item.status %}
@@ -129,11 +133,12 @@
                             </div>
                         </div>
                     </li>
+                {% endfor %}
             </ul>
 
 
 
-
+        {% endif %}
         <div class="columns row btn-box right">
             <a href="{{ hrefSet('create') }}" class="button alert">新增選單</a>
             {% if items[0] %}

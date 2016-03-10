@@ -14,6 +14,11 @@ const schema = new Schema({
         required: true
     },
 
+    title: {
+        type: String,
+        required: true
+    },
+
     image: {
         type: String,
         required: true
