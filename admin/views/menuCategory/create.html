@@ -87,104 +87,135 @@
     </style>
 {% endblock %}
 
+{# :: hrefSet - 可以設置預設的 url 加上 type #}
+{% macro hrefSet(type, id) %}
+    /menuCategory/{{ type }}/{{ id }}
+{% endmacro %}
+
 {% block breadcrumbs %}
 <li>
     <a href="/menuCategory">選單管理系統</a>
 </li>
-<li class="current">
-    <a href="#">新增選單</a>
-</li>
+{% if item %}
+    <li class="current">
+        <a href="#">修改選單</a>
+    </li>
+{% else %}
+    <li class="current">
+        <a href="#">新增選單</a>
+    </li>
+{% endif %}
 {% endblock %}
 
 {% block container %}
 <article>
-    {% if item %}
-        <form method="post" action="/menuCategory/update/{{ item.sn }}">
+    {% if item %} {# 如果有資料就進入 edit form 頁面, 沒有資料就到 create form 頁面 #}
+        <form method="post" action="{{ hrefSet('update', item.sn) }}">
             <input type="hidden" name="_method" value="put"/>
-    {% else %}
-        <form method="post" action="/menuCategory/create">
-    {% endif %}
-        <h3>新增選單</h3>
-        <div class="status row right">
-            <div class="large-4 columns">
-                <div class="switch round small">
-                    {% if item.status %}
+            <h3>修改選單</h3>
+            <div class="status row right">
+                <div class="large-4 columns">
+                    <div class="switch round small">
                         <input name="status" id="create-status" type="checkbox" checked>
-                    {% else %}
-                        <input name="status" id="create-status" type="checkbox">
-                    {% endif %}
-                    <label for="create-status"></label>
+                        <label for="create-status"></label>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        {# :: hrefSet - 可以設置預設的 url 加上 type #}
-        {% macro hrefSet(type, id) %}
-            /menuCategory/{{ type }}/{{ id }}
-        {% endmacro %}
-
-        <div class="row">
-            <div class="large-12 columns">
-                <label>標題
-                    {% if item.title %}
+            <div class="row">
+                <div class="large-12 columns">
+                    <label>標題
                         <input name="title" type="text" value="{{item.title}}" placeholder="請輸入標題" required/>
-                    {% else %}
-                        <input name="title" type="text" placeholder="請輸入標題" required/>
-                    {% endif %}
-                </label>
+                    </label>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="large-12 columns">
-                <label>URL
-                    {% if item.url %}
+            <div class="row">
+                <div class="large-12 columns">
+                    <label>URL
                         <input name="url" type="text" value="{{item.url}}" placeholder="請輸入URL" required/>
-                    {% else %}
-                        <input name="url" type="text" placeholder="請輸入URL" required/>
-                    {% endif %}
-                </label>
+                    </label>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="large-12 columns">
-                <label>描述
-                    {% if item.desc %}
+            <div class="row">
+                <div class="large-12 columns">
+                    <label>描述
                         <textarea name="desc" placeholder="請輸入描述" required>{{item.desc}}</textarea>
-                    {% else %}
-                        <textarea name="desc" placeholder="請輸入描述" required></textarea>
-                    {% endif %}
-                </label>
+                    </label>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="columns">
-                <label>
-                    <p class="timepicker-title">有效期間</p>
-                    <span class="time-title">on:
-                    </span>
-                    {% if item.startAtDay %}
+            <div class="row">
+                <div class="columns">
+                    <label>
+                        <p class="timepicker-title">有效期間</p>
+                        <span class="time-title">on:
+                        </span>
                         <input name="startAtDay" type="text" class="start-time" value="{{ item.startAtDay }}" id="start-day" required>
                         <input name="startAtHour" type="text" class="start-time" value="{{ item.startAtHour }}" id="start-hour" required>
-                    {% else %}
-                        <input name="startAtDay" type="text" class="start-time" value="" id="start-day" required>
-                        <input name="startAtHour" type="text" class="start-time" value="" id="start-hour" required>
-                    {% endif %}
-                    <span class="time-title">off:
-                    </span>
-                    {% if item.endAtDay %}
+                        <span class="time-title">off:
+                        </span>
                         <input name="endAtDay" type="text" class="end-time" value="{{ item.endAtDay }}" id="end-day" required>
                         <input name="endAtHour" type="text" class="end-time" value="{{ item.endAtHour }}" id="end-hour" required>
-                    {% else %}
+                    </label>
+                </div>
+            </div>
+            <div class="columns row btn-box right">
+                <input type="submit" value="儲存" class="button alert"/>
+                <a href="{{ hrefSet('') }}" class="button secondary">取消</a>
+            </div>
+        </form>
+
+    {% else %}
+
+        <form method="post" action="{{ hrefSet('create') }}">
+            <h3>新增選單</h3>
+            <div class="status row right">
+                <div class="large-4 columns">
+                    <div class="switch round small">
+                        <input name="status" id="create-status" type="checkbox">
+                        <label for="create-status"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <label>標題
+                        <input name="title" type="text" placeholder="請輸入標題" required/>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <label>URL
+                        <input name="url" type="text" placeholder="請輸入URL" required/>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <label>描述
+                        <textarea name="desc" placeholder="請輸入描述" required></textarea>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="columns">
+                    <label>
+                        <p class="timepicker-title">有效期間</p>
+                        <span class="time-title">on:
+                        </span>
+                        <input name="startAtDay" type="text" class="start-time" value="" id="start-day" required>
+                        <input name="startAtHour" type="text" class="start-time" value="" id="start-hour" required>
+                        <span class="time-title">off:
+                        </span>
                         <input name="endAtDay" type="text" class="end-time" value="" id="end-day" required>
                         <input name="endAtHour" type="text" class="end-time" value="" id="end-hour" required>
-                    {% endif %}
-                </label>
+                    </label>
+                </div>
             </div>
-        </div>
-        <div class="columns row btn-box right">
-            <input type="submit" value="儲存" class="button alert"/>
-            <a href="{{ hrefSet('') }}" class="button secondary">取消</a>
-        </div>
-    </form>
+            <div class="columns row btn-box right">
+                <input type="submit" value="儲存" class="button alert"/>
+                <a href="{{ hrefSet('') }}" class="button secondary">取消</a>
+            </div>
+        </form>
+    {% endif %}
 </article>
 {% endblock %}
