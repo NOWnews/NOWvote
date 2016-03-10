@@ -98,10 +98,12 @@
 
 {% block container %}
 <article>
-    <form method="post" action="/menuCategory/create">
-        {% if item %}
+    {% if item %}
+        <form method="post" action="/menuCategory/update/{{ item.sn }}">
             <input type="hidden" name="_method" value="put"/>
-        {% endif %}
+    {% else %}
+        <form method="post" action="/menuCategory/create">
+    {% endif %}
         <h3>新增選單</h3>
         <div class="status row right">
             <div class="large-4 columns">
