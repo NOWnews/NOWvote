@@ -63,6 +63,10 @@ const schema = new Schema({
         type: Date,
         default: Date.now
     }
+}, {
+    timestamps: {
+        updatedAt: 'updatedAt'
+    }
 });
 
 schema.statics.findBySn = co.wrap(function*(sn) {

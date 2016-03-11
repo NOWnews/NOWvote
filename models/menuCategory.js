@@ -49,9 +49,28 @@ const schema = new Schema({
         default: true
     },
 
+    createdBy: {
+        type: Schema.Types.ObjectId,
+        ref: 'user'
+    },
+
+    createdAt: {
+        type: Date,
+        default: Date.now
+    },
+
+    updatedAt: {
+        type: Date,
+        default: Date.now
+    },
+
     trashed: {
         type: Boolean,
         default: false
+    }
+}, {
+    timestamps: {
+        updatedAt: 'updatedAt'
     }
 });
 

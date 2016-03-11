@@ -55,9 +55,9 @@ schema.statics.findBySn = co.wrap(function*(sn) {
 });
 
 schema.plugin(autoIncrement.plugin, {
-    model: 'option',
+    model: 'question',
     field: 'sn',
     startAt: 1
 });
 
-module.exports = mongoose.model('option', schema);
+module.exports = mongoose.model('question', schema);
