@@ -11,14 +11,11 @@ module.exports = function(req, res, next) {
     let imageStorageUrl = '/images';
     let imgFile = req.file;
 
-    console.log(data);
-    console.log(imgFile);
     co(function*() {
         let status = data.status ? true : false;
         let startTime = moment( `${data.startAtDay} ${data.startAtHour}` );
         let endTime = moment( `${data.endAtDay} ${data.endAtHour}` );
 
-        debug('imgFile = %j', imgFile);
         // 檢查 圖片資訊
         let extName = yield libs.checkExt(imgFile);
         let fileName = 'picture' + moment()
@@ -26,19 +23,10 @@ module.exports = function(req, res, next) {
             .format('YYYYMMDD-HHmmss');
 
         let fullFileName = `${fileName}.${extName}`;
-
-        debug('extName = %s', extName);
-        debug('fileName = %s', fileName);
         let newFileName = imageStorage + `/${fullFileName}`;
-
 
          // 呼叫 libs.moveFile 搬移檔案
         let movedfilePosition = yield libs.moveFile(imgFile.path, newFileName);
-
-        debug('movedfilePosition = %s', movedfilePosition);
-
-        debug('image url = %s', `${imageStorageUrl}/${fullFileName}`);
-
         let imageUrl = `${imageStorageUrl}/${fullFileName}`;
         // 存入資料庫
         let newsliderBanner = yield models.sliderBanner.createAsync({
@@ -50,8 +38,6 @@ module.exports = function(req, res, next) {
             status: status,
             image: imageUrl
         });
-        debug('newsliderBanner = %j', newsliderBanner);
-
         return res.redirect('/sliderBanner');
     })
     .catch(next);

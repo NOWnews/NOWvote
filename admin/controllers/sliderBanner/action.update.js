@@ -22,7 +22,6 @@ module.exports = function(req, res, next) {
         let sliderBanner = yield models.sliderBanner.findOne()
             .where('sn').equals(sn)
             .execAsync();
-        debug('sliderBanner=%j', sliderBanner);
 
         sliderBanner.set('title', data.title);
         sliderBanner.set('url', data.url);
