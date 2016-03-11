@@ -1,5 +1,5 @@
 
-const debug = require('debug')('NOWvote:admin:controllers:carouselBanner:page.show');
+const debug = require('debug')('NOWvote:admin:controllers:sliderBanner:page.show');
 
 import co from 'co';
 import models from '../../../models';

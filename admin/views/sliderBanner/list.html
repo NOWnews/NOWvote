@@ -29,7 +29,7 @@
             $('.remove-btn').on('click', function () {
                 event.preventDefault();
                 var sn = $(this).attr('item-sn');
-                var url = '/carouselBanner/' + sn;
+                var url = '/sliderBanner/' + sn;
                 $.ajax({
                     url: url,
                     type: 'DELETE',
@@ -74,14 +74,14 @@
     {# :: hrefSet - 可以設置預設的 url 加上 type #}
     {% macro hrefSet(type, id) %}
         {% if id %}
-            /carouselBanner/{{ type }}/{{ id }}
+            /sliderBanner/{{ type }}/{{ id }}
         {% else %}
-            /carouselBanner/{{ type }}
+            /sliderBanner/{{ type }}
         {% endif %}
     {% endmacro %}
 
     <h3>輪播圖管理系統</h3>
-    <form id="bannerList" method="post" action="/carouselBanner">
+    <form id="bannerList" method="post" action="/sliderBanner">
         <input type="hidden" name="_method" value="put"/>
         <input type="hidden" name="weightList" value=""/>
 

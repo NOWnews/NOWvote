@@ -1,7 +1,7 @@
 
 import home from './home';
 import account from './account';
-import carouselBanner from './carouselBanner';
+import sliderBanner from './sliderBanner';
 import category from './category';
 import content from './content';
 import menuCategory from './menuCategory';
@@ -11,7 +11,7 @@ module.exports = function(app) {
 
     app.use('/', home);
     app.use('/account', account);
-    app.use('/carouselBanner', carouselBanner);
+    app.use('/sliderBanner', sliderBanner);
     app.use('/category', category);
     app.use('/content', content);
     app.use('/menuCategory', menuCategory);

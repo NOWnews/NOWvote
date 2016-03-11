@@ -115,7 +115,7 @@
 
 {% block breadcrumbs %}
 <li>
-    <a href="/menuCategory">選單管理系統</a>
+    <a href="/menuCategory">輪播圖管理系統</a>
 </li>
 <li class="current">
     <a href="#">新增選單</a>
@@ -124,17 +124,15 @@
 
 {% block container %}
 <article>
-    <form method="post" action="/carouselBanner/update/{{ item.sn }}" enctype="multipart/form-data">
-        <input type="hidden" name="_method" value="put"/>
+    <form method="post" action="/sliderBanner" enctype="multipart/form-data">
+  <!--       {% if item %}
+            <input type="hidden" name="_method" value="put"/>
+        {% endif %} -->
         <h3>新增 banner</h3>
         <div class="status row right">
             <div class="large-4 columns">
                 <div class="switch round small">
-                    {% if item.status %}
-                        <input name="status" id="create-status" type="checkbox" checked>
-                    {% else %}
-                        <input name="status" id="create-status" type="checkbox">
-                    {% endif %}
+                    <input name="status" id="create-status" type="checkbox">
                     <label for="create-status"></label>
                 </div>
             </div>
@@ -142,27 +140,27 @@
         <div class="row">
             <div class="large-12 columns">
                 <label>標題
-                    <input name="title" type="text" value="{{item.title}}" placeholder="請輸入標題" required/>
+                    <input name="title" type="text" placeholder="請輸入標題" required/>
                 </label>
             </div>
         </div>
         <div class="row">
             <div class="large-12 columns">
                 <label>URL
-                    <input name="url" type="url" value="{{item.url}}" placeholder="請輸入URL" required/>
+                    <input name="url" type="url" placeholder="請輸入URL" required/>
                 </label>
             </div>
         </div>
         <div class="row">
             <div class="large-12 columns">
                 <label>描述
-                    <textarea name="desc" placeholder="請輸入描述" required>{{item.desc}}</textarea>
+                    <textarea name="desc" placeholder="請輸入描述" required></textarea>
                 </label>
             </div>
         </div>
         <div class="row">
-            <input type='file' id="imgInp" name="file">
-            <img src="{{item.image}}" id="blah" src="#" alt="your image">
+            <input type='file' id="imgInp" name="file" required>
+            <img src="http://placehold.it/350x150" id="blah" src="#" alt="your image">
         </div>
 
         <div class="row">
@@ -171,19 +169,19 @@
                     <p class="timepicker-title">有效期間</p>
                     <span class="time-title">on:
                     </span>
-                    <input name="startAtDay" type="text" class="start-time" value="{{ item.startAtDay }}" id="start-day" required>
-                    <input name="startAtHour" type="text" class="start-time" value="{{ item.startAtHour }}" id="start-hour" required>
+                    <input name="startAtDay" type="text" class="start-time" value="" id="start-day" required>
+                    <input name="startAtHour" type="text" class="start-time" value="" id="start-hour" required>
                     <span class="time-title">off:
                     </span>
-                    <input name="endAtDay" type="text" class="end-time" value="{{ item.endAtDay }}" id="end-day" required>
-                    <input name="endAtHour" type="text" class="end-time" value="{{ item.endAtHour }}" id="end-hour" required>
+                    <input name="endAtDay" type="text" class="end-time" value="" id="end-day" required>
+                    <input name="endAtHour" type="text" class="end-time" value="" id="end-hour" required>
                 </label>
             </div>
         </div>
 
         <div class="columns row btn-box right">
             <input type="submit" value="儲存" class="button alert"/>
-            <a href="/carouselBanner/" class="button secondary">取消</a>
+            <a href="/sliderBanner" class="button secondary">取消</a>
         </div>
     </form>
 </article>

@@ -1,5 +1,5 @@
 
-const debug = require('debug')('NOWvote:admin:controllers:carouselBanner:action.create');
+const debug = require('debug')('NOWvote:admin:controllers:sliderBanner:action.create');
 
 import co from 'co';
 import moment from 'moment-timezone';
@@ -41,7 +41,7 @@ module.exports = function(req, res, next) {
 
         let imageUrl = `${imageStorageUrl}/${fullFileName}`;
         // 存入資料庫
-        let newCarouselBanner = yield models.sliderBanner.createAsync({
+        let newsliderBanner = yield models.sliderBanner.createAsync({
             title: data.title,
             desc: data.desc,
             url: data.url,
@@ -50,9 +50,9 @@ module.exports = function(req, res, next) {
             status: status,
             image: imageUrl
         });
-        debug('newCarouselBanner = %j', newCarouselBanner);
+        debug('newsliderBanner = %j', newsliderBanner);
 
-        return res.redirect('/carouselBanner');
+        return res.redirect('/sliderBanner');
     })
     .catch(next);
 };

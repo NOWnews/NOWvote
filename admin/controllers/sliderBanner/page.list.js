@@ -1,5 +1,5 @@
 
-const debug = require('debug')('NOWvote:admin:controllers:carouselBanner:page.list');
+const debug = require('debug')('NOWvote:admin:controllers:sliderBanner:page.list');
 
 import co from 'co';
 import models from '../../../models';
@@ -14,7 +14,7 @@ module.exports = function(req, res, next) {
             .where('trashed').equals(false)
             .sort({weight: 1})
             .execAsync();
-        return res.render('carouselBanner/list', {items: items});
+        return res.render('sliderBanner/list', {items: items});
     })
     .catch(next);
 
