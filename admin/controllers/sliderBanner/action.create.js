@@ -1,10 +1,10 @@
 
-const debug = require('debug')('NOWvote:admin:controllers:sliderBanner:action.create');
-
 import co from 'co';
 import moment from 'moment-timezone';
 import models from '../../../models';
+
 const libs = require('../../../libs');
+const debug = require('debug')('NOWvote:admin:controllers:sliderBanner:action.create');
 
 module.exports = function(req, res, next) {
     let data = req.body;

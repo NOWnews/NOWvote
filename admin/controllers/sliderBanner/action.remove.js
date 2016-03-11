@@ -1,13 +1,12 @@
 
-const debug = require('debug')('NOWvote:admin:controllers:sliderBanner:action.remove');
-
 import co from 'co';
 import models from '../../../models';
+
+const debug = require('debug')('NOWvote:admin:controllers:sliderBanner:action.remove');
 
 module.exports = function(req, res, next) {
 
     let sn = parseInt(req.params.sn, 10);
-    debug('sn=%s', sn);
     co(function*() {
         let sliderBanner = yield models.sliderBanner.findOne()
             .where('sn').equals(sn)

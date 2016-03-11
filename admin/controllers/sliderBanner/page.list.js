@@ -1,8 +1,8 @@
 
-const debug = require('debug')('NOWvote:admin:controllers:sliderBanner:page.list');
-
 import co from 'co';
 import models from '../../../models';
+
+const debug = require('debug')('NOWvote:admin:controllers:sliderBanner:page.list');
 
 module.exports = function(req, res, next) {
 
