@@ -36,5 +36,6 @@ module.exports = {
     option: option,
     tag: tag,
     issueRelation: issueRelation,
+    sliderBanner: sliderBanner,
     tagRelation: tagRelation
 };

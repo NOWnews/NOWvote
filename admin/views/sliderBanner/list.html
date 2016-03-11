@@ -1,0 +1,151 @@
+{% extends "../index.html" %}
+
+{% block head %}
+    <script src="/bower/jquery-ui/jquery-ui.min.js"></script>
+    <script>
+        $(function () {
+            // jquery-ui Sortable
+            var recordWeight = function (weightList) {
+                $('input[name="weightList"]').val(weightList);
+            };
+
+            $(".column").sortable({
+                connectWith: ".column",
+                handle: ".portlet-header",
+                cancel: ".portlet-toggle",
+                placeholder: "portlet-placeholder ui-corner-all",
+                stop: function (event, ui) {
+                    var sortedWeight = $(".column").sortable("toArray", {attribute: "item-sn"});
+                    recordWeight(sortedWeight);
+                }
+            });
+            $(".portlet").addClass("ui-widget ui-widget-content ui-helper-clearfix ui-corner-all").find(".portlet-header").addClass("ui-widget-header ui-corner-all").prepend("<span class='ui-icon ui-icon-minusthick portlet-toggle'></span>");
+            $(".portlet-toggle").click(function () {
+                var icon = $(this);
+                icon.toggleClass("ui-icon-minusthick ui-icon-plusthick");
+                icon.closest(".portlet").find(".portlet-content").toggle();
+            });
+
+            $('.remove-btn').on('click', function () {
+                event.preventDefault();
+                var sn = $(this).attr('item-sn');
+                var url = '/sliderBanner/' + sn;
+                $.ajax({
+                    url: url,
+                    type: 'DELETE',
+                    success: function (data, err) {
+                        if (data.trashed) {
+                            $('.bullet-item[item-sn=' + sn + ']').remove();
+                            $(".column").sortable("refresh");
+                            $('#deleteModal' + sn).foundation('reveal', 'close');
+                            var sortedWeight = $(".column").sortable("toArray", {attribute: "item-sn"});
+                            recordWeight(sortedWeight);
+                        } else {
+                            alert('資料有誤 請重新整理！');
+                        }
+                    }
+                })
+            })
+        });
+    </script>
+    <style>
+        /* jquery-ui Sortable */
+        .portlet-placeholder {
+            border: 1px dotted black;
+            margin: 0 1em 1em 0;
+            height: 50px;
+        }
+        .switch.round,
+        .columns.pricing-table {
+            margin: 0;
+        }
+
+    </style>
+{% endblock %}
+
+{% block breadcrumbs %}
+<li class="current">
+    <a href="#">輪播圖管理系統</a>
+</li>
+{% endblock %}
+
+{% block container %}
+<article>
+    {# :: hrefSet - 可以設置預設的 url 加上 type #}
+    {% macro hrefSet(type, id) %}
+        {% if id %}
+            /sliderBanner/{{ type }}/{{ id }}
+        {% else %}
+            /sliderBanner/{{ type }}
+        {% endif %}
+    {% endmacro %}
+
+    <h3>輪播圖管理系統</h3>
+    <form id="bannerList" method="post" action="/sliderBanner">
+        <input type="hidden" name="_method" value="put"/>
+        <input type="hidden" name="weightList" value=""/>
+
+
+        {% if items[0] %}
+            <ul class="large-12 columns pricing-table">
+                <li class="title row">
+                    <div class="large-4 columns">圖片</div>
+                    <div class="large-2 columns">標題</div>
+                    <div class="large-2 columns">狀態</div>
+                    <div class="large-2 columns">編輯</div>
+                    <div class="large-2 columns">刪除</div>
+                </li>
+            </ul>
+            <ul class="large-12 column pricing-table">
+
+                {% for item in items %}
+                    <li class="portlet bullet-item" item-sn="{{ item.sn }}">
+                        <div class="portlet-header row">
+                            <div class="large-4 columns"><img src="{{ item.image }}"></div>
+                            <div class="large-2 columns">{{ item.title }}</div>
+                            <div class="large-2 columns">
+                                <div class="switch round small">
+                                    {% if item.status %}
+                                        {% set status = "checked" %}
+                                    {% else %}
+                                        {% set status = "" %}
+                                    {% endif %}
+                                    <input name="status[]" id="list{{ item.sn }}" type="checkbox" value="{{ item.sn }}" {{ status }}>
+                                    <label for="list{{ item.sn }}"></label>
+                                </div>
+                            </div>
+                            <div class="large-2 columns">
+                                <a href="{{ hrefSet('update', item.sn) }}">EDIT</a>
+
+                            </div>
+                            <div class="large-2 columns">
+                                <a href="#" item-sn={{ item.sn }} data-reveal-id="deleteModal{{ item.sn }}">DEL</a>
+                                <div id="deleteModal{{ item.sn }}" class="tiny reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+                                    <h2 id="modalTitle" class="alert">刪除確認</h2>
+                                    <div class="panel callout radius">
+                                        <h5>{{ item.title }}</h5>
+                                    </div>
+                                    <p>
+                                        <a href="#" item-sn={{ item.sn }} class="button alert remove-btn right">刪除</a>
+                                    </p>
+                                    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+
+
+
+        {% endif %}
+        <div class="columns row btn-box right">
+            <a href="{{ hrefSet('create') }}" class="button alert">新增選單</a>
+            {% if items[0] %}
+                <button type="submit" class="button success save-btn">儲存列表</button>
+            {% endif %}
+        </div>
+    </form>
+</article>
+
+{% endblock %}
