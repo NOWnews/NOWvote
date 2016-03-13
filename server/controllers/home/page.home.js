@@ -23,16 +23,16 @@ module.exports = function(req, res, next) {
         debug('results = %j', results);
 
         let menuCategory = results[0];
-        let slideBanners = results[1];
+        let sliderBanners = results[1];
         let issues = results[2];
         debug('menuCategory = %j', menuCategory);
-        debug('slideBanners = %j', slideBanners);
+        debug('sliderBanners = %j', sliderBanners);
         debug('issues = %j', issues);
 
         return res.render('homepage', {
             issues: issues,
             menuCategory: menuCategory,
-            slideBanners: slideBanners
+            sliderBanners: sliderBanners
         });
     })
     .catch(next);
