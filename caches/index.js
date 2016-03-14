@@ -132,8 +132,7 @@ const updateRedisByKey = co.wrap(function*(key) {
     }
 
     if(key === 'sliderBanner') {
-        let sliderBanner = yield getSliderBanner
-        FromModels();
+        let sliderBanner = yield getSliderBannerFromModels();
         return yield setRedisValue('sliderBanner', sliderBanner, redisExpireSeconds);
     }
 
