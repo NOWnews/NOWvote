@@ -33,6 +33,25 @@ const schema = new Schema({
     oauthId: {
         type: String,
         required: true
+    },
+
+    createdAt: {
+        type: Date,
+        default: Date.now
+    },
+
+    updatedAt: {
+        type: Date,
+        default: Date.now
+    },
+
+    trashed: {
+        type: Boolean,
+        default: false
+    }
+}, {
+    timestamps: {
+        updatedAt: 'updatedAt'
     }
 });
 

@@ -23,6 +23,7 @@ const adminUser = require('./adminUser');
 const menuCategory = require('./menuCategory');
 const sliderBanner = require('./sliderBanner');
 const issue = require('./issue');
+const question = require('./question');
 const option = require('./option');
 const tag = require('./tag');
 const issueRelation = require('./issueRelation');
@@ -33,6 +34,7 @@ module.exports = {
     adminUser: adminUser,
     menuCategory: menuCategory,
     issue: issue,
+    question: question,
     option: option,
     tag: tag,
     issueRelation: issueRelation,
