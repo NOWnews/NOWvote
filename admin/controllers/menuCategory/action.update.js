@@ -13,8 +13,17 @@ module.exports = function(req, res, next) {
     co(function*() {
 
         let status = data.status ? true : false;
-        let startTime = moment( `${data.startAtDay} ${data.startAtHour}` );
-        let endTime = moment( `${data.endAtDay} ${data.endAtHour}` );
+        let continued = data.continued ? true : false;
+        let startTime, endTime;
+
+        // 如果常駐被勾起來，就不需要記錄時間
+        if(continued){
+            startTime = 0;
+            endTime = 0;
+        }else{
+            startTime = moment( `${data.startAtDay} ${data.startAtHour}` );
+            endTime = moment( `${data.endAtDay} ${data.endAtHour}` );
+        }
 
         let menuCategory = yield models.menuCategory.findOne()
             .where('sn').equals(sn)
@@ -26,6 +35,7 @@ module.exports = function(req, res, next) {
         menuCategory.set('startTime', startTime);
         menuCategory.set('endTime', endTime);
         menuCategory.set('status', status);
+        menuCategory.set('continued', continued);
 
         yield menuCategory.saveAsync();
 

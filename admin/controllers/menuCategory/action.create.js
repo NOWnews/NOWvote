@@ -13,15 +13,26 @@ module.exports = function(req, res, next) {
     co(function*() {
 
         let status = data.status ? true : false;
-        let startTime = moment( `${data.startAtDay} ${data.startAtHour}` );
-        let endTime = moment( `${data.endAtDay} ${data.endAtHour}` );
+        let continued = data.continued ? true : false;
+        let startTime, endTime;
+
+        // 如果常駐被勾起來，就不需要記錄時間
+        if(continued){
+            startTime = 0;
+            endTime = 0;
+        }else{
+            startTime = moment( `${data.startAtDay} ${data.startAtHour}` );
+            endTime = moment( `${data.endAtDay} ${data.endAtHour}` );
+        }
+
         let newMenuCategory = yield models.menuCategory.createAsync({
             title: data.title,
             desc: data.desc,
             url: data.url,
             startTime: startTime,
             endTime: endTime,
-            status: status
+            status: status,
+            continued: continued
         });
 
         debug('new menu category = %j', newMenuCategory);
