@@ -82,9 +82,9 @@ const getSliderBannerFromModels = co.wrap(function*() {
  * 從 redis 要 menu 清單
  * 去 redis 找所有分類清單，沒有的話會去 mongodb 要，並存回 redis
  */
-const getCategoryMenu = co.wrap(function*() {
+const getMenuCategory = co.wrap(function*() {
 
-    let menu = yield getRedisValue('categoryMenu') || [];
+    let menu = yield getRedisValue('menuCategory') || [];
 
     if(menu || menu.length !== 0) {
         debug('redis menu data = %j', menu);
@@ -94,7 +94,7 @@ const getCategoryMenu = co.wrap(function*() {
     let menuFromModels = yield getMenuFromModels();
     debug('mongodb menu data = %j', menuFromModels);
 
-    let updateRedisMenu = yield setRedisValue('categoryMenu', menuFromModels, redisExpireSeconds);
+    let updateRedisMenu = yield setRedisValue('menuCategory', menuFromModels, redisExpireSeconds);
 
     return Promise.resolve(updateRedisMenu);
 });
@@ -125,25 +125,26 @@ const getSliderBanner = co.wrap(function*() {
 
 const updateRedisByKey = co.wrap(function*(key) {
 
-    const validateArray = ['sliderBanner', 'categoryMenu'];
+    const validateArray = ['sliderBanner', 'menuCategory'];
 
     if(!key || _.indexOf(validateArray, key) === -1) {
         return yield Promise.reject(new Error('update redis data need key'));
     }
 
     if(key === 'sliderBanner') {
-        let sliderBanner = yield getSliderBannerFromModels();
+        let sliderBanner = yield getSliderBanner
+        FromModels();
         return yield setRedisValue('sliderBanner', sliderBanner, redisExpireSeconds);
     }
 
-    if(key === 'categoryMenu') {
+    if(key === 'menuCategory') {
         let menu = yield getMenuFromModels();
-        return yield setRedisValue('categoryMenu', menu, redisExpireSeconds);
+        return yield setRedisValue('menuCategory', menu, redisExpireSeconds);
     }
 });
 
 module.exports.set = setRedisValue;
 module.exports.get = getRedisValue;
-module.exports.getCategoryMenu = getCategoryMenu;
+module.exports.getMenuCategory = getMenuCategory;
 module.exports.getSliderBanner = getSliderBanner;
 module.exports.updateRedisByKey = updateRedisByKey;

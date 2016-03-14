@@ -49,7 +49,7 @@ imagemagick v6.9.3-0_2
 - cache.get(key)
   - key: 取得 redis 資料的 key 值
 
-- cache.getmenuCategory()
+- cache.getMenuCategory()
   - 取得 redis 裡面的 menu
 
 - cache.getSliderBanner()
