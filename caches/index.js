@@ -67,7 +67,7 @@ const getMenuFromModels = co.wrap(function*() {
  */
 const getBannersFromModels = co.wrap(function*() {
     let now = Date.now();
-    return yield models.banner.find()
+    return yield models.sliderBanner.find()
         .where('trashed').equals(false)
         .where('status').equals(true)
         .where('startTime').lte(now)
@@ -84,9 +84,9 @@ const getBannersFromModels = co.wrap(function*() {
  */
 const getCategoryMenu = co.wrap(function*() {
 
-    let menu = yield getRedisValue('categoryMenu');
+    let menu = yield getRedisValue('categoryMenu') || [];
 
-    if(menu.length !== 0) {
+    if(menu || menu.length !== 0) {
         debug('redis menu data = %j', menu);
         return yield Promise.resolve(menu);
     }
@@ -106,14 +106,16 @@ const getCategoryMenu = co.wrap(function*() {
  */
 const getBanners = co.wrap(function*() {
 
-    let banners = yield getRedisValue('banners');
+    let banners = yield getRedisValue('banners') || [];
 
-    if(banners.length !== 0) {
+    debug('redis banners = %j', banners);
+
+    if(banners || banners.length !== 0) {
         debug('redis banners data = %j', banners);
         return yield Promise.resolve(banners);
     }
 
-    let bannersFromModels = getBannersFromModels();
+    let bannersFromModels = yield getBannersFromModels();
     debug('mongodb banners data = %j', bannersFromModels);
 
     let updateRedisBanners = yield setRedisValue('banners', bannersFromModels, redisExpireSeconds);

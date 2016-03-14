@@ -1,0 +1,15 @@
+{% extends "./index.html" %}
+
+{% block container %}
+    <h1>Home Page</h1>
+    <h2>This is menu</h2>
+    {% asyncEach category in menuCategory %}
+        <a href="{{ category.url }}">{{ category.title }}</a>
+    {% endeach %}
+    <h2>This is banner</h2>
+    {% asyncEach banner in sliderBanners %}
+        <a href="{{ banner.url }}">
+            <img src="{{ banner.image }}" />
+        </a>
+    {% endeach %}
+{% endblock %}
