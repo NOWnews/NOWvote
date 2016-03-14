@@ -1,6 +1,7 @@
 
 import co from 'co';
 import models from '../../../models';
+import redis from '../../../caches';
 
 const debug = require('debug')('NOWvote:admin:controllers:sliderBanner:action.remove');
 
@@ -15,6 +16,10 @@ module.exports = function(req, res, next) {
         sliderBanner.set('trashed', true);
         let removedSliderBanner = yield sliderBanner
             .saveAsync();
+
+        // 讓 redis 重整資料，只更新前台會用到的資料
+        yield redis.updateRedisByKey('sliderBanner');
+
         return res.json(removedSliderBanner);
     })
     .catch(next);
