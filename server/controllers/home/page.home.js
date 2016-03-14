@@ -12,7 +12,7 @@ module.exports = function(req, res, next) {
         // 非同步去取得資料
         let results = yield [
             // 從 redis 取得 menuCategory 的資料
-            yield redis.getCategoryMenu(),
+            yield redis.getmenuCategory(),
 
             // 從 redis 取得 slideBanner 的資料
             yield redis.getSliderBanner(),
