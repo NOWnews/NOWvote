@@ -1,0 +1,98 @@
+{% extends "../index.html" %}
+
+{% block head %}
+    <script>
+        $(function () {
+            // status
+            $("#create-status").change(function () {
+                if (this.checked) {
+                    return $("#create-status").val('checked');
+                }
+                return $("#create-status").val('');
+            });
+        });
+    </script>
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="/bower/foundation-datepicker/css/foundation-datepicker.min.css">
+    <style>
+        .switch.round{
+            margin: 0;
+        }
+        .status.row {
+            position: relative;
+            margin-top: -38px;
+        }
+    </style>
+{% endblock %}
+
+{% block breadcrumbs %}
+<li>
+    <a href="/content">內容管理系統</a>
+</li>
+<li class="current">
+    <a href="#">修改頁面</a>
+</li>
+{% endblock %}
+
+{% block container %}
+<article>
+    {% if item %}
+        <form method="post" action="/content/update/{{ item.sn }}">
+            <input type="hidden" name="_method" value="put"/>
+            <h3>修改頁面</h3>
+            <div class="status row right">
+                <div class="large-4 columns">
+                    <div class="switch round small">
+                        {% if item.status %}
+                            <input name="status" id="create-status" type="checkbox" checked>
+                        {% else %}
+                            <input name="status" id="create-status" type="checkbox">
+                        {% endif %}
+                        <label for="create-status"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <label>標題
+                        <input name="title" type="text" value="{{item.title}}" placeholder="請輸入標題" required/>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <label>URL
+                        <input name="url" type="text" value="{{item.url}}" placeholder="請輸入URL" required/>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <label>描述
+                        <textarea name="desc" placeholder="請輸入描述" required>{{item.desc}}</textarea>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="columns">
+                    <label>
+                        <p class="timepicker-title">有效期間</p>
+                        <span class="time-title">on:
+                        </span>
+                        <input name="startAtDay" type="text" class="start-time" value="{{ item.startAtDay }}" id="start-day" required>
+                        <input name="startAtHour" type="text" class="start-time" value="{{ item.startAtHour }}" id="start-hour" required>
+                        <span class="time-title">off:
+                        </span>
+                        <input name="endAtDay" type="text" class="end-time" value="{{ item.endAtDay }}" id="end-day" required>
+                        <input name="endAtHour" type="text" class="end-time" value="{{ item.endAtHour }}" id="end-hour" required>
+                    </label>
+                </div>
+            </div>
+            <div class="columns row btn-box right">
+                <input type="submit" value="儲存" class="button alert"/>
+                <a href="/content/" class="button secondary">取消</a>
+            </div>
+        </form>
+    {% endif %}
+</article>
+{% endblock %}
