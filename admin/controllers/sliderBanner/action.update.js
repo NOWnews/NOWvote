@@ -2,6 +2,7 @@
 import co from 'co';
 import moment from 'moment-timezone';
 import models from '../../../models';
+import redis from '../../../caches';
 
 const libs = require('../../../libs');
 const debug = require('debug')('NOWvote:admin:controllers:sliderBanner:action.update');
@@ -48,6 +49,9 @@ module.exports = function(req, res, next) {
         }
 
         yield sliderBanner.saveAsync();
+
+        // 讓 redis 重整資料，只更新前台會用到的資料
+        yield redis.updateRedisByKey('sliderBanner');
 
         return res.redirect('/sliderBanner');
     })
