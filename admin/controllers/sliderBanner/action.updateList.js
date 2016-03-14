@@ -14,11 +14,11 @@ module.exports = function(req, res, next) {
         let weightList = data.weightList.split(',');
         let statusList = _.isArray(data['status[]']) ? data['status[]'] : [data['status[]']];
 
-        let sliderBanners = yield models.sliderBanner.find()
+        let sliderBanner = yield models.sliderBanner.find()
             .where('trashed').equals(false)
             .execAsync();
 
-        let updateSliderBannerList = yield Promise.map(sliderBanners, function(bannerItem) {
+        let updateSliderBannerList = yield Promise.map(sliderBanner, function(bannerItem) {
             let index = _.indexOf(weightList, String(bannerItem.sn));
             bannerItem.weight = index === -1 ? bannerItem.weight: index;
 

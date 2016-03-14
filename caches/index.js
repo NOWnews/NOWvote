@@ -13,7 +13,7 @@ const redisExpireSeconds = 3600;
 
 
 /*
- * 利用 bluebird 將 redis 轉換成可以使用 promise 
+ * 利用 bluebird 將 redis 轉換成可以使用 promise
  */
 Promise.promisifyAll(redis.RedisClient.prototype);
 Promise.promisifyAll(redis.Multi.prototype);
@@ -63,9 +63,9 @@ const getMenuFromModels = co.wrap(function*() {
 });
 
 /*
- * 重新從 models 取得 banners 的資料
+ * 重新從 models 取得 sliderBanner 的資料
  */
-const getBannersFromModels = co.wrap(function*() {
+const getSliderBannerFromModels = co.wrap(function*() {
     let now = Date.now();
     return yield models.sliderBanner.find()
         .where('trashed').equals(false)
@@ -75,16 +75,16 @@ const getBannersFromModels = co.wrap(function*() {
         .sort('weight')
         .execAsync();
 });
-// bannersFromModels
+// sliderBannerFromModels
 
 
 /*
  * 從 redis 要 menu 清單
  * 去 redis 找所有分類清單，沒有的話會去 mongodb 要，並存回 redis
  */
-const getCategoryMenu = co.wrap(function*() {
+const getMenuCategory = co.wrap(function*() {
 
-    let menu = yield getRedisValue('categoryMenu') || [];
+    let menu = yield getRedisValue('menuCategory') || [];
 
     if(menu || menu.length !== 0) {
         debug('redis menu data = %j', menu);
@@ -94,56 +94,57 @@ const getCategoryMenu = co.wrap(function*() {
     let menuFromModels = yield getMenuFromModels();
     debug('mongodb menu data = %j', menuFromModels);
 
-    let updateRedisMenu = yield setRedisValue('categoryMenu', menuFromModels, redisExpireSeconds);
+    let updateRedisMenu = yield setRedisValue('menuCategory', menuFromModels, redisExpireSeconds);
 
     return Promise.resolve(updateRedisMenu);
 });
 
 
 /*
- * 從 redis 要 banner 清單
+ * 從 redis 要 sliderBanner 清單
  * 去 redis 找所有分類清單，沒有的話會去 mongodb 要，並存回 redis
  */
-const getBanners = co.wrap(function*() {
+const getSliderBanner = co.wrap(function*() {
 
-    let banners = yield getRedisValue('banners') || [];
+    let sliderBanner = yield getRedisValue('sliderBanner') || [];
 
-    debug('redis banners = %j', banners);
+    debug('redis sliderBanner = %j', sliderBanner);
 
-    if(banners || banners.length !== 0) {
-        debug('redis banners data = %j', banners);
-        return yield Promise.resolve(banners);
+    if(sliderBanner || sliderBanner.length !== 0) {
+        debug('redis sliderBanner data = %j', sliderBanner);
+        return yield Promise.resolve(sliderBanner);
     }
 
-    let bannersFromModels = yield getBannersFromModels();
-    debug('mongodb banners data = %j', bannersFromModels);
+    let sliderBannerFromModels = yield getSliderBannerFromModels();
+    debug('mongodb sliderBanner data = %j', sliderBannerFromModels);
 
-    let updateRedisBanners = yield setRedisValue('banners', bannersFromModels, redisExpireSeconds);
+    let updateRedisSliderBanner = yield setRedisValue('sliderBanner', sliderBannerFromModels, redisExpireSeconds);
 
-    return Promise.resolve(updateRedisBanners);
+    return Promise.resolve(updateRedisSliderBanner);
 });
 
 const updateRedisByKey = co.wrap(function*(key) {
 
-    const validateArray = ['banners', 'categoryMenu'];
+    const validateArray = ['sliderBanner', 'menuCategory'];
 
     if(!key || _.indexOf(validateArray, key) === -1) {
         return yield Promise.reject(new Error('update redis data need key'));
     }
 
-    if(key === 'banners') {
-        let banners = yield getBannersFromModels();
-        return yield setRedisValue('banners', banners, redisExpireSeconds);
+    if(key === 'sliderBanner') {
+        let sliderBanner = yield getSliderBanner
+        FromModels();
+        return yield setRedisValue('sliderBanner', sliderBanner, redisExpireSeconds);
     }
 
-    if(key === 'categoryMenu') {
+    if(key === 'menuCategory') {
         let menu = yield getMenuFromModels();
-        return yield setRedisValue('categoryMenu', menu, redisExpireSeconds);
+        return yield setRedisValue('menuCategory', menu, redisExpireSeconds);
     }
 });
 
 module.exports.set = setRedisValue;
 module.exports.get = getRedisValue;
-module.exports.getCategoryMenu = getCategoryMenu;
-module.exports.getBanners = getBanners;
+module.exports.getMenuCategory = getMenuCategory;
+module.exports.getSliderBanner = getSliderBanner;
 module.exports.updateRedisByKey = updateRedisByKey;

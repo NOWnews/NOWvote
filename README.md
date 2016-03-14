@@ -49,14 +49,14 @@ imagemagick v6.9.3-0_2
 - cache.get(key)
   - key: 取得 redis 資料的 key 值
 
-- cache.getCategoryMenu()
+- cache.getMenuCategory()
   - 取得 redis 裡面的 menu
 
-- cache.getBanners()
-  - 取得 redis 裡面的 banners
+- cache.getSliderBanner()
+  - 取得 redis 裡面的 sliderBanner
 
 - cache.updateRedisByKey(key)
-  - key: 目前能代入 `banners`, `categoryMenu`，更新相對應的資料
+  - key: 目前能代入 `sliderBanner`, `menuCategory`，更新相對應的資料
 
 ## Libs 共用 method
 

@@ -21,7 +21,7 @@ module.exports = function(req, res, next) {
         debug('removedMenuCategory = %j', removedMenuCategory);
 
         // 讓 redis 重整資料，只更新前台會用到的資料
-        yield redis.updateRedisByKey('categoryMenu');
+        yield redis.updateRedisByKey('menuCategory');
 
         return res.json(removedMenuCategory);
     })
