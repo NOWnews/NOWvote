@@ -26,7 +26,11 @@ module.exports = function(req, res, next) {
             .where('sn').equals(sn)
             .lean()
             .execAsync();
-        formatUpdateFrontData(sliderBanner);
+
+        // 如果常駐被勾起來，就不需要記錄時間
+        if(!sliderBanner.continued)
+            formatUpdateFrontData(sliderBanner);
+
         return res.render('sliderBanner/update', {item: sliderBanner});
     })
     .catch(next);
