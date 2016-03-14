@@ -15,7 +15,7 @@ module.exports = function(req, res, next) {
             yield redis.getCategoryMenu(),
 
             // 從 redis 取得 slideBanner 的資料
-            yield redis.getBanners(),
+            yield redis.getSliderBanner(),
 
             // 取得首頁 issue 的資料
             yield models.issue.find().execAsync()
@@ -23,16 +23,16 @@ module.exports = function(req, res, next) {
         debug('results = %j', results);
 
         let menuCategory = results[0];
-        let sliderBanners = results[1];
+        let sliderSliderBanner = results[1];
         let issues = results[2];
         debug('menuCategory = %j', menuCategory);
-        debug('sliderBanners = %j', sliderBanners);
+        debug('sliderSliderBanner = %j', sliderSliderBanner);
         debug('issues = %j', issues);
 
         return res.render('homepage', {
             issues: issues,
             menuCategory: menuCategory,
-            sliderBanners: sliderBanners
+            sliderSliderBanner: sliderSliderBanner
         });
     })
     .catch(next);

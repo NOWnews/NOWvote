@@ -7,7 +7,7 @@
         <a href="{{ category.url }}">{{ category.title }}</a>
     {% endeach %}
     <h2>This is banner</h2>
-    {% asyncEach banner in sliderBanners %}
+    {% asyncEach banner in sliderBanner %}
         <a href="{{ banner.url }}">
             <img src="{{ banner.image }}" />
         </a>
