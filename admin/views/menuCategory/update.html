@@ -48,6 +48,22 @@
                 }
                 return $("#create-status").val('');
             });
+
+            // continued
+            $("#continued").change(function () {
+                if (this.checked) {
+                    $('#start-day').prop( "disabled", true );
+                    $('#start-hour').prop( "disabled", true );
+                    $('#end-day').prop( "disabled", true );
+                    $('#end-hour').prop( "disabled", true );
+                    return $("#continued").val('checked');
+                }
+                $('#start-day').prop( "disabled", false );
+                $('#start-hour').prop( "disabled", false );
+                $('#end-day').prop( "disabled", false );
+                $('#end-hour').prop( "disabled", false );
+                return $("#continued").val('');
+            });
         });
     </script>
     <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
@@ -67,10 +83,6 @@
             float: left;
             width: inherit;
             margin-right: 10px;
-        }
-        .timepicker-title {
-            font-size: 0.875rem;
-            margin: 0;
         }
         .time-title {
             clear: both;
@@ -136,17 +148,34 @@
             </div>
             <div class="row">
                 <div class="columns">
-                    <label>
-                        <p class="timepicker-title">有效期間</p>
-                        <span class="time-title">on:
-                        </span>
-                        <input name="startAtDay" type="text" class="start-time" value="{{ item.startAtDay }}" id="start-day" required>
-                        <input name="startAtHour" type="text" class="start-time" value="{{ item.startAtHour }}" id="start-hour" required>
-                        <span class="time-title">off:
-                        </span>
-                        <input name="endAtDay" type="text" class="end-time" value="{{ item.endAtDay }}" id="end-day" required>
-                        <input name="endAtHour" type="text" class="end-time" value="{{ item.endAtHour }}" id="end-hour" required>
-                    </label>
+                    <fieldset>
+                        <legend>有效期間</legend>
+                        {% if item.continued %}
+                            <input id="continued" name="continued" type="checkbox" checked><label for="continued">永久顯示</label>
+                            <label>
+                                <span class="time-title">on:
+                                </span>
+                                <input name="startAtDay" type="text" class="start-time" value="{{ item.startAtDay }}" id="start-day" disabled required>
+                                <input name="startAtHour" type="text" class="start-time" value="{{ item.startAtHour }}" id="start-hour" disabled required>
+                                <span class="time-title">off:
+                                </span>
+                                <input name="endAtDay" type="text" class="end-time" value="{{ item.endAtDay }}" id="end-day" disabled required>
+                                <input name="endAtHour" type="text" class="end-time" value="{{ item.endAtHour }}" id="end-hour" disabled required>
+                            </label>
+                        {% else %}
+                            <input id="continued" name="continued" type="checkbox"><label for="continued">永久顯示</label>
+                            <label>
+                                <span class="time-title">on:
+                                </span>
+                                <input name="startAtDay" type="text" class="start-time" value="{{ item.startAtDay }}" id="start-day" required>
+                                <input name="startAtHour" type="text" class="start-time" value="{{ item.startAtHour }}" id="start-hour" required>
+                                <span class="time-title">off:
+                                </span>
+                                <input name="endAtDay" type="text" class="end-time" value="{{ item.endAtDay }}" id="end-day" required>
+                                <input name="endAtHour" type="text" class="end-time" value="{{ item.endAtHour }}" id="end-hour" required>
+                            </label>
+                        {% endif %}
+                    </fieldset>
                 </div>
             </div>
             <div class="columns row btn-box right">

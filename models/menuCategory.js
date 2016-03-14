@@ -34,6 +34,16 @@ const schema = new Schema({
         default: 0
     },
 
+    status: {
+        type: Boolean,
+        default: true
+    },
+
+    continued: {
+        type: Boolean,
+        default: true
+    },
+
     startTime: {
         type: Date,
         default: Date.now
@@ -42,11 +52,6 @@ const schema = new Schema({
     endTime: {
         type: Date,
         default: Date.now
-    },
-
-    status: {
-        type: Boolean,
-        default: true
     },
 
     createdBy: {

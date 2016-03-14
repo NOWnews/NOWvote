@@ -44,6 +44,11 @@ const schema = new Schema({
         default: true
     },
 
+    continued: {
+        type: Boolean,
+        default: true
+    },
+
     startTime: {
         type: Date,
         default: Date.now
