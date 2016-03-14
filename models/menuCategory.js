@@ -39,7 +39,7 @@ const schema = new Schema({
         default: true
     },
 
-    continue: {
+    continued: {
         type: Boolean,
         default: true
     },
