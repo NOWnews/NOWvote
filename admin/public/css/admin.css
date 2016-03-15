@@ -1,0 +1,12 @@
+/* MENU ----------------------- */
+/* :: List */
+/* - jquery-ui Sortable */
+.portlet-placeholder {
+    border: 1px dotted black;
+    margin: 0 1em 1em 0;
+    height: 50px;
+}
+.switch.round,
+.columns.pricing-table {
+    margin: 0;
+}
