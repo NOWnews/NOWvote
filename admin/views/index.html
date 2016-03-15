@@ -7,6 +7,10 @@
         {% block head %}{% endblock %}
     </head>
     <body>
+
+        {# :: component - 裡面會有一些基本的 component 可以使用 #}
+        {% import "component/component.html" as component %}
+
         {% include "./blocks/header.html" %}
         <div class="row">
             <div class="large-9 smaill-9 medium-9 columns" role="content">

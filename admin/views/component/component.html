@@ -1,0 +1,11 @@
+
+{# :: switch - 可以把 checkBox 變成開關式 #}
+{% macro switch(name, id, value, checked) %}
+    <div class="switch small">
+        <input class="switch-input" name="{{ name }}" id="{{ id }}" type="checkbox" value="{{ value }}" {{ checked }}>
+        <label class="switch-paddle" for="{{ id }}">
+            <span class="switch-active" aria-hidden="true">Yes</span>
+            <span class="switch-inactive" aria-hidden="true">No</span>
+        </label>
+    </div>
+{% endmacro %}
