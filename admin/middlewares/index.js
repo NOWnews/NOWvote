@@ -34,7 +34,7 @@ module.exports = function(app) {
     nunjucks.configure('admin/views', { autoescape: true, express: app });
 
     // 靜態檔案位置
-    app.use('/static', express.static(rootPath + '/server/public/'));
+    app.use('/static', express.static(rootPath + '/admin/public/'));
     app.use('/images', express.static(rootPath + '/imageStorage/'));
 
     // TODO 暫時用此方法引入 foundation
