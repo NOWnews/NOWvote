@@ -1,5 +1,5 @@
 
-{# :: switch - 可以把 checkBox 變成開關式 #}
+{# :: switch - 設定 checkBox 變成開關式 #}
 {% macro switch(name, id, value, checked) %}
     <div class="switch small">
         <input class="switch-input" name="{{ name }}" id="{{ id }}" type="checkbox" value="{{ value }}" {{ checked }}>
@@ -7,5 +7,19 @@
             <span class="switch-active" aria-hidden="true">Yes</span>
             <span class="switch-inactive" aria-hidden="true">No</span>
         </label>
+    </div>
+{% endmacro %}
+
+{# :: modal - 設定一個蓋板的 modal #}
+{% macro modal(itemSn, itemTitle) %}
+    <div id="deleteModal{{ itemSn }}" class="reveal tiny" data-reveal>
+        <h2>刪除確認</h2>
+        <div class="callout radius">
+            <h5>{{ itemTitle }}</h5>
+        </div>
+        <a item-sn="{{ itemSn }}" class="button alert remove-btn float-right">刪除</a>
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
 {% endmacro %}

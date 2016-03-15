@@ -3,10 +3,45 @@
 /* - jquery-ui Sortable */
 .portlet-placeholder {
     border: 1px dotted black;
-    margin: 0 1em 1em 0;
     height: 50px;
+    background: rgba(255, 0, 0, 0.2);
 }
-.switch.round,
+.switch.small,
 .columns.pricing-table {
     margin: 0;
 }
+
+.ui-table-header, .ui-table {
+    padding: 0;
+}
+.ui-table-header {
+    margin-bottom: 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+.ui-table-header li {
+    background: #000;
+    color: #fff;
+}
+.ui-table-header li > div {
+    border-right: 1px solid #fff;
+}
+.ui-table-header li > div:last-child {
+    border-right: 0;
+}
+.ui-table li {
+    margin-bottom: 0;
+    border-top: 0;
+}
+.portlet-header.ui-widget-header {
+    cursor: row-resize;
+    margin: 0;
+}
+.edit-box, .del-box {
+    font-size: 13px;
+}
+
+.btn-box {
+    margin-top: 15px;
+}
+/* Banner ----------------------- */

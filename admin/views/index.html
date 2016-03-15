@@ -13,8 +13,8 @@
 
         {% include "./blocks/header.html" %}
         <div class="row">
-            <div class="large-9 smaill-9 medium-9 columns" role="content">
-                <nav class="callout smaill" aria-label="You are here:" role="navigation">
+            <div class="large-9 medium-9 columns" role="content">
+                <nav class="callout small">
                     <ul class="breadcrumbs">
                         <li><a href="/">Home</a></li>
                         {% block breadcrumbs %}{% endblock %}
@@ -22,7 +22,7 @@
                 </nav>
                 {% block container %}{% endblock %}
             </div>
-            <aside class="large-3 smaill-3 medium-3 columns">
+            <aside class="large-3 medium-3 columns">
                 {% include "./blocks/slides.html" %}
             </aside>
         </div>
