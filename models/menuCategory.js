@@ -94,6 +94,26 @@ schema.statics.findBySn = co.wrap(function*(sn) {
         .execAsync();
 });
 
+/*
+ * 找出有效的 categoryMenu
+ */
+schema.statics.findEffective = co.wrap(function*() {
+
+    let self = this;
+    let now = Date.now();
+    console.log(now);
+
+    return yield self.find()
+        .where('trashed').equals(false)
+        .where('status').equals(true)
+        .or([
+            { continued: true },
+            { startTime: { $lte: now }, endTime: { $gte: now } }
+        ])
+        .sort('weight')
+        .execAsync();
+});
+
 schema.plugin(autoIncrement.plugin, {
     model: 'menuCategory',
     field: 'sn',
