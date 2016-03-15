@@ -99,6 +99,25 @@ schema.statics.findBySn = co.wrap(function*(sn) {
         .execAsync();
 });
 
+/*
+ * 找出有效的 sliderBanners
+ */
+schema.statics.findEffective = co.wrap(function*(sn) {
+
+    let self = this;
+    let now = Date.now();
+
+    return yield self.find()
+        .where('trashed').equals(false)
+        .where('status').equals(true)
+        .or([
+            { continued: true },
+            { startTime: { $lte: now }, endTime: { $gte: now } }
+        ])
+        .sort('weight')
+        .execAsync();
+});
+
 schema.plugin(autoIncrement.plugin, {
     model: 'sliderBanner',
     field: 'sn',
