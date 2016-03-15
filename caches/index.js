@@ -56,8 +56,10 @@ const getMenuFromModels = co.wrap(function*() {
     return yield models.menuCategory.find()
         .where('trashed').equals(false)
         .where('status').equals(true)
-        .where('startTime').lte(now)
-        .where('endTime').gte(now)
+        .or([
+            { continued: true },
+            { startTime: { $lte: now }, endTime: { $gte: now } }
+        ])
         .sort('weight')
         .execAsync();
 });
@@ -70,8 +72,10 @@ const getSliderBannerFromModels = co.wrap(function*() {
     return yield models.sliderBanner.find()
         .where('trashed').equals(false)
         .where('status').equals(true)
-        .where('startTime').lte(now)
-        .where('endTime').gte(now)
+        .or([
+            { continued: true },
+            { startTime: { $lte: now }, endTime: { $gte: now } }
+        ])
         .sort('weight')
         .execAsync();
 });
