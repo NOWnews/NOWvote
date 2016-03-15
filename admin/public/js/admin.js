@@ -32,7 +32,7 @@ $(function () {
     $('.remove-btn').on('click', function () {
         event.preventDefault();
         var sn = $(this).attr('item-sn');
-        var url = '/menuCategory/' + sn;
+        var url = $(this).attr('page-route');
         $.ajax({
             url: url,
             type: 'DELETE',
@@ -50,5 +50,7 @@ $(function () {
         })
     })
     // Banner -----------------------
+    // :: List
+    // jquery-ui Sortable
 
 });

@@ -10,14 +10,17 @@
     </div>
 {% endmacro %}
 
-{# :: modal - 設定一個蓋板的 modal #}
-{% macro modal(itemSn, itemTitle) %}
+{# :: modalDel - 設定一個蓋板的 modal #}
+{% macro modalDel(itemSn, itemTitle, pageRoute) %}
+    <a item-sn={{ itemSn }} data-open="deleteModal{{ itemSn }}">
+        <i class="fa fa-2x fa-trash"></i>
+    </a>
     <div id="deleteModal{{ itemSn }}" class="reveal tiny" data-reveal>
         <h2>刪除確認</h2>
         <div class="callout radius">
             <h5>{{ itemTitle }}</h5>
         </div>
-        <a item-sn="{{ itemSn }}" class="button alert remove-btn float-right">刪除</a>
+        <a item-sn="{{ itemSn }}" page-route="{{ pageRoute }}/{{ itemSn }}" class="button alert remove-btn float-right">刪除</a>
         <button class="close-button" data-close aria-label="Close modal" type="button">
             <span aria-hidden="true">&times;</span>
         </button>
