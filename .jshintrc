@@ -100,6 +100,7 @@
       "config": false,
       "libs": true,
       "rootPath": false,
-      "NODE_ENV": false
+      "NODE_ENV": false,
+      "$": false
   }
 }
