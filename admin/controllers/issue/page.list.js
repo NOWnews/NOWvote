@@ -1,7 +1,7 @@
 import co from 'co';
 import models from '../../../models';
 
-const debug = require('debug')('NOWvote:admin:controllers:content:page.list');
+const debug = require('debug')('NOWvote:admin:controllers:issue:page.list');
 
 module.exports = function(req, res, next) {
 
