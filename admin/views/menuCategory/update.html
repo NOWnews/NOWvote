@@ -54,15 +54,12 @@
                 </div>
             </div>
             <div class="row">
-                <div class="columns">
-                    <fieldset>
-                        <legend>有效期間</legend>
-                        {% if item.continued %}
-                            {{ component.formEffectiveTime('checked', item.startAtDay, item.startAtHour, item.endAtDay, item.endAtHour ) }}
-                        {% else %}
-                            {{ component.formEffectiveTime('', item.startAtDay, item.startAtHour, item.endAtDay, item.endAtHour ) }}
-                        {% endif %}
-                    </fieldset>
+                <div class="columns large-12">
+                    {% if item.continued %}
+                        {{ component.formEffectiveTime('checked', item.startAtDay, item.startAtHour, item.endAtDay, item.endAtHour ) }}
+                    {% else %}
+                        {{ component.formEffectiveTime('', item.startAtDay, item.startAtHour, item.endAtDay, item.endAtHour ) }}
+                    {% endif %}
                 </div>
             </div>
             <div class="text-right btn-box">

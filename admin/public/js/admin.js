@@ -116,7 +116,26 @@ $(function () {
 
 
     // Banner -----------------------
-    // :: List
-    // jquery-ui Sortable
+    // :: fileupload使用
+    var readURL = function (input) {
+        var fileSize = input.files.size || input.files[0].size;
+
+        if(fileSize > 409600) {
+            alert('檔案過大，請選擇小於500KB以下');
+            return;
+        }
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#blah').attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    };
+
+    $('#imgInp').change(function(){
+      readURL(this);
+    });
 
 });
