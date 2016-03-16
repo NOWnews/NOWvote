@@ -1,0 +1,49 @@
+
+{# :: switch - 設定 checkBox 變成開關式 #}
+{% macro switch(name, id, value, checked) %}
+    <div class="switch small">
+        <input class="switch-input" name="{{ name }}" id="{{ id }}" type="checkbox" value="{{ value }}" {{ checked }}>
+        <label class="switch-paddle" for="{{ id }}">
+            <span class="switch-active" aria-hidden="true">Yes</span>
+            <span class="switch-inactive" aria-hidden="true">No</span>
+        </label>
+    </div>
+{% endmacro %}
+
+{# :: modalDel - 設定一個蓋板的 modal #}
+{% macro modalDel(itemSn, itemTitle, pageRoute) %}
+    <a item-sn={{ itemSn }} data-open="deleteModal{{ itemSn }}">
+        <i class="fa fa-2x fa-trash"></i>
+    </a>
+    <div id="deleteModal{{ itemSn }}" class="reveal tiny" data-reveal>
+        <h2>刪除確認</h2>
+        <div class="callout radius">
+            <h5>{{ itemTitle }}</h5>
+        </div>
+        <a item-sn="{{ itemSn }}" page-route="{{ pageRoute }}/{{ itemSn }}" class="button alert remove-btn float-right">刪除</a>
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+{% endmacro %}
+
+{# :: formEffectiveTime - form 內的有效期間模板 #}
+{% macro formEffectiveTime(continuedStats, startAtDayValue, startAtHourValue, endAtDayValue, endAtHourValue) %}
+    {% if continuedStats == "checked" %}
+        {% set timeInputStatus = 'disabled' %}
+    {% endif %}
+    <fieldset class="fieldset">
+        <legend>有效期間</legend>
+        <input id="continued" name="continued" type="checkbox" {{ continuedStats }}><label for="continued">永久顯示</label>
+        <label>
+            <span class="time-title">on:
+            </span>
+            <input name="startAtDay" type="text" class="start-time" value="{{ startAtDayValue }}" id="start-day" required {{ timeInputStatus }}>
+            <input name="startAtHour" type="text" class="start-time" value="{{ startAtHourValue }}" id="start-hour" required {{ timeInputStatus }}>
+            <span class="time-title">off:
+            </span>
+            <input name="endAtDay" type="text" class="end-time" value="{{ endAtDayValue }}" id="end-day" required {{ timeInputStatus }}>
+            <input name="endAtHour" type="text" class="end-time" value="{{ endAtHourValue }}" id="end-hour" required {{ timeInputStatus }}>
+        </label>
+    </fieldset>
+{% endmacro %}
