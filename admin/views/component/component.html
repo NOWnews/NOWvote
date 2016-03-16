@@ -29,7 +29,7 @@
 
 {# :: formEffectiveTime - form 內的有效期間模板 #}
 {% macro formEffectiveTime(continuedStats, startAtDayValue, startAtHourValue, endAtDayValue, endAtHourValue) %}
-    {% if continuedStats == 'checked' %}
+    {% if continuedStats == "checked" %}
         {% set timeInputStatus = 'disabled' %}
     {% endif %}
     <fieldset class="fieldset">
