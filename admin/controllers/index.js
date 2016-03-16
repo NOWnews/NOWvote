@@ -3,7 +3,7 @@ import home from './home';
 import account from './account';
 import sliderBanner from './sliderBanner';
 import category from './category';
-import content from './content';
+import issue from './issue';
 import menuCategory from './menuCategory';
 import demo from './demo';
 
@@ -13,7 +13,7 @@ module.exports = function(app) {
     app.use('/account', account);
     app.use('/sliderBanner', sliderBanner);
     app.use('/category', category);
-    app.use('/content', content);
+    app.use('/issue', issue);
     app.use('/menuCategory', menuCategory);
     app.use('/demo', demo);
 
