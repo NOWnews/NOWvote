@@ -43,4 +43,29 @@
 .btn-box {
     margin-top: 15px;
 }
+
+/* :: Create */
+
+.datepicker-hours thead,
+.datepicker-hours thead .prev,
+.datepicker-hours thead .next {
+    visibility: hidden !important;
+}
+input.start-time,
+input.end-time {
+    float: left;
+    width: inherit;
+    margin-right: 10px;
+}
+.time-title {
+    clear: both;
+    display: block;
+    float: left;
+    line-height: 37px;
+    margin-right: 10px;
+}
+.status.row {
+    position: relative;
+    margin-top: -38px;
+}
 /* Banner ----------------------- */
