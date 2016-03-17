@@ -1,0 +1,71 @@
+/* MENU ----------------------- */
+/* :: List */
+/* - jquery-ui Sortable */
+.portlet-placeholder {
+    border: 1px dotted black;
+    height: 50px;
+    background: rgba(255, 0, 0, 0.2);
+}
+.switch.small {
+    margin: 0;
+}
+
+.ui-table-header, .ui-table {
+    padding: 0;
+}
+.ui-table-header {
+    margin-bottom: 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+.ui-table-header li {
+    background: #000;
+    color: #fff;
+}
+.ui-table-header li > div {
+    border-right: 1px solid #fff;
+}
+.ui-table-header li > div:last-child {
+    border-right: 0;
+}
+.ui-table li {
+    margin-bottom: 0;
+    border-top: 0;
+}
+.portlet-header.ui-widget-header {
+    cursor: row-resize;
+    margin: 0;
+}
+.edit-box, .del-box {
+    font-size: 13px;
+}
+
+.btn-box {
+    margin-top: 15px;
+}
+
+/* :: Create */
+
+.datepicker-hours thead,
+.datepicker-hours thead .prev,
+.datepicker-hours thead .next {
+    visibility: hidden !important;
+}
+input.start-time,
+input.end-time {
+    float: left;
+    width: inherit;
+    margin-right: 10px;
+}
+.time-title {
+    clear: both;
+    display: block;
+    float: left;
+    line-height: 37px;
+    margin-right: 10px;
+}
+.status.row {
+    position: relative;
+    margin-top: -38px;
+}
+/* Banner ----------------------- */

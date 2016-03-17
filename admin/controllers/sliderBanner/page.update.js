@@ -28,8 +28,9 @@ module.exports = function(req, res, next) {
             .execAsync();
 
         // 如果常駐被勾起來，就不需要記錄時間
-        if(!sliderBanner.continued)
+        if(!sliderBanner.continued) {
             formatUpdateFrontData(sliderBanner);
+        }
 
         return res.render('sliderBanner/update', {item: sliderBanner});
     })

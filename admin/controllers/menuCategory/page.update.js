@@ -26,8 +26,9 @@ module.exports = function(req, res, next) {
             .execAsync();
 
         // 如果常駐被勾起來，就不需要記錄時間
-        if(!menuCategory.continued)
+        if(!menuCategory.continued) {
             formatUpdateFrontData(menuCategory);
+        }
 
         return res.render('menuCategory/update', {item: menuCategory});
     })

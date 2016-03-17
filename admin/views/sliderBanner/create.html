@@ -1,149 +1,29 @@
 {% extends "../index.html" %}
 
+{# 設定變數 #}
+{% set pageTitle = "新增 Banner" %}
+{% set pageRoute = "/sliderBanner" %}
+
 {% block head %}
     <script src="/bower/foundation-datepicker/js/foundation-datepicker.js"></script>
     <script src="/bower/foundation-datepicker/js/locales/foundation-datepicker.zh-TW.js"></script>
-    <script>
-        $(function () {
-            // datepicker
-            var nowTemp = new Date();
-            var startTime = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
-            var setTimepicker = function (type, dayElement, hourElement) {
-                var day = dayElement.fdatepicker({
-                    onRender: function (date) {
-                        return date.valueOf() < startTime.valueOf()
-                            ? 'disabled'
-                            : '';
-                    },
-                    format: 'yyyy-mm-dd',
-                    language: 'zh-TW'
-                }).on('changeDate', function (ev) {
-                    if (ev.date.valueOf() > hour.date.valueOf()) {
-                        var newDate = new Date(ev.date)
-                        hour.update(newDate);
-                    }
-                    day.hide();
-                    hourElement[0].focus();
-                }).data('datepicker');
-                var hour = hourElement.fdatepicker({
-                    onRender: function (date) {
-                        return date.valueOf() != day.date.valueOf()
-                            ? 'disabled'
-                            : '';
-                    },
-                    format: 'hh:ii',
-                    startView: "day",
-                    language: 'zh-TW'
-                }).on('changeDate', function (ev) {
-                    hour.hide();
-                }).data('datepicker');
-            }
-            setTimepicker('start', $('#start-day'), $('#start-hour'));
-            setTimepicker('end', $('#end-day'), $('#end-hour'));
-
-            // status
-            $("#create-status").change(function () {
-                if (this.checked) {
-                    return $("#create-status").val('checked');
-                }
-                return $("#create-status").val('');
-            });
-
-            // continued
-            $("#continued").change(function () {
-                if (this.checked) {
-                    $('#start-day').prop( "disabled", true );
-                    $('#start-hour').prop( "disabled", true );
-                    $('#end-day').prop( "disabled", true );
-                    $('#end-hour').prop( "disabled", true );
-                    return $("#continued").val('checked');
-                }
-                $('#start-day').prop( "disabled", false );
-                $('#start-hour').prop( "disabled", false );
-                $('#end-day').prop( "disabled", false );
-                $('#end-hour').prop( "disabled", false );
-                return $("#continued").val('');
-            });
-
-            // fileupload使用
-            function readURL(input) {
-
-                var fileSize = input.files.size || input.files[0].size;
-                if(fileSize > 409600) {
-                    alert('檔案過大，請選擇小於500KB以下');
-                    return;
-                }
-
-              if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                  $('#blah').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(input.files[0]);
-              }
-            }
-
-            $('#imgInp').change(function(){
-              readURL(this);
-            });
-        });
-    </script>
-
-    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" href="/bower/foundation-datepicker/css/foundation-datepicker.min.css">
-    <style>
-        .switch.round,
-        .columns.pricing-table {
-            margin: 0;
-        }
-        .datepicker-hours thead,
-        .datepicker-hours thead .prev,
-        .datepicker-hours thead .next {
-            visibility: hidden !important;
-        }
-        input.start-time,
-        input.end-time {
-            float: left;
-            width: inherit;
-            margin-right: 10px;
-        }
-        .time-title {
-            clear: both;
-            display: block;
-            float: left;
-            line-height: 37px;
-            margin-right: 10px;
-        }
-        .status.row {
-            position: relative;
-            margin-top: -38px;
-        }
-
-    </style>
 {% endblock %}
 
 {% block breadcrumbs %}
 <li>
-    <a href="/sliderBanner">輪播圖管理系統</a>
+    <a href="{{ pageRoute }}">輪播圖管理系統</a>
 </li>
-<li class="current">
-    <a href="#">新增選單</a>
-</li>
+<li>{{ pageTitle }}</li>
 {% endblock %}
 
 {% block container %}
 <article>
-    <form method="post" action="/sliderBanner/create" enctype="multipart/form-data">
-  <!--       {% if item %}
-            <input type="hidden" name="_method" value="put"/>
-        {% endif %} -->
-        <h3>新增 Banner</h3>
-        <div class="status row right">
+    <form method="post" action="{{ pageRoute }}/create" enctype="multipart/form-data">
+        <h3>{{ pageTitle }}</h3>
+        <div class="status row float-right">
             <div class="large-4 columns">
-                <div class="switch round small">
-                    <input name="status" id="create-status" type="checkbox">
-                    <label for="create-status"></label>
-                </div>
+                {{ component.switch("status", "create-status") }}
             </div>
         </div>
         <div class="row">
@@ -169,33 +49,21 @@
         </div>
         <div class="row">
             <div class="columns">
-                <input type='file' id="imgInp" name="file" required>
-                <img class="th" src="http://placehold.it/350x150" id="blah" src="#" alt="your image">
+                <label for="imgInp" class="button">上傳圖片</label>
+                <input type='file' class="show-for-sr" id="imgInp" name="file" required>
+                <label for="imgInp">
+                    <img class="thumbnail" src="http://placehold.it/350x150" id="blah" src="#" alt="your image">
+                </label>
             </div>
         </div>
-
         <div class="row">
-            <div class="columns">
-                <fieldset>
-                    <legend>有效期間</legend>
-                    <input id="continued" name="continued" type="checkbox"><label for="continued">永久顯示</label>
-                    <label>
-                        <span class="time-title">on:
-                        </span>
-                        <input name="startAtDay" type="text" class="start-time" value="" id="start-day" required>
-                        <input name="startAtHour" type="text" class="start-time" value="" id="start-hour" required>
-                        <span class="time-title">off:
-                        </span>
-                        <input name="endAtDay" type="text" class="end-time" value="" id="end-day" required>
-                        <input name="endAtHour" type="text" class="end-time" value="" id="end-hour" required>
-                    </label>
-                </fieldset>
+            <div class="columns large-12">
+                {{ component.formEffectiveTime() }}
             </div>
         </div>
-
-        <div class="columns row btn-box right">
+        <div class="text-right btn-box">
             <input type="submit" value="儲存" class="button alert"/>
-            <a href="/sliderBanner" class="button secondary">取消</a>
+            <a href="{{ pageRoute }}" class="button secondary">取消</a>
         </div>
     </form>
 </article>
