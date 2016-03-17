@@ -29,7 +29,7 @@ module.exports = function(req, res, next) {
         debug('sliderBanner = %j', sliderBanner);
         debug('issues = %j', issues);
 
-        return res.render('demo', {
+        return res.render('container', {
             issues: issues,
             menuCategory: menuCategory,
             sliderBanner: sliderBanner

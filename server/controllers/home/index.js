@@ -4,6 +4,8 @@ let router = express.Router();
 
 import pageHome from './page.home';
 import pageDemo from './page.demo';
+import pageIndex from './page.index';
+import pageWb from './page.wb';
 
 router.route('/')
     .get(pageHome);
@@ -13,4 +15,11 @@ router.route('/index')
 
 router.route('/demo')
     .get(pageDemo);
+
+router.route('/newindex')
+    .get(pageIndex);
+
+router.route('/wb')
+    .get(pageWb);
+
 module.exports = router;
