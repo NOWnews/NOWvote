@@ -1,6 +1,7 @@
 
 import co from 'co';
 import Promise from 'bluebird';
+import is from 'is_js'
 
 const debug = require('debug')('NOWvote:caches:getMenuCategory');
 const models = require('../models');
@@ -15,13 +16,13 @@ const setRedisValue = require('./setRedisValue');
 module.exports = co.wrap(function*(key) {
 
     let menu = yield getRedisValue('menuCategory') || [];
-
-    if(menu || menu.length !== 0) {
+    debug('menu=%j', menu);
+    if(is.array(menu) && menu.length !== 0) {
         debug('redis menu data = %j', menu);
         return yield Promise.resolve(menu);
     }
 
-    let menuFromModels = yield models.menuCategort.findEffective();
+    let menuFromModels = yield models.menuCategory.findEffective();
     debug('mongodb menu data = %j', menuFromModels);
 
     let updateRedisMenu = yield setRedisValue('menuCategory', menuFromModels, config.redisExpireSeconds);
