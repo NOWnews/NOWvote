@@ -117,25 +117,32 @@ $(function () {
 
     // Banner -----------------------
     // :: fileupload使用
-    var readURL = function (input) {
-        var fileSize = input.files.size || input.files[0].size;
+    var fileUpload = function (targetElement) {
+        var readUrl = function (input) {
+            var fileSize = input.files.size || input.files[0].size;
+            var targetShow = $(input).siblings('label').find('img');
 
-        if(fileSize > 409600) {
-            alert('檔案過大，請選擇小於500KB以下');
-            return;
-        }
+            if(fileSize > 409600) {
+                return alert('檔案過大，請選擇小於500KB以下');
+            }
 
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $('#blah').attr('src', e.target.result);
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    targetShow.attr('src', e.target.result);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        };
+
+        $(targetElement).change(function(){
+          readUrl(this);
+        });
     };
 
-    $('#imgInp').change(function(){
-      readURL(this);
-    });
+    fileUpload('.img-input');
+
+    // Issue -----------------------
+
 
 });
