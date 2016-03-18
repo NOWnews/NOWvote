@@ -1,15 +1,43 @@
 {% extends "../index.html" %}
 
+{# 設定變數 #}
+{% set pageTitle = "管理者" %}
+{% set pageRoute = "/adminUser" %}
+
 {% block breadcrumbs %}
-    <li>管理者</li>
+    <li>{{ pageTitle }}</li>
 {% endblock %}
 
 {% block container %}
-    {% asyncEach adminUser in adminUsers %}
-      <div>
-          <span>{{ adminUser.sn }}</span>
-          <span>{{ adminUser.name }}</span>
-          <span>{{ adminUser.email }}</span>
-      </div>
-    {% endeach %}
+    <article>
+        <h3>{{ pageTitle }}</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>編號</th>
+                    <th>姓名</th>
+                    <th>email</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% asyncEach adminUser in adminUsers %}
+                    <tr>
+                        <td>{{ adminUser.sn }}</td>
+                        <td>{{ adminUser.name }}</td>
+                        <td>{{ adminUser.email }}</td>
+                        <td>
+                            <a href="{{ pageRoute }}/{{ adminUser.sn }}">
+                                <i class="fa fa-2x fa-pencil"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endeach %}
+            </tbody>
+        </table>
+
+        <div class="text-right btn-box">
+            <a href="{{ pageRoute }}/create" class="button alert">新增管理者</a>
+        </div>
+    </article>
 {% endblock %}

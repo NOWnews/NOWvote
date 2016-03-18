@@ -3,6 +3,7 @@ let router = express.Router();
 
 const pageList = require('./page.list');
 const pageShow = require('./page.show');
+const pageCreate = require('./page.create');
 const actionCreate = require('./action.create');
 const actionUpdate = require('./action.update');
 const actionRemove = require('./action.remove');
@@ -14,6 +15,9 @@ const checkAdminUserAlive = require('../../middlewares/checkAdminUserAlive');
 router.route('/')
     .post(checkAdminUserAlive, actionCreate)
     .get(pageList);
+
+router.route('/create')
+    .get(pageCreate);
 
 router.route('/:sn')
     .get(pageShow)

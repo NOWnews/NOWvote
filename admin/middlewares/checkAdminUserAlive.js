@@ -14,7 +14,6 @@ module.exports = function(req, res, next) {
         // 找尋這個使用者是否已經註冊過了
         let adminUser = yield models.adminUser.findOne()
             .where('email').equals(data.email)
-            .where('password').equals(libs.hashPwd(data.password))
             .execAsync();
 
         // 如果存在就拋出錯誤訊息
