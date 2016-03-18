@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "npm install && ./node_modules/bower/bin/bower install && DEBUG=NOWvote* ./node_modules/nodemon/bin/nodemon.js ./bin/www.js",
-    "admin": "npm install && ./node_modules/bower/bin/bower install && DEBUG=NOWvote* ./node_modules/nodemon/bin/nodemon.js ./bin/admin.js"
+    "admin": "npm install && ./node_modules/bower/bin/bower install && ./ckeditorCommand.sh && DEBUG=NOWvote* ./node_modules/nodemon/bin/nodemon.js ./bin/admin.js"
   },
   "dependencies": {
     "babel-core": "^6.4.5",
