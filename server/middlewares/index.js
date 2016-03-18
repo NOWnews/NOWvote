@@ -38,6 +38,9 @@ module.exports = function(app) {
     app.use('/static', express.static(rootPath + '/server/public/'));
     app.use('/images', express.static(rootPath + '/imageStorage/'));
 
+     // TODO 暫時用此方法引入 foundation
+    app.use('/bower', express.static(rootPath + '/bower_components/'));
+
     // overwrite put and delete method
     app.use(methodOverride(function(req, res) {
         if (req.body && typeof req.body === 'object' && '_method' in req.body) {

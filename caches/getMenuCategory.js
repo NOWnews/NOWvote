@@ -1,7 +1,7 @@
 
 import co from 'co';
 import Promise from 'bluebird';
-import is from 'is_js'
+import is from 'is_js';
 
 const debug = require('debug')('NOWvote:caches:getMenuCategory');
 const models = require('../models');
