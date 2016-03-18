@@ -20,7 +20,8 @@ module.exports = function(app) {
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(cookieParser());
     app.use(cors());
-    app.use(upload.single('file'));
+    // app.use(upload.single('file'));
+    app.use(upload.fields([{ name: 'file', maxCount: 1 }, { name: 'upload', maxCount: 1 }]));
 
     // express session setting
     app.set('trust proxy', 1);
