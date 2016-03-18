@@ -5,4 +5,11 @@
 {% endblock %}
 
 {% block container %}
+    {% asyncEach adminUser in adminUsers %}
+      <div>
+          <span>{{ adminUser.sn }}</span>
+          <span>{{ adminUser.name }}</span>
+          <span>{{ adminUser.email }}</span>
+      </div>
+    {% endeach %}
 {% endblock %}

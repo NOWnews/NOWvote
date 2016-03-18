@@ -7,9 +7,12 @@ const actionCreate = require('./action.create');
 const actionUpdate = require('./action.update');
 const actionRemove = require('./action.remove');
 
+// 確認這個 adminUser 是否存在的 middleware
+const checkAdminUserAlive = require('../../middlewares/checkAdminUserAlive');
+
 
 router.route('/')
-    .post(actionCreate)
+    .post(checkAdminUserAlive, actionCreate)
     .get(pageList);
 
 router.route('/:sn')
