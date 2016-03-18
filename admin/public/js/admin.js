@@ -1,6 +1,24 @@
 $(function () {
     $(document).foundation();
     // Menu -----------------------
+    $('.remove-btn').on('click', function () {
+        event.preventDefault();
+        var sn = $(this).attr('item-sn');
+        var url = $(this).attr('page-route');
+        $.ajax({
+            url: url,
+            type: 'DELETE',
+            success: function (data, err) {
+                if (data.trashed) {
+                    $('.bullet-item[item-sn=' + sn + ']').remove();
+                    $('#deleteModal' + sn).foundation('close');
+                } else {
+                    alert('資料有誤 請重新整理！');
+                }
+            }
+        });
+    });
+    // Menu -----------------------
     // :: List
     // jquery-ui Sortable
     if($('.column').length !== 0){

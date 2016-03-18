@@ -18,11 +18,12 @@
                     <th>姓名</th>
                     <th>email</th>
                     <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 {% asyncEach adminUser in adminUsers %}
-                    <tr>
+                    <tr class="bullet-item" item-sn="{{adminUser.sn}}">
                         <td>{{ adminUser.sn }}</td>
                         <td>{{ adminUser.name }}</td>
                         <td>{{ adminUser.email }}</td>
@@ -30,6 +31,9 @@
                             <a href="{{ pageRoute }}/{{ adminUser.sn }}">
                                 <i class="fa fa-2x fa-pencil"></i>
                             </a>
+                        </td>
+                        <td>
+                            {{ component.modalDel(adminUser.sn, adminUser.name, pageRoute) }}
                         </td>
                     </tr>
                 {% endeach %}
