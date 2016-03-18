@@ -143,6 +143,82 @@ $(function () {
     fileUpload('.img-input');
 
     // Issue -----------------------
+    // :: sortable 設定
+    if($('.question-box').length !== 0) {
+        $('.question-box').sortable({
+            forcePlaceholderSize: true,
+            placeholderClass: 'portlet-placeholder fade'
+        });
+        $('.option-box').sortable({
+            forcePlaceholderSize: true,
+            placeholderClass: 'portlet-placeholder fade',
+            items: 'li'
+        });
 
+        var itemEnterFunc = function (targetBlock) {
+            $(targetBlock + '+ .input-group > input').on('keypress', function(event){
+                if ( event.which === 13 ) {
+                    event.preventDefault();
+                    $(this).siblings('div').find('a').click();
+                }
+            });
+        };
 
+        var optionClickFunc = function(){
+            var inputElement = $(this).parents().siblings('input');
+            var ulElement = $(this).parents().siblings('ul');
+            var itemTitle = $(this).parents().siblings('input').val();
+            var liHtml = '<li><a href="#">' + itemTitle + '</a></li>';
+            inputElement.val('');
+
+            // 將 li 放進去，並加上 sortable 效果
+            ulElement.append(liHtml);
+            ulElement.sortable();
+        };
+
+        $('.add-option').on('click', optionClickFunc);
+        $('.add-question').on('click', function(){
+            var inputElement = $(this).parents().siblings('input');
+            var ulElement = $(this).parents().siblings('ul');
+            var itemTitle = inputElement.val();
+            var liHtml =
+                '<li class="accordion-item is-active" data-accordion-item>' +
+                    '<a href="#" class="accordion-title">' + itemTitle + '</a>' +
+                    '<div class="accordion-content" data-tab-content>' +
+                        '<ul class="menu vertical option-box"></ul>' +
+                        '<div class="input-group">' +
+                            '<input class="input-group-field" type="text" name="option" placeholder="新增選項"/>' +
+                            '<div class="input-group-button"> <a class="add-option button">ADD</a> </div>' +
+                        '</div>' +
+                    '</div>' +
+                '</li>';
+
+            inputElement.val('');
+
+            // 將 foundation 函式破壞，並刪除 active 效果
+            ulElement.foundation('destroy').find('li').removeClass('is-active');
+            // 將 li 放進去，並加上 foundation 跟 sortable 效果
+            ulElement.append(liHtml).foundation().sortable();
+
+            // 針對裡面的 option 做設定
+            $('.is-active .add-option').on('click', optionClickFunc);
+            itemEnterFunc('.is-active .option-box');
+        });
+
+        itemEnterFunc('.option-box');
+        itemEnterFunc('.question-box');
+    }
+
+    // taggingJS
+    if($('.tag-box').length !== 0) {
+        var my_custom_options = {
+            'no-duplicate': true,
+            'no-backspace': true,
+            'tag-char': '',
+            'tags-input-name': 'taggone',
+            'edit-on-delete': false,
+            'forbidden-chars': [',', '.', '_', '?']
+        };
+        $('.tag-box').tagging(my_custom_options);
+    }
 });

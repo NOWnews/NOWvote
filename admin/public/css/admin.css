@@ -1,7 +1,7 @@
 /* MENU ----------------------- */
 /* :: List */
 /* - jquery-ui Sortable */
-.portlet-placeholder {
+.portlet-placeholder, .sortable-placeholder {
     border: 1px dotted black;
     height: 50px;
     background: rgba(255, 0, 0, 0.2);
