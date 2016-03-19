@@ -1,0 +1,76 @@
+{% extends "../index.html" %}
+
+{# 設定變數 #}
+{% set pageTitle = "修改管理者" %}
+{% set pageRoute = "/adminUser" %}
+
+{% block breadcrumbs %}
+    <li>{{ pageTitle }}</li>
+{% endblock %}
+
+{% block container %}
+    <form method="post" action="{{ pageRoute }}/{{ adminUser.sn }}">
+        <input type="hidden" name="_method" value="patch"/>
+        <h3>{{ pageTitle }}</h3>
+        <div class="row">
+            <div class="large-12 columns">
+                <label>編號
+                    <input type="text" value="{{adminUser.sn}}" disabled/>
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <label>姓名
+                    <input name="name" type="text" value="{{adminUser.name}}" placeholder="請輸入姓名" required/>
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <label>email
+                    <input type="text" value="{{adminUser.email}}" disabled/>
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <label>policy
+                    <input name="policy" type="text" value="{{adminUser.policy}}"/>
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <label>createdBy
+                    <input type="text" value="{{adminUser.createdBy.name}}" disabled/>
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <label>updatedBy
+                    <input type="text" value="{{adminUser.updatedBy}}" disabled/>
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <label>新增時間
+                    <input type="text" value="{{adminUser.formatCreatedAt}}" disabled/>
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <label>更新時間
+                    <input type="text" value="{{adminUser.formatUpdatedAt}}" disabled/>
+                </label>
+            </div>
+        </div>
+
+        <div class="text-right btn-box">
+            <input type="submit" value="更新" class="button alert"/>
+        </div>
+    </form>
+{% endblock %}

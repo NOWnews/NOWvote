@@ -2,7 +2,7 @@ import express from 'express';
 let router = express.Router();
 
 const pageList = require('./page.list');
-const pageShow = require('./page.show');
+const pageUpdate = require('./page.update');
 const pageCreate = require('./page.create');
 const actionCreate = require('./action.create');
 const actionUpdate = require('./action.update');
@@ -20,8 +20,8 @@ router.route('/create')
     .get(pageCreate);
 
 router.route('/:sn')
-    .get(pageShow)
-    .put(actionUpdate)
+    .get(pageUpdate)
+    .patch(actionUpdate)
     .delete(actionRemove);
 
 module.exports = router;
