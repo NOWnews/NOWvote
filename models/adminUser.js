@@ -66,19 +66,41 @@ const schema = new Schema({
     }
 });
 
-schema.statics.findBySn = co.wrap(function*(sn) {
+/*
+ * sn: [String, Number], 要查詢的編號
+ * populates: [Array]，要 relation 的欄位
+ * lean: [Boolean]， true 則會去掉 mongoose doc 自己的屬性
+ */
+schema.statics.findBySn = co.wrap(function*(sn, populates, lean) {
 
     let self = this;
     let thisSn = parseInt(sn, 10);
+
+    if(lean !== undefined && !is.boolean(lean)) {
+        return yield Promise.reject(new Error('lean must boolean'));
+    }
 
     if(!is.number(thisSn)){
         return yield Promise.reject(new Error('sn must number'));
     }
 
-    return yield self
+    if(populates !== undefined && !is.array(populates)) {
+        return yield Promise.reject(new Error('populates must array'));
+    }
+
+    let query = self
         .findOne()
-        .where('sn').equals(thisSn)
-        .execAsync();
+        .where('sn').equals(thisSn);
+
+    if(populates) {
+        query.populate(populates);
+    }
+
+    if(lean) {
+        query.lean();
+    }
+
+    return yield query.execAsync();
 });
 
 schema.plugin(autoIncrement.plugin, {

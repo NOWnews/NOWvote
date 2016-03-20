@@ -1,6 +1,6 @@
 
 import home from './home';
-import account from './account';
+import adminUser from './adminUser';
 import sliderBanner from './sliderBanner';
 import category from './category';
 import content from './content';
@@ -10,7 +10,7 @@ import demo from './demo';
 module.exports = function(app) {
 
     app.use('/', home);
-    app.use('/account', account);
+    app.use('/adminUser', adminUser);
     app.use('/sliderBanner', sliderBanner);
     app.use('/category', category);
     app.use('/content', content);
