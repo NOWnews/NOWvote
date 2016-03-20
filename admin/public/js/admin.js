@@ -1,6 +1,7 @@
 $(function () {
     $(document).foundation();
-    // Menu -----------------------
+    // library
+    // adminUser -----------------------
     $('.remove-btn').on('click', function () {
         event.preventDefault();
         var sn = $(this).attr('item-sn');
