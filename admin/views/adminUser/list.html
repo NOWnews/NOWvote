@@ -1,0 +1,47 @@
+{% extends "../index.html" %}
+
+{# 設定變數 #}
+{% set pageTitle = "管理者" %}
+{% set pageRoute = "/adminUser" %}
+
+{% block breadcrumbs %}
+    <li>{{ pageTitle }}</li>
+{% endblock %}
+
+{% block container %}
+    <article>
+        <h3>{{ pageTitle }}</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>編號</th>
+                    <th>姓名</th>
+                    <th>E-mail</th>
+                    <th>編輯</th>
+                    <th>刪除</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% asyncEach adminUser in adminUsers %}
+                    <tr class="bullet-item" item-sn="{{adminUser.sn}}">
+                        <td>{{ adminUser.sn }}</td>
+                        <td>{{ adminUser.name }}</td>
+                        <td>{{ adminUser.email }}</td>
+                        <td>
+                            <a href="{{ pageRoute }}/{{ adminUser.sn }}">
+                                <i class="fa fa-2x fa-pencil"></i>
+                            </a>
+                        </td>
+                        <td>
+                            {{ component.modalDel(adminUser.sn, adminUser.name, pageRoute) }}
+                        </td>
+                    </tr>
+                {% endeach %}
+            </tbody>
+        </table>
+
+        <div class="text-right btn-box">
+            <a href="{{ pageRoute }}/create" class="button alert">新增管理者</a>
+        </div>
+    </article>
+{% endblock %}
