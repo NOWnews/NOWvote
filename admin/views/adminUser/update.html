@@ -28,28 +28,30 @@
         </div>
         <div class="row">
             <div class="large-12 columns">
-                <label>email
+                <label>E-mail
                     <input type="text" value="{{adminUser.email}}" disabled/>
                 </label>
             </div>
         </div>
         <div class="row">
             <div class="large-12 columns">
-                <label>policy
-                    <input name="policy" type="text" value="{{adminUser.policy}}"/>
+                <label>權限
+                    <select name="policy">
+                        <option value="{{adminUser.policy}}">{{adminUser.policy}}</option>
+                    </select>
                 </label>
             </div>
         </div>
         <div class="row">
             <div class="large-12 columns">
-                <label>createdBy
+                <label>建立者
                     <input type="text" value="{{adminUser.createdBy.name}}" disabled/>
                 </label>
             </div>
         </div>
         <div class="row">
             <div class="large-12 columns">
-                <label>updatedBy
+                <label>更新者
                     <input type="text" value="{{adminUser.updatedBy}}" disabled/>
                 </label>
             </div>
