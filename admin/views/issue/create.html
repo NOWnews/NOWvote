@@ -10,7 +10,7 @@
     <script src="/bower/html.sortable/dist/html.sortable.min.js"></script>
     <script>
         $(function () {
-            $('.add-option').on('sortupdate', function(e, obj){
+            $('.option-box').on('sortupdate', function(e, obj){
 				console.log('sortable--Parent old: ');
 				console.log(obj.startparent);
 				console.log('sortable--Parent new: ');
@@ -18,7 +18,7 @@
 				console.log('sortable--Index: '+obj.oldindex+' -> '+obj.index);
 				console.log('sortable--elementIndex: '+obj.oldElementIndex+' -> '+obj.elementIndex);
 			});
-            $('.add-question').on('sortupdate', function(e, obj){
+            $('.question-box').on('sortupdate', function(e, obj){
 				console.log('sortable-inner--Parent old: ');
 				console.log(obj.startparent);
 				console.log('sortable-inner--Parent new: ');
@@ -96,19 +96,6 @@
                 <fieldset class="fieldset">
                     <legend>題目</legend>
                     <ul class="accordion question-box" data-accordion>
-                        <li class="accordion-item is-active" data-accordion-item>
-                            <a href="#" class="accordion-title">Accordion 1</a>
-                            <div class="accordion-content" data-tab-content>
-                                <ul class="menu vertical option-box">
-                                </ul>
-                                <div class="input-group">
-                                    <input class="input-group-field" type="text" name="option" placeholder="新增選項" />
-                                    <div class="input-group-button">
-                                        <a class="add-option button">ADD</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
                     </ul>
                     <div class="input-group">
                         <input class="input-group-field" type="text" name="question" placeholder="新增題目" />

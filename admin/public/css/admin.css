@@ -70,7 +70,14 @@ input.end-time {
 }
 /* Banner ----------------------- */
 /* Issue ----------------------- */
+.option-box {
+    margin: 20;
+    list-style-type: decimal;
+}
 
+.option-box > li {
+    display: list-item;
+}
 
 /* Lib ----------------------- */
 /* Tagging Basic Style */

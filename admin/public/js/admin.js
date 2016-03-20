@@ -185,9 +185,9 @@ $(function () {
 
         var optionClickFunc = function(){
             var inputElement = $(this).parents().siblings('input');
-            var ulElement = $(this).parents().siblings('ul');
+            var ulElement = $(this).parents().siblings('ol');
             var itemTitle = $(this).parents().siblings('input').val();
-            var liHtml = '<li><a href="#">' + itemTitle + '</a></li>';
+            var liHtml = '<li>' + itemTitle + '</li>';
             inputElement.val('');
 
             // 將 li 放進去，並加上 sortable 效果
@@ -204,7 +204,7 @@ $(function () {
                 '<li class="accordion-item is-active" data-accordion-item>' +
                     '<a href="#" class="accordion-title">' + itemTitle + '</a>' +
                     '<div class="accordion-content" data-tab-content>' +
-                        '<ul class="menu vertical option-box"></ul>' +
+                        '<ol class="option-box"></ol>' +
                         '<div class="input-group">' +
                             '<input class="input-group-field" type="text" name="option" placeholder="新增選項"/>' +
                             '<div class="input-group-button"> <a class="add-option button">ADD</a> </div>' +
