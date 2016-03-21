@@ -15,6 +15,11 @@ const schema = new Schema({
         ref: 'user'
     },
 
+    question: {
+        type: Schema.Types.ObjectId,
+        ref: 'question'
+    },
+
     option: {
         type: Schema.Types.ObjectId,
         ref: 'option'

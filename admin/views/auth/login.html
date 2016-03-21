@@ -1,0 +1,44 @@
+{# 設定變數 #}
+{% set pageTitle = "議題票選後台" %}
+{% set pageRoute = "/auth" %}
+
+<!DOCTYPE html>
+<!--[if IE 9]><html class="lt-ie10" lang="zh-hant" > <![endif]-->
+<html class="no-js" lang="zh">
+    <head>
+        <title>{{ pageTitle }}</title>
+        {% include "../blocks/head.html" %}
+    </head>
+    <body class="login-body">
+        <div class="large-4 large-centered columns login-box">
+            <form method="post" action="{{ pageRoute }}/login" class="callout large">
+                <div class="row">
+                    <div class="large-12 columns text-center">
+                        <h3 class="login-title"><i class="fa fa-user fa-fw"></i>{{ pageTitle }}</h3>
+                        <hr>
+                    </div>
+                    <div class="large-12 columns">
+                        <div class="input-group">
+                            <span class="input-group-label">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                            <input class="input-group-field" name="email" type="email" placeholder="請輸入E-mail" required/>
+                        </div>
+                    </div>
+                    <div class="large-12 columns">
+                        <div class="input-group">
+                            <span class="input-group-label">
+                                <i class="fa fa-key"></i>
+                            </span>
+                            <input class="input-group-field" name="password" type="password" placeholder="請輸入密碼" required/>
+                        </div>
+                    </div>
+                    <div class="large-12 columns">
+                        <input type="submit" value="登入後台" class="expanded button"/>
+                        <!-- <a class="float-right" href="#">忘記密碼?</a> -->
+                    </div>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

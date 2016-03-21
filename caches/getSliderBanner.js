@@ -1,6 +1,7 @@
 
 import co from 'co';
 import Promise from 'bluebird';
+import is from 'is_js';
 
 const debug = require('debug')('NOWvote:caches:getSliderBanner');
 const models = require('../models');
@@ -15,8 +16,9 @@ module.exports = co.wrap(function*(key) {
     let sliderBanner = yield getRedisValue('sliderBanner') || [];
 
     debug('redis sliderBanner = %j', sliderBanner);
+    debug('sliderBanner=%j', sliderBanner);
 
-    if(sliderBanner || sliderBanner.length !== 0) {
+    if(is.array(sliderBanner) && sliderBanner.length !== 0) {
         debug('redis sliderBanner data = %j', sliderBanner);
         return yield Promise.resolve(sliderBanner);
     }

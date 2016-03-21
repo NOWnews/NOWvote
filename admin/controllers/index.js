@@ -1,5 +1,6 @@
 
 import home from './home';
+import auth from './auth';
 import adminUser from './adminUser';
 import sliderBanner from './sliderBanner';
 import category from './category';
@@ -11,6 +12,7 @@ import demo from './demo';
 module.exports = function(app) {
 
     app.use('/', home);
+    app.use('/auth', auth);
     app.use('/adminUser', adminUser);
     app.use('/sliderBanner', sliderBanner);
     app.use('/category', category);
