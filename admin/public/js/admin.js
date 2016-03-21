@@ -234,7 +234,7 @@ $(function () {
             'no-duplicate': true,
             'no-backspace': true,
             'tag-char': '',
-            'tags-input-name': 'taggone',
+            'tags-input-name': 'tags',
             'edit-on-delete': false,
             'forbidden-chars': [',', '.', '_', '?']
         };
