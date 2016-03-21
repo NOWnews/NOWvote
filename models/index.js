@@ -28,16 +28,39 @@ const option = require('./option');
 const tag = require('./tag');
 const issueRelation = require('./issueRelation');
 const tagRelation = require('./tagRelation');
+const voteCounter = require('./voteCounter');
 
 module.exports = {
+
+    // 一般使用者
     user: user,
+
+    // 後台管理者
     adminUser: adminUser,
+
+    // menu 選單
     menuCategory: menuCategory,
-    issue: issue,
-    question: question,
-    option: option,
-    tag: tag,
-    issueRelation: issueRelation,
+
+    // slider banner
     sliderBanner: sliderBanner,
-    tagRelation: tagRelation
+
+    // 投票議題
+    issue: issue,
+
+    // 投票議題內的問題
+    question: question,
+
+    // 投票議題內問題的選項
+    option: option,
+
+    // 投票議題的標籤
+    tag: tag,
+
+    // issue, question, options 的關係
+    issueRelation: issueRelation,
+
+    tagRelation: tagRelation,
+
+    // 記錄 issue 總共有多少人來投票
+    voteCounter: voteCounter
 };
