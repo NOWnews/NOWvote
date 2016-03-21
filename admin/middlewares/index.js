@@ -21,7 +21,11 @@ module.exports = function(app) {
     app.use(cookieParser());
     app.use(cors());
     // app.use(upload.single('file'));
-    app.use(upload.fields([{ name: 'file', maxCount: 1 }, { name: 'upload', maxCount: 1 }]));
+    app.use(upload.fields([
+        { name: 'file', maxCount: 1 }, // 一般的圖片 name
+        { name: 'mainImg', maxCount: 1 }, // issue 的主圖片 name
+        { name: 'upload', maxCount: 1 } // ckeditor 的圖片 name
+    ]));
 
     // express session setting
     app.set('trust proxy', 1);
