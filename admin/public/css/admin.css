@@ -68,4 +68,27 @@ input.end-time {
     position: relative;
     margin-top: -38px;
 }
+/* Login ----------------------- */
+.login-box {
+    margin-top: 50px;
+}
+
+.login-body {
+    background: #86B4CC;
+    height: auto;
+}
+
+.login-title {
+    color: #1893e4;
+}
+
+.login-title + hr {
+    margin-bottom: 40px;
+}
+
+.login-box .input-group-label {
+    background: #1893e4;
+    color: #fff;
+    border-color: #1893e4;
+}
 /* Banner ----------------------- */
