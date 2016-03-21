@@ -164,6 +164,9 @@ $(function () {
     // Issue -----------------------
     // :: sortable 設定
     if($('.question-box').length !== 0) {
+        var questions = [];
+        var options = [];
+
         $('.question-box').sortable({
             forcePlaceholderSize: true,
             placeholderClass: 'portlet-placeholder fade'
@@ -171,7 +174,8 @@ $(function () {
         $('.option-box').sortable({
             forcePlaceholderSize: true,
             placeholderClass: 'portlet-placeholder fade',
-            items: 'li'
+            items: 'li',
+            hoverClass: 'is-hovered'
         });
 
         var itemEnterFunc = function (targetBlock) {
