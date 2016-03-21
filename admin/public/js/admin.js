@@ -167,6 +167,20 @@ $(function () {
         var questions = [];
         var options = [];
 
+        $(document).on('click', '.close-button', function(event){
+            var parentElement = $(this).parent();
+
+            if (parentElement.prev().length === 1) {
+                parentElement.prev().addClass('is-active');
+                parentElement.prev().find('.accordion-content').show();
+            }else if (parentElement.next().length === 1) {
+                parentElement.next().addClass('is-active');
+                parentElement.next().find('.accordion-content').show();
+            }
+
+            parentElement.remove();
+        });
+
         $('.question-box').sortable({
             forcePlaceholderSize: true,
             placeholderClass: 'portlet-placeholder fade'
@@ -207,6 +221,9 @@ $(function () {
             var liHtml =
                 '<li class="accordion-item is-active" data-accordion-item>' +
                     '<a href="#" class="accordion-title">' + itemTitle + '</a>' +
+                    '<button class="close-button" type="button">' +
+                        '<i aria-hidden="true" class="fa fa-close"></i>' +
+                    '</button>' +
                     '<div class="accordion-content" data-tab-content>' +
                         '<ol class="option-box"></ol>' +
                         '<div class="input-group">' +

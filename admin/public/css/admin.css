@@ -136,3 +136,26 @@ input.end-time {
 .type-zone:focus {
 	outline: none;
 }
+
+/* sortable */
+.question-box .is-active {
+    position: relative;
+    box-shadow: 0 -2px 2px 0 rgba(0,0,0,0.2),0 6px 10px 0 rgba(0,0,0,0.3);
+    transition: box-shadow .25s cubic-bezier(0.0,0.0,0.2,1);
+}
+
+.question-box .close-button {
+    display: none;
+}
+
+.question-box .is-active .close-button {
+    display: block;
+    top: -19px;
+    z-index: 1;
+    right: -15px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    padding: 2px 5px;
+    outline: medium none;
+}
