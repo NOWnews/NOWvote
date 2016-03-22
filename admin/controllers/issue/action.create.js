@@ -31,23 +31,29 @@ module.exports = function(req, res, next) {
             endTime = moment( `${data.endAtDay} ${data.endAtHour}` );
         }
 
+        //---- 圖片的處理 ----
         // 檢查 圖片資訊
         let extImgName = yield libs.checkExt(imgFile);
         let extMainImgName = yield libs.checkExt(mainImgFile);
+
         let fileName = 'picture' + moment()
             .tz('Asia/Taipei')
             .format('YYYYMMDD-HHmmss');
 
         let fullImgName = `${fileName}.${extImgName}`;
-        let fullMainImgName = `${fileName}.${extMainImgName}`;
+        let fullMainImgName = `main_${fileName}.${extMainImgName}`;
         let newImgName = imageStorage + `/${fullImgName}`;
         let newMainImgName = imageStorage + `/${fullMainImgName}`;
 
          // 呼叫 libs.moveFile 搬移檔案
         let movedImgPosition = yield libs.moveFile(imgFile.path, newImgName);
-        let movedMainImgPosition = yield libs.moveFile(imgFile.path, newMainImgName);
+        let movedMainImgPosition = yield libs.moveFile(mainImgFile.path, newMainImgName);
+
         let imgUrl = `${imageStorageUrl}/${fullImgName}`;
         let mainImgUrl = `${imageStorageUrl}/${fullMainImgName}`;
+
+
+
 
         return res.redirect('/issue');
     })

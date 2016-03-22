@@ -8,26 +8,6 @@
     <script src="/bower/ckeditor/ckeditor.js"></script>
     <script src="/bower/taggingJS/tagging.js"></script>
     <script src="/bower/html.sortable/dist/html.sortable.min.js"></script>
-    <script>
-        $(function () {
-            $('.option-box').on('sortupdate', function(e, obj){
-				console.log('sortable--Parent old: ');
-				console.log(obj.startparent);
-				console.log('sortable--Parent new: ');
-				console.log(obj.endparent);
-				console.log('sortable--Index: '+obj.oldindex+' -> '+obj.index);
-				console.log('sortable--elementIndex: '+obj.oldElementIndex+' -> '+obj.elementIndex);
-			});
-            $('.question-box').on('sortupdate', function(e, obj){
-				console.log('sortable-inner--Parent old: ');
-				console.log(obj.startparent);
-				console.log('sortable-inner--Parent new: ');
-				console.log(obj.endparent);
-				console.log('sortable-inner--Index: '+obj.oldindex+' -> '+obj.index);
-				console.log('sortable-inner--elementIndex: '+obj.oldElementIndex+' -> '+obj.elementIndex);
-			});
-        });
-    </script>
 {% endblock %}
 
 {% block breadcrumbs %}
@@ -39,7 +19,7 @@
 
 {% block container %}
 <article>
-    <form method="post" action="{{ pageRoute }}/create" enctype="multipart/form-data">
+    <form id="issue-form" method="post" action="{{ pageRoute }}/create" enctype="multipart/form-data">
         <h3>{{ pageTitle }}</h3>
         <div class="status row float-right">
             <div class="large-4 columns">
@@ -68,7 +48,7 @@
         <div class="row">
             <div class="large-12 columns">
                 <label>內文
-                    <textarea class="ckeditor" id="editor" cols="80" rows="10" name="editor2"></textarea>
+                    <textarea class="ckeditor" id="editor" cols="80" rows="10" name="content"></textarea>
                 </label>
             </div>
         </div>
@@ -98,7 +78,8 @@
                     <ul class="accordion question-box" data-accordion>
                     </ul>
                     <div class="input-group">
-                        <input class="input-group-field" type="text" name="question" placeholder="新增題目" />
+                        <input class="input-group-field" type="text" placeholder="新增題目" />
+                        <input class="input-group-field" type="hidden" name="question" placeholder="新增題目" />
                         <div class="input-group-button">
                             <a class="add-question button">ADD</a>
                         </div>

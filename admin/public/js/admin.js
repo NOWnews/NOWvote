@@ -1,15 +1,15 @@
-$(function () {
+$(function() {
     $(document).foundation();
     // library
     // adminUser -----------------------
-    $('.remove-btn').on('click', function () {
+    $('.remove-btn').on('click', function() {
         event.preventDefault();
         var sn = $(this).attr('item-sn');
         var url = $(this).attr('page-route');
         $.ajax({
             url: url,
             type: 'DELETE',
-            success: function (data, err) {
+            success: function(data, err) {
                 if (data.trashed) {
                     $('.bullet-item[item-sn=' + sn + ']').remove();
                     $('#deleteModal' + sn).foundation('close');
@@ -22,8 +22,8 @@ $(function () {
     // Menu -----------------------
     // :: List
     // jquery-ui Sortable
-    if($('.column').length !== 0){
-        var recordWeight = function (weightList) {
+    if ($('.column').length !== 0) {
+        var recordWeight = function(weightList) {
             $('input[name="weightList"]').val(weightList);
         };
 
@@ -32,37 +32,41 @@ $(function () {
             handle: '.portlet-header',
             cancel: '.portlet-toggle',
             placeholder: 'portlet-placeholder ui-corner-all',
-            stop: function (event, ui) {
-                var sortedWeight = $('.column').sortable('toArray', {attribute: 'item-sn'});
+            stop: function(event, ui) {
+                var sortedWeight = $('.column').sortable('toArray', {
+                    attribute: 'item-sn'
+                });
                 $('#save-btn').removeClass('hide');
                 recordWeight(sortedWeight);
             }
         });
 
         $('.portlet').addClass('ui-widget ui-widget-content ui-helper-clearfix ui-corner-all').find('.portlet-header').addClass('ui-widget-header ui-corner-all').prepend('<span class="ui-icon ui-icon-minusthick portlet-toggle"></span>');
-        $('.portlet-toggle').click(function () {
+        $('.portlet-toggle').click(function() {
             var icon = $(this);
             icon.toggleClass('ui-icon-minusthick ui-icon-plusthick');
             icon.closest('.portlet').find('.portlet-content').toggle();
         });
 
-        $('.ui-table .switch-input').change(function () {
+        $('.ui-table .switch-input').change(function() {
             $('#save-btn').removeClass('hide');
         });
 
-        $('.remove-btn').on('click', function () {
+        $('.remove-btn').on('click', function() {
             event.preventDefault();
             var sn = $(this).attr('item-sn');
             var url = $(this).attr('page-route');
             $.ajax({
                 url: url,
                 type: 'DELETE',
-                success: function (data, err) {
+                success: function(data, err) {
                     if (data.trashed) {
                         $('.bullet-item[item-sn=' + sn + ']').remove();
                         $('.column').sortable('refresh');
                         $('#deleteModal' + sn).foundation('close');
-                        var sortedWeight = $('.column').sortable('toArray', {attribute: 'item-sn'});
+                        var sortedWeight = $('.column').sortable('toArray', {
+                            attribute: 'item-sn'
+                        });
                         recordWeight(sortedWeight);
                     } else {
                         alert('資料有誤 請重新整理！');
@@ -73,18 +77,18 @@ $(function () {
     }
 
     // datepicker
-    if($('#continued').length !== 0){
+    if ($('#continued').length !== 0) {
         var nowTemp = new Date();
         var startTime = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
-        var setTimepicker = function (type, dayElement, hourElement) {
+        var setTimepicker = function(type, dayElement, hourElement) {
             var day, hour;
             day = dayElement.fdatepicker({
-                onRender: function (date) {
+                onRender: function(date) {
                     return date.valueOf() < startTime.valueOf() ? 'disabled' : '';
                 },
                 format: 'yyyy-mm-dd',
                 language: 'zh-TW'
-            }).on('changeDate', function (ev) {
+            }).on('changeDate', function(ev) {
                 if (ev.date.valueOf() > hour.date.valueOf()) {
                     var newDate = new Date(ev.date);
                     hour.update(newDate);
@@ -97,10 +101,10 @@ $(function () {
                 format: 'hh:ii',
                 startView: 'day',
                 language: 'zh-TW',
-                onRender: function (date) {
-                    return date.valueOf() !== day.date.valueOf() ? 'disabled': '';
+                onRender: function(date) {
+                    return date.valueOf() !== day.date.valueOf() ? 'disabled' : '';
                 }
-            }).on('changeDate', function (ev) {
+            }).on('changeDate', function(ev) {
                 hour.hide();
             }).data('datepicker');
         };
@@ -109,24 +113,24 @@ $(function () {
         setTimepicker('end', $('#end-day'), $('#end-hour'));
 
         // continued
-        $('#continued').change(function () {
+        $('#continued').change(function() {
             if (this.checked) {
-                $('#start-day').prop( 'disabled', true );
-                $('#start-hour').prop( 'disabled', true );
-                $('#end-day').prop( 'disabled', true );
-                $('#end-hour').prop( 'disabled', true );
+                $('#start-day').prop('disabled', true);
+                $('#start-hour').prop('disabled', true);
+                $('#end-day').prop('disabled', true);
+                $('#end-hour').prop('disabled', true);
                 return $('#continued').val('checked');
             }
-            $('#start-day').prop( 'disabled', false );
-            $('#start-hour').prop( 'disabled', false );
-            $('#end-day').prop( 'disabled', false );
-            $('#end-hour').prop( 'disabled', false );
+            $('#start-day').prop('disabled', false);
+            $('#start-hour').prop('disabled', false);
+            $('#end-day').prop('disabled', false);
+            $('#end-hour').prop('disabled', false);
             return $('#continued').val('');
         });
     }
 
     // status
-    $('#create-status').change(function () {
+    $('#create-status').change(function() {
         if (this.checked) {
             return $('#create-status').val('checked');
         }
@@ -136,26 +140,26 @@ $(function () {
 
     // Banner -----------------------
     // :: fileupload使用
-    var fileUpload = function (targetElement) {
-        var readUrl = function (input) {
+    var fileUpload = function(targetElement) {
+        var readUrl = function(input) {
             var fileSize = input.files.size || input.files[0].size;
             var targetShow = $(input).siblings('label').find('img');
 
-            if(fileSize > 409600) {
+            if (fileSize > 409600) {
                 return alert('檔案過大，請選擇小於500KB以下');
             }
 
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
-                reader.onload = function (e) {
+                reader.onload = function(e) {
                     targetShow.attr('src', e.target.result);
                 };
                 reader.readAsDataURL(input.files[0]);
             }
         };
 
-        $(targetElement).change(function(){
-          readUrl(this);
+        $(targetElement).change(function() {
+            readUrl(this);
         });
     };
 
@@ -163,17 +167,17 @@ $(function () {
 
     // Issue -----------------------
     // :: sortable 設定
-    if($('.question-box').length !== 0) {
+    if ($('.question-box').length !== 0) {
         var questions = [];
         var options = [];
 
-        $(document).on('click', '.close-button', function(event){
+        $(document).on('click', '.close-button', function(event) {
             var parentElement = $(this).parent();
 
             if (parentElement.prev().length === 1) {
                 parentElement.prev().addClass('is-active');
                 parentElement.prev().find('.accordion-content').show();
-            }else if (parentElement.next().length === 1) {
+            } else if (parentElement.next().length === 1) {
                 parentElement.next().addClass('is-active');
                 parentElement.next().find('.accordion-content').show();
             }
@@ -192,16 +196,16 @@ $(function () {
             hoverClass: 'is-hovered'
         });
 
-        var itemEnterFunc = function (targetBlock) {
-            $(targetBlock + '+ .input-group > input').on('keypress', function(event){
-                if ( event.which === 13 ) {
+        var itemEnterFunc = function(targetBlock) {
+            $(targetBlock + '+ .input-group > input').on('keypress', function(event) {
+                if (event.which === 13) {
                     event.preventDefault();
                     $(this).siblings('div').find('a').click();
                 }
             });
         };
 
-        var optionClickFunc = function(){
+        var optionClickFunc = function() {
             var inputElement = $(this).parents().siblings('input');
             var ulElement = $(this).parents().siblings('ol');
             var itemTitle = $(this).parents().siblings('input').val();
@@ -214,7 +218,7 @@ $(function () {
         };
 
         $('.add-option').on('click', optionClickFunc);
-        $('.add-question').on('click', function(){
+        $('.add-question').on('click', function() {
             var inputElement = $(this).parents().siblings('input');
             var ulElement = $(this).parents().siblings('ul');
             var itemTitle = inputElement.val();
@@ -227,7 +231,7 @@ $(function () {
                     '<div class="accordion-content" data-tab-content>' +
                         '<ol class="option-box"></ol>' +
                         '<div class="input-group">' +
-                            '<input class="input-group-field" type="text" name="option" placeholder="新增選項"/>' +
+                            '<input class="input-group-field" type="text" placeholder="新增選項"/>' +
                             '<div class="input-group-button"> <a class="add-option button">ADD</a> </div>' +
                         '</div>' +
                     '</div>' +
@@ -249,8 +253,33 @@ $(function () {
         itemEnterFunc('.question-box');
     }
 
+    var checkedQuestionData;
+    $('#issue-form').submit( function (event) {
+        if (!checkedQuestionData) {
+            event.preventDefault();
+            checkedQuestionData = true;
+
+            // 將 question 資料取出來變 object
+            var question = {};
+            $('.question-box > li').each( function(index, value) {
+                question[index] = {
+                    name: $(value).find('.accordion-title').text(),
+                    option: []
+                };
+                $(value).find('li').each( function(i, v) {
+                    question[index].option[i] = $(v).text();
+                });
+            });
+
+            // 將 question 的資料轉成字串，並寫進 input question 裡面
+            var questionString = JSON.stringify(question);
+            $('input[name="question"]').val(questionString);
+            return $(this).submit();
+        }
+    });
+
     // taggingJS
-    if($('.tag-box').length !== 0) {
+    if ($('.tag-box').length !== 0) {
         var my_custom_options = {
             'no-duplicate': true,
             'no-backspace': true,
