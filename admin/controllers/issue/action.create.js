@@ -21,6 +21,7 @@ module.exports = function(req, res, next) {
         let status = data.status ? true : false;
         let continued = data.continued ? true : false;
         let startTime, endTime;
+        let question = JSON.parse(data.question);
 
         // 如果常駐被勾起來，就不需要記錄時間
         if(continued){
@@ -52,8 +53,31 @@ module.exports = function(req, res, next) {
         let imgUrl = `${imageStorageUrl}/${fullImgName}`;
         let mainImgUrl = `${imageStorageUrl}/${fullMainImgName}`;
 
+        debug('title = %j', data.title);
+        debug('desc = %j', data.desc);
+        debug('startTime = %j', startTime);
+        debug('endTime = %j', endTime);
+        debug('continued = %j', continued);
+        debug('status = %j', status);
+        debug('image = %j', imgUrl);
+        debug('mainImage = %j', mainImgUrl);
+        debug('question = %j', question);
+        debug('tags = %j', data.tags);
 
-
+        // 存入資料庫
+        // let newIssue = yield models.issue.createAsync({
+        //     title: data.title,
+        //     desc: data.desc,
+        //     startTime: startTime,
+        //     endTime: endTime,
+        //     status: status,
+        //     image: imgUrl,
+        //     mainImage: mainImgUrl,
+        //     options: options,
+        //     question: question,
+        //     tags: tags,
+        //     continued: continued
+        // });
 
         return res.redirect('/issue');
     })

@@ -7,6 +7,8 @@
 {% block head %}
     <script src="/bower/ckeditor/ckeditor.js"></script>
     <script src="/bower/taggingJS/tagging.js"></script>
+    <script src="/bower/foundation-datepicker/js/foundation-datepicker.js"></script>
+    <script src="/bower/foundation-datepicker/js/locales/foundation-datepicker.zh-TW.js"></script>
     <script src="/bower/html.sortable/dist/html.sortable.min.js"></script>
 {% endblock %}
 
@@ -48,7 +50,7 @@
         <div class="row">
             <div class="large-12 columns">
                 <label>內文
-                    <textarea class="ckeditor" id="editor" cols="80" rows="10" name="content"></textarea>
+                    <textarea class="ckeditor" id="editor" cols="80" rows="10" name="desc"></textarea>
                 </label>
             </div>
         </div>
@@ -71,7 +73,7 @@
                 </label>
             </div>
         </div>
-        <div class="row" id="aa">
+        <div class="row">
             <div class="large-12 columns">
                 <fieldset class="fieldset">
                     <legend>題目</legend>
@@ -85,6 +87,11 @@
                         </div>
                     </div>
                 </fieldset>
+            </div>
+        </div>
+        <div class="row">
+            <div class="columns large-12">
+                {{ component.formEffectiveTime() }}
             </div>
         </div>
         <div class="text-right btn-box">
