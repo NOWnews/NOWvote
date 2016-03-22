@@ -39,6 +39,11 @@ const schema = new Schema({
         required: true
     },
 
+    continued: {
+        type: Date,
+        required: true
+    },
+
     options: [{
         type: Schema.Types.ObjectId,
         ref: 'option'

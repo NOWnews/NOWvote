@@ -101,6 +101,7 @@
       "libs": true,
       "rootPath": false,
       "NODE_ENV": false,
-      "$": false
+      "$": false,
+      "imageStorage": false
   }
 }

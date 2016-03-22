@@ -4,9 +4,9 @@ import auth from './auth';
 import adminUser from './adminUser';
 import sliderBanner from './sliderBanner';
 import category from './category';
-import content from './content';
+import issue from './issue';
 import menuCategory from './menuCategory';
-import demo from './demo';
+import ckeditor from './ckeditor';
 
 module.exports = function(app) {
 
@@ -15,9 +15,9 @@ module.exports = function(app) {
     app.use('/adminUser', adminUser);
     app.use('/sliderBanner', sliderBanner);
     app.use('/category', category);
-    app.use('/content', content);
+    app.use('/issue', issue);
     app.use('/menuCategory', menuCategory);
-    app.use('/demo', demo);
+    app.use('/ckeditor', ckeditor);
 
     return function(req, res, next) {
         return next();

@@ -10,7 +10,7 @@ const debug = require('debug')('NOWvote:admin:controllers:sliderBanner:action.cr
 module.exports = function(req, res, next) {
     let data = req.body;
     let imageStorageUrl = '/images';
-    let imgFile = req.file;
+    let imgFile = req.files.file[0];
 
     co(function*() {
         let status = data.status ? true : false;
