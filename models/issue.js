@@ -24,6 +24,10 @@ const schema = new Schema({
         required: true
     },
 
+    image: {
+        type: String
+    },
+
     type: {
         type: Schema.Types.ObjectId,
         ref: 'type'
@@ -40,13 +44,13 @@ const schema = new Schema({
     },
 
     continued: {
-        type: Date,
-        required: true
+        type: Boolean,
+        default: false
     },
 
-    options: [{
+    questions: [{
         type: Schema.Types.ObjectId,
-        ref: 'option'
+        ref: 'question'
     }],
 
     tags: [{

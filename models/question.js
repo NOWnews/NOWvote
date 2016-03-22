@@ -19,6 +19,11 @@ const schema = new Schema({
         required: true
     },
 
+    options: [{
+        type: Schema.Types.ObjectId,
+        ref: 'option'
+    }],
+
     createdBy: {
         type: Schema.Types.ObjectId,
         ref: 'user'
