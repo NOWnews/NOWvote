@@ -34,21 +34,35 @@ module.exports = function(req, res, next) {
 
         //---- 圖片的處理 ----
         // 檢查 圖片資訊
-        let extImgName = yield libs.checkExt(imgFile);
-        let extMainImgName = yield libs.checkExt(mainImgFile);
+        let extResults = yield [
+            libs.checkExt(imgFile),
+            libs.checkExt(mainImgFile)
+        ];
+
+        let extImgName = extResults[0];
+        let extMainImgName = extResults[1];
 
         let fileName = 'picture' + moment()
             .tz('Asia/Taipei')
             .format('YYYYMMDD-HHmmss');
 
-        let fullImgName = `${fileName}.${extImgName}`;
-        let fullMainImgName = `main_${fileName}.${extMainImgName}`;
-        let newImgName = imageStorage + `/${fullImgName}`;
-        let newMainImgName = imageStorage + `/${fullMainImgName}`;
+        let mainImageName = 'issue' + moment()
+            .tz('Asia/Taipei')
+            .format('YYYYMMDD-HHmmss');
 
-         // 呼叫 libs.moveFile 搬移檔案
-        let movedImgPosition = yield libs.moveFile(imgFile.path, newImgName);
-        let movedMainImgPosition = yield libs.moveFile(mainImgFile.path, newMainImgName);
+        let fullImgName = `${fileName}.${extImgName}`;
+        let fullMainImgName = `${mainImageName}.${extMainImgName}`;
+        let newImgName = `${imageStorage}/${fullImgName}`;
+        let newMainImgName = `${imageStorage}/${fullMainImgName}`;
+
+        // 呼叫 libs.moveFile 搬移檔案
+        let moveFilesResults = yield [
+            libs.moveFile(imgFile.path, newImgName),
+            libs.moveFile(mainImgFile.path, newMainImgName)
+        ];
+
+        let movedImgPosition = moveFilesResults[0];
+        let movedMainImgPosition = moveFilesResults[1];
 
         let imgUrl = `${imageStorageUrl}/${fullImgName}`;
         let mainImgUrl = `${imageStorageUrl}/${fullMainImgName}`;
