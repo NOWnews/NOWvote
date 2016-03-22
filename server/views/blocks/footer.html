@@ -1,4 +1,4 @@
-<footer>
+<footer style="margin-top:50px">
     <div class="expanded callout">
         <div class="row">
             <div class="small-10 columns">
@@ -15,20 +15,19 @@
                 </div>
             </div>
             <div class="small-5 columns">
-                <h5>社群</h5>
-                <span class="secondary label">Facebook</span>
-                <span class="success label">Google+</span>
-                <span class="alert label">Line</span>
-                <span class="warning label">Wechat</span>
-                <span class="alert label"><i class="fi-x-circle"></i>Plurk</span>
-                <span class="warning label"><i class="fi-x"></i>Twitter</span>
-                <span class="info label"><i class="fi-widget"></i>IG</span>
+                <h5>Follow Us</h5>
+                <i class="fa fa-facebook fa-5" style="font-size:30px;padding:10px"></i>
+                <i class="fa fa-google-plus-square fa-5" style="font-size:30px;padding:10px"></i>
+                <i class="fa fa-instagram fa-5" style="font-size:30px;padding:10px"></i>
+                <i class="fa fa-twitter fa-5" style="font-size:30px;padding:10px"></i>
+
+
             </div>
         </div>
     </div>
     <div class="row">
         <div class="xxlarge-8 medium-6 columns">
-            <ul class="menu align-left">
+            <ul class="menu align-center">
                 <li><img src="http://placehold.it/200x40"></li>
                 <li id="copyleft" class="menu-text">Copyright © 2016 今日傳媒股份有限公司</li>
             </ul>
@@ -42,8 +41,12 @@
         </div>
     </div>
 </footer>
-<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script src="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
+
 <script>
 $(document).foundation();
+  $('.title-bar').on('sticky.zf.stuckto:top', function(){
+  $(this).addClass('shrink');
+}).on('sticky.zf.unstuckfrom:top', function(){
+  $(this).removeClass('shrink');
+})
 </script>
