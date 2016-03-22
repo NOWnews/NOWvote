@@ -5,6 +5,8 @@ import is from 'is_js';
 import mongoose from 'mongoose';
 import autoIncrement from 'mongoose-auto-increment';
 
+const deepPopulate = require('mongoose-deep-populate')(mongoose);
+
 const Schema = mongoose.Schema;
 
 const schema = new Schema({
@@ -93,6 +95,7 @@ schema.statics.findBySn = co.wrap(function*(sn) {
         .execAsync();
 });
 
+schema.plugin(deepPopulate);
 
 schema.plugin(autoIncrement.plugin, {
     model: 'issue',

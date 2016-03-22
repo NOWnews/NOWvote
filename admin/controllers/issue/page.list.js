@@ -7,12 +7,20 @@ module.exports = function(req, res, next) {
 
     co(function*() {
 
-        let items = yield models.issue.find()
-            .where('trashed').equals(false)
-            .sort({weight: 1})
+        // let items = yield models.issue.find()
+        //     .where('trashed').equals(false)
+        //     .sort({weight: 1})
+        //     .execAsync();
+
+        let issues = yield models.issue.find()
+            .populate('questions')
+            .deepPopulate('questions.options')
+            .limit(2)
             .execAsync();
 
-        return res.render('issue/list', {items: items});
+        debug('issues = %j', issues);
+
+        return res.render('issue/list', {issues: issues});
     })
     .catch(next);
 
