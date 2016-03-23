@@ -15,7 +15,6 @@ const formatUpdateFrontData = function (sliderBanner) {
     return sliderBanner;
 };
 
-
 module.exports = function(req, res, next) {
 
     let sn = parseInt(req.params.sn, 10);
