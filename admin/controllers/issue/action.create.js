@@ -1,5 +1,6 @@
 
 import co from 'co';
+import mongoose from 'mongoose';
 import moment from 'moment-timezone';
 import models from '../../../models';
 import redis from '../../../caches';
@@ -7,6 +8,7 @@ import redis from '../../../caches';
 const libs = require('../../../libs');
 const debug = require('debug')('NOWvote:admin:controllers:issue:action.create');
 
+// TODO: 這列邏輯很亂，之後還要重新整理過
 module.exports = function(req, res, next) {
 
     debug('req.body = %j', req.body);
@@ -21,7 +23,7 @@ module.exports = function(req, res, next) {
         let status = data.status ? true : false;
         let continued = data.continued ? true : false;
         let startTime, endTime;
-        let question = JSON.parse(data.question);
+        let questions = JSON.parse(data.question);
 
         // 如果常駐被勾起來，就不需要記錄時間
         if(continued){
@@ -68,6 +70,7 @@ module.exports = function(req, res, next) {
         let mainImgUrl = `${imageStorageUrl}/${fullMainImgName}`;
 
         debug('title = %j', data.title);
+        debug('category = %j', data.category);
         debug('desc = %j', data.desc);
         debug('startTime = %j', startTime);
         debug('endTime = %j', endTime);
@@ -75,23 +78,77 @@ module.exports = function(req, res, next) {
         debug('status = %j', status);
         debug('image = %j', imgUrl);
         debug('mainImage = %j', mainImgUrl);
-        debug('question = %j', question);
+        debug('questions = %j', questions);
         debug('tags = %j', data.tags);
 
-        // 存入資料庫
-        // let newIssue = yield models.issue.createAsync({
-        //     title: data.title,
-        //     desc: data.desc,
-        //     startTime: startTime,
-        //     endTime: endTime,
-        //     status: status,
-        //     image: imgUrl,
-        //     mainImage: mainImgUrl,
-        //     options: options,
-        //     question: question,
-        //     tags: tags,
-        //     continued: continued
-        // });
+
+        let newIssueId = mongoose.Types.ObjectId();
+        let newIssue = {
+            _id: newIssueId,
+            title: data.title,
+            desc: data.desc,
+            mainImage: mainImgUrl,
+            thumbnail: imgUrl,
+            startTime: startTime,
+            endTime: endTime,
+            continued: continued,
+            questions: [],
+            tags: []
+        };
+
+        let voteCounterData = {
+            issue: newIssueId,
+            counter: 0,
+        };
+
+        let questionsData = [];
+        let optionsData = [];
+
+        _.forIn(questions, function(question) {
+
+            // option id 的陣列，要存入 question
+            let optionIds = [];
+
+            // 處理 option 的資料
+            if(question.option && question.option.length !== 0){
+                _.forEach(question.option, function(option) {
+
+                    // 產生新的 option objectId 並存入陣列，要給 question 用的
+                    let newOptionId = mongoose.Types.ObjectId();
+                    optionIds.push(newOptionId);
+
+                    // 產生新的 option object 推入陣列，等等要一次存進 option 
+                    let newOption = {};
+                    newOption._id = newOptionId;
+                    newOption.content = option;
+                    optionsData.push(newOption);
+                });
+            }
+
+            // 產生新的 question objectId 並存入陣列，要給 issue 用的
+            let newQuestionId = mongoose.Types.ObjectId();
+            newIssue.questions.push(newQuestionId);
+
+            // 產生新的 question 推入陣列，等等要一次存進 question 
+            let newQuestion = {};
+            newQuestion._id = newQuestionId;
+            newQuestion.content = question.name;
+            newQuestion.options = optionIds;
+            questionsData.push(newQuestion);
+        });
+
+        debug('new issue data = %j', newIssue);
+        debug('new question data = %j', questionsData);
+        debug('new options data = %j', optionsData);
+
+
+        // 將所有資料存入資料庫
+        yield [
+            models.issue.createAsync(newIssue),
+            models.question.createAsync(questionsData),
+            models.option.createAsync(optionsData),
+            models.voteCounter.createAsync(voteCounterData)
+        ];
 
         return res.redirect('/issue');
     })

@@ -5,6 +5,8 @@ import is from 'is_js';
 import mongoose from 'mongoose';
 import autoIncrement from 'mongoose-auto-increment';
 
+const deepPopulate = require('mongoose-deep-populate')(mongoose);
+
 const Schema = mongoose.Schema;
 
 const schema = new Schema({
@@ -24,6 +26,16 @@ const schema = new Schema({
         required: true
     },
 
+    // issue 內容業主圖
+    mainImage: {
+        type: String
+    },
+
+    // issue 列表頁縮圖
+    thumbnail: {
+        type: String
+    },
+
     type: {
         type: Schema.Types.ObjectId,
         ref: 'type'
@@ -40,13 +52,13 @@ const schema = new Schema({
     },
 
     continued: {
-        type: Date,
-        required: true
+        type: Boolean,
+        default: false
     },
 
-    options: [{
+    questions: [{
         type: Schema.Types.ObjectId,
-        ref: 'option'
+        ref: 'question'
     }],
 
     tags: [{
@@ -89,6 +101,7 @@ schema.statics.findBySn = co.wrap(function*(sn) {
         .execAsync();
 });
 
+schema.plugin(deepPopulate);
 
 schema.plugin(autoIncrement.plugin, {
     model: 'issue',
