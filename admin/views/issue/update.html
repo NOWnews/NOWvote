@@ -1,0 +1,147 @@
+{% extends "../index.html" %}
+
+{# 設定變數 #}
+{% set pageTitle = "修改議題" %}
+{% set pageRoute = "/issue" %}
+
+{% block head %}
+    <script src="/bower/ckeditor/ckeditor.js"></script>
+    <script src="/bower/taggingJS/tagging.js"></script>
+    <script src="/bower/foundation-datepicker/js/foundation-datepicker.js"></script>
+    <script src="/bower/foundation-datepicker/js/locales/foundation-datepicker.zh-TW.js"></script>
+    <script src="/bower/html.sortable/dist/html.sortable.min.js"></script>
+    <link rel="stylesheet" href="/bower/foundation-datepicker/css/foundation-datepicker.min.css">
+{% endblock %}
+
+{% block breadcrumbs %}
+<li>
+    <a href="{{ pageRoute }}">議題管理系統</a>
+</li>
+<li>{{ pageTitle }}</li>
+{% endblock %}
+
+{% block container %}
+<article>
+    <form id="issue-form" method="post" action="{{ pageRoute }}/create" enctype="multipart/form-data">
+        <input type="hidden" name="_method" value="put"/>
+        <h3>{{ pageTitle }}</h3>
+        <div class="status row float-right">
+            <div class="large-4 columns">
+                {% if issue.status %}
+                    {{ component.switch("status", "create-status", issue.sn, "checked") }}
+                {% else %}
+                    {{ component.switch("status", "create-status") }}
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <label>標題
+                    <input name="title" type="text" value="{{issue.title}}" placeholder="請輸入標題" required/>
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <label>選擇分類
+                    <select name="category">
+                        {% asyncEach category in categoris %}
+                          <option value="{{ category._id }}">{{ category.title }}</option>
+                        {% endeach %}
+                    </select>
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <fieldset class="fieldset">
+                    <legend>內容頁主圖 (mainImage)</legend>
+                    <label for="main-img" class="button">上傳圖片</label>
+                    <input type='file' class="show-for-sr img-input" id="main-img" name="mainImg" required>
+                    <label for="main-img">
+                        <img class="thumbnail" src="{{ issue.mainImage }}" alt="your image">
+                    </label>
+                </fieldset>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <label>內文
+                    <textarea class="ckeditor" id="editor" name="desc">{{ issue.desc }}</textarea>
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <fieldset class="fieldset">
+                    <legend>列表頁縮圖 (thumbnail)</legend>
+                    <label for="vice-img" class="button">上傳圖片</label>
+                    <input type='file' class="show-for-sr img-input" id="vice-img" name="file" required>
+                    <label for="vice-img">
+                        <img class="thumbnail" src="{{ issue.thumbnail }}" alt="your image">
+                    </label>
+                </fieldset>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <label>分類 (Tags)
+                    <div id="tagBox2" class="tag-box">{{ items.tags }}</div>
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <fieldset class="fieldset">
+                    <legend>題目</legend>
+                    <ul class="accordion question-box" data-accordion>
+                        {% for question in issue.questions %}
+                            {% if loop.first %}
+                                <li class="accordion-item is-active" data-accordion-item>
+                            {% else %}
+                                <li class="accordion-item" data-accordion-item>
+                            {% endif %}
+                                <a href="#" class="accordion-title">  {{ question.content }}  </a>
+                                <button class="close-button" type="button">
+                                    <i aria-hidden="true" class="fa fa-close"></i>
+                                </button>
+                                <div class="accordion-content" data-tab-content>
+                                    <ol class="option-box">
+                                        {% for option in question.options %}
+                                            <li>{{ option.content }}</li>
+                                        {% endfor %}
+                                    </ol>
+                                    <div class="input-group">
+                                        <input class="input-group-field" type="text" placeholder="新增選項"/>
+                                        <div class="input-group-button"> <a class="add-option button">ADD</a> </div>
+                                    </div>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <div class="input-group">
+                        <input class="input-group-field" type="text" placeholder="新增題目" />
+                        <input class="input-group-field" type="hidden" name="question" placeholder="新增題目" />
+                        <div class="input-group-button">
+                            <a class="add-question button">ADD</a>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+        <div class="row">
+            <div class="columns large-12">
+                {% if issue.continued %}
+                    {{ component.formEffectiveTime('checked', issue.startAtDay, issue.startAtHour, issue.endAtDay, issue.endAtHour ) }}
+                {% else %}
+                    {{ component.formEffectiveTime('', issue.startAtDay, issue.startAtHour, issue.endAtDay, issue.endAtHour ) }}
+                {% endif %}
+            </div>
+        </div>
+        <div class="text-right btn-box">
+            <input type="submit" value="儲存" class="button alert"/>
+            <a href="{{ pageRoute }}" class="button secondary">取消</a>
+        </div>
+    </form>
+</article>
+{% endblock %}
