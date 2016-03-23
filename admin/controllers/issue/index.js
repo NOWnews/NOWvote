@@ -6,7 +6,7 @@ import pageCreate from './page.create';
 import pageUpdate from './page.update';
 import actionUpdateList from './action.updateList';
 import actionRemove from './action.remove';
-// import actionUpdate from './action.update';
+import actionUpdate from './action.update';
 import actionCreate from './action.create';
 
 router.route('/')
@@ -21,7 +21,7 @@ router.route('/create')
     .post(actionCreate);
 
 router.route('/update/:sn')
-//     .put(actionUpdate)
+    .put(actionUpdate)
     .get(pageUpdate);
 
 module.exports = router;
