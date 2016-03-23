@@ -9,3 +9,14 @@
 <link rel="stylesheet" href="/bower/font-awesome/css/font-awesome.min.css">
 <script src="/bower/jquery/dist/jquery.js"></script>
 <script src="/bower/foundation-sites/dist/foundation.min.js"></script>
+<script>
+$(function() {
+    $(document).foundation();
+    $('.title-bar').on('sticky.zf.stuckto:top', function(){
+        $(this).addClass('shrink');
+    }).on('sticky.zf.unstuckfrom:top', function(){
+        $(this).removeClass('shrink');
+    });
+});
+
+</script>

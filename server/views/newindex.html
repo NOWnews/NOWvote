@@ -2,24 +2,21 @@
 <!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
 <html class="no-js" lang="zh">
     <head>
-        <title></title>
-  <!-- <link href="http://foundation.zurb.com/sites/docs/assets/css/docs.css" rel="stylesheet" /> -->
+        <title>新首頁</title>
 
         {% include "./blocks/head.html" %}
         {% block head %}{% endblock %}
 
     </head>
     <body>
-
         {% include "./blocks/header.html" %}
         {% include "./blocks/slider.html" %}
 
-                <ul class="breadcrumbs">
-                    <li><a href="/">Home</a></li>
-                    {#{% block breadcrumbs %}{% endblock %}#}
-                </ul>
-                <div id="example2"></div>
-               {% block container %}{% endblock %}
+        <ul class="breadcrumbs">
+            <li><a href="/">Home</a></li>
+            {#{% block breadcrumbs %}{% endblock %}#}
+        </ul>
+        {% block container %}{% endblock %}
         {% include "./blocks/footer.html" %}
 
 
