@@ -1,15 +1,30 @@
-{% extends "./index.html" %}
+<!DOCTYPE html>
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
+<html class="no-js" lang="zh">
+    <head>
+        <title></title>
+  <!-- <link href="http://foundation.zurb.com/sites/docs/assets/css/docs.css" rel="stylesheet" /> -->
 
-{% block container %}
-    <h1>Home Page</h1>
-    <h2>This is menu</h2>
-    {% asyncEach category in menuCategory %}
-        <a href="{{ category.url }}">{{ category.title }}</a>
-    {% endeach %}
-    <h2>This is banner</h2>
-    {% asyncEach banner in sliderBanner %}
-        <a href="{{ banner.url }}">
-            <img src="{{ banner.image }}" />
-        </a>
-    {% endeach %}
-{% endblock %}
+        {% include "./blocks/head.html" %}
+        {% block head %}{% endblock %}
+
+    </head>
+    <body>
+
+        {% include "./blocks/header.html" %}
+        {% include "./blocks/slider.html" %}
+
+                <ul class="breadcrumbs">
+                    <li><a href="/">Home</a></li>
+                    {#{% block breadcrumbs %}{% endblock %}#}
+                </ul>
+                <div id="example2"></div>
+               {% block container %}{% endblock %}
+        {% include "./blocks/footer.html" %}
+
+
+
+    </body>
+</html>
+
+<body>

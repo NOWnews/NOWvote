@@ -7,7 +7,7 @@ import pageDemo from './page.demo';
 import pageIndex from './page.index';
 
 router.route('/')
-    .get(pageHome);
+    .get(pageIndex);
 
 router.route('/index')
     .get(pageHome);
