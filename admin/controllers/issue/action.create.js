@@ -92,6 +92,7 @@ module.exports = function(req, res, next) {
             endTime: endTime,
             continued: continued,
             questions: [],
+            category: data.category,
             tags: []
         };
 

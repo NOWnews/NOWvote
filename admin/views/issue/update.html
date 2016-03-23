@@ -45,9 +45,12 @@
             <div class="large-12 columns">
                 <label>選擇分類
                     <select name="category">
-                        {% asyncEach category in categories %}
-                          <option value="{{ category._id }}">{{ category.title }}</option>
-                        {% endeach %}
+                        <option value="{{ issue.category._id }}">{{ issue.category.title }}</option>
+                        {% for category in categories %}
+                            {% if category.id != issue.category._id %}
+                                <option value="{{ category._id }}">{{ category.title }}</option>
+                            {% endif %}
+                        {% endfor %}
                     </select>
                 </label>
             </div>

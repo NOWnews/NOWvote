@@ -24,6 +24,7 @@ module.exports = function(req, res, next) {
         let issue = yield models.issue.findOne()
             .where('sn').equals(sn)
             .where('trashed').equals(false)
+            .populate('category')
             .deepPopulate('questions.options')
             .execAsync();
 
@@ -35,7 +36,7 @@ module.exports = function(req, res, next) {
         if(!issue.continued) {
             formatUpdateFrontData(issue);
         }
-
+        debug('issue = %j', issue)
         // return res.json({issue: issue});
         return res.render('issue/update', {
             issue: issue,

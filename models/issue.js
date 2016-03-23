@@ -61,10 +61,10 @@ const schema = new Schema({
         default: false
     },
 
-    category: [{
+    category: {
         type: Schema.Types.ObjectId,
         ref: 'category'
-    }],
+    },
 
     questions: [{
         type: Schema.Types.ObjectId,
