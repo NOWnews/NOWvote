@@ -4,198 +4,25 @@
     <h2 style="color:#898989">最新議題</h2>
 </div>
 <div class="row small-up-1 medium-up-2 large-up-3 xlarge-up-4" data-toggler data-animate="slide-in-down slide-out-up">
-    <div class="column text-center">
-        <div style="-webkit-box-shadow: 0px 0px 10px 1px rgba(171,171,171,0.39);
--moz-box-shadow: 0px 0px 10px 1px rgba(171,171,171,0.39);
-box-shadow: 0px 0px 10px 1px rgba(171,171,171,0.39);border:1px solid #ddd;border-radius:4px;margin-bottom:10px">
-            <!-- <img class="thumbnail" src="http://placehold.it/300x250"> -->
-            <img class="thumbnail" src="https://chatinhouse.cc/wp-content/uploads/2015/11/Bannre11%E6%9C%88300X250-01.jpg">
-            <h6>活動標題內容文字</h6>
-            <!-- <div class="add-like fa fa-heart" style="position:relative;top:-25px;right:0px;float:right;color:#ff6d6d">
-                <span class="total">67</span>
-            </div> -->
-            <div class="stats" style="clear:both">
-                <div class="users" style="font-size:14px;color:#c3c3c3"><i class="fa fa-pie-chart"></i>已有<strong style="color:red;font-size:20px;font-family:'Helvetica Neue', Arial, 'Heiti TC', 'LiHei Pro', 微軟正黑體, 'Microsoft Jhenghei', sans-serif;">&nbsp60&nbsp</strong> 用戶 投過票</div>
-            </div>
-            <a href="#" class="button bold">VOTE NOW!</a>
-        </div>
 
-    </div>
-    <div class="column text-center">
-        <div style="-webkit-box-shadow: 0px 0px 10px 1px rgba(171,171,171,0.39);
--moz-box-shadow: 0px 0px 10px 1px rgba(171,171,171,0.39);
-box-shadow: 0px 0px 10px 1px rgba(171,171,171,0.39);border:1px solid #ddd;border-radius:4px;margin-bottom:10px">
-            <!-- <img class="thumbnail" src="http://placehold.it/300x250"> -->
-            <img class="thumbnail" src="http://bookzone.cwgv.com.tw/public/upload/activities/69/169/photo/169.png">
-            <h6>活動標題內容文字</h6>
-            <!-- <div class="add-like fa fa-heart" style="position:relative;top:-25px;right:0px;float:right;color:#ff6d6d">
-                <span class="total">67</span>
-            </div> -->
-            <div class="stats" style="clear:both">
-                <div class="users" style="font-size:14px;color:#c3c3c3"><i class="fa fa-pie-chart"></i>已有<strong style="color:red;font-size:20px;font-family:'Helvetica Neue', Arial, 'Heiti TC', 'LiHei Pro', 微軟正黑體, 'Microsoft Jhenghei', sans-serif;">&nbsp60&nbsp</strong> 用戶 投過票</div>
+
+    {% asyncEach issue in issues %}
+        <div class="column text-center">
+                    <div style="-webkit-box-shadow: 0px 0px 10px 1px rgba(171,171,171,0.39);
+            -moz-box-shadow: 0px 0px 10px 1px rgba(171,171,171,0.39);
+            box-shadow: 0px 0px 10px 1px rgba(171,171,171,0.39);border:1px solid #ddd;border-radius:4px;margin-bottom:10px">
+                <img class="thumbnail" src="{{ issue.thumbnail }}">
+                <h6>{{ issue.title }}</h6>
+                <div class="stats" style="clear:both">
+                    <div class="users" style="font-size:14px;color:#c3c3c3">
+                        <i class="fa fa-pie-chart"></i>
+                        已有
+                        <strong style="color:red;font-size:20px;font-family:'Helvetica Neue', Arial, 'Heiti TC', 'LiHei Pro', 微軟正黑體, 'Microsoft Jhenghei', sans-serif;">&nbsp{{ issue.counter }}&nbsp</strong>用戶 投過票
+                    </div>
+                </div>
+                <a href="/issues/{{ issue.sn }}" class="button bold">VOTE NOW!</a>
             </div>
-            <a href="#" class="button bold">VOTE NOW!</a>
         </div>
-    </div>
-    <div class="column text-center">
-        <div style="-webkit-box-shadow: 0px 0px 10px 1px rgba(171,171,171,0.39);
--moz-box-shadow: 0px 0px 10px 1px rgba(171,171,171,0.39);
-box-shadow: 0px 0px 10px 1px rgba(171,171,171,0.39);border:1px solid #ddd;border-radius:4px;margin-bottom:10px">
-            <!-- <img class="thumbnail" src="http://placehold.it/300x250"> -->
-            <img class="thumbnail" src="https://www.popo.tw/popo_data/data/event/events/325//images/100.jpg">
-            <h6>活動標題內容文字</h6>
-            <!-- <div class="add-like fa fa-heart" style="position:relative;top:-25px;right:0px;float:right;color:#ff6d6d">
-                <span class="total">67</span>
-            </div> -->
-            <div class="stats" style="clear:both">
-                <div class="users" style="font-size:14px;color:#c3c3c3"><i class="fa fa-pie-chart"></i>已有<strong style="color:red;font-size:20px;font-family:'Helvetica Neue', Arial, 'Heiti TC', 'LiHei Pro', 微軟正黑體, 'Microsoft Jhenghei', sans-serif;">&nbsp60&nbsp</strong> 用戶 投過票</div>
-            </div>
-            <a href="#" class="button bold">VOTE NOW!</a>
-        </div>
-    </div>
-    <div class="column text-center">
-        <div style="-webkit-box-shadow: 0px 0px 10px 1px rgba(171,171,171,0.39);
--moz-box-shadow: 0px 0px 10px 1px rgba(171,171,171,0.39);
-box-shadow: 0px 0px 10px 1px rgba(171,171,171,0.39);border:1px solid #ddd;border-radius:4px;margin-bottom:10px">
-            <!-- <img class="thumbnail" src="http://placehold.it/300x250"> -->
-            <img class="thumbnail" src="http://www.thaiselect.com.tw/a8054da3ead2bc78df6058ce448cae2e.jpg">
-            <h6>活動標題內容文字</h6>
-            <!-- <div class="add-like fa fa-heart" style="position:relative;top:-25px;right:0px;float:right;color:#ff6d6d">
-                <span class="total">67</span>
-            </div> -->
-            <div class="stats" style="clear:both">
-                <div class="users" style="font-size:14px;color:#c3c3c3"><i class="fa fa-pie-chart"></i>已有<strong style="color:red;font-size:20px;font-family:'Helvetica Neue', Arial, 'Heiti TC', 'LiHei Pro', 微軟正黑體, 'Microsoft Jhenghei', sans-serif;">&nbsp60&nbsp</strong> 用戶 投過票</div>
-            </div>
-            <a href="#" class="button bold">VOTE NOW!</a>
-        </div>
-    </div>
-    <div class="column text-center">
-        <div style="-webkit-box-shadow: 0px 0px 10px 1px rgba(171,171,171,0.39);
--moz-box-shadow: 0px 0px 10px 1px rgba(171,171,171,0.39);
-box-shadow: 0px 0px 10px 1px rgba(171,171,171,0.39);border:1px solid #ddd;border-radius:4px;margin-bottom:10px">
-            <!-- <img class="thumbnail" src="http://placehold.it/300x250"> -->
-            <img class="thumbnail" src="http://cont001.ias.global.rakuten.com/tw/ec/creative/dst/1000001509/3116/253189/1ca87eb90f37030252bacac82f4a073fa8721ad6.jpg">
-            <h6>活動標題內容文字</h6>
-            <!-- <div class="add-like fa fa-heart" style="position:relative;top:-25px;right:0px;float:right;color:#ff6d6d">
-                <span class="total">67</span>
-            </div> -->
-            <div class="stats" style="clear:both">
-                <div class="users" style="font-size:14px;color:#c3c3c3"><i class="fa fa-pie-chart"></i>已有<strong style="color:red;font-size:20px;font-family:'Helvetica Neue', Arial, 'Heiti TC', 'LiHei Pro', 微軟正黑體, 'Microsoft Jhenghei', sans-serif;">&nbsp60&nbsp</strong> 用戶 投過票</div>
-            </div>
-            <a href="#" class="button bold">VOTE NOW!</a>
-        </div>
-    </div>
-    <div class="column text-center">
-        <div style="-webkit-box-shadow: 0px 0px 10px 1px rgba(171,171,171,0.39);
--moz-box-shadow: 0px 0px 10px 1px rgba(171,171,171,0.39);
-box-shadow: 0px 0px 10px 1px rgba(171,171,171,0.39);border:1px solid #ddd;border-radius:4px;margin-bottom:10px">
-            <!-- <img class="thumbnail" src="http://placehold.it/300x250"> -->
-            <img class="thumbnail" src="http://jojo.idv.tw/zaa/gjxrawijmaswwo8nlzj4kfvawyzutloyhvedai5iths_zalora_300x250v3.jpg">
-            <h6>活動標題內容文字</h6>
-            <!-- <div class="add-like fa fa-heart" style="position:relative;top:-25px;right:0px;float:right;color:#ff6d6d">
-                <span class="total">67</span>
-            </div> -->
-            <div class="stats" style="clear:both">
-                <div class="users" style="font-size:14px;color:#c3c3c3"><i class="fa fa-pie-chart"></i>已有<strong style="color:red;font-size:20px;font-family:'Helvetica Neue', Arial, 'Heiti TC', 'LiHei Pro', 微軟正黑體, 'Microsoft Jhenghei', sans-serif;">&nbsp60&nbsp</strong> 用戶 投過票</div>
-            </div>
-            <a href="#" class="button bold">VOTE NOW!</a>
-        </div>
-    </div>
-    <div class="column text-center">
-        <div style="-webkit-box-shadow: 0px 0px 10px 1px rgba(171,171,171,0.39);
--moz-box-shadow: 0px 0px 10px 1px rgba(171,171,171,0.39);
-box-shadow: 0px 0px 10px 1px rgba(171,171,171,0.39);border:1px solid #ddd;border-radius:4px;margin-bottom:10px">
-            <!-- <img class="thumbnail" src="http://placehold.it/300x250"> -->
-            <img class="thumbnail" src="https://chatinhouse.cc/wp-content/uploads/2015/11/Bannre11%E6%9C%88300X250-01.jpg">
-            <h6>活動標題內容文字</h6>
-            <!-- <div class="add-like fa fa-heart" style="position:relative;top:-25px;right:0px;float:right;color:#ff6d6d">
-                <span class="total">67</span>
-            </div> -->
-            <div class="stats" style="clear:both">
-                <div class="users" style="font-size:14px;color:#c3c3c3"><i class="fa fa-pie-chart"></i>已有<strong style="color:red;font-size:20px;font-family:'Helvetica Neue', Arial, 'Heiti TC', 'LiHei Pro', 微軟正黑體, 'Microsoft Jhenghei', sans-serif;">&nbsp60&nbsp</strong> 用戶 投過票</div>
-            </div>
-            <a href="#" class="button bold">VOTE NOW!</a>
-        </div>
-    </div>
-    <div class="column text-center">
-        <div style="-webkit-box-shadow: 0px 0px 10px 1px rgba(171,171,171,0.39);
--moz-box-shadow: 0px 0px 10px 1px rgba(171,171,171,0.39);
-box-shadow: 0px 0px 10px 1px rgba(171,171,171,0.39);border:1px solid #ddd;border-radius:4px;margin-bottom:10px">
-            <!-- <img class="thumbnail" src="http://placehold.it/300x250"> -->
-            <img class="thumbnail" src="http://bookzone.cwgv.com.tw/public/upload/activities/69/169/photo/169.png">
-            <h6>活動標題內容文字</h6>
-            <!-- <div class="add-like fa fa-heart" style="position:relative;top:-25px;right:0px;float:right;color:#ff6d6d">
-                <span class="total">67</span>
-            </div> -->
-            <div class="stats" style="clear:both">
-                <div class="users" style="font-size:14px;color:#c3c3c3"><i class="fa fa-pie-chart"></i>已有<strong style="color:red;font-size:20px;font-family:'Helvetica Neue', Arial, 'Heiti TC', 'LiHei Pro', 微軟正黑體, 'Microsoft Jhenghei', sans-serif;">&nbsp60&nbsp</strong> 用戶 投過票</div>
-            </div>
-            <a href="#" class="button bold">VOTE NOW!</a>
-        </div>
-    </div>
-    <div class="column text-center">
-        <div style="-webkit-box-shadow: 0px 0px 10px 1px rgba(171,171,171,0.39);
--moz-box-shadow: 0px 0px 10px 1px rgba(171,171,171,0.39);
-box-shadow: 0px 0px 10px 1px rgba(171,171,171,0.39);border:1px solid #ddd;border-radius:4px;margin-bottom:10px">
-            <!-- <img class="thumbnail" src="http://placehold.it/300x250"> -->
-            <img class="thumbnail" src="https://www.popo.tw/popo_data/data/event/events/325//images/100.jpg">
-            <h6>活動標題內容文字</h6>
-            <!-- <div class="add-like fa fa-heart" style="position:relative;top:-25px;right:0px;float:right;color:#ff6d6d">
-                <span class="total">67</span>
-            </div> -->
-            <div class="stats" style="clear:both">
-                <div class="users" style="font-size:14px;color:#c3c3c3"><i class="fa fa-pie-chart"></i>已有<strong style="color:red;font-size:20px;font-family:'Helvetica Neue', Arial, 'Heiti TC', 'LiHei Pro', 微軟正黑體, 'Microsoft Jhenghei', sans-serif;">&nbsp60&nbsp</strong> 用戶 投過票</div>
-            </div>
-            <a href="#" class="button bold">VOTE NOW!</a>
-        </div>
-    </div>
-    <div class="column text-center">
-        <div style="-webkit-box-shadow: 0px 0px 10px 1px rgba(171,171,171,0.39);
--moz-box-shadow: 0px 0px 10px 1px rgba(171,171,171,0.39);
-box-shadow: 0px 0px 10px 1px rgba(171,171,171,0.39);border:1px solid #ddd;border-radius:4px;margin-bottom:10px">
-            <!-- <img class="thumbnail" src="http://placehold.it/300x250"> -->
-            <img class="thumbnail" src="http://www.thaiselect.com.tw/a8054da3ead2bc78df6058ce448cae2e.jpg">
-            <h6>活動標題內容文字</h6>
-            <!-- <div class="add-like fa fa-heart" style="position:relative;top:-25px;right:0px;float:right;color:#ff6d6d">
-                <span class="total">67</span>
-            </div> -->
-            <div class="stats" style="clear:both">
-                <div class="users" style="font-size:14px;color:#c3c3c3"><i class="fa fa-pie-chart"></i>已有<strong style="color:red;font-size:20px;font-family:'Helvetica Neue', Arial, 'Heiti TC', 'LiHei Pro', 微軟正黑體, 'Microsoft Jhenghei', sans-serif;">&nbsp60&nbsp</strong> 用戶 投過票</div>
-            </div>
-            <a href="#" class="button bold">VOTE NOW!</a>
-        </div>
-    </div>
-    <div class="column text-center">
-        <div style="-webkit-box-shadow: 0px 0px 10px 1px rgba(171,171,171,0.39);
--moz-box-shadow: 0px 0px 10px 1px rgba(171,171,171,0.39);
-box-shadow: 0px 0px 10px 1px rgba(171,171,171,0.39);border:1px solid #ddd;border-radius:4px;margin-bottom:10px">
-            <!-- <img class="thumbnail" src="http://placehold.it/300x250"> -->
-            <img class="thumbnail" src="http://cont001.ias.global.rakuten.com/tw/ec/creative/dst/1000001509/3116/253189/1ca87eb90f37030252bacac82f4a073fa8721ad6.jpg">
-            <h6>活動標題內容文字</h6>
-            <!-- <div class="add-like fa fa-heart" style="position:relative;top:-25px;right:0px;float:right;color:#ff6d6d">
-                <span class="total">67</span>
-            </div> -->
-            <div class="stats" style="clear:both">
-                <div class="users" style="font-size:14px;color:#c3c3c3"><i class="fa fa-pie-chart"></i>已有<strong style="color:red;font-size:20px;font-family:'Helvetica Neue', Arial, 'Heiti TC', 'LiHei Pro', 微軟正黑體, 'Microsoft Jhenghei', sans-serif;">&nbsp60&nbsp</strong> 用戶 投過票</div>
-            </div>
-            <a href="#" class="button bold">VOTE NOW!</a>
-        </div>
-    </div>
-    <div class="column text-center">
-        <div style="-webkit-box-shadow: 0px 0px 10px 1px rgba(171,171,171,0.39);
--moz-box-shadow: 0px 0px 10px 1px rgba(171,171,171,0.39);
-box-shadow: 0px 0px 10px 1px rgba(171,171,171,0.39);border:1px solid #ddd;border-radius:4px;margin-bottom:10px">
-            <!-- <img class="thumbnail" src="http://placehold.it/300x250"> -->
-            <img class="thumbnail" src="http://jojo.idv.tw/zaa/gjxrawijmaswwo8nlzj4kfvawyzutloyhvedai5iths_zalora_300x250v3.jpg">
-            <h6>活動標題內容文字</h6>
-            <!-- <div class="add-like fa fa-heart" style="position:relative;top:-25px;right:0px;float:right;color:#ff6d6d">
-                <span class="total">67</span>
-            </div> -->
-            <div class="stats" style="clear:both">
-                <div class="users" style="font-size:14px;color:#c3c3c3"><i class="fa fa-pie-chart"></i>已有<strong style="color:red;font-size:20px;font-family:'Helvetica Neue', Arial, 'Heiti TC', 'LiHei Pro', 微軟正黑體, 'Microsoft Jhenghei', sans-serif;">&nbsp60&nbsp</strong> 用戶 投過票</div>
-            </div>
-            <a href="#" class="button bold">VOTE NOW!</a>
-        </div>
-    </div>
+    {% endeach %}
 </div>
 {% endblock %}
