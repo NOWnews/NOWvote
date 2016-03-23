@@ -9,6 +9,11 @@ const client = require('./client');
  */
 module.exports = co.wrap(function*(key) {
     let cacheValue = yield client.getAsync(key);
+
+    if(!cacheValue) {
+        return yield Promise.resolve([]);
+    }
+
     let valueObject = JSON.parse(cacheValue);
     return yield Promise.resolve(valueObject);
 });
