@@ -22,8 +22,9 @@
         {% if items[0] %}
             <ul class="ui-table-header large-12 columns expanded menu text-center">
                 <li class="title row callout small">
-                    <div class="large-6 medium-6 small-5 columns">標題</div>
+                    <div class="large-4 medium-4 small-3 columns">標題</div>
                     <div class="large-2 medium-2 small-3 columns">狀態</div>
+                    <div class="large-2 medium-2 small-2 columns">發表日期</div>
                     <div class="large-2 medium-2 small-2 columns">編輯</div>
                     <div class="large-2 medium-2 small-2 columns">刪除</div>
                 </li>
@@ -32,12 +33,19 @@
                 {% for item in items %}
                     <li class="portlet bullet-item callout small" item-sn="{{ item.sn }}">
                         <div class="portlet-header row">
-                            <div class="large-6 medium-6 small-5 columns">{{ item.title }}</div>
+                            <div class="large-4 medium-4 small-3 columns">{{ item.title }}</div>
                             <div class="large-2 medium-2 small-3 columns text-center">
                                 {% if item.status %}
                                     {{ component.switch("status[]", "list" + item.sn, item.sn, "checked") }}
                                 {% else %}
                                     {{ component.switch("status[]", "list" + item.sn, item.sn, "") }}
+                                {% endif %}
+                            </div>
+                            <div class="large-2 medium-2 small-2 columns">
+                                {% if item.continued %}
+                                    永久顯示
+                                {% else %}
+                                    {{ item.startTime }}
                                 {% endif %}
                             </div>
                             <div class="edit-box large-2 medium-2 small-2 columns text-center">
