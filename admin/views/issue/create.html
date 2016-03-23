@@ -40,7 +40,7 @@
                 <label>選擇分類
                     <select name="category">
                         {% asyncEach category in categoris %}
-                          <option value="{{ category._id }}">{{ category.title }}</option>
+                            <option value="{{ category._id }}">{{ category.title }}</option>
                         {% endeach %}
                     </select>
                 </label>
