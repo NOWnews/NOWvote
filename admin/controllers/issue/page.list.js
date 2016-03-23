@@ -14,6 +14,7 @@ module.exports = function(req, res, next) {
 
         let issues = yield models.issue.find()
             // .populate('questions')
+            .where('trashed').equals(false)
             .deepPopulate('questions.options')
             .limit(2)
             .execAsync();
