@@ -93,7 +93,7 @@ module.exports = function(req, res, next) {
             endTime: endTime,
             continued: continued,
             questions: [],
-            tags: []
+            tags: data.tages
         };
 
         let voteCounterData = {
@@ -117,7 +117,7 @@ module.exports = function(req, res, next) {
                     let newOptionId = mongoose.Types.ObjectId();
                     optionIds.push(newOptionId);
 
-                    // 產生新的 option object 推入陣列，等等要一次存進 option 
+                    // 產生新的 option object 推入陣列，等等要一次存進 option
                     let newOption = {};
                     newOption._id = newOptionId;
                     newOption.content = option;
@@ -129,7 +129,7 @@ module.exports = function(req, res, next) {
             let newQuestionId = mongoose.Types.ObjectId();
             newIssue.questions.push(newQuestionId);
 
-            // 產生新的 question 推入陣列，等等要一次存進 question 
+            // 產生新的 question 推入陣列，等等要一次存進 question
             let newQuestion = {};
             newQuestion._id = newQuestionId;
             newQuestion.content = question.name;
