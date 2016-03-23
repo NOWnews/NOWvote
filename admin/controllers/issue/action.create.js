@@ -81,7 +81,6 @@ module.exports = function(req, res, next) {
         debug('questions = %j', questions);
         debug('tags = %j', data.tags);
 
-
         let newIssueId = mongoose.Types.ObjectId();
         let newIssue = {
             _id: newIssueId,
@@ -93,7 +92,7 @@ module.exports = function(req, res, next) {
             endTime: endTime,
             continued: continued,
             questions: [],
-            tags: data.tages
+            tags: []
         };
 
         let voteCounterData = {
