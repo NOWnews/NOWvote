@@ -37,6 +37,17 @@
         </div>
         <div class="row">
             <div class="large-12 columns">
+                <label>選擇分類
+                    <select name="category">
+                        {% asyncEach category in categoris %}
+                          <option value="{{ category._id }}">{{ category.title }}</option>
+                        {% endeach %}
+                    </select>
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
                 <fieldset class="fieldset">
                     <legend>精選圖片 (主圖)</legend>
                     <label for="main-img" class="button">上傳圖片</label>

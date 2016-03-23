@@ -69,6 +69,7 @@ module.exports = function(req, res, next) {
         let mainImgUrl = `${imageStorageUrl}/${fullMainImgName}`;
 
         debug('title = %j', data.title);
+        debug('category = %j', data.category);
         debug('desc = %j', data.desc);
         debug('startTime = %j', startTime);
         debug('endTime = %j', endTime);

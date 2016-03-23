@@ -13,7 +13,7 @@ module.exports = function(req, res, next) {
         //     .execAsync();
 
         let issues = yield models.issue.find()
-            .populate('questions')
+            // .populate('questions')
             .deepPopulate('questions.options')
             .limit(2)
             .execAsync();
