@@ -3,7 +3,7 @@ import co from 'co';
 import Promise from 'bluebird';
 import is from 'is_js';
 
-const debug = require('debug')('NOWvote:caches:getMenuCategory');
+const debug = require('debug')('NOWvote:caches:getCategory');
 const models = require('../models');
 const getRedisValue = require('./getRedisValue');
 const setRedisValue = require('./setRedisValue');
@@ -15,17 +15,17 @@ const setRedisValue = require('./setRedisValue');
  */
 module.exports = co.wrap(function*(key) {
 
-    let menu = yield getRedisValue('menuCategory') || [];
+    let menu = yield getRedisValue('category') || [];
     debug('menu=%j', menu);
     if(is.array(menu) && menu.length !== 0) {
         debug('redis menu data = %j', menu);
         return yield Promise.resolve(menu);
     }
 
-    let menuFromModels = yield models.menuCategory.findEffective();
+    let menuFromModels = yield models.category.findEffective();
     debug('mongodb menu data = %j', menuFromModels);
 
-    let updateRedisMenu = yield setRedisValue('menuCategory', menuFromModels, config.redisExpireSeconds);
+    let updateRedisMenu = yield setRedisValue('category', menuFromModels, config.redisExpireSeconds);
 
     return yield Promise.resolve(updateRedisMenu);
 });

@@ -8,14 +8,14 @@ module.exports = function(req, res, next) {
 
     co(function*() {
 
-        let categoris = yield models.menuCategory.find()
+        let categories = yield models.category.find()
             .where('trashed').equals(false)
             .execAsync();
 
-        debug('categoris = %j', categoris);
+        debug('categories = %j', categories);
 
         return res.render('issue/create', {
-            categoris: categoris
+            categories: categories
         });
     })
     .catch(next);

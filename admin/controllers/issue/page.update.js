@@ -27,7 +27,7 @@ module.exports = function(req, res, next) {
             .deepPopulate('questions.options')
             .execAsync();
 
-        let categoris = yield models.menuCategory.find()
+        let categories = yield models.category.find()
             .where('trashed').equals(false)
             .execAsync();
 
@@ -39,7 +39,7 @@ module.exports = function(req, res, next) {
         // return res.json({issue: issue});
         return res.render('issue/update', {
             issue: issue,
-            categoris: categoris
+            categories: categories
         });
     })
     .catch(next);

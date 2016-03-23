@@ -2,7 +2,7 @@ import co from 'co';
 import models from '../../../models';
 import redis from '../../../caches';
 
-const debug = require('debug')('NOWvote:admin:controllers:menuCategory:action.remove');
+const debug = require('debug')('NOWvote:admin:controllers:category:action.remove');
 
 module.exports = function(req, res, next) {
 
@@ -10,20 +10,20 @@ module.exports = function(req, res, next) {
 
     co(function*() {
 
-        let menuCategory = yield models.menuCategory.findOne()
+        let category = yield models.category.findOne()
             .where('sn').equals(sn)
             .execAsync();
 
-        menuCategory.set('trashed', true);
-        let removedMenuCategory = yield menuCategory
+        category.set('trashed', true);
+        let removedCategory = yield category
             .saveAsync();
 
-        debug('removedMenuCategory = %j', removedMenuCategory);
+        debug('removedCategory = %j', removedCategory);
 
         // 讓 redis 重整資料，只更新前台會用到的資料
-        yield redis.updateRedisByKey('menuCategory');
+        yield redis.updateRedisByKey('category');
 
-        return res.json(removedMenuCategory);
+        return res.json(removedCategory);
     })
     .catch(next);
 

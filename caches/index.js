@@ -1,7 +1,7 @@
 
 module.exports = {
     client: require('./client'),
-    getMenuCategory: require('./getMenuCategory'),
+    getCategory: require('./getCategory'),
     getSliderBanner: require('./getSliderBanner'),
     getIndexIssues: require('./getIndexIssues'),
     getRedisValue: require('./getRedisValue'),

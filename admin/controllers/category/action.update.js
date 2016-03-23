@@ -3,7 +3,7 @@ import moment from 'moment-timezone';
 import models from '../../../models';
 import redis from '../../../caches';
 
-const debug = require('debug')('NOWvote:admin:controllers:menu:menuCategory:action.update');
+const debug = require('debug')('NOWvote:admin:controllers:menu:category:action.update');
 
 module.exports = function(req, res, next) {
 
@@ -25,24 +25,24 @@ module.exports = function(req, res, next) {
             endTime = moment( `${data.endAtDay} ${data.endAtHour}` );
         }
 
-        let menuCategory = yield models.menuCategory.findOne()
+        let category = yield models.category.findOne()
             .where('sn').equals(sn)
             .execAsync();
 
-        menuCategory.set('title', data.title);
-        menuCategory.set('url', data.url);
-        menuCategory.set('desc', data.desc);
-        menuCategory.set('startTime', startTime);
-        menuCategory.set('endTime', endTime);
-        menuCategory.set('status', status);
-        menuCategory.set('continued', continued);
+        category.set('title', data.title);
+        category.set('url', data.url);
+        category.set('desc', data.desc);
+        category.set('startTime', startTime);
+        category.set('endTime', endTime);
+        category.set('status', status);
+        category.set('continued', continued);
 
-        yield menuCategory.saveAsync();
+        yield category.saveAsync();
 
         // 讓 redis 重整資料，只更新前台會用到的資料
-        yield redis.updateRedisByKey('menuCategory');
+        yield redis.updateRedisByKey('category');
 
-        return res.redirect('/menuCategory');
+        return res.redirect('/category');
     })
     .catch(next);
 

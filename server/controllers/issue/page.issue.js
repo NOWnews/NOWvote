@@ -13,7 +13,7 @@ module.exports = function(req, res, next) {
         res.send('issues');
         // return res.render('issues', {
         //     issues: issues,
-        //     menuCategory: menuCategory,
+        //     category: category,
         //     sliderBanner: sliderBanner
         // });
     })

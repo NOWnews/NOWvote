@@ -114,9 +114,9 @@ schema.statics.findEffective = co.wrap(function*() {
 });
 
 schema.plugin(autoIncrement.plugin, {
-    model: 'menuCategory',
+    model: 'category',
     field: 'sn',
     startAt: 1
 });
 
-module.exports = mongoose.model('menuCategory', schema);
+module.exports = mongoose.model('category', schema);

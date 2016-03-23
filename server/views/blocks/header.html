@@ -11,7 +11,7 @@ box-shadow: 0 2px 5px 0 rgba(0,0,0,.1);">
 
                     <a id="logo" href="/" style="position:relative;float:left;margin-left:20px"><img src="http://placehold.it/150x70" /></a>
                     <ul class="dropdown menu" data-dropdown-menu style="float:left">
-                        {% for category in menuCategory %}
+                        {% for category in categories %}
                             {% if loop.first %}
                                 <li class="has-submenu">
                                     <a class="hollow button" href="{{ category.url }}">{{ category.title }}</a>
@@ -39,16 +39,19 @@ box-shadow: 0 2px 5px 0 rgba(0,0,0,.1);">
         </div>
     </div>
 </header>
-<!-- <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+
+<!-- 
+<div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
     <div class="off-canvas position-left" id="offCanvas" data-off-canvas>
         Off Canvas Content
     </div>
     <div class="off-canvas-content" data-off-canvas-content>
         <button type="button" class="button hide-for-medium" data-toggle="offCanvas">Open Menu</button>
-    <div class="title-bar" data-sticky data-options="marginTop:0;" style="width:100%">
-    <div class="title-bar-left">Content --X</div>
-    <div class="title-bar-right">X-- Content</div>
-  </div>
+        <div class="title-bar" data-sticky data-options="marginTop:0;" style="width:100%">
+        <div class="title-bar-left">Content --X</div>
+        <div class="title-bar-right">X-- Content</div>
+    </div>
+    </div>
+</div>
+-->
 
-
- -->
