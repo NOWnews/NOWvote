@@ -9,7 +9,7 @@ module.exports = function(req, res, next) {
 
     co(function*() {
         debug('type is %s', req.params.type);
-        let menu = yield caches.getMenuCategory();
+        let menu = yield caches.getCategory();
         return res.render('category/list', { type: req.params.type, menu: menu });
     })
     .catch(next);

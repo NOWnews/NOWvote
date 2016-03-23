@@ -3,7 +3,7 @@ import moment from 'moment-timezone';
 import models from '../../../models';
 import redis from '../../../caches';
 
-const debug = require('debug')('NOWvote:admin:controllers:menuCategory:action.create');
+const debug = require('debug')('NOWvote:admin:controllers:category:action.create');
 
 module.exports = function(req, res, next) {
 
@@ -25,7 +25,7 @@ module.exports = function(req, res, next) {
             endTime = moment( `${data.endAtDay} ${data.endAtHour}` );
         }
 
-        let newMenuCategory = yield models.menuCategory.createAsync({
+        let newCategory = yield models.category.createAsync({
             title: data.title,
             desc: data.desc,
             url: data.url,
@@ -35,12 +35,12 @@ module.exports = function(req, res, next) {
             continued: continued
         });
 
-        debug('new menu category = %j', newMenuCategory);
+        debug('new menu category = %j', newCategory);
 
         // 讓 redis 重整資料，只更新前台會用到的資料
-        yield redis.updateRedisByKey('menuCategory');
+        yield redis.updateRedisByKey('category');
 
-        return res.redirect('/menuCategory');
+        return res.redirect('/category');
     })
     .catch(next);
 };

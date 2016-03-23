@@ -5,7 +5,7 @@ import _ from 'lodash';
 import models from '../../../models';
 import redis from '../../../caches';
 
-const debug = require('debug')('NOWvote:admin:controllers:menuCategory:action.updateList');
+const debug = require('debug')('NOWvote:admin:controllers:category:action.updateList');
 
 module.exports = function(req, res, next) {
 

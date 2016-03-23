@@ -4,7 +4,7 @@ import _ from 'lodash';
 import models from '../../../models';
 import redis from '../../../caches';
 
-const debug = require('debug')('NOWvote:admin:controllers:menuCategory:action.updateList');
+const debug = require('debug')('NOWvote:admin:controllers:category:action.updateList');
 
 module.exports = function(req, res, next) {
 
@@ -14,11 +14,11 @@ module.exports = function(req, res, next) {
         let weightList = data.weightList.split(',');
         let statusList = _.isArray(data['status[]']) ? data['status[]'] : [data['status[]']];
 
-        let menuCategories = yield models.menuCategory.find()
+        let categories = yield models.category.find()
             .where('trashed').equals(false)
             .execAsync();
 
-        let updatedMenuList = yield Promise.map(menuCategories, function(menuItem) {
+        let updatedMenuList = yield Promise.map(categories, function(menuItem) {
             let index = _.indexOf(weightList, String(menuItem.sn));
 
             menuItem.weight = index === -1 ? menuItem.weight: index;
@@ -35,9 +35,9 @@ module.exports = function(req, res, next) {
         debug('updatedMenuList = %j', updatedMenuList);
 
         // 讓 redis 重整資料，只更新前台會用到的資料
-        yield redis.updateRedisByKey('menuCategory');
+        yield redis.updateRedisByKey('category');
 
-        return res.redirect('/menuCategory');
+        return res.redirect('/category');
     })
     .catch(next);
 

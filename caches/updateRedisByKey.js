@@ -12,7 +12,7 @@ const setRedisValue = require('./setRedisValue');
  */
 module.exports = co.wrap(function*(key) {
 
-    const validateArray = ['sliderBanner', 'menuCategory', 'indexIssues'];
+    const validateArray = ['sliderBanner', 'category', 'indexIssues'];
 
     if(!key || _.indexOf(validateArray, key) === -1) {
         return yield Promise.reject(new Error('update redis data need current key'));
@@ -24,10 +24,10 @@ module.exports = co.wrap(function*(key) {
         return yield setRedisValue('sliderBanner', sliderBanner, config.redisExpireSeconds);
     }
 
-    if(key === 'menuCategory') {
-        let menu = yield models.menuCategory.findEffective();
+    if(key === 'category') {
+        let menu = yield models.category.findEffective();
         debug('menu = %j', menu);
-        return yield setRedisValue('menuCategory', menu, config.redisExpireSeconds);
+        return yield setRedisValue('category', menu, config.redisExpireSeconds);
     }
 
     if(key === 'indexIssues') {

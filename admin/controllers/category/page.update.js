@@ -2,16 +2,16 @@ import co from 'co';
 import moment from 'moment-timezone';
 import models from '../../../models';
 
-const debug = require('debug')('NOWvote:admin:controllers:menu:menuCategory:page.update');
-const formatUpdateFrontData = function (menuCategory) {
-    let startTime = moment(menuCategory.startTime).tz('Asia/Taipei');
-    let endTime = moment(menuCategory.endTime).tz('Asia/Taipei');
+const debug = require('debug')('NOWvote:admin:controllers:menu:category:page.update');
+const formatUpdateFrontData = function (category) {
+    let startTime = moment(category.startTime).tz('Asia/Taipei');
+    let endTime = moment(category.endTime).tz('Asia/Taipei');
 
-    menuCategory.startAtDay = startTime.format('YYYY-MM-DD');
-    menuCategory.startAtHour = startTime.format('HH:mm');
-    menuCategory.endAtDay = endTime.format('YYYY-MM-DD');
-    menuCategory.endAtHour = endTime.format('HH:mm');
-    return menuCategory;
+    category.startAtDay = startTime.format('YYYY-MM-DD');
+    category.startAtHour = startTime.format('HH:mm');
+    category.endAtDay = endTime.format('YYYY-MM-DD');
+    category.endAtHour = endTime.format('HH:mm');
+    return category;
 };
 
 module.exports = function(req, res, next) {
@@ -20,17 +20,17 @@ module.exports = function(req, res, next) {
 
     co(function*() {
 
-        let menuCategory = yield models.menuCategory.findOne()
+        let category = yield models.category.findOne()
             .where('sn').equals(sn)
             .lean()
             .execAsync();
 
         // 如果常駐被勾起來，就不需要記錄時間
-        if(!menuCategory.continued) {
-            formatUpdateFrontData(menuCategory);
+        if(!category.continued) {
+            formatUpdateFrontData(category);
         }
 
-        return res.render('menuCategory/update', {item: menuCategory});
+        return res.render('category/update', {item: category});
     })
     .catch(next);
 
