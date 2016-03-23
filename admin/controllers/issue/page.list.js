@@ -15,14 +15,13 @@ module.exports = function(req, res, next) {
         let issues = yield models.issue.find()
             // .populate('questions')
             .where('trashed').equals(false)
-            .sort({weight: 1})
             .deepPopulate('questions.options')
             .limit(2)
             .execAsync();
 
         debug('issues = %j', issues);
 
-        return res.render('issue/list', {items: issues});
+        return res.render('issue/list', {issues: issues});
     })
     .catch(next);
 
