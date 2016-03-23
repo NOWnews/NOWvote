@@ -94,6 +94,11 @@ module.exports = function(req, res, next) {
             tags: []
         };
 
+        let voteCounterData = {
+            issue: newIssueId,
+            counter: 0,
+        };
+
         let questionsData = [];
         let optionsData = [];
 
@@ -140,6 +145,7 @@ module.exports = function(req, res, next) {
             models.issue.createAsync(newIssue),
             models.question.createAsync(questionsData),
             models.option.createAsync(optionsData),
+            models.voteCounter.createAsync(voteCounterData)
         ];
 
         return res.redirect('/issue');
