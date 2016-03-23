@@ -150,6 +150,9 @@ module.exports = function(req, res, next) {
             models.voteCounter.createAsync(voteCounterData)
         ];
 
+        // 更新首頁 redis issue
+        yield redis.updateRedisByKey('indexIssues');
+
         return res.redirect('/issue');
     })
     .catch(next);

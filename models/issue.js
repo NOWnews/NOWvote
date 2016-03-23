@@ -113,6 +113,26 @@ schema.statics.findBySn = co.wrap(function*(sn) {
 
 schema.plugin(deepPopulate);
 
+/*
+ * 找出首頁 12 則 issue，按照創造時間排序
+ */
+schema.statics.findIndexIssues = co.wrap(function*() {
+
+    let self = this;
+    let now = Date.now();
+
+    return yield self.find()
+        .where('trashed').equals(false)
+        .where('status').equals(true)
+        .or([
+            { continued: true },
+            { startTime: { $lte: now }, endTime: { $gte: now } }
+        ])
+        .limit(12)
+        .sort('-createdAt')
+        .execAsync();
+});
+
 schema.plugin(autoIncrement.plugin, {
     model: 'issue',
     field: 'sn',
