@@ -101,7 +101,6 @@ schema.statics.findEffective = co.wrap(function*() {
 
     let self = this;
     let now = Date.now();
-    console.log(now);
 
     return yield self.find()
         .where('trashed').equals(false)
