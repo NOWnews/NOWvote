@@ -12,10 +12,10 @@ const setRedisValue = require('./setRedisValue');
  */
 module.exports = co.wrap(function*(key) {
 
-    const validateArray = ['sliderBanner', 'menuCategory'];
+    const validateArray = ['sliderBanner', 'menuCategory', 'indexIssues'];
 
     if(!key || _.indexOf(validateArray, key) === -1) {
-        return yield Promise.reject(new Error('update redis data need key'));
+        return yield Promise.reject(new Error('update redis data need current key'));
     }
 
     if(key === 'sliderBanner') {
@@ -28,5 +28,12 @@ module.exports = co.wrap(function*(key) {
         let menu = yield models.menuCategory.findEffective();
         debug('menu = %j', menu);
         return yield setRedisValue('menuCategory', menu, config.redisExpireSeconds);
+    }
+
+    if(key === 'indexIssues') {
+        let issues = yield models.issue.findIndexIssues();
+        debug('issues = %j', issues);
+        // 首頁 issue 過期時間為 5 分鐘
+        return yield setRedisValue('indexIssues', issues, 300);
     }
 });
