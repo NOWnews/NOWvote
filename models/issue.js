@@ -26,7 +26,13 @@ const schema = new Schema({
         required: true
     },
 
-    image: {
+    // issue 內容業主圖
+    mainImage: {
+        type: String
+    },
+
+    // issue 列表頁縮圖
+    thumbnail: {
         type: String
     },
 

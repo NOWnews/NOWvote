@@ -8,6 +8,7 @@ import redis from '../../../caches';
 const libs = require('../../../libs');
 const debug = require('debug')('NOWvote:admin:controllers:issue:action.create');
 
+// TODO: 這列邏輯很亂，之後還要重新整理過
 module.exports = function(req, res, next) {
 
     debug('req.body = %j', req.body);
@@ -86,7 +87,8 @@ module.exports = function(req, res, next) {
             _id: newIssueId,
             title: data.title,
             desc: data.desc,
-            image: mainImgUrl,
+            mainImage: mainImgUrl,
+            thumbnail: imgUrl,
             startTime: startTime,
             endTime: endTime,
             continued: continued,
