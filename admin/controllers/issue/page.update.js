@@ -3,7 +3,7 @@ import co from 'co';
 import moment from 'moment-timezone';
 import models from '../../../models';
 
-const debug = require('debug')('NOWvote:admin:controllers:issue:sliderBanner:page.update');
+const debug = require('debug')('NOWvote:admin:controllers:issue:issue:page.update');
 const formatUpdateFrontData = function (sliderBanner) {
     let startTime = moment(sliderBanner.startTime).tz('Asia/Taipei');
     let endTime = moment(sliderBanner.endTime).tz('Asia/Taipei');
@@ -36,8 +36,7 @@ module.exports = function(req, res, next) {
         if(!issue.continued) {
             formatUpdateFrontData(issue);
         }
-        debug('issue = %j', issue)
-        // return res.json({issue: issue});
+
         return res.render('issue/update', {
             issue: issue,
             categories: categories
