@@ -41,6 +41,11 @@ const schema = new Schema({
         ref: 'type'
     },
 
+    status: {
+        type: Boolean,
+        default: true
+    },
+
     startTime: {
         type: Date,
         required: true
@@ -79,6 +84,11 @@ const schema = new Schema({
     updatedAt: {
         type: Date,
         default: Date.now
+    },
+
+    trashed: {
+        type: Boolean,
+        default: false
     }
 }, {
     timestamps: {
