@@ -4,21 +4,12 @@
 <!-- Foundation -->
 <link rel="stylesheet" href="/static/stylesheets/main.css">
 
-
 <!-- Fontawesome -->
 <link rel="stylesheet" href="/bower/font-awesome/css/font-awesome.min.css">
 <link rel="stylesheet" href="/static/stylesheets/custom.css">
 
 <script src="/bower/jquery/dist/jquery.js"></script>
-<script src="/bower/foundation-sites/dist/foundation.min.js"></script>
-<script>
-$(function() {
-    $(document).foundation();
-    $('.title-bar').on('sticky.zf.stuckto:top', function(){
-        $(this).addClass('shrink');
-    }).on('sticky.zf.unstuckfrom:top', function(){
-        $(this).removeClass('shrink');
-    });
-});
+<!-- <script src="/bower/foundation-sites/dist/foundation.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.0/foundation.js"></script>
+<script src="/static/js/foundation.orbit.js"></script>
 
-</script>
