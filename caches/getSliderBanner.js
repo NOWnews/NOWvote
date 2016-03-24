@@ -9,24 +9,24 @@ const getRedisValue = require('./getRedisValue');
 const setRedisValue = require('./setRedisValue');
 
 /*
- * 從 redis 要 sliderBanner 清單
+ * 從 redis 要 banner 清單
  * 去 redis 找所有分類清單，沒有的話會去 mongodb 要，並存回 redis
  */
 module.exports = co.wrap(function*(key) {
-    let sliderBanner = yield getRedisValue('sliderBanner') || [];
+    let banner = yield getRedisValue('banner') || [];
 
-    debug('redis sliderBanner = %j', sliderBanner);
-    debug('sliderBanner=%j', sliderBanner);
+    debug('redis banner = %j', banner);
+    debug('banner=%j', banner);
 
-    if(is.array(sliderBanner) && sliderBanner.length !== 0) {
-        debug('redis sliderBanner data = %j', sliderBanner);
-        return yield Promise.resolve(sliderBanner);
+    if(is.array(banner) && banner.length !== 0) {
+        debug('redis banner data = %j', banner);
+        return yield Promise.resolve(banner);
     }
 
-    let sliderBannerFromModels = yield models.sliderBanner.findEffective();
-    debug('mongodb sliderBanner data = %j', sliderBannerFromModels);
+    let bannerFromModels = yield models.banner.findEffective();
+    debug('mongodb banner data = %j', bannerFromModels);
 
-    let updateRedisBanner = yield setRedisValue('sliderBanner', sliderBannerFromModels, config.redisExpireSeconds);
+    let updateRedisBanner = yield setRedisValue('banner', bannerFromModels, config.redisExpireSeconds);
 
     return yield Promise.resolve(updateRedisBanner);
 });

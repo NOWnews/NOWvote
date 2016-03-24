@@ -5,21 +5,16 @@
             <button class="orbit-next" aria-label="next"><span class="show-for-sr">Next Slide</span>&#9654;</button>
 
             {# 第一種做法 #}
-            {% for banner in sliderBanner %}
+            {% for banner in banners %}
                 {% if loop.first %}
                     <li class="orbit-slide is-active">
+                        <img src="{{banner.image}}">
+                    </li>
                 {% else %}
                     <li class="orbit-slide">
+                        <img src="{{banner.image}}">
+                    </li>
                 {% endif %}
-                     <img src="{{banner.image}}">
-                </li>
             {% endfor %}
         </ul>
     </div>
-
-
-
-
-
-
-
