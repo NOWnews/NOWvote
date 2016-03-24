@@ -182,3 +182,8 @@ input.end-time {
     padding: 2px 5px;
     outline: medium none;
 }
+
+/* 設定 a 跟 buton 被focus 的外框線 */
+button:focus, a:focus {
+    outline: medium none;
+}

@@ -207,6 +207,11 @@ $(function() {
 
         var optionClickFunc = function() {
             var inputElement = $(this).parents().siblings('input[type="text"]');
+
+            if(!inputElement.val()){
+                return;
+            }
+
             var ulElement = $(this).parents().siblings('ol');
             var itemTitle = inputElement.val();
             var liHtml = '<li>' + itemTitle + '</li>';
@@ -220,6 +225,11 @@ $(function() {
         $('.add-option').on('click', optionClickFunc);
         $('.add-question').on('click', function() {
             var inputElement = $(this).parents().siblings('input[type="text"]');
+
+            if(!inputElement.val()){
+                return;
+            }
+
             var ulElement = $(this).parents().siblings('ul');
             var itemTitle = inputElement.val();
             var liHtml =
