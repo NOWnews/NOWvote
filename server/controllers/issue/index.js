@@ -2,10 +2,10 @@
 import express from 'express';
 let router = express.Router();
 
-import pageIssue from './page.issue';
+import pageShow from './page.show';
 
-router.route('/')
-    .get(pageIssue);
+router.route('/issues/:sn')
+    .get(pageShow);
 
 
 module.exports = router;
