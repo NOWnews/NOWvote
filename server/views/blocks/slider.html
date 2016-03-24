@@ -5,7 +5,7 @@
             <button class="orbit-next" aria-label="next"><span class="show-for-sr">Next Slide</span>&#9654;</button>
 
             {# 第一種做法 #}
-            {% for banner in sliderBanner %}
+            {% for banner in banners %}
                 {% if loop.first %}
                     <li class="orbit-slide is-active">
                 {% else %}
@@ -16,7 +16,7 @@
             {% endfor %}
 
             {# 第二種做法 #}
-            {% for banner in sliderBanner %}
+            {% for banner in banners %}
                 {% set active = '' %}
                 {% if loop.first %}
                     {% set active = 'is-active' %}
@@ -30,10 +30,3 @@
             {% endfor %}
         </ul>
     </div>
-
-
-
-
-
-
-

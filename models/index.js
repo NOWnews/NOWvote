@@ -21,7 +21,7 @@ autoIncrement.initialize(connection);
 const user = require('./user');
 const adminUser = require('./adminUser');
 const category = require('./category');
-const sliderBanner = require('./sliderBanner');
+const banner = require('./banner');
 const issue = require('./issue');
 const question = require('./question');
 const option = require('./option');
@@ -42,7 +42,7 @@ module.exports = {
     category: category,
 
     // slider banner
-    sliderBanner: sliderBanner,
+    banner: banner,
 
     // 投票議題
     issue: issue,

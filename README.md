@@ -53,10 +53,10 @@ imagemagick v6.9.3-0_2
   - 取得 redis 裡面的 menu
 
 - cache.getBanner()
-  - 取得 redis 裡面的 sliderBanner
+  - 取得 redis 裡面的 banner
 
 - cache.updateRedisByKey(key)
-  - key: 目前能代入 `sliderBanner`, `category`，更新相對應的資料
+  - key: 目前能代入 `banner`, `category`，更新相對應的資料
 
 ## Libs 共用 method
 

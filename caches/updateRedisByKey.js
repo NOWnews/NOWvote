@@ -12,16 +12,16 @@ const setRedisValue = require('./setRedisValue');
  */
 module.exports = co.wrap(function*(key) {
 
-    const validateArray = ['sliderBanner', 'category', 'indexIssues'];
+    const validateArray = ['banner', 'category', 'indexIssues'];
 
     if(!key || _.indexOf(validateArray, key) === -1) {
         return yield Promise.reject(new Error('update redis data need current key'));
     }
 
-    if(key === 'sliderBanner') {
-        let sliderBanner = yield models.sliderBanner.findEffective();
-        debug('sliderBanner = %j', sliderBanner);
-        return yield setRedisValue('sliderBanner', sliderBanner, config.redisExpireSeconds);
+    if(key === 'banner') {
+        let banner = yield models.banner.findEffective();
+        debug('banner = %j', banner);
+        return yield setRedisValue('banner', banner, config.redisExpireSeconds);
     }
 
     if(key === 'category') {

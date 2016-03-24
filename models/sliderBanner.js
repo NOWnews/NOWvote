@@ -100,7 +100,7 @@ schema.statics.findBySn = co.wrap(function*(sn) {
 });
 
 /*
- * 找出有效的 sliderBanners
+ * 找出有效的 banners
  */
 schema.statics.findEffective = co.wrap(function*(sn) {
 
@@ -119,9 +119,9 @@ schema.statics.findEffective = co.wrap(function*(sn) {
 });
 
 schema.plugin(autoIncrement.plugin, {
-    model: 'sliderBanner',
+    model: 'banner',
     field: 'sn',
     startAt: 1
 });
 
-module.exports = mongoose.model('sliderBanner', schema);
+module.exports = mongoose.model('banner', schema);

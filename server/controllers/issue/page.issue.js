@@ -14,7 +14,7 @@ module.exports = function(req, res, next) {
         // return res.render('issues', {
         //     issues: issues,
         //     category: category,
-        //     sliderBanner: sliderBanner
+        //     banner: banner
         // });
     })
     .catch(next);
