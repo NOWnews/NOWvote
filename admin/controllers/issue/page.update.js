@@ -4,15 +4,15 @@ import moment from 'moment-timezone';
 import models from '../../../models';
 
 const debug = require('debug')('NOWvote:admin:controllers:issue:issue:page.update');
-const formatUpdateFrontData = function (sliderBanner) {
-    let startTime = moment(sliderBanner.startTime).tz('Asia/Taipei');
-    let endTime = moment(sliderBanner.endTime).tz('Asia/Taipei');
+const formatUpdateFrontData = function (banner) {
+    let startTime = moment(banner.startTime).tz('Asia/Taipei');
+    let endTime = moment(banner.endTime).tz('Asia/Taipei');
 
-    sliderBanner.startAtDay = startTime.format('YYYY-MM-DD');
-    sliderBanner.startAtHour = startTime.format('HH:mm');
-    sliderBanner.endAtDay = endTime.format('YYYY-MM-DD');
-    sliderBanner.endAtHour = endTime.format('HH:mm');
-    return sliderBanner;
+    banner.startAtDay = startTime.format('YYYY-MM-DD');
+    banner.startAtHour = startTime.format('HH:mm');
+    banner.endAtDay = endTime.format('YYYY-MM-DD');
+    banner.endAtHour = endTime.format('HH:mm');
+    return banner;
 };
 
 module.exports = function(req, res, next) {

@@ -15,11 +15,11 @@ module.exports = function(req, res, next) {
         let weightList = data.weightList.split(',');
         let statusList = _.isArray(data['status[]']) ? data['status[]'] : [data['status[]']];
 
-        let sliderBanner = yield models.sliderBanner.find()
+        let banner = yield models.banner.find()
             .where('trashed').equals(false)
             .execAsync();
 
-        let updateSliderBannerList = yield Promise.map(sliderBanner, function(bannerItem) {
+        let updateBannerList = yield Promise.map(banner, function(bannerItem) {
             let index = _.indexOf(weightList, String(bannerItem.sn));
             bannerItem.weight = index === -1 ? bannerItem.weight: index;
 
@@ -35,9 +35,9 @@ module.exports = function(req, res, next) {
         // return res.status(204).send();
 
         // 讓 redis 重整資料，只更新前台會用到的資料
-        yield redis.updateRedisByKey('sliderBanner');
+        yield redis.updateRedisByKey('banner');
 
-        return res.redirect('/sliderBanner');
+        return res.redirect('/banner');
     })
     .catch(next);
 
