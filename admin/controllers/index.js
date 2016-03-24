@@ -2,10 +2,9 @@
 import home from './home';
 import auth from './auth';
 import adminUser from './adminUser';
-import sliderBanner from './sliderBanner';
+import banner from './banner';
 import category from './category';
 import issue from './issue';
-import menuCategory from './menuCategory';
 import ckeditor from './ckeditor';
 
 module.exports = function(app) {
@@ -13,10 +12,9 @@ module.exports = function(app) {
     app.use('/', home);
     app.use('/auth', auth);
     app.use('/adminUser', adminUser);
-    app.use('/sliderBanner', sliderBanner);
-    app.use('/category', category);
+    app.use('/banner', banner);
     app.use('/issue', issue);
-    app.use('/menuCategory', menuCategory);
+    app.use('/category', category);
     app.use('/ckeditor', ckeditor);
 
     return function(req, res, next) {

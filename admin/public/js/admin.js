@@ -206,9 +206,9 @@ $(function() {
         };
 
         var optionClickFunc = function() {
-            var inputElement = $(this).parents().siblings('input');
+            var inputElement = $(this).parents().siblings('input[type="text"]');
             var ulElement = $(this).parents().siblings('ol');
-            var itemTitle = $(this).parents().siblings('input').val();
+            var itemTitle = inputElement.val();
             var liHtml = '<li>' + itemTitle + '</li>';
             inputElement.val('');
 
@@ -219,7 +219,7 @@ $(function() {
 
         $('.add-option').on('click', optionClickFunc);
         $('.add-question').on('click', function() {
-            var inputElement = $(this).parents().siblings('input');
+            var inputElement = $(this).parents().siblings('input[type="text"]');
             var ulElement = $(this).parents().siblings('ul');
             var itemTitle = inputElement.val();
             var liHtml =

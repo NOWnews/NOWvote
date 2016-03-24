@@ -13,8 +13,8 @@ module.exports = function(req, res, next) {
         res.send('issues');
         // return res.render('issues', {
         //     issues: issues,
-        //     menuCategory: menuCategory,
-        //     sliderBanner: sliderBanner
+        //     category: category,
+        //     banner: banner
         // });
     })
     .catch(next);

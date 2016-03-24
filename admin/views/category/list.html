@@ -1,8 +1,8 @@
 {% extends "../index.html" %}
 
 {# 設定變數 #}
-{% set pageTitle = "議題管理系統" %}
-{% set pageRoute = "/issue" %}
+{% set pageTitle = "分類管理系統" %}
+{% set pageRoute = "/category" %}
 
 {% block head %}
     <script src="/bower/jquery-ui/jquery-ui.min.js"></script>
@@ -19,42 +19,34 @@
         <input type="hidden" name="_method" value="put"/>
         <input type="hidden" name="weightList" value=""/>
 
-        {% if issues[0] %}
+        {% if items[0] %}
             <ul class="ui-table-header large-12 columns expanded menu text-center">
                 <li class="title row callout small">
-                    <div class="large-4 medium-4 small-3 columns">標題</div>
+                    <div class="large-6 medium-6 small-5 columns">標題</div>
                     <div class="large-2 medium-2 small-3 columns">狀態</div>
-                    <div class="large-2 medium-2 small-2 columns">發表日期</div>
                     <div class="large-2 medium-2 small-2 columns">編輯</div>
                     <div class="large-2 medium-2 small-2 columns">刪除</div>
                 </li>
             </ul>
             <ul class="ui-table large-12 column menu vertical">
-                {% for issue in issues %}
-                    <li class="portlet bullet-item callout small" item-sn="{{ issue.sn }}">
+                {% for item in items %}
+                    <li class="portlet bullet-item callout small" item-sn="{{ item.sn }}">
                         <div class="portlet-header row">
-                            <div class="large-4 medium-4 small-3 columns">{{ issue.title }}</div>
+                            <div class="large-6 medium-6 small-5 columns">{{ item.title }}</div>
                             <div class="large-2 medium-2 small-3 columns text-center">
-                                {% if issue.status %}
-                                    {{ component.switch("status[]", "list" + issue.sn, issue.sn, "checked") }}
+                                {% if item.status %}
+                                    {{ component.switch("status[]", "list" + item.sn, item.sn, "checked") }}
                                 {% else %}
-                                    {{ component.switch("status[]", "list" + issue.sn, issue.sn, "") }}
-                                {% endif %}
-                            </div>
-                            <div class="large-2 medium-2 small-2 columns">
-                                {% if issue.continued %}
-                                    永久顯示
-                                {% else %}
-                                    {{ issue.startTime }}
+                                    {{ component.switch("status[]", "list" + item.sn, item.sn, "") }}
                                 {% endif %}
                             </div>
                             <div class="edit-box large-2 medium-2 small-2 columns text-center">
-                                <a href="{{ pageRoute }}/update/{{ issue.sn }}">
+                                <a href="{{ pageRoute }}/update/{{ item.sn }}">
                                     <i class="fa fa-2x fa-pencil"></i>
                                 </a>
                             </div>
                             <div class="del-box large-2 medium-2 small-2 columns text-center">
-                                {{ component.modalDel(issue.sn, issue.title, pageRoute) }}
+                                {{ component.modalDel(item.sn, item.title, pageRoute) }}
                             </div>
                         </div>
                     </li>
@@ -70,7 +62,7 @@
         <div class="clearfix"></div>
         <div class="text-right btn-box">
             <a href="{{ pageRoute }}/create" class="button alert">新增分類</a>
-            {% if issues[0] %}
+            {% if items[0] %}
                 <button type="submit" id="save-btn" class="button success hide">儲存列表</button>
             {% endif %}
         </div>

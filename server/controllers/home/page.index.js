@@ -11,22 +11,22 @@ module.exports = function(req, res, next) {
 
         // 非同步去取得資料
         let results = yield [
-            // 從 redis 取得 menuCategory 的資料
-            yield redis.getMenuCategory(),
+            // 從 redis 取得 category 的資料
+            yield redis.getCategory(),
 
             // 從 redis 取得 slideBanner 的資料
-            yield redis.getSliderBanner(),
+            yield redis.getBanner(),
 
             // 從 redis 取得首頁 issue 的資料
             yield redis.getIndexIssues(true)
         ];
         debug('results = %j', results);
 
-        let menuCategory = results[0];
-        let sliderBanner = results[1];
+        let categories = results[0];
+        let banners = results[1];
         let issues = results[2];
-        debug('menuCategory = %j', menuCategory);
-        debug('sliderBanner = %j', sliderBanner);
+        debug('category = %j', category);
+        debug('banner = %j', banner);
         debug('issues = %j', issues);
 
         /*
@@ -56,8 +56,8 @@ module.exports = function(req, res, next) {
 
         return res.render('home', {
             issues: issues,
-            menuCategory: menuCategory,
-            sliderBanner: sliderBanner
+            categories: categories,
+            banners: banners
         });
     })
     .catch(next);
