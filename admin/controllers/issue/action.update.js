@@ -84,7 +84,8 @@ module.exports = function(req, res, next) {
         yield issue.saveAsync();
 
         // 讓 redis 重整資料，只更新前台會用到的資料
-        yield redis.updateRedisByKey('issue');
+        yield redis.updateRedisByKey('indexIssues');
+
         return res.redirect('/issue');
     })
     .catch(next);
