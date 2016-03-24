@@ -22,7 +22,7 @@
 
 {% block container %}
 <article>
-    <form id="issue-form" method="post" action="{{ pageRoute }}/create" enctype="multipart/form-data">
+    <form id="issue-form" method="post" action="{{ pageRoute }}/update/{{ issue.sn }}" enctype="multipart/form-data">
         <input type="hidden" name="_method" value="put"/>
         <h3>{{ pageTitle }}</h3>
         <div class="status row float-right">
@@ -60,7 +60,7 @@
                 <fieldset class="fieldset">
                     <legend>內容頁主圖 (mainImage)</legend>
                     <label for="main-img" class="button">上傳圖片</label>
-                    <input type='file' class="show-for-sr img-input" id="main-img" name="mainImg" required>
+                    <input type='file' class="show-for-sr img-input" id="main-img" name="mainImg">
                     <label for="main-img">
                         <img class="thumbnail" src="{{ issue.mainImage }}" alt="your image">
                     </label>
@@ -79,7 +79,7 @@
                 <fieldset class="fieldset">
                     <legend>列表頁縮圖 (thumbnail)</legend>
                     <label for="vice-img" class="button">上傳圖片</label>
-                    <input type='file' class="show-for-sr img-input" id="vice-img" name="file" required>
+                    <input type='file' class="show-for-sr img-input" id="vice-img" name="file">
                     <label for="vice-img">
                         <img class="thumbnail" src="{{ issue.thumbnail }}" alt="your image">
                     </label>
@@ -116,7 +116,9 @@
                                     </ol>
                                     <div class="input-group">
                                         <input class="input-group-field" type="text" placeholder="新增選項"/>
-                                        <div class="input-group-button"> <a class="add-option button">ADD</a> </div>
+                                        <div class="input-group-button">
+                                            <a class="add-option button">ADD</a>
+                                        </div>
                                     </div>
                                 </div>
                             </li>

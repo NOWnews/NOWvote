@@ -16,8 +16,8 @@ module.exports = function(req, res, next) {
     let sn = parseInt(req.params.sn, 10);
     let data = req.body;
     let imageStorageUrl = '/images';
-    let imgFile = req.files.file[0];
-    let mainImgFile = req.files.mainImg[0];
+    let imgFile = req.files.file;
+    let mainImgFile = req.files.mainImg;
 
     co(function*() {
         let status = data.status ? true : false;
@@ -35,6 +35,7 @@ module.exports = function(req, res, next) {
         }
 
         let issue = yield models.issue.findOne()
+            .deepPopulate('questions.options')
             .where('sn').equals(sn)
             .execAsync();
 
@@ -46,10 +47,11 @@ module.exports = function(req, res, next) {
         issue.set('status', status);
         issue.set('continued', continued);
 
+        debug('issue = %j', issue);
+
         // 檢查 主圖資訊
         if(mainImgFile){
-
-            let extMainImgName = yield libs.checkExt(mainImgFile);
+            let extMainImgName = yield libs.checkExt(mainImgFile[0]);
             let mainImageName = 'issue' + moment()
                 .tz('Asia/Taipei')
                 .format('YYYYMMDD-HHmmss');
@@ -57,7 +59,7 @@ module.exports = function(req, res, next) {
             let newMainImgName = `${imageStorage}/${fullMainImgName}`;
 
             // 呼叫 libs.moveFile 搬移檔案
-            let movedMainImgPosition = yield libs.moveFile(mainImgFile.path, newMainImgName);
+            let movedMainImgPosition = yield libs.moveFile(mainImgFile[0].path, newMainImgName);
             let mainImgUrl = `${imageStorageUrl}/${fullMainImgName}`;
 
             issue.set('mainImage', mainImgUrl);
@@ -65,8 +67,7 @@ module.exports = function(req, res, next) {
 
         // 檢查 縮圖資訊
         if(imgFile){
-
-            let extName = yield libs.checkExt(imgFile);
+            let extName = yield libs.checkExt(imgFile[0]);
             let fileName = 'picture' + moment()
                 .tz('Asia/Taipei')
                 .format('YYYYMMDD-HHmmss');
@@ -74,7 +75,7 @@ module.exports = function(req, res, next) {
             let newFileName = imageStorage + `/${fullFileName}`;
 
              // 呼叫 libs.moveFile 搬移檔案
-            let movedfilePosition = yield libs.moveFile(imgFile.path, newFileName);
+            let movedfilePosition = yield libs.moveFile(imgFile[0].path, newFileName);
             let imageUrl = `${imageStorageUrl}/${fullFileName}`;
 
             issue.set('thumbnail', imageUrl);
@@ -84,7 +85,6 @@ module.exports = function(req, res, next) {
 
         // 讓 redis 重整資料，只更新前台會用到的資料
         yield redis.updateRedisByKey('issue');
-
         return res.redirect('/issue');
     })
     .catch(next);
