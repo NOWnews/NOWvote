@@ -5,7 +5,7 @@ import models from '../../../models';
 import redis from '../../../caches';
 
 const libs = require('../../../libs');
-const debug = require('debug')('NOWvote:admin:controllers:sliderBanner:action.create');
+const debug = require('debug')('NOWvote:admin:controllers:banner:action.create');
 
 module.exports = function(req, res, next) {
     let data = req.body;
@@ -39,7 +39,7 @@ module.exports = function(req, res, next) {
         let movedfilePosition = yield libs.moveFile(imgFile.path, newFileName);
         let imageUrl = `${imageStorageUrl}/${fullFileName}`;
         // 存入資料庫
-        let newsliderBanner = yield models.sliderBanner.createAsync({
+        let newBanner = yield models.banner.createAsync({
             title: data.title,
             desc: data.desc,
             url: data.url,
@@ -51,9 +51,9 @@ module.exports = function(req, res, next) {
         });
 
         // 讓 redis 重整資料，只更新前台會用到的資料
-        yield redis.updateRedisByKey('sliderBanner');
+        yield redis.updateRedisByKey('banner');
 
-        return res.redirect('/sliderBanner');
+        return res.redirect('/banner');
     })
     .catch(next);
 };

@@ -3,24 +3,24 @@ import co from 'co';
 import models from '../../../models';
 import redis from '../../../caches';
 
-const debug = require('debug')('NOWvote:admin:controllers:sliderBanner:action.remove');
+const debug = require('debug')('NOWvote:admin:controllers:banner:action.remove');
 
 module.exports = function(req, res, next) {
 
     let sn = parseInt(req.params.sn, 10);
     co(function*() {
-        let sliderBanner = yield models.sliderBanner.findOne()
+        let banner = yield models.banner.findOne()
             .where('sn').equals(sn)
             .execAsync();
 
-        sliderBanner.set('trashed', true);
-        let removedSliderBanner = yield sliderBanner
+        banner.set('trashed', true);
+        let removedBanner = yield banner
             .saveAsync();
 
         // 讓 redis 重整資料，只更新前台會用到的資料
-        yield redis.updateRedisByKey('sliderBanner');
+        yield redis.updateRedisByKey('banner');
 
-        return res.json(removedSliderBanner);
+        return res.json(removedBanner);
     })
     .catch(next);
 };

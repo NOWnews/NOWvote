@@ -2,7 +2,7 @@
 import home from './home';
 import auth from './auth';
 import adminUser from './adminUser';
-import sliderBanner from './sliderBanner';
+import banner from './banner';
 import category from './category';
 import issue from './issue';
 import ckeditor from './ckeditor';
@@ -12,7 +12,7 @@ module.exports = function(app) {
     app.use('/', home);
     app.use('/auth', auth);
     app.use('/adminUser', adminUser);
-    app.use('/sliderBanner', sliderBanner);
+    app.use('/banner', banner);
     app.use('/issue', issue);
     app.use('/category', category);
     app.use('/ckeditor', ckeditor);

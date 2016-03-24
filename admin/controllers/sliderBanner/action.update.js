@@ -5,7 +5,7 @@ import models from '../../../models';
 import redis from '../../../caches';
 
 const libs = require('../../../libs');
-const debug = require('debug')('NOWvote:admin:controllers:sliderBanner:action.update');
+const debug = require('debug')('NOWvote:admin:controllers:banner:action.update');
 
 module.exports = function(req, res, next) {
 
@@ -29,17 +29,17 @@ module.exports = function(req, res, next) {
             endTime = moment( `${data.endAtDay} ${data.endAtHour}` );
         }
 
-        let sliderBanner = yield models.sliderBanner.findOne()
+        let banner = yield models.banner.findOne()
             .where('sn').equals(sn)
             .execAsync();
 
-        sliderBanner.set('title', data.title);
-        sliderBanner.set('url', data.url);
-        sliderBanner.set('desc', data.desc);
-        sliderBanner.set('startTime', startTime);
-        sliderBanner.set('endTime', endTime);
-        sliderBanner.set('status', status);
-        sliderBanner.set('continued', continued);
+        banner.set('title', data.title);
+        banner.set('url', data.url);
+        banner.set('desc', data.desc);
+        banner.set('startTime', startTime);
+        banner.set('endTime', endTime);
+        banner.set('status', status);
+        banner.set('continued', continued);
 
         // 檢查 圖片資訊
         if(imgFile){
@@ -55,15 +55,15 @@ module.exports = function(req, res, next) {
             let movedfilePosition = yield libs.moveFile(imgFile.path, newFileName);
             let imageUrl = `${imageStorageUrl}/${fullFileName}`;
 
-            sliderBanner.set('image', imageUrl);
+            banner.set('image', imageUrl);
         }
 
-        yield sliderBanner.saveAsync();
+        yield banner.saveAsync();
 
         // 讓 redis 重整資料，只更新前台會用到的資料
-        yield redis.updateRedisByKey('sliderBanner');
+        yield redis.updateRedisByKey('banner');
 
-        return res.redirect('/sliderBanner');
+        return res.redirect('/banner');
     })
     .catch(next);
 };
