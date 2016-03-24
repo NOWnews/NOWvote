@@ -52,7 +52,7 @@ imagemagick v6.9.3-0_2
 - cache.getCategory()
   - 取得 redis 裡面的 menu
 
-- cache.getSliderBanner()
+- cache.getBanner()
   - 取得 redis 裡面的 sliderBanner
 
 - cache.updateRedisByKey(key)

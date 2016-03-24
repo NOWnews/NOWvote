@@ -3,7 +3,7 @@ import co from 'co';
 import Promise from 'bluebird';
 import is from 'is_js';
 
-const debug = require('debug')('NOWvote:caches:getSliderBanner');
+const debug = require('debug')('NOWvote:caches:getBanner');
 const models = require('../models');
 const getRedisValue = require('./getRedisValue');
 const setRedisValue = require('./setRedisValue');
