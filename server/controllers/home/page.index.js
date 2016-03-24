@@ -22,11 +22,12 @@ module.exports = function(req, res, next) {
         ];
         debug('results = %j', results);
 
-        let category = results[0];
-        let banner = results[1];
+
+        let categories = results[0];
+        let banners = results[1];
         let issues = results[2];
-        debug('category = %j', category);
-        debug('banner = %j', banner);
+        debug('categories = %j', categories);
+        debug('banners = %j', banners);
         debug('issues = %j', issues);
 
         /*
@@ -56,8 +57,8 @@ module.exports = function(req, res, next) {
 
         return res.render('home', {
             issues: issues,
-            category: category,
-            banner: banner
+            categories: categories,
+            banners: banners
         });
     })
     .catch(next);
