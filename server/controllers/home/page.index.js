@@ -15,7 +15,7 @@ module.exports = function(req, res, next) {
             yield redis.getCategory(),
 
             // 從 redis 取得 slideBanner 的資料
-            yield redis.getSliderBanner(),
+            yield redis.getBanner(),
 
             // 從 redis 取得首頁 issue 的資料
             yield redis.getIndexIssues(true)
