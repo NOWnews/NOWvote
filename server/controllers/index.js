@@ -11,7 +11,7 @@ module.exports = function(app) {
     app.use('/', auth);
     app.use('/', home);
     app.use('/', category);
-    app.use('/issue', issue);
+    app.use('/', issue);
 
     return function(req, res, next) {
         return next();
