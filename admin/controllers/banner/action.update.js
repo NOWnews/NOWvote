@@ -12,7 +12,7 @@ module.exports = function(req, res, next) {
     let sn = parseInt(req.params.sn, 10);
     let data = req.body;
     let imageStorageUrl = '/images';
-    let imgFile = req.file;
+    let imgFile = req.files.file;
 
     co(function*() {
 
@@ -44,7 +44,7 @@ module.exports = function(req, res, next) {
         // 檢查 圖片資訊
         if(imgFile){
 
-            let extName = yield libs.checkExt(imgFile);
+            let extName = yield libs.checkExt(imgFile[0]);
             let fileName = 'picture' + moment()
                 .tz('Asia/Taipei')
                 .format('YYYYMMDD-HHmmss');
@@ -52,7 +52,7 @@ module.exports = function(req, res, next) {
             let newFileName = imageStorage + `/${fullFileName}`;
 
              // 呼叫 libs.moveFile 搬移檔案
-            let movedfilePosition = yield libs.moveFile(imgFile.path, newFileName);
+            let movedfilePosition = yield libs.moveFile(imgFile[0].path, newFileName);
             let imageUrl = `${imageStorageUrl}/${fullFileName}`;
 
             banner.set('image', imageUrl);
