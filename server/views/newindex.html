@@ -6,7 +6,6 @@
 
         {% include "./blocks/head.html" %}
         {% block head %}{% endblock %}
-
     </head>
     <body>
         {% include "./blocks/header.html" %}
@@ -18,8 +17,13 @@
         </ul>
         {% block container %}{% endblock %}
         {% include "./blocks/footer.html" %}
-
-
-
+        <script>
+             $(document).foundation();
+            $('.title-bar').on('sticky.zf.stuckto:top', function(){
+                $(this).addClass('shrink');
+            }).on('sticky.zf.unstuckfrom:top', function(){
+                $(this).removeClass('shrink');
+            });
+        </script>
     </body>
 </html>
