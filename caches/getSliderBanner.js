@@ -26,7 +26,7 @@ module.exports = co.wrap(function*(key) {
     let sliderBannerFromModels = yield models.sliderBanner.findEffective();
     debug('mongodb sliderBanner data = %j', sliderBannerFromModels);
 
-    let updateRedisSliderBanner = yield setRedisValue('sliderBanner', sliderBannerFromModels, config.redisExpireSeconds);
+    let updateRedisBanner = yield setRedisValue('sliderBanner', sliderBannerFromModels, config.redisExpireSeconds);
 
-    return yield Promise.resolve(updateRedisSliderBanner);
+    return yield Promise.resolve(updateRedisBanner);
 });
