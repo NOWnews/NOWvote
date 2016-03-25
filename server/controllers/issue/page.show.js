@@ -20,19 +20,19 @@ module.exports = function(req, res, next) {
         ];
         // debug('results = %j', results);
 
-        let category = results[0];
-        debug('category = %j', category);
+        let categories = results[0];
+        debug('category = %j', categories);
 
-        let banner = results[1];
-        debug('banner = %j', banner);
+        let banners = results[1];
+        debug('banner = %j', banners);
 
         let issue = results[2];
         debug('issue = %j', issue);
 
 
         return res.render('issue/issue', {
-          banner: banner,
-          category: category,
+          // banners: banners,
+          categories: categories,
           issue: issue
         });
     })
