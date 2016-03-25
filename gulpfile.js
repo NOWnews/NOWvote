@@ -25,7 +25,7 @@ gulp.task('moveFontAwesomeFolder', function() {
 });
 
 // 編譯 scss
-gulp.task('sass', ['fontMove'], function() {
+gulp.task('sass', ['moveFontAwesomeFolder'], function() {
     return gulp.src(bowerScssPaths)
         .pipe(plugins.plumber())
         .pipe(plugins.sourcemaps.init())
