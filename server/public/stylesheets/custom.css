@@ -74,7 +74,7 @@
 
 }
 .vote_item {
-
+    margin-bottom:20px;
     border-bottom: 1px solid #BDBDBD;
     display: block;
     width:100%;

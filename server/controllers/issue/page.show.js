@@ -26,11 +26,13 @@ module.exports = function(req, res, next) {
         let banners = results[1];
         debug('banner = %j', banners);
 
+
         let issue = results[2];
         debug('issue = %j', issue);
 
 
         return res.render('issue/issue', {
+
           // banners: banners,
           categories: categories,
           issue: issue
