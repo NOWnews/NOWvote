@@ -25,7 +25,7 @@ gulp.task('moveFontAwesomeFolder', function() {
 });
 
 // 編譯 scss
-gulp.task('sass', ['moveFontAwesomeFolder'], function() {
+gulp.task('sass', function() {
     return gulp.src(bowerScssPaths)
         .pipe(plugins.plumber())
         .pipe(plugins.sourcemaps.init())
@@ -66,4 +66,4 @@ gulp.task('clean', function() {
     return del(['admin/public/dist/*']);
 });
 
-gulp.task('default', ['clean', 'script', 'script:watch', 'sass', 'sass:watch']);
+gulp.task('default', ['clean', 'moveFontAwesomeFolder','sass', 'script', 'script:watch', 'sass:watch']);
