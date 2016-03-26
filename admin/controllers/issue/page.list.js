@@ -16,7 +16,6 @@ module.exports = function(req, res, next) {
             // .populate('questions')
             .where('trashed').equals(false)
             .deepPopulate('questions.options')
-            .limit(2)
             .execAsync();
 
         debug('issues = %j', issues);
