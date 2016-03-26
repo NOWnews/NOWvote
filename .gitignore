@@ -33,3 +33,7 @@ bower_components
 
 imageStorage
 
+# 不需要存編譯出來的檔案
+admin/public/dist/css
+admin/public/dist/js
+admin/public/dist/fonts
