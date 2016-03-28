@@ -63,7 +63,9 @@ gulp.task('script:watch', function() {
 
 // 清掉編譯過的檔案
 gulp.task('clean', function() {
-    return del(['admin/public/dist/*']);
+    del(['admin/public/dist/js/*', 'admin/public/dist/css/*', 'admin/public/dist/fonts/*']);
+    return;
 });
 
-gulp.task('default', ['clean', 'moveFontAwesomeFolder','sass', 'script', 'script:watch', 'sass:watch']);
+gulp.task('admin', ['clean', 'moveFontAwesomeFolder','sass', 'script', 'script:watch', 'sass:watch']);
+// gulp.task('default', ['clean', 'moveFontAwesomeFolder','sass', 'script', 'script:watch', 'sass:watch']);
