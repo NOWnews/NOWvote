@@ -9,19 +9,22 @@ import actionRemove from './action.remove';
 import actionUpdate from './action.update';
 import actionCreate from './action.create';
 
+// 驗證是否登入
+const isLogin = require('../../middlewares/isLogin');
+
 router.route('/')
-    .get(pageList)
-    .put(actionUpdateList);
+    .get(isLogin, pageList)
+    .put(isLogin, actionUpdateList);
 
 router.route('/:sn')
-    .delete(actionRemove);
+    .delete(isLogin, actionRemove);
 
 router.route('/create')
-    .get(pageCreate)
-    .post(actionCreate);
+    .get(isLogin, pageCreate)
+    .post(isLogin, actionCreate);
 
 router.route('/update/:sn')
-    .put(actionUpdate)
-    .get(pageUpdate);
+    .put(isLogin, actionUpdate)
+    .get(isLogin, pageUpdate);
 
 module.exports = router;
