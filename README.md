@@ -28,6 +28,7 @@ imagemagick v6.9.3-0_2
 - 主要程式: app.js
 - 相關資料夾: /server
 - 快速啟動指令: `npm run start` or `npm start`
+- gulp編譯: `npm run server-gulp`
 
 ## <a name="nowvote-admin"></a>NOWvote Admin
 
@@ -38,6 +39,7 @@ imagemagick v6.9.3-0_2
 - 主要程式: admin.js
 - 相關資料夾: /admin
 - 快速啟動指令: `npm run admin`
+- gulp編譯: `npm run admin-gulp`
 
 ## Redis 共用 method
 

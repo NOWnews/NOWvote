@@ -37,3 +37,7 @@ imageStorage
 admin/public/dist/css
 admin/public/dist/js
 admin/public/dist/fonts
+
+server/public/dist/css
+server/public/dist/js
+server/public/dist/fonts
