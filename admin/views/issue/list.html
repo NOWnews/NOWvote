@@ -15,6 +15,13 @@
 {% block container %}
 <article>
     <h3>{{ pageTitle }}</h3>
+    <span class="subheader">
+        發表日期為
+        <span class="success-schedule">綠色</span>
+        代表正在走期中，
+        <span class="alert-schedule">紅色</span>
+        代表不在走期
+    </span>
     <form id="menuList" method="post" action="{{ pageRoute }}">
         <input type="hidden" name="_method" value="put"/>
         <input type="hidden" name="weightList" value=""/>
@@ -43,9 +50,13 @@
                             </div>
                             <div class="large-2 medium-2 small-2 columns">
                                 {% if issue.continued %}
-                                    永久顯示
+                                    <span class="success-schedule">永久顯示</span>
                                 {% else %}
-                                    {{ issue.startTime }}
+                                    {% if issue.schedule %}
+                                        <span class="success-schedule">{{ issue.startTime }}</span>
+                                    {% else %}
+                                        <span class="alert-schedule">{{ issue.startTime }}</span>
+                                    {% endif %}
                                 {% endif %}
                             </div>
                             <div class="edit-box large-2 medium-2 small-2 columns text-center">
