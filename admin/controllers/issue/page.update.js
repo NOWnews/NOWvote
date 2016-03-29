@@ -4,15 +4,16 @@ import moment from 'moment-timezone';
 import models from '../../../models';
 
 const debug = require('debug')('NOWvote:admin:controllers:issue:issue:page.update');
-const formatUpdateFrontData = function (banner) {
-    let startTime = moment(banner.startTime).tz('Asia/Taipei');
-    let endTime = moment(banner.endTime).tz('Asia/Taipei');
 
-    banner.startAtDay = startTime.format('YYYY-MM-DD');
-    banner.startAtHour = startTime.format('HH:mm');
-    banner.endAtDay = endTime.format('YYYY-MM-DD');
-    banner.endAtHour = endTime.format('HH:mm');
-    return banner;
+const formatUpdateFrontData = function (issue) {
+    let startTime = moment(issue.startTime).tz('Asia/Taipei');
+    let endTime = moment(issue.endTime).tz('Asia/Taipei');
+
+    issue.startAtDay = startTime.format('YYYY-MM-DD');
+    issue.startAtHour = startTime.format('HH:mm');
+    issue.endAtDay = endTime.format('YYYY-MM-DD');
+    issue.endAtHour = endTime.format('HH:mm');
+    return issue;
 };
 
 module.exports = function(req, res, next) {
@@ -24,8 +25,7 @@ module.exports = function(req, res, next) {
         let issue = yield models.issue.findOne()
             .where('sn').equals(sn)
             .where('trashed').equals(false)
-            .populate('category')
-            .deepPopulate('questions.options')
+            .deepPopulate('category tags questions.options')
             .execAsync();
 
         let categories = yield models.category.find()
@@ -37,9 +37,17 @@ module.exports = function(req, res, next) {
             formatUpdateFrontData(issue);
         }
 
+        // 這邊在處理 tag，為了給該死的前端用
+        let tags = [];
+        if(issue.tags.length > 0) {
+            tags = issue.tags.join(', ');
+        }
+        debug('tags = %j', tags);
+
         return res.render('issue/update', {
             issue: issue,
-            categories: categories
+            categories: categories,
+            tags: tags
         });
     })
     .catch(next);

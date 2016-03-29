@@ -1,5 +1,6 @@
 
 import co from 'co';
+import is from 'is_js';
 import mongoose from 'mongoose';
 import moment from 'moment-timezone';
 import models from '../../../models';
@@ -85,6 +86,7 @@ module.exports = function(req, res, next) {
         let newIssue = {
             _id: newIssueId,
             title: data.title,
+            status: status,
             desc: data.desc,
             mainImage: mainImgUrl,
             thumbnail: imgUrl,
@@ -103,6 +105,11 @@ module.exports = function(req, res, next) {
 
         let questionsData = [];
         let optionsData = [];
+
+        // 處理 issue 的 tags
+        if(data.tags && is.array(data.tags) && data.tags.length > 0){
+            newIssue.tags = data.tags;
+        }
 
         _.forIn(questions, function(question) {
 
