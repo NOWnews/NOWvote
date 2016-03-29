@@ -1,31 +1,21 @@
 import co from 'co';
 import models from '../../../models';
-import moment from 'moment-timezone';
 
 const debug = require('debug')('NOWvote:admin:controllers:issue:page.list');
+const libs = require('../../../libs');
 
 const formatUpdateIssuesData = function (issues) {
 
-    let now = moment().tz('Asia/Taipei').valueOf();
-
-    debug('now = %j', moment().valueOf());
-
     issues = _.map(issues, function (issue){
 
-        issue.schedule = false;
         if (issue.continued){
-            issue.schedule = true;
+            issue.isSchedule = true;
             return issue;
         }
 
-        let startTime = moment(issue.startTime).valueOf();
-        let endTime = moment(issue.endTime).valueOf();
+        issue.isSchedule = libs.isSchedule(issue.startTime, issue.endTime);
+        issue.startTime = libs.formatDate(issue.startTime);
 
-        if ( now > startTime && now < endTime ) {
-            issue.schedule = true;
-        }
-
-        issue.startTime = moment(issue.startTime).tz('Asia/Taipei').format('YYYY-MM-DD HH:mm');
         return issue;
     });
 

@@ -52,7 +52,7 @@
                                 {% if issue.continued %}
                                     <span class="success-schedule">永久顯示</span>
                                 {% else %}
-                                    {% if issue.schedule %}
+                                    {% if issue.isSchedule %}
                                         <span class="success-schedule">{{ issue.startTime }}</span>
                                     {% else %}
                                         <span class="alert-schedule">{{ issue.startTime }}</span>
