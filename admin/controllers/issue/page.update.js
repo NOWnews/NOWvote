@@ -24,8 +24,7 @@ module.exports = function(req, res, next) {
         let issue = yield models.issue.findOne()
             .where('sn').equals(sn)
             .where('trashed').equals(false)
-            .populate('category')
-            .deepPopulate('questions.options')
+            .deepPopulate('category tags questions.options')
             .execAsync();
 
         let categories = yield models.category.find()
@@ -37,9 +36,17 @@ module.exports = function(req, res, next) {
             formatUpdateFrontData(issue);
         }
 
+        // 這邊在處理 tag，為了給該死的前端用
+        let tags = [];
+        if(issue.tags.length > 0) {
+            tags = issue.tags.join(', ');
+        }
+        debug('tags = %j', tags);
+
         return res.render('issue/update', {
             issue: issue,
-            categories: categories
+            categories: categories,
+            tags: tags
         });
     })
     .catch(next);

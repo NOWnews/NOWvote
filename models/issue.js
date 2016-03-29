@@ -36,11 +36,6 @@ const schema = new Schema({
         type: String
     },
 
-    type: {
-        type: Schema.Types.ObjectId,
-        ref: 'type'
-    },
-
     status: {
         type: Boolean,
         default: true
@@ -72,8 +67,7 @@ const schema = new Schema({
     }],
 
     tags: [{
-        type: Schema.Types.ObjectId,
-        ref: 'tag'
+        type: String
     }],
 
     createdBy: {

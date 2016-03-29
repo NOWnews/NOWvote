@@ -1,5 +1,6 @@
 
 import co from 'co';
+import is from 'is_js';
 import moment from 'moment-timezone';
 import models from '../../../models';
 import redis from '../../../caches';
@@ -79,6 +80,13 @@ module.exports = function(req, res, next) {
             let imageUrl = `${imageStorageUrl}/${fullFileName}`;
 
             issue.set('thumbnail', imageUrl);
+        }
+
+        // 每次都會重新更新 tag
+        issue.tags = [];
+        debug('data.tags = %j', data.tags);
+        if(data.tags && is.array(data.tags)){
+            issue.tags = data.tags;
         }
 
         yield issue.saveAsync();
