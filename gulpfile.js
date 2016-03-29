@@ -11,6 +11,10 @@ var adminBowerJsPaths = [
     './admin/public/js/*.js',
     './bower_components/jquery/dist/jquery.js',
     './bower_components/foundation-sites/dist/foundation.js',
+    './bower_components/taggingJS/tagging.js',
+    './bower_components/foundation-datepicker/js/foundation-datepicker.js',
+    './bower_components/foundation-datepicker/js/locales/foundation-datepicker.zh-TW.js',
+    './bower_components/html.sortable/dist/html.sortable.js'
 ];
 var adminBowerScssPaths = [
     './admin/public/scss/admin.scss',
@@ -77,7 +81,7 @@ gulp.task('Gulp-Admin', ['adminClean', 'adminMoveFontAwesomeFolder','adminSass',
 var serverBowerJsPaths = [
     './server/public/js/*.js',
     './bower_components/jquery/dist/jquery.js',
-    './bower_components/foundation-sites/dist/foundation.js',
+    './bower_components/foundation-sites/dist/foundation.js'
 ];
 var serverBowerScssPaths = [
     './server/public/scss/*.scss',

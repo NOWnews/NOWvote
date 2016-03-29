@@ -45,6 +45,9 @@ module.exports = function(app) {
     // TODO 暫時用此方法引入 foundation
     app.use('/bower', express.static(rootPath + '/bower_components/'));
 
+    // ckeditor 的 router
+    app.use('/bower_ckeditor', express.static(rootPath + '/bower_components/ckeditor'));
+
     // overwrite put and delete method
     app.use(methodOverride(function(req, res) {
         if (req.body && typeof req.body === 'object' && '_method' in req.body) {
