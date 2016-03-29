@@ -1,0 +1,5 @@
+
+@mixin absolute-width($width) {
+    width: $width;
+    min-width: $width;
+}

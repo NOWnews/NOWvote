@@ -1,3 +1,6 @@
+// Global 變數跟樣式
+@import 'global';
+
 /* MENU ----------------------- */
 /* :: List */
 /* - jquery-ui Sortable */
@@ -117,6 +120,50 @@ span.success-schedule {
 
 span.alert-schedule {
     color: #CA2929;
+}
+
+.table-default {
+
+    img {
+        height: 125px;
+    }
+
+    thead tr{
+        border: 1px solid #000;
+    }
+
+    tbody tr{
+        border: 1px solid #ddd;
+    }
+
+    td {
+        text-align: center;
+    }
+
+    th {
+        background: #000;
+        color: #fff;
+        text-align: center;
+
+        &.th-title {
+            @include absolute-width(328px);
+        }
+        &.th-status {
+            @include absolute-width(85px);
+        }
+        &.th-thumbnail {
+            @include absolute-width(210px);
+        }
+        &.th-time {
+            @include absolute-width(125px);
+        }
+        &.th-edit {
+            @include absolute-width(60px);
+        }
+        &.th-delete {
+            @include absolute-width(60px);
+        }
+    }
 }
 
 /* Lib ----------------------- */

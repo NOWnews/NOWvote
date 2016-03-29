@@ -14,7 +14,7 @@ const formatIssuesDate = function (issues) {
         }
 
         issue.isSchedule = libs.isSchedule(issue.startTime, issue.endTime);
-        issue.startTime = libs.formatDate(issue.startTime);
+        issue.endTime = libs.formatDate(issue.endTime);
 
         return issue;
     });
