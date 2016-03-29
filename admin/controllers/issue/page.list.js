@@ -4,7 +4,7 @@ import models from '../../../models';
 const debug = require('debug')('NOWvote:admin:controllers:issue:page.list');
 const libs = require('../../../libs');
 
-const formatUpdateIssuesData = function (issues) {
+const formatIssuesDate = function (issues) {
 
     issues = _.map(issues, function (issue){
 
@@ -32,7 +32,7 @@ module.exports = function(req, res, next) {
             .lean()
             .execAsync();
 
-        issues = formatUpdateIssuesData(issues);
+        issues = formatIssuesDate(issues);
 
         debug('issues = %j', issues);
 
