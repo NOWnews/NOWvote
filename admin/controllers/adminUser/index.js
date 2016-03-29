@@ -11,17 +11,19 @@ const actionRemove = require('./action.remove');
 // 確認這個 adminUser 是否存在的 middleware
 const checkAdminUserAlive = require('../../middlewares/checkAdminUserAlive');
 
+// 驗證是否登入
+const isLogin = require('../../middlewares/isLogin');
 
 router.route('/')
-    .post(checkAdminUserAlive, actionCreate)
-    .get(pageList);
+    .post(checkAdminUserAlive, isLogin, actionCreate)
+    .get(isLogin, pageList);
 
 router.route('/create')
-    .get(pageCreate);
+    .get(isLogin, pageCreate);
 
 router.route('/:sn')
-    .get(pageUpdate)
-    .patch(actionUpdate)
-    .delete(actionRemove);
+    .get(isLogin, pageUpdate)
+    .patch(isLogin, actionUpdate)
+    .delete(isLogin, actionRemove);
 
 module.exports = router;
