@@ -86,6 +86,7 @@ module.exports = function(req, res, next) {
         let newIssue = {
             _id: newIssueId,
             title: data.title,
+            status: status,
             desc: data.desc,
             mainImage: mainImgUrl,
             thumbnail: imgUrl,
