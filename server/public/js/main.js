@@ -1,4 +1,5 @@
 $(function() {
+
     $(document).foundation();
     $('.title-bar').on('sticky.zf.stuckto:top', function() {
         $(this).addClass('shrink');
