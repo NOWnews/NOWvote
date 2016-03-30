@@ -1,7 +1,7 @@
 
 import co from 'co';
 
-const debug = require('debug')('NOWvote:server:controllers:category:pageShow');
+const debug = require('debug')('NOWvote:server:controllers:category:page.show');
 
 module.exports = function(req, res, next) {
 

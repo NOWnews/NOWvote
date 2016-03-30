@@ -1,5 +1,5 @@
 
-const debug = require('debug')('NOWvote:server:controllers:page.index');
+const debug = require('debug')('NOWvote:server:controllers:home:page.index');
 
 import co from 'co';
 import models from '../../../models';
