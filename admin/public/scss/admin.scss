@@ -127,6 +127,10 @@ span.alert-schedule {
 
 .table-default {
 
+    table {
+        width: 100%;
+    }
+
     img {
         height: 125px;
     }
@@ -141,6 +145,7 @@ span.alert-schedule {
 
     td {
         text-align: center;
+        position: relative;
     }
 
     th {
@@ -148,6 +153,9 @@ span.alert-schedule {
         color: #fff;
         text-align: center;
 
+        &.th-arrows {
+            @include absolute-width(60px);
+        }
         &.th-title {
             @include absolute-width(328px);
         }

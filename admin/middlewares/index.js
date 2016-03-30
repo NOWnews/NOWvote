@@ -42,9 +42,6 @@ module.exports = function(app) {
     app.use('/static', express.static(rootPath + '/admin/public/'));
     app.use('/images', express.static(rootPath + '/imageStorage/'));
 
-    // TODO 暫時用此方法引入 foundation
-    app.use('/bower', express.static(rootPath + '/bower_components/'));
-
     // ckeditor 的 router
     app.use('/bower_ckeditor', express.static(rootPath + '/bower_components/ckeditor'));
 

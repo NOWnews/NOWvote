@@ -79,64 +79,12 @@
             {% else %}
                 <div class="callout">
                     <h5>還沒有建立資料..</h5>
-                    <p>請點選下面按鈕來新增分類</p>
+                    <p>請點選下面按鈕來新增</p>
                 </div>
             {% endif %}
-            {# {% if issues[0] %}
-                <ul class="ui-table-header large-12 columns expanded menu text-center">
-                    <li class="title row callout small">
-                        <div class="large-4 medium-4 small-3 columns">標題</div>
-                        <div class="large-2 medium-2 small-3 columns">狀態</div>
-                        <div class="large-2 medium-2 small-2 columns">發表日期</div>
-                        <div class="large-2 medium-2 small-2 columns">編輯</div>
-                        <div class="large-2 medium-2 small-2 columns">刪除</div>
-                    </li>
-                </ul>
-                <ul class="ui-table large-12 column menu vertical">
-                    {% for issue in issues %}
-                        <li class="portlet bullet-item callout small" item-sn="{{ issue.sn }}">
-                            <div class="portlet-header row">
-                                <div class="large-4 medium-4 small-3 columns">{{ issue.title }}</div>
-                                <div class="large-2 medium-2 small-3 columns text-center">
-                                    {% if issue.status %}
-                                        {{ component.switch("status[]", "list" + issue.sn, issue.sn, "checked") }}
-                                    {% else %}
-                                        {{ component.switch("status[]", "list" + issue.sn, issue.sn, "") }}
-                                    {% endif %}
-                                </div>
-                                <div class="large-2 medium-2 small-2 columns">
-                                    {% if issue.continued %}
-                                        <span class="success-schedule">永久顯示</span>
-                                    {% else %}
-                                        {% if issue.isSchedule %}
-                                            <span class="success-schedule">{{ issue.startTime }}</span>
-                                        {% else %}
-                                            <span class="alert-schedule">{{ issue.startTime }}</span>
-                                        {% endif %}
-                                    {% endif %}
-                                </div>
-                                <div class="edit-box large-2 medium-2 small-2 columns text-center">
-                                    <a href="{{ pageRoute }}/update/{{ issue.sn }}">
-                                        <i class="fa fa-2x fa-pencil"></i>
-                                    </a>
-                                </div>
-                                <div class="del-box large-2 medium-2 small-2 columns text-center">
-                                    {{ component.modalDel(issue.sn, issue.title, pageRoute) }}
-                                </div>
-                            </div>
-                        </li>
-                    {% endfor %}
-                </ul>
-
-            {% else %}
-                <div class="callout">
-                    <h5>還沒有建立資料..</h5>
-                    <p>請點選下面按鈕來新增分類</p>
-                </div>
-            {% endif %} #}
             <div class="clearfix"></div>
             <div class="text-right btn-box">
-                <a href="{{ pageRoute }}/create" class="button alert">新增議題</a>
+                <a href="{{ pageRoute }}/create" class="button">新增議題</a>
                 {% if issues[0] %}
                     <button type="submit" id="save-btn" class="button success hide">儲存列表</button>
                 {% endif %}

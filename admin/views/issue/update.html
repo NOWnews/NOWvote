@@ -104,32 +104,16 @@
                                 <li class="accordion-item" data-accordion-item>
                             {% endif %}
                                 <a href="#" class="accordion-title">  {{ question.content }}  </a>
-                                <button class="close-button" type="button">
-                                    <i aria-hidden="true" class="fa fa-close"></i>
-                                </button>
                                 <div class="accordion-content" data-tab-content>
                                     <ol class="option-box">
                                         {% for option in question.options %}
                                             <li>{{ option.content }}</li>
                                         {% endfor %}
                                     </ol>
-                                    <div class="input-group">
-                                        <input class="input-group-field" type="text" placeholder="新增選項"/>
-                                        <div class="input-group-button">
-                                            <a class="add-option button">ADD</a>
-                                        </div>
-                                    </div>
                                 </div>
                             </li>
                         {% endfor %}
                     </ul>
-                    <div class="input-group">
-                        <input class="input-group-field" type="text" placeholder="新增題目" />
-                        <input class="input-group-field" type="hidden" name="question" placeholder="新增題目" />
-                        <div class="input-group-button">
-                            <a class="add-question button">ADD</a>
-                        </div>
-                    </div>
                 </fieldset>
             </div>
         </div>
@@ -143,7 +127,7 @@
             </div>
         </div>
         <div class="text-right btn-box">
-            <input type="submit" value="儲存" class="button alert"/>
+            <input type="submit" value="儲存" class="button success"/>
             <a href="{{ pageRoute }}" class="button secondary">取消</a>
         </div>
     </form>
