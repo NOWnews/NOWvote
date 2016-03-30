@@ -1,12 +1,11 @@
 
-
 import express from 'express';
 let router = express.Router();
 
 const pageLogin = require('./page.login');
 const actionLogin = require('./action.login');
 
-router.route('/login')
+router.route('/')
     .get(pageLogin)
     .post(actionLogin);
 
