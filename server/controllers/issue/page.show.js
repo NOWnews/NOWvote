@@ -11,12 +11,10 @@ module.exports = function(req, res, next) {
 
        // 非同步去取得資料
         let results = yield [
-            // 從 redis 取得 menuCategory 的資料
+            // 從 redis 取得 Category 的資料
             yield redis.getCategory(),
-
             yield redis.getBanner(),
             yield models.issue.findBySn(req.params.sn)
-
         ];
         // debug('results = %j', results);
 
@@ -26,10 +24,8 @@ module.exports = function(req, res, next) {
         let banners = results[1];
         debug('banner = %j', banners);
 
-
         let issue = results[2];
         debug('issue = %j', issue);
-
 
         return res.render('issue/issue', {
 
