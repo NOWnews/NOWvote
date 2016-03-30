@@ -12,10 +12,4 @@ router.route('/')
 router.route('/index')
     .get(pageIndex);
 
-router.route('/demo')
-    .get(pageDemo);
-
-// router.route('/newindex')
-//     .get(pageIndex);
-
 module.exports = router;
