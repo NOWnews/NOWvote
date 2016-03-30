@@ -8,10 +8,10 @@ import category from './category';
 module.exports = function(app) {
 
     app.use('/', home);
-    app.use('/auth', auth);
-    app.use('/login', login);
-    app.use('/issues', issue);
-    app.use('/category', category);
+    app.use('/', auth);
+    app.use('/', login);
+    app.use('/', issue);
+    app.use('/', category);
 
     return function(req, res, next) {
         return next();

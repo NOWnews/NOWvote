@@ -12,16 +12,18 @@
         {% include "./blocks/slider.html" %}
 
         <ul class="breadcrumbs">
-            <li><a href="/">Home</a></li>
+            <li>
+                <a href="/">Home</a>
+            </li>
             {#{% block breadcrumbs %}{% endblock %}#}
         </ul>
         {% block container %}{% endblock %}
         {% include "./blocks/footer.html" %}
         <script>
-             $(document).foundation();
-            $('.title-bar').on('sticky.zf.stuckto:top', function(){
+            $(document).foundation();
+            $('.title-bar').on('sticky.zf.stuckto:top', function () {
                 $(this).addClass('shrink');
-            }).on('sticky.zf.unstuckfrom:top', function(){
+            }).on('sticky.zf.unstuckfrom:top', function () {
                 $(this).removeClass('shrink');
             });
         </script>

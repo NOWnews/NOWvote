@@ -11,15 +11,15 @@
         {% include "./blocks/header.html" %}
         {% include "./blocks/slider.html" %}
 
-                <ul class="breadcrumbs">
-                    <li><a href="/">Home</a></li>
-                    {#{% block breadcrumbs %}{% endblock %}#}
-                </ul>
+        <ul class="breadcrumbs">
+            <li>
+                <a href="/">Home</a>
+            </li>
+            {#{% block breadcrumbs %}{% endblock %}#}
+        </ul>
 
         {% block container %}{% endblock %}
         {% include "./blocks/footer.html" %}
-
-
 
     </body>
 </html>
