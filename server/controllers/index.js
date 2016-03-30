@@ -1,9 +1,10 @@
 
-import login from './login';
-import auth from './auth';
-import home from './home';
-import category from './category';
-import issue from './issue';
+const login = require('./login');
+const auth = require('./auth');
+const home = require('./home');
+const category = require('./category');
+const tag = require('./tag');
+const issue = require('./issue');
 
 module.exports = function(app) {
 
@@ -12,6 +13,7 @@ module.exports = function(app) {
     app.use('/', home);
     app.use('/', category);
     app.use('/', issue);
+    app.use('/', tag);
 
     return function(req, res, next) {
         return next();
