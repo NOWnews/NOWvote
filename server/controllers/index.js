@@ -1,17 +1,17 @@
 
-import login from './login';
-import auth from './auth';
 import home from './home';
-import category from './category';
+import auth from './auth';
+import login from './login';
 import issue from './issue';
+import category from './category';
 
 module.exports = function(app) {
 
-    app.use('/', login);
-    app.use('/', auth);
     app.use('/', home);
-    app.use('/', category);
-    app.use('/', issue);
+    app.use('/auth', auth);
+    app.use('/login', login);
+    app.use('/issues', issue);
+    app.use('/category', category);
 
     return function(req, res, next) {
         return next();

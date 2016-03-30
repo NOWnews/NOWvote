@@ -4,7 +4,7 @@ let router = express.Router();
 
 import pageShow from './page.show';
 
-router.route('/issues/:sn')
+router.route('/:sn')
     .get(pageShow);
 
 

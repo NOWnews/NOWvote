@@ -5,10 +5,10 @@ let router = express.Router();
 const pageList = require('./page.list');
 const pageShow = require('./page.show');
 
-router.route('/category/:category')
+router.route('/:category')
     .get(pageList);
 
-router.route('/category/:category/:sn')
+router.route('/:category/:sn')
     .get(pageShow);
 
 module.exports = router;

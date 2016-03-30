@@ -5,10 +5,10 @@ let router = express.Router();
 import authFail from './fail';
 import authSuccess from './success';
 
-router.route('/auth/fail')
+router.route('/fail')
     .get(authFail);
 
-router.route('/auth/success')
+router.route('/success')
     .get(authSuccess);
 
 module.exports = router;
