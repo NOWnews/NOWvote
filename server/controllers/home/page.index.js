@@ -55,7 +55,7 @@ module.exports = function(req, res, next) {
          * TODO: 判斷使用者是否投過票了
          */
 
-        return res.render('home', {
+        return res.render('home/home', {
             issues: issues,
             categories: categories,
             banners: banners
