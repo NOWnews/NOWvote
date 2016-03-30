@@ -7,5 +7,4 @@ import pageShow from './page.show';
 router.route('issues/:sn')
     .get(pageShow);
 
-
 module.exports = router;
