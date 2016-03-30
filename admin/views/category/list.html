@@ -5,68 +5,74 @@
 {% set pageRoute = "/category" %}
 
 {% block head %}
-    <script src="/bower/jquery-ui/jquery-ui.min.js"></script>
+    <script src="/static/dist/js/html.sortable.min.js"></script>
 {% endblock %}
 
 {% block breadcrumbs %}
-<li>{{ pageTitle }}</li>
+    <li>{{ pageTitle }}</li>
 {% endblock %}
 
 {% block container %}
-<article>
-    <h3>{{ pageTitle }}</h3>
-    <form id="menuList" method="post" action="{{ pageRoute }}">
-        <input type="hidden" name="_method" value="put"/>
-        <input type="hidden" name="weightList" value=""/>
+    <article>
+        <h3>{{ pageTitle }}</h3>
+        <form id="menuList" method="post" action="{{ pageRoute }}">
+            <input type="hidden" name="_method" value="put"/>
+            <input type="hidden" name="weightList" value=""/>
 
-        {% if items[0] %}
-            <ul class="ui-table-header large-12 columns expanded menu text-center">
-                <li class="title row callout small">
-                    <div class="large-6 medium-6 small-5 columns">標題</div>
-                    <div class="large-2 medium-2 small-3 columns">狀態</div>
-                    <div class="large-2 medium-2 small-2 columns">編輯</div>
-                    <div class="large-2 medium-2 small-2 columns">刪除</div>
-                </li>
-            </ul>
-            <ul class="ui-table large-12 column menu vertical">
-                {% for item in items %}
-                    <li class="portlet bullet-item callout small" item-sn="{{ item.sn }}">
-                        <div class="portlet-header row">
-                            <div class="large-6 medium-6 small-5 columns">{{ item.title }}</div>
-                            <div class="large-2 medium-2 small-3 columns text-center">
-                                {% if item.status %}
-                                    {{ component.switch("status[]", "list" + item.sn, item.sn, "checked") }}
-                                {% else %}
-                                    {{ component.switch("status[]", "list" + item.sn, item.sn, "") }}
-                                {% endif %}
-                            </div>
-                            <div class="edit-box large-2 medium-2 small-2 columns text-center">
-                                <a href="{{ pageRoute }}/update/{{ item.sn }}">
-                                    <i class="fa fa-2x fa-pencil"></i>
-                                </a>
-                            </div>
-                            <div class="del-box large-2 medium-2 small-2 columns text-center">
-                                {{ component.modalDel(item.sn, item.title, pageRoute) }}
-                            </div>
-                        </div>
-                    </li>
-                {% endfor %}
-            </ul>
-
-        {% else %}
-            <div class="callout">
-                <h5>還沒有建立資料..</h5>
-                <p>請點選下面按鈕來新增分類</p>
-            </div>
-        {% endif %}
-        <div class="clearfix"></div>
-        <div class="text-right btn-box">
-            <a href="{{ pageRoute }}/create" class="button">新增分類</a>
             {% if items[0] %}
-                <button type="submit" id="save-btn" class="button success hide">儲存列表</button>
+                <div class="table-scroll table-default table-sortable">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="th-edit">#</th>
+                                <th class="th-title">標題</th>
+                                <th class="th-status">狀態</th>
+                                <th class="th-edit">編輯</th>
+                                <th class="th-delete">刪除</th>
+                            </tr>
+                        </thead>
+                        <tbody class="sortable">
+                            {% for item in items %}
+                                <tr class="bullet-item" item-sn="{{ item.sn }}">
+                                    <td>
+                                        <i class="fa fa-fw fa-arrows"></i>
+                                    </td>
+                                    <td>
+                                        {{ item.title }}
+                                    </td>
+                                    <td>
+                                        {% if item.status %}
+                                            {{ component.switch("status[]", "list" + item.sn, item.sn, "checked") }}
+                                        {% else %}
+                                            {{ component.switch("status[]", "list" + item.sn, item.sn, "") }}
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <a href="{{ pageRoute }}/update/{{ item.sn }}">
+                                            <i class="fa fa-2x fa-pencil"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        {{ component.modalDel(item.sn, item.title, pageRoute) }}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="callout">
+                    <h5>還沒有建立資料..</h5>
+                    <p>請點選下面按鈕來新增</p>
+                </div>
             {% endif %}
-        </div>
-    </form>
-</article>
 
+            <div class="text-right btn-box">
+                <a href="{{ pageRoute }}/create" class="button">新增分類</a>
+                {% if items[0] %}
+                    <button type="submit" id="save-btn" class="button success hide">儲存列表</button>
+                {% endif %}
+            </div>
+        </form>
+    </article>
 {% endblock %}
