@@ -11,7 +11,7 @@
                 <div class="title-bar" data-sticky data-options="marginTop:0;">
                     <div class="title-bar-left">
                         <a id="logo" href="/">
-                            <img src="http://placehold.it/150x70"/>
+                            <img src="/static/images/logo.png"/>
                         </a>
                         <ul class="dropdown menu float-left" data-dropdown-menu>
                             {% for category in categories %}
@@ -30,9 +30,10 @@
                                             </li>
                                         </ul>
                                     </li>
+                                    <li style="color:#d2d2d2">|</li>
                                 {% else %}
                                     <li>
-                                        <a class="button" href="{{ category.url }}">{{ category.title }}</a>
+                                        <a class="hollow button" href="{{ category.url }}">{{ category.title }}</a>
                                     </li>
                                 {% endif %}
                             {% endfor %}
@@ -41,10 +42,10 @@
                     <div class="title-bar-right">
                         <ul class="menu">
                             <li>
-                                <a href="#">我的帳戶</a>
+                                <a href="#"><i class="fa fa-info-circle"></i>我的帳戶</a>
                             </li>
                             <li>
-                                <a class="button">登入</a>
+                                <a class="button"><i class="fa fa-sign-in"></i>登入</a>
                             </li>
                         </ul>
                     </div>

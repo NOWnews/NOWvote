@@ -17,5 +17,24 @@
         position: relative;
         float: left;
         margin-left: 20px;
+        border:none;
     }
+    .button.hollow {
+        border:none;
+    }
+
+    .button.hollow:hover {
+        border:none;
+        cursor: pointer;
+    -webkit-appearance: none;
+    transition: background-color 0.25s ease-out, color 0.25s ease-out;
+    vertical-align: middle;
+
+    border-radius: 0;
+    // padding: 0.85em 1em;
+    margin-top:3px;
+    font-size: 0.9rem;
+    border-bottom: 3px solid #1fabd8;
+    }
+
 }

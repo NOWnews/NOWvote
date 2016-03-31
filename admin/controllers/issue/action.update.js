@@ -24,7 +24,7 @@ module.exports = function(req, res, next) {
         let status = data.status ? true : false;
         let continued = data.continued ? true : false;
         let startTime, endTime;
-        let questions = JSON.parse(data.question);
+        // let questions = JSON.parse(data.question);
 
         // 如果常駐被勾起來，就不需要記錄時間
         if(continued){
