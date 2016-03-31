@@ -5,8 +5,7 @@
   "scripts": {
     "start": "npm install && ./node_modules/bower/bin/bower install && DEBUG=NOWvote* ./node_modules/nodemon/bin/nodemon.js ./bin/www.js",
     "admin": "npm install && ./node_modules/bower/bin/bower install && ./ckeditorCommand.sh && DEBUG=NOWvote* ./node_modules/nodemon/bin/nodemon.js ./bin/admin.js",
-    "admin-gulp": "./node_modules/gulp/bin/gulp.js Gulp-Admin",
-    "server-gulp": "./node_modules/gulp/bin/gulp.js Gulp-Server"
+    "gulp": "./node_modules/gulp/bin/gulp.js"
   },
   "dependencies": {
     "babel-core": "^6.7.2",
