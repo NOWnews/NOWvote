@@ -3,7 +3,7 @@ import co from 'co';
 
 const caches = require('../../../caches');
 
-const debug = require('debug')('NOWvote:server:controllers:category:pageList');
+const debug = require('debug')('NOWvote:server:controllers:category:page.list');
 
 module.exports = function(req, res, next) {
 

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login</title>
+    </head>
+    <body>
+        <h1>LOGIN</h1>
+        <form action="/login" method="post" enctype="multipart/form-data">
+            username:
+            <input name="username"/>
+            password:
+            <input name="password"/>
+            <input type="file" name="file">
+            <input type="submit" value="送出">
+        </form>
+        <a href="/auth/facebook"><img src="https://cdn1.iconfinder.com/data/icons/logotypes/32/square-facebook-512.png" width="100" height="100"></a>
+        <a href="/auth/google"><img src="https://www.google.com.tw/images/branding/googleg/1x/googleg_standard_color_128dp.png" width="100" height="100"></a>
+    </body>
+</html>

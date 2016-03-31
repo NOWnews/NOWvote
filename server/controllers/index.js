@@ -8,9 +8,9 @@ const issue = require('./issue');
 
 module.exports = function(app) {
 
-    app.use('/', login);
-    app.use('/', auth);
     app.use('/', home);
+    app.use('/', auth);
+    app.use('/', login);
     app.use('/', category);
     app.use('/', issue);
     app.use('/', tag);

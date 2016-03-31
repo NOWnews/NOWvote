@@ -1,13 +1,31 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-    {% include "./blocks/head.html" %}
-</head>
-<body>
-    <h1>THIS IS WEBSITE</h1>
-    {% include "./blocks/header.html" %}
-    {% block container %}{% endblock %}
-    {% include "./blocks/footer.html" %}
-</body>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="zh-hant"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8" lang="zh-hant"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9" lang="zh-hant"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="zh-hant">
+    <!--<![endif]-->
+    <head>
+        <title>新首頁</title>
+        {% include "./blocks/head.html" %}
+
+        <!-- 每頁自定義的區塊 -->
+        {% block head %}{% endblock %}
+        <!--[if lt IE 9]> <script src="js/vendor/html5-3.6-respond-1.4.2.min.js"></script> <![endif]-->
+    </head>
+    <body>
+        <!--[if lt IE 8]> <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p> <![endif]-->
+        {% include "./blocks/header.html" %}
+        {% include "./blocks/slider.html" %}
+
+        <ul class="breadcrumbs">
+            <li>
+                <a href="/">Home</a>
+            </li>
+        </ul>
+
+        {% block container %}{% endblock %}
+
+        {% include "./blocks/footer.html" %}
+    </body>
 </html>
