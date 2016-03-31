@@ -107,6 +107,8 @@ schema.statics.findBySn = co.wrap(function*(sn) {
     return yield self
         .findOne()
         .where('sn').equals(thisSn)
+        .deepPopulate('category questions.options')
+        .lean()
         .execAsync();
 });
 

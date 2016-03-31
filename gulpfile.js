@@ -72,9 +72,6 @@ gulp.task('adminClean', function() {
     return;
 });
 
-// 執行端
-gulp.task('Gulp-Admin', ['adminClean', 'adminMoveFontAwesomeFolder','adminSass', 'adminScript', 'adminScript:watch', 'adminSass:watch']);
-
 // ============================ 這邊是 Server 的 Gulp =============================================
 
 // JS 跟 SCSS 的路徑
@@ -140,5 +137,22 @@ gulp.task('serverClean', function() {
     return;
 });
 
+// ============================ 共同執行端的 Gulp =============================================
+
 // 執行端
-gulp.task('Gulp-Server', ['serverClean', 'serverMoveFontAwesomeFolder','serverSass', 'serverScript', 'serverScript:watch', 'serverSass:watch']);
+gulp.task('default', [
+// server
+    'serverClean',
+    'serverMoveFontAwesomeFolder',
+    'serverSass',
+    'serverScript',
+    'serverScript:watch',
+    'serverSass:watch',
+// admin
+    'adminClean',
+    'adminMoveFontAwesomeFolder',
+    'adminSass',
+    'adminScript',
+    'adminScript:watch',
+    'adminSass:watch'
+]);
