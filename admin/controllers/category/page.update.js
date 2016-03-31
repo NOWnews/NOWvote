@@ -22,6 +22,7 @@ module.exports = function(req, res, next) {
 
         let category = yield models.category.findOne()
             .where('sn').equals(sn)
+            .where('trashed').equals(false)
             .lean()
             .execAsync();
 

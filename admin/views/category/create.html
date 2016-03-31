@@ -28,15 +28,21 @@
         <div class="row">
             <div class="large-12 columns">
                 <label>標題
-                    <input name="title" type="text" placeholder="請輸入標題" required/>
+                    <input id="categoryTitle" name="title" type="text" placeholder="請輸入標題" required/>
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-8 columns">
+                <label>URL
+                    <input id="categoryUrl" name="url" type="text" placeholder="請輸入URL" required/>
                 </label>
             </div>
         </div>
         <div class="row">
             <div class="large-12 columns">
-                <label>URL
-                    <input name="url" type="text" placeholder="請輸入URL" required/>
-                </label>
+                <input id="externalLink" name="externalLink" type="checkbox" {{ externalLink }} />
+                <label for="externalLink">URL為外部連結</label>
             </div>
         </div>
         <div class="row">

@@ -29,6 +29,12 @@ const schema = new Schema({
         required: true
     },
 
+    // 是否為外部連結
+    externalLink: {
+        type: Boolean,
+        default: false
+    },
+
     weight: {
         type: Number,
         default: 0

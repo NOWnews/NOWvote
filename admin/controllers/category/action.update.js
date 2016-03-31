@@ -13,6 +13,7 @@ module.exports = function(req, res, next) {
     co(function*() {
 
         let status = data.status ? true : false;
+        let externalLink = data.externalLink ? true : false;
         let continued = data.continued ? true : false;
         let startTime, endTime;
 
@@ -36,6 +37,7 @@ module.exports = function(req, res, next) {
         category.set('endTime', endTime);
         category.set('status', status);
         category.set('continued', continued);
+        category.set('externalLink', externalLink);
 
         yield category.saveAsync();
 
