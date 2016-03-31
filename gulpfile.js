@@ -117,7 +117,7 @@ gulp.task('serverSass', function() {
 
 // 監視 scss
 gulp.task('serverSass:watch', function() {
-    gulp.watch('./server/public/scss/**/*.scss', ['serverSass']);
+    gulp.watch('./server/public/scss/**/*', ['serverSass']);
 });
 
 // 編譯 js
