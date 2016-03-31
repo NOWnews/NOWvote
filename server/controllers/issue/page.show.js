@@ -5,6 +5,8 @@ import co from 'co';
 import models from '../../../models';
 import redis from '../../../caches';
 
+const libs = require('../../../libs');
+
 module.exports = function(req, res, next) {
 
     co(function*() {
@@ -27,9 +29,10 @@ module.exports = function(req, res, next) {
         let issue = results[2];
         debug('issue = %j', issue);
 
-        return res.render('issue/issue', {
+        issue.startTime = libs.formatDate(issue.startTime);
+        issue.endTime = libs.formatDate(issue.endTime);
 
-          // banners: banners,
+        return res.render('issue/issue', {
           categories: categories,
           issue: issue
         });
