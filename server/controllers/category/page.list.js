@@ -11,7 +11,7 @@ module.exports = function(req, res, next) {
 
     let categoryName = req.params.category;
     let currentPage = req.query.page || 1;
-    let limit = 2;
+    let limit = 12;
     let skip = ( currentPage - 1 ) * limit;
 
     debug('categoryName = %s', categoryName);
