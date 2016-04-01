@@ -13,24 +13,13 @@
                         <a id="logo" href="/">
                             <img src="/static/images/logo.png"/>
                         </a>
-                        <ul class="dropdown menu float-left" data-dropdown-menu>
+                        <ul class="category-menu menu float-left">
                             {% for category in categories %}
                                 {% if loop.first %}
                                     <li class="has-submenu">
                                         <a class="hollow button" href="{{ category.url }}">{{ category.title }}</a>
-                                        <ul class="menu submenu vertical" data-submenu>
-                                            <li>
-                                                <a href="/page/1.html">文字測試頁</a>
-                                            </li>
-                                            <li>
-                                                <a href="/page/2.html">直方測試頁</a>
-                                            </li>
-                                            <li>
-                                                <a href="/page/3.html">圓餅測試頁</a>
-                                            </li>
-                                        </ul>
                                     </li>
-                                    <li style="color:#d2d2d2">|</li>
+                                    <li class="straight-line">|</li>
                                 {% else %}
                                     <li>
                                         <a class="hollow button" href="{{ category.url }}">{{ category.title }}</a>
