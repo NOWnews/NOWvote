@@ -36,7 +36,7 @@ $(function() {
             categoryUrl.attr('readonly', false);
         }else{
             categoryUrl.attr('readonly', true);
-            categoryUrl.val('/categoty/' + categoryTitle.val());
+            categoryUrl.val('/category/' + categoryTitle.val());
         }
     };
     checkedExternalLink();
@@ -44,7 +44,7 @@ $(function() {
     // 當 input name 的時候的 event
     $('#categoryTitle').keyup(function(e) {
         if(!$('#externalLink').prop('checked')){
-            $('#categoryUrl').val('/categoty/' + $(this).val());
+            $('#categoryUrl').val('/category/' + $(this).val());
         }
     });
 
@@ -57,7 +57,7 @@ $(function() {
             categoryUrl.val('http://');
         }else{
             categoryUrl.attr('readonly', true);
-            categoryUrl.val('/categoty/' + categoryTitle.val());
+            categoryUrl.val('/category/' + categoryTitle.val());
         }
     });
 
