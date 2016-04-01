@@ -12,13 +12,16 @@ module.exports = function(req, res, next) {
         // 非同步去取得資料
         let results = yield [
             // 從 redis 取得 category 的資料
-            yield redis.getCategory(),
+            redis.getCategory(),
 
             // 從 redis 取得 slideBanner 的資料
-            yield redis.getBanner(),
+            redis.getBanner(),
 
             // 從 redis 取得首頁 issue 的資料
-            yield redis.getIndexIssues(true)
+            redis.getIndexIssues(true),
+
+            // 取得即時新聞資料
+            redis.getInstantNews()
         ];
         debug('results = %j', results);
 
@@ -26,9 +29,11 @@ module.exports = function(req, res, next) {
         let categories = results[0];
         let banners = results[1];
         let issues = results[2];
+        let hotNews = results[3];
         debug('categories = %j', categories);
         debug('banners = %j', banners);
         debug('issues = %j', issues);
+        debug('hotNews = %j', hotNews);
 
         /*
          * 處理投票人數問題

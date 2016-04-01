@@ -1,7 +1,7 @@
 
 import co from 'co';
 
-const caches = require('../../../caches');
+const redis = require('../../../caches');
 const models = require('../../../models');
 const libs = require('../../../libs');
 
@@ -62,16 +62,19 @@ module.exports = function(req, res, next) {
             ])
             .count();
 
-        // 找尋所有 issues 與總數量
+        // 找尋所有 issues 與總數量，還有新聞
         let results = yield [
             isseusQuery.execAsync(),
             countQuery.execAsync(),
+            redis.get36News(),
         ];
 
         let issues = results[0];
         let issuesTotal = results[1];
+        let news36 = results[2];
         debug('issues = %j', issues);
         debug('issuesTotal = %d', issuesTotal);
+        debug('news36 = %j', news36);
 
         /*
          * 處理投票人數問題
@@ -103,7 +106,8 @@ module.exports = function(req, res, next) {
 
         return res.json({
             issues: issues,
-            pageInfo: pageInfo
+            pageInfo: pageInfo,
+            news36: news36
         });
     })
     .catch(next);
