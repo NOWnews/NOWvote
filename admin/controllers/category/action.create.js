@@ -14,6 +14,7 @@ module.exports = function(req, res, next) {
 
         let status = data.status ? true : false;
         let continued = data.continued ? true : false;
+        let externalLink = data.externalLink ? true : false;
         let startTime, endTime;
 
         // 如果常駐被勾起來，就不需要記錄時間
@@ -32,7 +33,8 @@ module.exports = function(req, res, next) {
             startTime: startTime,
             endTime: endTime,
             status: status,
-            continued: continued
+            continued: continued,
+            externalLink: externalLink
         });
 
         debug('new menu category = %j', newCategory);

@@ -34,15 +34,26 @@
             <div class="row">
                 <div class="large-12 columns">
                     <label>標題
-                        <input name="title" type="text" value="{{item.title}}" placeholder="請輸入標題" required/>
+                        <input id="categoryTitle" name="title" type="text" value="{{item.title}}" placeholder="請輸入標題" required/>
                     </label>
                 </div>
             </div>
             <div class="row">
                 <div class="large-12 columns">
                     <label>URL
-                        <input name="url" type="text" value="{{item.url}}" placeholder="請輸入URL" required/>
+                        <input id="categoryUrl" name="url" type="text" value="{{item.url}}" placeholder="請輸入URL" required/>
                     </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+
+                    {% if item.externalLink == true %}
+                        <input id="externalLink" name="externalLink" type="checkbox" checked/>
+                    {% else %}
+                        <input id="externalLink" name="externalLink" type="checkbox" />
+                    {% endif %}
+                    <label for="externalLink">URL為外部連結</label>
                 </div>
             </div>
             <div class="row">
