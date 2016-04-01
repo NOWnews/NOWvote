@@ -82,10 +82,13 @@ var serverBowerJsPaths = [
 ];
 var serverBowerScssPaths = [
     './server/public/scss/*.scss',
-    './server/public/scss/*.css',
-    './bower_components/foundation-sites/assets/foundation.scss',
     './bower_components/font-awesome/scss/font-awesome.scss',
     './bower_components/foundation-datepicker/css/foundation-datepicker.scss'
+];
+
+var serverSettingsPaths = [
+  './bower_components/foundation-sites/scss',
+  './bower_components/motion-ui/src'
 ];
 
 // 移動 font的檔案
@@ -100,6 +103,7 @@ gulp.task('serverSass', function() {
         .pipe(plugins.plumber())
         .pipe(plugins.sourcemaps.init())
         .pipe(plugins.sass({
+            includePaths: serverSettingsPaths,
             outputStyle: 'compressed'
         }))
         .pipe(plugins.autoprefixer({
@@ -114,7 +118,7 @@ gulp.task('serverSass', function() {
 
 // 監視 scss
 gulp.task('serverSass:watch', function() {
-    gulp.watch('./server/public/scss/**/*', ['serverSass']);
+    gulp.watch('./server/public/scss/**/*.scss', ['serverSass']);
 });
 
 // 編譯 js
