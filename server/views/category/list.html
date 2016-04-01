@@ -22,23 +22,7 @@
             </div>
         {% endfor %}
     </div>
-    {% if issues.length != 0 %}
-        <ul class="pagination text-center" role="navigation" aria-label="Pagination">
-            {% if pageInfo.prevPage %}
-                <li class="pagination-previous">
-                    <a href="{{ thisUrl }}?page={{ pageInfo.currentPage - 1 }}" aria-label="Next page">前一頁</a>
-                </li>
-            {% else %}
-                <li class="pagination-previous disabled">前一頁</li>
-            {% endif %}
-            <li class="current">{{ pageInfo.currentPage }}</li>
-            {% if pageInfo.nextPage %}
-                <li class="pagination-next">
-                    <a href="{{ thisUrl }}?page={{ pageInfo.currentPage + 1 }}" aria-label="Next page">下一頁</a>
-                </li>
-            {% else %}
-                <li class="pagination-next disabled">下一頁</li>
-            {% endif %}
-        </ul>
-    {% endif %}
+
+    {% include "../blocks/pagination.html" %}
+
 {% endblock %}
