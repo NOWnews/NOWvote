@@ -27,27 +27,37 @@ $(function() {
     // Menu -----------------------
 
     // externalLink 外部連結
-    if($('#externalLink').attr('checked')) {
-        $('#categoryUrl').attr('readonly', false);
-    }else{
-        $('#categoryUrl').attr('readonly', true);
-        $('#categoryUrl').val('/categoty/' + $('#categoryTitle').val());
-    }
+    var checkedExternalLink = function () {
+        var externalLink = $('#externalLink');
+        var categoryUrl = $('#categoryUrl');
+        var categoryTitle = $('#categoryTitle');
+
+        if(externalLink.attr('checked')) {
+            categoryUrl.attr('readonly', false);
+        }else{
+            categoryUrl.attr('readonly', true);
+            categoryUrl.val('/categoty/' + categoryTitle.val());
+        }
+    };
+    checkedExternalLink();
 
     // 當 input name 的時候的 event
     $('#categoryTitle').keyup(function(e) {
         if(!$('#externalLink').prop('checked')){
-            $('#categoryUrl').val('/categoty/' + $('#categoryTitle').val());
+            $('#categoryUrl').val('/categoty/' + $(this).val());
         }
     });
 
     $('#externalLink').change(function() {
+        var categoryUrl = $('#categoryUrl');
+        var categoryTitle = $('#categoryTitle');
+
         if (this.checked) {
-            $('#categoryUrl').attr('readonly', false);
-            $('#categoryUrl').val('http://');
+            categoryUrl.attr('readonly', false);
+            categoryUrl.val('http://');
         }else{
-            $('#categoryUrl').attr('readonly', true);
-            $('#categoryUrl').val('/categoty/' + $('#categoryTitle').val());
+            categoryUrl.attr('readonly', true);
+            categoryUrl.val('/categoty/' + categoryTitle.val());
         }
     });
 
