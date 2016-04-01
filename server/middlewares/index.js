@@ -13,6 +13,7 @@ import passport from 'passport';
 
 const upload = multer({ dest: '/tmp' });
 const auth = require('./auth');
+const parseBaseQuery = require('./parseBaseQuery');
 
 module.exports = function(app) {
 
@@ -53,7 +54,9 @@ module.exports = function(app) {
     app.use(auth(app));
 
     app.use(logger('dev'));
-    // app.use(logger(':method :url :response-time'));
+
+    // 處理 get query limit, skip 的問題
+    app.use(parseBaseQuery());
 
     return function(req, res, next) {
         return next();
