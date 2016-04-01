@@ -10,6 +10,7 @@ module.exports = function(req, res, next) {
 
         let categories = yield models.category.find()
             .where('trashed').equals(false)
+            .where('externalLink').equals(false)
             .execAsync();
 
         debug('categories = %j', categories);
