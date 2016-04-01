@@ -11,8 +11,8 @@ module.exports = function(req, res, next) {
 
     let categoryName = req.params.category;
     let currentPage = req.query.page || 1;
-    let limit = 12;
-    let skip = ( currentPage - 1 ) * 12;
+    let limit = 2;
+    let skip = ( currentPage - 1 ) * limit;
 
     debug('categoryName = %s', categoryName);
     debug('limit = %s', limit);
@@ -22,8 +22,7 @@ module.exports = function(req, res, next) {
 
         let now = Date.now();
 
-        let category = yield models.category.findOne()
-            .where('title').equals(categoryName)
+        let categories = yield models.category.find()
             .where('trashed').equals(false)
             .where('status').equals(true)
             .or([
@@ -31,6 +30,8 @@ module.exports = function(req, res, next) {
                 { startTime: { $lte: now }, endTime: { $gte: now } }
             ])
             .execAsync();
+
+        let category = _.filter(categories, {title: categoryName})[0];
         debug('category = %j', category);
 
         if(!category) {
@@ -101,9 +102,15 @@ module.exports = function(req, res, next) {
         });
         debug('pageInfo = %j', pageInfo);
 
-        return res.json({
+        // 抓取當前的 URL
+        let thisUrl = req.url.split('?')[0];
+        debug('thisUrl = %j', thisUrl);
+
+        return res.render('category/list', {
+            categories: categories,
             issues: issues,
-            pageInfo: pageInfo
+            pageInfo: pageInfo,
+            thisUrl: thisUrl
         });
     })
     .catch(next);
