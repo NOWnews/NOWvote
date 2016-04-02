@@ -29,7 +29,7 @@ module.exports = co.wrap(function*() {
         });
     debug('News Instant From Api = %j', newsInstantFromApi);
 
-    let updateRedisHotNews = yield setRedisValue('newsInstant', newsInstantFromApi, 300);
+    let updateRedisInstantNews = yield setRedisValue('newsInstant', newsInstantFromApi, 300);
 
-    return yield Promise.resolve(updateRedisHotNews);
+    return yield Promise.resolve(updateRedisInstantNews);
 });
