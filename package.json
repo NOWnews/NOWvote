@@ -28,7 +28,7 @@
     "fs-extra": "^0.26.7",
     "fs-promise": "^0.4.1",
     "is_js": "^0.8.0",
-    "lodash": "^4.3.0",
+    "lodash": "^4.7.0",
     "method-override": "^2.3.5",
     "moment-timezone": "^0.5.2",
     "mongoose": "^4.4.8",
