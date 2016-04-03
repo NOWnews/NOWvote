@@ -24,7 +24,14 @@ module.exports = function(req, res, next) {
 
         let categories = yield redis.getCategory();
         let category = yield models.category.findOne()
-            .where('title').equals(categoryName);
+            .where('title').equals(categoryName)
+            .where('trashed').equals(false)
+            .where('status').equals(true)
+            .or([
+            { continued: true },
+            { startTime: { $lte: now }, endTime: { $gte: now } }
+            ])
+            .execAsync();
         debug('category = %j', category);
 
         if(!category) {
@@ -100,7 +107,7 @@ module.exports = function(req, res, next) {
 
         // 抓取當前的 URL
         let urlPath = req.path;
-        debug('urlPath = %j', urlPath);
+        debug('urlPath = %d', urlPath);
 
         return res.render('category/list', {
             categories: categories,
