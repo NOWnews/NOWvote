@@ -14,11 +14,16 @@ module.exports = function(req, res, next) {
        // 非同步去取得資料
         let results = yield [
             // 從 redis 取得 Category 的資料
-            yield redis.getCategory(),
-            yield redis.getBanner(),
-            yield models.issue.findBySn(req.params.sn)
+            redis.getCategory(),
+            redis.getBanner(),
+
+            // 取得新聞
+            redis.getHotNews(),
+            redis.get36News(),
+
+            // 取得 issue
+            models.issue.findBySn(req.params.sn)
         ];
-        // debug('results = %j', results);
 
         let categories = results[0];
         debug('category = %j', categories);
@@ -26,7 +31,13 @@ module.exports = function(req, res, next) {
         let banners = results[1];
         debug('banner = %j', banners);
 
-        let issue = results[2];
+        let hotNews = results[2];
+        debug('hotNews = %j', hotNews);
+
+        let news36 = results[3];
+        debug('news36 = %j', news36);
+
+        let issue = results[4];
         debug('issue = %j', issue);
 
         issue.startTime = libs.formatDate(issue.startTime);
@@ -34,7 +45,9 @@ module.exports = function(req, res, next) {
 
         return res.render('issue/issue', {
           categories: categories,
-          issue: issue
+          issue: issue,
+          hotNews: hotNews,
+          news36: news36
         });
     })
     .catch(next);
