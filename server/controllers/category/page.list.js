@@ -1,7 +1,7 @@
 
 import co from 'co';
 
-const caches = require('../../../caches');
+const redis = require('../../../caches');
 const models = require('../../../models');
 const libs = require('../../../libs');
 
@@ -22,16 +22,9 @@ module.exports = function(req, res, next) {
 
         let now = Date.now();
 
-        let categories = yield models.category.find()
-            .where('trashed').equals(false)
-            .where('status').equals(true)
-            .or([
-                { continued: true },
-                { startTime: { $lte: now }, endTime: { $gte: now } }
-            ])
-            .execAsync();
-
-        let category = _.filter(categories, {title: categoryName})[0];
+        let categories = yield redis.getCategory();
+        let category = yield models.category.findOne()
+            .where('title').equals(categoryName);
         debug('category = %j', category);
 
         if(!category) {
@@ -103,14 +96,14 @@ module.exports = function(req, res, next) {
         debug('pageInfo = %j', pageInfo);
 
         // 抓取當前的 URL
-        let thisUrl = req.url.split('?')[0];
-        debug('thisUrl = %j', thisUrl);
+        let urlPath = req.path;
+        debug('urlPath = %j', urlPath);
 
         return res.render('category/list', {
             categories: categories,
             issues: issues,
             pageInfo: pageInfo,
-            thisUrl: thisUrl
+            urlPath: urlPath
         });
     })
     .catch(next);
