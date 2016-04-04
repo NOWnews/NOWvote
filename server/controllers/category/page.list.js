@@ -12,7 +12,7 @@ module.exports = function(req, res, next) {
     let categoryName = req.params.category;
     let currentPage = req.query.page || 1;
     let limit = 12;
-    let skip = ( currentPage - 1 ) * 12;
+    let skip = ( currentPage - 1 ) * limit;
 
     debug('categoryName = %s', categoryName);
     debug('limit = %s', limit);
@@ -22,13 +22,14 @@ module.exports = function(req, res, next) {
 
         let now = Date.now();
 
+        let categories = yield redis.getCategory();
         let category = yield models.category.findOne()
             .where('title').equals(categoryName)
             .where('trashed').equals(false)
             .where('status').equals(true)
             .or([
-                { continued: true },
-                { startTime: { $lte: now }, endTime: { $gte: now } }
+            { continued: true },
+            { startTime: { $lte: now }, endTime: { $gte: now } }
             ])
             .execAsync();
         debug('category = %j', category);
@@ -104,10 +105,16 @@ module.exports = function(req, res, next) {
         });
         debug('pageInfo = %j', pageInfo);
 
-        return res.json({
+        // 抓取當前的 URL
+        let urlPath = req.path;
+        debug('urlPath = %d', urlPath);
+
+        return res.render('category/list', {
+            categories: categories,
             issues: issues,
             pageInfo: pageInfo,
-            news36: news36
+            news36: news36,
+            urlPath: urlPath
         });
     })
     .catch(next);
