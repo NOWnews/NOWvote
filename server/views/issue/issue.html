@@ -50,7 +50,6 @@
                                         {% endfor %}
                                     </ul>
                                 </div>
-
                             {% endfor %}
                         </div>
                     </article>
@@ -58,86 +57,6 @@
             </div>
         </main>
         {# ---- 側邊欄 ---- #}
-        <aside class="aside-left column large-5">
-            <section>
-                <div class="column">
-                    <div class="media-object">
-                        <div class="media-object-section">
-                            <div class="thumbnail">
-                                <img src="http://placehold.it/100x100">
-                            </div>
-                        </div>
-                        <div class="media-object-section">
-                            <h4>文字文字</p>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-            </section>
-            <section>
-                <div class="vote_list">
-                    <div class="vote_item">
-                        <div class="vote_img">
-                            <a href="#"><img src="http://placehold.it/100x100" width="100px" height="100px"></a>
-                        </div>
-                        <div class="vote_description">
-                            <div class="vote_title">
-                                <a href="#">投票宣傳投票宣傳投票宣傳投票宣傳投票宣傳投票宣傳</a>
-                            </div>
-                            <span class="vote_category">推薦投票 |</span>
-                            <span class="vote_date">2016-03-22 13:00:29</span>
-                        </div>
-                    </div>
-                    <div class="vote_item">
-                        <div class="vote_img">
-                            <a href="#"><img src="http://placehold.it/100x100" width="100px" height="100px"></a>
-                        </div>
-                        <div class="vote_description">
-                            <div class="vote_title">
-                                <a href="#">投票宣傳投票宣傳投票宣傳投票宣傳投票宣傳投票宣傳！</a>
-                            </div>
-                            <span class="vote_category">推薦投票 |</span>
-                            <span class="vote_date">2016-03-22 12:57:29</span>
-                        </div>
-                    </div>
-                    <div class="vote_item">
-                        <div class="vote_img">
-                            <a href="#"><img src="http://placehold.it/100x100" width="100px" height="100px"></a>
-                        </div>
-                        <div class="vote_description">
-                            <div class="vote_title">
-                                <a href="#">投票宣傳投票宣傳投票宣傳投票宣傳投票宣傳投票宣傳</a>
-                            </div>
-                            <span class="vote_category">推薦投票 |</span>
-                            <span class="vote_date">2016-03-22 12:53:47</span>
-                        </div>
-                    </div>
-                    <div class="vote_item">
-                        <div class="vote_img">
-                            <a href="/tw/blogs/zhe-shen-sui-mi-ren-de-hui-mou-ning-wang-wan-quan-yi-fan-gu-bi-chu-hui-zhi-de-dong-hua-dian-ying"><img src="http://placehold.it/100x100" width="100px" height="100px"></a>
-                        </div>
-                        <div class="vote_description">
-                            <div class="vote_title">
-                                <a href="#">投票宣傳投票宣傳投票宣傳投票宣傳投票宣傳投票宣傳投票宣傳</a>
-                            </div>
-                            <span class="vote_category">推薦投票 |</span>
-                            <span class="vote_date">2016-03-14 15:41:27</span>
-                        </div>
-                    </div>
-                    <div class="vote_item">
-                        <div class="vote_img">
-                            <a href="/tw/blogs/jiu-shi-yao-dang-cha-hua-jia-jiang-jin-lie-ren-cha-hua-she-qun-chuang-zuo-hui-deng-zhe-ni"><img src="http://placehold.it/100x100" width="100px" height="100px"></a>
-                        </div>
-                        <div class="vote_description">
-                            <div class="vote_title">
-                                <a href="#">投票宣傳投票宣傳投票宣傳投票宣傳投票宣傳投票宣傳投票宣傳投票宣傳</a>
-                            </div>
-                            <span class="vote_category">活動宣傳 |</span>
-                            <span class="vote_date">2016-03-14 15:34:30</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </aside>
+        {% include "./partials/aside.html" %}
     </div>
 {% endblock %}
