@@ -4,7 +4,7 @@ let router = express.Router();
 
 import actionVote from './action.vote';
 
-router.route('/vote/:sn')
-    .get(actionVote);
+router.route('/vote/')
+    .post(actionVote);
 
 module.exports = router;
