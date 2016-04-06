@@ -1,7 +1,7 @@
 
 import passport from 'passport';
 
-const debug = Debug('NOWvote:server:middlewares:auth');
+const debug = require('debug')('NOWvote:server:middlewares:auth');
 const models = require('../../models');
 const FacebookStrategy = require('passport-facebook').Strategy;
 const GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
