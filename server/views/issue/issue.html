@@ -1,5 +1,9 @@
 {% extends "../index.html" %}
 
+{% block head %}
+    <script src="http://s.codepen.io/assets/libs/modernizr.js" type="text/javascript"></script>
+{% endblock %}
+
 {% block container %}
     <div class="row">
         <main class="main-right column large-10">
@@ -7,7 +11,7 @@
                 <section class="container" flex-container="row">
                     <article class="m-main-content m-competition" flex-item="8">
                         <div>
-                            <img src="{{ issue.mainImage }}">
+                            <img class="main-image" src="{{ issue.mainImage }}">
                         </div>
                         <h1 class="vote-title">
                             {{ issue.title }}
@@ -29,28 +33,35 @@
                         <div class="article-tag">
                             關鍵標籤:
                             {% for tag in issue.tags %}
-                                <span class="info label"><i class="fa fa-hashtag"></i>{{ tag }}</span>
+                                <span class="info label">
+                                    <i class="fa fa-hashtag"></i>{{ tag }}</span>
                             {% endfor %}
                         </div>
                         <div class="article-content">
                             {{ issue.desc | safe }}
                         </div>
                         <div class="article-vote">
-                            {% for question in issue.questions %}
-                                <div class="callout">
-                                    <h3>{{ question.content }}</h3>
-                                    <ul class="menu vertical">
-                                        {% for option in question.options %}
-                                            <li>
-                                                <label>
-                                                    <input type="radio" name="{{ question.content }}">
-                                                    {{ option.content }}
-                                                </label>
-                                            </li>
-                                        {% endfor %}
-                                    </ul>
-                                </div>
-                            {% endfor %}
+                            <form class="vote-form">
+                                {% for question in issue.questions %}
+                                    <div class="callout">
+                                        <h3>{{ question.content }}</h3>
+                                        <ul class="menu vertical">
+                                            {% for option in question.options %}
+                                                <li>
+                                                    <label class="radio">
+                                                        <input type="radio" name="{{ question._id }}">
+                                                        <span class="outer">
+                                                             <span class="inner"></span>
+                                                        </span>
+                                                        {{ option.content }}
+                                                    </label>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                {% endfor %}
+                                <a id="vote-btn" class="button success">投票</a>
+                            </form>
                         </div>
                     </article>
                 </section>

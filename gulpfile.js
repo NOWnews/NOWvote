@@ -88,7 +88,8 @@ var serverBowerScssPaths = [
 
 var serverSettingsPaths = [
   './bower_components/foundation-sites/scss',
-  './bower_components/motion-ui/src'
+  './bower_components/motion-ui/src',
+  './bower_components/bourbon/app/assets/stylesheets'
 ];
 
 // 移動 font的檔案
