@@ -17,6 +17,7 @@ module.exports = function(req, res, next) {
         let userId = '500000000000000000000012';
 
         let relationData = [];
+        let optionsIds = [];
 
         // 處理傳進來的資料
         _.forEach(data.questions, function(question) {
@@ -27,6 +28,7 @@ module.exports = function(req, res, next) {
                     question: question.questionId,
                     option: option
                 });
+                optionsIds.push(option);
             });
         });
 
@@ -67,11 +69,14 @@ module.exports = function(req, res, next) {
 
         debug('relationData = %j', relationData);
 
-        yield models.issueRelation.createAsync(relationData);
+        let results = yield [
+            models.issueRelation.createAsync(relationData),
+
+            // 計算議題投票人數
+            models.option.updateCounterByIds(optionsIds)
+        ];
 
         return res.json(relationData);
-
-        // return res.redirect(`/issues/${issueSn}`);
     })
     .catch(next);
 };

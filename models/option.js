@@ -59,6 +59,24 @@ schema.statics.findBySn = co.wrap(function*(sn) {
         .execAsync();
 });
 
+schema.statics.updateCounterByIds = co.wrap(function*(ids) {
+
+    let self = this;
+
+    if(!is.array(ids)){
+        return yield Promise.reject(new Error('ids must array'));
+    }
+
+    let options = yield self.find()
+        .where('_id').in(ids)
+        .execAsync();
+
+    return yield Promise.map(options, function(option) {
+            option.set('counter', option.counter + 1);
+            return option.saveAsync();
+        });
+});
+
 schema.plugin(autoIncrement.plugin, {
     model: 'option',
     field: 'sn',
