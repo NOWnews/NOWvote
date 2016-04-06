@@ -78,7 +78,8 @@ gulp.task('adminClean', function() {
 var serverBowerJsPaths = [
     './server/public/js/*.js',
     './bower_components/jquery/dist/jquery.js',
-    './bower_components/foundation-sites/dist/foundation.js'
+    './bower_components/foundation-sites/dist/foundation.js',
+    './node_modules/lodash/lodash.js'
 ];
 var serverBowerScssPaths = [
     './server/public/scss/*.scss',
