@@ -1,5 +1,9 @@
 {% extends "../index.html" %}
 
+{% block head %}
+    <script src="http://s.codepen.io/assets/libs/modernizr.js" type="text/javascript"></script>
+{% endblock %}
+
 {% block container %}
     <div class="row">
         <main class="main-right column large-10">
@@ -7,7 +11,7 @@
                 <section class="container" flex-container="row">
                     <article class="m-main-content m-competition" flex-item="8">
                         <div>
-                            <img src="{{ issue.mainImage }}">
+                            <img class="main-image" src="{{ issue.mainImage }}">
                         </div>
                         <h1 class="vote-title">
                             {{ issue.title }}
@@ -29,115 +33,41 @@
                         <div class="article-tag">
                             關鍵標籤:
                             {% for tag in issue.tags %}
-                                <span class="info label"><i class="fa fa-hashtag"></i>{{ tag }}</span>
+                                <span class="info label">
+                                    <i class="fa fa-hashtag"></i>{{ tag }}</span>
                             {% endfor %}
                         </div>
                         <div class="article-content">
                             {{ issue.desc | safe }}
                         </div>
                         <div class="article-vote">
-                            {% for question in issue.questions %}
-                                <div class="callout">
-                                    <h3>{{ question.content }}</h3>
-                                    <ul class="menu vertical">
-                                        {% for option in question.options %}
-                                            <li>
-                                                <label>
-                                                    <input type="radio" name="{{ question.content }}">
-                                                    {{ option.content }}
-                                                </label>
-                                            </li>
-                                        {% endfor %}
-                                    </ul>
-                                </div>
-
-                            {% endfor %}
+                            <form class="vote-form" action="/vote" issue-id="{{ issue._id }}">
+                                {% for question in issue.questions %}
+                                    <div class="callout">
+                                        <h3>{{ question.content }}</h3>
+                                        <ul class="menu vertical">
+                                            {% for option in question.options %}
+                                                <li>
+                                                    <label class="radio">
+                                                        <input type="radio" name="{{ question._id }}" value="{{ option._id }}">
+                                                        <span class="outer">
+                                                             <span class="inner"></span>
+                                                        </span>
+                                                        {{ option.content }}
+                                                    </label>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                {% endfor %}
+                                <a id="vote-btn" class="button success">投票</a>
+                            </form>
                         </div>
                     </article>
                 </section>
             </div>
         </main>
         {# ---- 側邊欄 ---- #}
-        <aside class="aside-left column large-5">
-            <section>
-                <div class="column">
-                    <div class="media-object">
-                        <div class="media-object-section">
-                            <div class="thumbnail">
-                                <img src="http://placehold.it/100x100">
-                            </div>
-                        </div>
-                        <div class="media-object-section">
-                            <h4>文字文字</p>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-            </section>
-            <section>
-                <div class="vote_list">
-                    <div class="vote_item">
-                        <div class="vote_img">
-                            <a href="#"><img src="http://placehold.it/100x100" width="100px" height="100px"></a>
-                        </div>
-                        <div class="vote_description">
-                            <div class="vote_title">
-                                <a href="#">投票宣傳投票宣傳投票宣傳投票宣傳投票宣傳投票宣傳</a>
-                            </div>
-                            <span class="vote_category">推薦投票 |</span>
-                            <span class="vote_date">2016-03-22 13:00:29</span>
-                        </div>
-                    </div>
-                    <div class="vote_item">
-                        <div class="vote_img">
-                            <a href="#"><img src="http://placehold.it/100x100" width="100px" height="100px"></a>
-                        </div>
-                        <div class="vote_description">
-                            <div class="vote_title">
-                                <a href="#">投票宣傳投票宣傳投票宣傳投票宣傳投票宣傳投票宣傳！</a>
-                            </div>
-                            <span class="vote_category">推薦投票 |</span>
-                            <span class="vote_date">2016-03-22 12:57:29</span>
-                        </div>
-                    </div>
-                    <div class="vote_item">
-                        <div class="vote_img">
-                            <a href="#"><img src="http://placehold.it/100x100" width="100px" height="100px"></a>
-                        </div>
-                        <div class="vote_description">
-                            <div class="vote_title">
-                                <a href="#">投票宣傳投票宣傳投票宣傳投票宣傳投票宣傳投票宣傳</a>
-                            </div>
-                            <span class="vote_category">推薦投票 |</span>
-                            <span class="vote_date">2016-03-22 12:53:47</span>
-                        </div>
-                    </div>
-                    <div class="vote_item">
-                        <div class="vote_img">
-                            <a href="/tw/blogs/zhe-shen-sui-mi-ren-de-hui-mou-ning-wang-wan-quan-yi-fan-gu-bi-chu-hui-zhi-de-dong-hua-dian-ying"><img src="http://placehold.it/100x100" width="100px" height="100px"></a>
-                        </div>
-                        <div class="vote_description">
-                            <div class="vote_title">
-                                <a href="#">投票宣傳投票宣傳投票宣傳投票宣傳投票宣傳投票宣傳投票宣傳</a>
-                            </div>
-                            <span class="vote_category">推薦投票 |</span>
-                            <span class="vote_date">2016-03-14 15:41:27</span>
-                        </div>
-                    </div>
-                    <div class="vote_item">
-                        <div class="vote_img">
-                            <a href="/tw/blogs/jiu-shi-yao-dang-cha-hua-jia-jiang-jin-lie-ren-cha-hua-she-qun-chuang-zuo-hui-deng-zhe-ni"><img src="http://placehold.it/100x100" width="100px" height="100px"></a>
-                        </div>
-                        <div class="vote_description">
-                            <div class="vote_title">
-                                <a href="#">投票宣傳投票宣傳投票宣傳投票宣傳投票宣傳投票宣傳投票宣傳投票宣傳</a>
-                            </div>
-                            <span class="vote_category">活動宣傳 |</span>
-                            <span class="vote_date">2016-03-14 15:34:30</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </aside>
+        {% include "./partials/aside.html" %}
     </div>
 {% endblock %}

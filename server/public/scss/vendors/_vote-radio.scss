@@ -1,0 +1,96 @@
+@import "bourbon";
+
+/* Variables
+ ------------------------------------------------------------- */
+$primary-color: rgb(12,112,180);
+$secondary-color: rgb(240,139,59);
+$medium-color: rgb(84,103,117);
+$standard-font: normal 400 18px 'PT Sans', sans-serif;
+
+/* Animation from Animate.css
+ ------------------------------------------------------------- */
+@include keyframes(cardEnter) {
+  0%, 20%, 40%, 60%, 80%, 100% {
+    transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  }
+
+  0% {
+    opacity: 0;
+    @include transform(scale3d(.3, .3, .3));
+  }
+
+  20% {
+    @include transform(scale3d(1.1, 1.1, 1.1));
+  }
+
+  40% {
+    @include transform(scale3d(.9, .9, .9));
+  }
+
+  60% {
+    opacity: 1;
+    @include transform(scale3d(1.03, 1.03, 1.03));
+  }
+
+  80% {
+    @include transform(scale3d(.97, .97, .97));
+  }
+
+  100% {
+    opacity: 1;
+    @include transform(scale3d(1, 1, 1));
+  }
+}
+
+/* Individual Controls
+ ------------------------------------------------------------- */
+.radio {
+  display: inline-block;
+  padding-right: 20px;
+  font-size: 18px;
+  line-height: 49px;
+  cursor: pointer;
+  &:hover .inner {
+    @include transform(scale(.5));
+    opacity: .5;
+  }
+
+  // Native input control and checked events
+  input {
+    @include size(1px);
+    opacity: 0; // Hide input, but leave it available for tabbing
+    &:checked + .outer .inner {
+      @include transform(scale(1));
+      opacity: 1;
+    }
+    &:checked + .outer { border: 3px solid $secondary-color; }
+    &:focus + .outer .inner {
+      @include transform(scale(1));
+      opacity: 1;
+      background-color: darken($secondary-color, 10);
+    }
+  }
+
+  // Outer ring of custom radio
+  .outer {
+    @include size(26px);
+    display: block;
+    float: left;
+    margin: 10px 9px 10px 10px;
+    border: 3px solid $primary-color;
+    border-radius: 50%;
+    background-color: #fff;
+  }
+
+  // Inner ring of custom radio
+  .inner {
+    @include transition(all .25s ease-in-out);
+    @include size(16px);
+    @include transform(scale(0));
+    display: block;
+    margin: 2px;
+    border-radius: 50%;
+    background-color: $secondary-color;
+    opacity: 0;
+  }
+}

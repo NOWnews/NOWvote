@@ -78,7 +78,8 @@ gulp.task('adminClean', function() {
 var serverBowerJsPaths = [
     './server/public/js/*.js',
     './bower_components/jquery/dist/jquery.js',
-    './bower_components/foundation-sites/dist/foundation.js'
+    './bower_components/foundation-sites/dist/foundation.js',
+    './node_modules/lodash/lodash.js'
 ];
 var serverBowerScssPaths = [
     './server/public/scss/*.scss',
@@ -88,7 +89,8 @@ var serverBowerScssPaths = [
 
 var serverSettingsPaths = [
   './bower_components/foundation-sites/scss',
-  './bower_components/motion-ui/src'
+  './bower_components/motion-ui/src',
+  './bower_components/bourbon/app/assets/stylesheets'
 ];
 
 // 移動 font的檔案
