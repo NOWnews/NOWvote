@@ -41,7 +41,7 @@
                             {{ issue.desc | safe }}
                         </div>
                         <div class="article-vote">
-                            <form class="vote-form" action="/vote" issue-id="{{ issue._id }}">
+                            <form class="vote-form" action="/vote" issue-id="{{ issue._id }}" issue-sn="{{ issue.sn }}">
                                 {% for question in issue.questions %}
                                     <div class="callout">
                                         <h3>{{ question.content }}</h3>
