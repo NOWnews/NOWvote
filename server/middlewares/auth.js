@@ -1,8 +1,11 @@
 
 import passport from 'passport';
-import models from '../../models';
+
+const debug = Debug('NOWvote:server:middlewares:auth');
+const models = require('../../models');
 const FacebookStrategy = require('passport-facebook').Strategy;
 const GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
+const LocalStrategy = require('passport-local').Strategy;
 
 module.exports = function(app) {
 
@@ -15,7 +18,6 @@ module.exports = function(app) {
         function(req, res, next){
             // 這邊可以把要導回的路徑記錄起來
             let returnTo = req.query.returnTo || '/';
-            console.log(returnTo);
             req.session.returnTo = returnTo;
             return next();
         },
@@ -33,7 +35,8 @@ module.exports = function(app) {
         }),
         function(req, res) {
             res.redirect(req.session.returnTo);
-    });
+        }
+    );
 
     app.get('/auth/google',
         function(req, res, next){
@@ -55,9 +58,23 @@ module.exports = function(app) {
         passport.authenticate( 'google', {
             // successRedirect: '/auth/success',
             failureRedirect: '/auth/fail/'
-    }),function(req, res, next) {
-        res.redirect(req.session.returnTo);
-    });
+        }),function(req, res, next) {
+            res.redirect(req.session.returnTo);
+        }
+    );
+
+    app.post('/localLogin',
+        passport.authenticate('local', {
+            // successRedirect: '/bbbb',
+            failureRedirect: '/login',
+            // failureFlash: true
+        }),function(req, res, next) {
+            // 這邊可以把要導回的路徑記錄起來
+            let returnTo = req.query.returnTo || '/';
+            req.session.returnTo = returnTo;
+            res.redirect(req.session.returnTo);
+        }
+    );
 
     passport.use(new FacebookStrategy({
             clientID: '985803784832015',
@@ -111,6 +128,30 @@ module.exports = function(app) {
             });
 
             return done(null, newUser);
+        }
+    ));
+
+    passport.use(new LocalStrategy({
+            // passport 會自動去找 form 裡面的 username，所以要改成用 email
+            usernameField: 'email'
+        },
+        async function(username, password, done) {
+
+            let email = username;
+
+            let aliveUser = await models.user.findOne()
+                .where('email').equals(email)
+                .where('password').equals(password)
+                .where('trashed').equals(false)
+                .execAsync();
+
+            if(!aliveUser) {
+                return done(null, false, {
+                    message: '找不到使用者'
+                });
+            }
+
+            return done(null, aliveUser);
         }
     ));
 
