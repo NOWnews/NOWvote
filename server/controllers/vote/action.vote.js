@@ -7,7 +7,8 @@ const models = require('../../../models');
 module.exports = function(req, res, next) {
 
     let data = req.body;
-    debug('data = %s', data);
+
+    debug('data = %j', data);
 
     return res.json(data);
 
