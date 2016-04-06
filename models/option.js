@@ -19,6 +19,11 @@ const schema = new Schema({
         required: true
     },
 
+    counter: {
+        type: Number,
+        default: 0
+    },
+
     createdBy: {
         type: Schema.Types.ObjectId,
         ref: 'user'
