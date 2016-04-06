@@ -72,8 +72,11 @@ module.exports = function(req, res, next) {
         let results = yield [
             models.issueRelation.createAsync(relationData),
 
+            // 計算選項投票人數
+            models.option.updateCounterByIds(optionsIds),
+
             // 計算議題投票人數
-            models.option.updateCounterByIds(optionsIds)
+            models.issue.updateCounterById(issueId)
         ];
 
         return res.json(relationData);

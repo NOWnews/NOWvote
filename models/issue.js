@@ -36,6 +36,11 @@ const schema = new Schema({
         type: String
     },
 
+    counter: {
+        type: Number,
+        default: 0
+    },
+
     status: {
         type: Boolean,
         default: true
@@ -110,6 +115,22 @@ schema.statics.findBySn = co.wrap(function*(sn) {
         .deepPopulate('category questions.options')
         .lean()
         .execAsync();
+});
+
+schema.statics.updateCounterById = co.wrap(function*(id) {
+
+    let self = this;
+
+    if(!is.string(id)){
+        return yield Promise.reject(new Error('id must string'));
+    }
+
+    let issue = yield self.findOne()
+        .where('_id').in(id)
+        .execAsync();
+
+    issue.set('counter', issue.counter + 1);
+    return yield issue.saveAsync();
 });
 
 schema.plugin(deepPopulate);

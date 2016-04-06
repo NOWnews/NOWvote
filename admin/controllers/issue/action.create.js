@@ -88,6 +88,7 @@ module.exports = function(req, res, next) {
             title: data.title,
             status: status,
             desc: data.desc,
+            counter: 0,
             mainImage: mainImgUrl,
             thumbnail: imgUrl,
             startTime: startTime,
@@ -96,11 +97,6 @@ module.exports = function(req, res, next) {
             questions: [],
             category: data.category,
             tags: []
-        };
-
-        let voteCounterData = {
-            issue: newIssueId,
-            counter: 0,
         };
 
         let questionsData = [];
@@ -153,8 +149,7 @@ module.exports = function(req, res, next) {
         yield [
             models.issue.createAsync(newIssue),
             models.question.createAsync(questionsData),
-            models.option.createAsync(optionsData),
-            models.voteCounter.createAsync(voteCounterData)
+            models.option.createAsync(optionsData)
         ];
 
         // 更新首頁 redis issue
