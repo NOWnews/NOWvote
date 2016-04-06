@@ -66,7 +66,7 @@ module.exports = function(app) {
     app.post('/localLogin',
         passport.authenticate('local', {
             // successRedirect: '/bbbb',
-            failureRedirect: '/403',
+            failureRedirect: '/login',
             // failureFlash: true
         }),function(req, res, next) {
             // 這邊可以把要導回的路徑記錄起來
