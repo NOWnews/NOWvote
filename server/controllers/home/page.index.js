@@ -42,7 +42,8 @@ module.exports = function(req, res, next) {
         return res.render('home/home', {
             issues: issues,
             categories: categories,
-            banners: banners
+            banners: banners,
+            hotnews: hotNews
         });
     })
     .catch(next);
