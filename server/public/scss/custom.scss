@@ -4,6 +4,7 @@
 @import "custom/layout/header";
 @import "custom/pages/issue";
 @import "vendors/vote-radio";
+@import "custom/pages/home";
 
 /*! custom css index home issue   */
 .issue_area {
@@ -12,7 +13,8 @@
     box-shadow: 0px 0px 10px 1px rgba(171,171,171,0.39);
     border:1px solid #ddd;
     border-radius:4px;
-    margin-bottom:10px
+    margin-bottom:10px;
+    padding-top:15px;
 }
 .thumbnail {
     border: 0;
