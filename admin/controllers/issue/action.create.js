@@ -17,8 +17,6 @@ module.exports = function(req, res, next) {
 
     let data = req.body;
     let imageStorageUrl = '/images';
-    let imgFile = req.files.file[0];
-    let mainImgFile = req.files.mainImg[0];
 
     co(function*() {
         let status = data.status ? true : false;
@@ -37,38 +35,37 @@ module.exports = function(req, res, next) {
 
         //---- 圖片的處理 ----
         // 檢查 圖片資訊
-        let extResults = yield [
-            libs.checkExt(imgFile),
-            libs.checkExt(mainImgFile)
-        ];
 
-        let extImgName = extResults[0];
-        let extMainImgName = extResults[1];
+        // 檢查列表頁縮圖
+        let imgUrl = '/static/images/issueDefault300x250.png';
+        if(req.files && req.files.file){
+            let imgFile = req.files.file[0];
+            let extImgName = libs.checkExt(imgFile);
 
-        let fileName = 'picture' + moment()
-            .tz('Asia/Taipei')
-            .format('YYYYMMDD-HHmmss');
+            let fileName = 'picture' + moment()
+                .tz('Asia/Taipei')
+                .format('YYYYMMDD-HHmmss');
+            let fullImgName = `${fileName}.${extImgName}`;
 
-        let mainImageName = 'issue' + moment()
-            .tz('Asia/Taipei')
-            .format('YYYYMMDD-HHmmss');
+            let newImgName = `${imageStorage}/${fullImgName}`;
+            let movedImgPosition = yield libs.moveFile(imgFile.path, newImgName);
+            let imgUrl = `${imageStorageUrl}/${fullImgName}`;
+        }
 
-        let fullImgName = `${fileName}.${extImgName}`;
-        let fullMainImgName = `${mainImageName}.${extMainImgName}`;
-        let newImgName = `${imageStorage}/${fullImgName}`;
-        let newMainImgName = `${imageStorage}/${fullMainImgName}`;
+        // 檢查列表頁縮圖
+        let mainImgUrl = '/static/images/issueDefault930x400.png';
+        if(req.files && req.files.mainImg){
+            let mainImgFile = req.files.mainImg[0];
+            let extMainImgName = libs.checkExt(mainImgFile);
 
-        // 呼叫 libs.moveFile 搬移檔案
-        let moveFilesResults = yield [
-            libs.moveFile(imgFile.path, newImgName),
-            libs.moveFile(mainImgFile.path, newMainImgName)
-        ];
-
-        let movedImgPosition = moveFilesResults[0];
-        let movedMainImgPosition = moveFilesResults[1];
-
-        let imgUrl = `${imageStorageUrl}/${fullImgName}`;
-        let mainImgUrl = `${imageStorageUrl}/${fullMainImgName}`;
+            let mainImageName = 'issue' + moment()
+                .tz('Asia/Taipei')
+                .format('YYYYMMDD-HHmmss');
+            let fullMainImgName = `${mainImageName}.${extMainImgName}`;
+            let newMainImgName = `${imageStorage}/${fullMainImgName}`;
+            let movedMainImgPosition = yield libs.moveFile(mainImgFile.path, newMainImgName);
+            let mainImgUrl = `${imageStorageUrl}/${fullMainImgName}`;
+        }
 
         debug('title = %j', data.title);
         debug('category = %j', data.category);
