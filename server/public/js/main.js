@@ -33,10 +33,10 @@ $(function() {
             contentType: 'application/json',
             data: JSON.stringify(voteData),
             success: function(data, err) {
-                console.log('L33', data);
+                alert('投票完成摟!');
             },
             error: function() {
-                alert('error');
+                alert('您已經投過票摟!');
             }
         });
     });

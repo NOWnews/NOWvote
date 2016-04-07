@@ -15,10 +15,8 @@
                         <div style="margin-bottom:10px">
                             <span class="margin5">
                                 <i class="fa fa-users fa-fw"></i>投票人數
-                            </span>19808
-                            <span class="margin5">
-                                <i class="fa fa-inbox fa-fw"></i>收藏投票
-                            </span>204
+                            </span>
+                            {{ issue.counter }}
                             <span class="margin5">
                                 <i class="fa fa-calendar fa-fw"></i>開始時間
                             </span>
@@ -39,26 +37,18 @@
                         <div class="article-vote">
                             <form class="vote-form" action="/vote" issue-id="{{ issue._id }}" issue-sn="{{ issue.sn }}">
                                 {% for question in issue.questions %}
-                                    <div class="callout">
-                                        <h3>{{ question.content }}</h3>
-
-                                        {% for option in question.options %}
-                                            {% if loop.first %}
-                                                <div class="radioholder">
-                                                    <input type="radio" name="{{ question._id }}" value="{{ option._id }}" checked>
-                                                    <label>{{ option.content }}</label>
-                                                </div>
-                                            {% else %}
-                                                <div class="radioholder">
-                                                    <input type="radio" name="{{ question._id }}" value="{{ option._id }}">
-                                                    <label>{{ option.content }}</label>
-                                                </div>
-                                            {% endif %}
-                                        {% endfor %}
-
-                                    </div>
+                                    {% if issue.isVoted %}
+                                        {# ---- 投過票的版面 ---- #}
+                                        {% include "./partials/hasVoted.html" %}
+                                    {% else %}
+                                        {# ---- 沒有投過票的版面 ---- #}
+                                        {% include "./partials/notVoted.html" %}
+                                    {% endif %}
                                 {% endfor %}
-                                <a id="vote-btn" class="button success">投票</a>
+                                {% if not issue.isVoted %}
+                                    <a id="vote-btn" class="button success">投票</a>
+                                {% endif %}
+
                             </form>
                         </div>
                     </article>

@@ -1,0 +1,16 @@
+<div class="callout">
+    <h3>{{ question.content }}</h3>
+    {% for option in question.options %}
+        {% if option.isVoted %}
+            <div class="radioresult activeradioholder">
+                <span class="tick"></span>
+                <span class="desc">{{ option.content }}（{{ option.counter }}票）</span>
+            </div>
+        {% else %}
+            <div class="radioresult">
+                <span class="tick"></span>
+                <span class="desc">{{ option.content }}（{{ option.counter }}票）</span>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
