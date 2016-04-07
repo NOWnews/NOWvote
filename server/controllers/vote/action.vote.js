@@ -24,14 +24,14 @@ module.exports = function(req, res, next) {
 
         // 處理傳進來的資料
         _.forEach(data.questions, function(question) {
-            _.forEach(question.optionIds, function(option) {
+            _.forEach(question.optionIds, function(optionId) {
                 relationData.push({
                     user: userId,
                     issue: issueId,
                     question: question.questionId,
-                    option: option
+                    option: optionId
                 });
-                optionsIds.push(option);
+                optionsIds.push(optionId);
             });
         });
 
