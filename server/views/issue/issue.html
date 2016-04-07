@@ -1,9 +1,5 @@
 {% extends "../index.html" %}
 
-{% block head %}
-    <script src="http://s.codepen.io/assets/libs/modernizr.js" type="text/javascript"></script>
-{% endblock %}
-
 {% block container %}
     <div class="row">
         <main class="main-right column large-10">
@@ -45,19 +41,21 @@
                                 {% for question in issue.questions %}
                                     <div class="callout">
                                         <h3>{{ question.content }}</h3>
-                                        <ul class="menu vertical">
-                                            {% for option in question.options %}
-                                                <li>
-                                                    <label class="radio">
-                                                        <input type="radio" name="{{ question._id }}" value="{{ option._id }}">
-                                                        <span class="outer">
-                                                             <span class="inner"></span>
-                                                        </span>
-                                                        {{ option.content }}
-                                                    </label>
-                                                </li>
-                                            {% endfor %}
-                                        </ul>
+
+                                        {% for option in question.options %}
+                                            {% if loop.first %}
+                                                <div class="radioholder">
+                                                    <input type="radio" name="{{ question._id }}" value="{{ option._id }}" checked>
+                                                    <label>{{ option.content }}</label>
+                                                </div>
+                                            {% else %}
+                                                <div class="radioholder">
+                                                    <input type="radio" name="{{ question._id }}" value="{{ option._id }}">
+                                                    <label>{{ option.content }}</label>
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
+
                                     </div>
                                 {% endfor %}
                                 <a id="vote-btn" class="button success">投票</a>

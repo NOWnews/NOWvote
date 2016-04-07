@@ -40,4 +40,28 @@ $(function() {
             }
         });
     });
+
+    // 設定 redio 樣式
+    $('.radioholder').each(function () {
+        $(this).children().hide();
+        var description = $(this).children('label').html();
+        $(this).append('<span class="desc">' + description + '</span>');
+        $(this).prepend('<span class="tick"></span>');
+        // click 後更新 radio 區塊
+        $(this).click(function () {
+            $(this).children('input').prop('checked', true);
+            $(this).children('input').trigger('change');
+        });
+    });
+    // 當 radio 被更改，更動 redio 區塊裡面的 classes
+    $('.radioholder > input[type=radio]').change(function () {
+        $('input[type=radio]').each(function () {
+            $(this).parent().removeClass('activeradioholder');
+            if ($(this).prop('checked') === true) {
+                $(this).parent().addClass('activeradioholder');
+            }
+        });
+    });
+    // 第一次啟動
+    $('.radioholder > input[type=radio]').change();
 });
