@@ -1,3 +1,80 @@
+
+// 大三小六
 .main-title {
     color: #898989;
+    font-size: 2rem;
+}
+.news-block {
+    border-bottom: 1px solid #f6f6f6;
+}
+.news-block-title {
+    float: left;
+    margin-right: 15px;
+    h4 {
+        color: #777;
+        font-family: "Helvetica Neue",Helvetica,Verdana,"微軟正黑體","Microsoft JhengHei",'Roboto', sans-serif;
+        margin: 8px;
+    }
+}
+.margin-class {
+    margin-top: 50px;
+    .large-9.medium-9.columns {
+        box-shadow: 0 0 10px 1px rgba(171,171,171,0.39);
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin-bottom: 10px;
+    }
+    .large-6.medium-6.columns {
+        padding: 0 1%;
+        border-radius: 4px;
+    }
+}
+.tabs-title>a:focus,
+.tabs-title>a[aria-selected='true'] {
+    background: #FF7575;
+    color: #fff;
+    font-weight: bold;
+}
+.tabs {
+    border: none;
+}
+.tabs-title {
+    a {
+        font-size: 1.1rem;
+        padding: 1rem 1.5rem;
+    }
+}
+.tabs-content {
+    border: none;
+    img.thumbnail {
+        width: 100%;
+        margin: 0 auto;
+    }
+    .callout {
+        border: none;
+    }
+    h3 {
+        font-size: 1rem;
+    }
+}
+//slide
+.orbit-caption {
+    font-size: 1.1rem;
+}
+.slide-title {
+    background: #365BAA;
+    color: #fff;
+    text-align: center;
+    font-size: 1.6rem;
+    padding: 0.6rem 0;
+    font-weight: bold;
+    .fa-diamond {
+        margin: 0 0.6rem;
+    }
+}
+.main-title {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    border-top: 5px solid #d3d3d3;
+    border-bottom: 1px solid #b0b0b0;
 }

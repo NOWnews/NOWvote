@@ -64,4 +64,11 @@ $(function() {
     });
     // 第一次啟動
     $('.radioholder > input[type=radio]').change();
+
+    //大三小六
+    $('.tabs').on('change.zf.tabs', function(e, tgt) {
+        var tabchange = $('.is-active.tabs-title').find('a').attr('aria-controls');
+        $('#' + tabchange + '>div').foundation('destroy');
+        $('#' + tabchange + '>div').foundation();
+    });
 });
