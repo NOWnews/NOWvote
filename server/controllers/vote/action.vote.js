@@ -4,6 +4,7 @@ import Promise from 'bluebird';
 
 const debug = require('debug')('NOWvote:server:controllers:vote:action.vote');
 const models = require('../../../models');
+const redis = require('../../../caches');
 
 module.exports = function(req, res, next) {
 
@@ -14,6 +15,8 @@ module.exports = function(req, res, next) {
 
         let issueId = data.issueId;
         let issueSn = data.issueSn;
+
+        // TODO: 之後要換成真正的 userId
         let userId = '500000000000000000000012';
 
         let relationData = [];
@@ -73,11 +76,14 @@ module.exports = function(req, res, next) {
             models.issueRelation.createAsync(relationData),
 
             // 計算選項投票人數
-            models.option.updateCounterByIds(optionsIds),
+            models.option.increaseCounterByIds(optionsIds),
 
             // 計算議題投票人數
-            models.issue.updateCounterById(issueId)
+            models.issue.increaseCounterById(issueId)
         ];
+
+        // 重新更新 redis 裡面的首頁資料
+        yield redis.updateRedisByKey('indexIssues');
 
         return res.json(relationData);
     })

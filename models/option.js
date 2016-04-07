@@ -59,7 +59,7 @@ schema.statics.findBySn = co.wrap(function*(sn) {
         .execAsync();
 });
 
-schema.statics.updateCounterByIds = co.wrap(function*(ids) {
+schema.statics.increaseCounterByIds = co.wrap(function*(ids) {
 
     let self = this;
 
