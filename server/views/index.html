@@ -15,10 +15,114 @@
     </head>
     <body>
         <!--[if lt IE 8]> <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p> <![endif]-->
-        {% include "./blocks/header.html" %}
-        {% include "./blocks/slider.html" %}
+        <div class="off-canvas-wrapper">
+          <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
 
-        {% block container %}{% endblock %}
-        {% include "./blocks/footer.html" %}
+            <!-- off-canvas title bar for 'small' screen -->
+            <div class="title-bar" data-responsive-toggle="widemenu" data-hide-for="medium">
+              <div class="title-bar-left">
+                <button class="menu-icon" type="button" data-open="offCanvasLeft">@@</button>
+                <span class="title-bar-title">Foundation</span>
+              </div>
+              <div class="title-bar-right">
+                <span class="title-bar-title">Login</span>
+                <button class="menu-icon" type="button" data-open="offCanvasRight">XX</button>
+              </div>
+            </div>
+
+            <!-- off-canvas left menu -->
+            <div class="off-canvas position-left" id="offCanvasLeft" data-off-canvas>
+              <ul class="vertical dropdown menu" data-dropdown-menu>
+                <li><a href="left_item_1">Left item 1</a></li>
+                <li><a href="left_item_2">Left item 2</a></li>
+                <li><a href="left_item_3">Left item 3</a></li>
+              </ul>
+            </div>
+
+            <!-- off-canvas right menu -->
+            <div class="off-canvas position-right" id="offCanvasRight" data-off-canvas data-position="right">
+              <ul class="vertical dropdown menu" data-dropdown-menu>
+                <li><a href="right_item_1">Right item 1</a></li>
+                <li><a href="right_item_2">Right item 2</a></li>
+                <li><a href="right_item_3">Right item 3</a></li>
+              </ul>
+            </div>
+
+            <!-- "wider" top-bar menu for 'medium' and up -->
+        <!--     <div id="widemenu" class="top-bar">
+              <div class="top-bar-left">
+                <ul class="dropdown menu" data-dropdown-menu>
+                  <li class="menu-text">Foundation</li>
+                  <li class="has-submenu">
+                    <a href="#">Item 1</a>
+                    <ul class="menu submenu vertical" data-submenu>
+                      <li><a href="left_wide_11">Left wide 1</a></li>
+                      <li><a href="left_wide_12">Left wide 2</a></li>
+                      <li><a href="left_wide_13">Left wide 3</a></li>
+                    </ul>
+                  </li>
+                  <li class="has-submenu">
+                    <a href="#">Item 2</a>
+                    <ul class="menu submenu vertical" data-submenu>
+                      <li><a href="left_wide_21">Left wide 1</a></li>
+                      <li><a href="left_wide_22">Left wide 2</a></li>
+                      <li><a href="left_wide_23">Left wide 3</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <div class="top-bar-right">
+                <ul class="menu">
+                  <li><input type="search" placeholder="Search"></li>
+                  <li><button class="button">Search</button></li>
+                </ul>
+              </div>
+            </div> -->
+        <header class="header" id="widemenu">
+            <div class="header-sticky-container" data-sticky-container>
+                <div class="title-bar" data-sticky data-options="marginTop:0;">
+                    <div class="title-bar-left">
+                        <a id="logo" href="/">
+                            <img src="/static/images/logo.png"/>
+                        </a>
+                        <ul class="category-menu menu float-left">
+                            {% for category in categories %}
+                                {% if loop.first %}
+                                    <li class="has-submenu">
+                                        <a class="hollow button" href="{{ category.url }}">{{ category.title }}</a>
+                                    </li>
+                                    <li class="straight-line">|</li>
+                                {% else %}
+                                    <li>
+                                        <a class="hollow button" href="{{ category.url }}">{{ category.title }}</a>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="title-bar-right">
+                        <ul class="menu">
+                            <li>
+                                <a href="#"><i class="fa fa-info-circle"></i>我的帳戶</a>
+                            </li>
+                            <li>
+                                <a class="button"><i class="fa fa-sign-in"></i>登入</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+
+
+            <div class="off-canvas-content" data-off-canvas-content>
+            {% include "./blocks/header.html" %}
+            {% include "./blocks/slider.html" %}
+
+            {% block container %}{% endblock %}
+            {% include "./blocks/footer.html" %}
+            </div>
+        </div>
     </body>
 </html>
