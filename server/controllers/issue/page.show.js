@@ -38,21 +38,37 @@ module.exports = function(req, res, next) {
         debug('news36 = %j', news36);
 
         let issue = results[4];
-        debug('issue = %j', issue);
 
         issue.isVoted = false;
         issue.startTime = libs.formatDate(issue.startTime);
         issue.endTime = libs.formatDate(issue.endTime);
 
         // TODO: user 要改用 req.session.user
-        let votedIssue = yield models.issueRelation.findOne()
+        let votedIssues = yield models.issueRelation.find()
             .where('user').equals('500000000000000000000012')
             .where('issue').equals(issue._id)
             .execAsync();
 
-        if(votedIssue){
+        if(votedIssues.length > 0){
             issue.isVoted = true;
         }
+
+        // 做投過哪個選項的判斷
+        let votedOptionIds = _.map(votedIssues, function(votedIssue) {
+            return votedIssue.option + '';
+        });
+
+        _.forEach(issue.questions, function(question){
+            _.forEach(question.options, function(option){
+                option.isVoted = false;
+                if(votedOptionIds.indexOf(option._id + '') >= 0){
+                    option.isVoted = true;
+                    return;
+                }
+            });
+        });
+
+        debug('issue = %j', issue);
 
         return res.render('issue/issue', {
           categories: categories,
