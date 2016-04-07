@@ -12,6 +12,7 @@ $(function() {
         var voteFormDatas = $('.vote-form').serializeArray();
         var url = $('.vote-form').attr('action');
         var issueId = $('.vote-form').attr('issue-id');
+        var issueSn = $('.vote-form').attr('issue-sn');
         var questions = _.map(voteFormDatas, function(date) {
             var optionIds = _.isArray(date.value) ? date.value : [date.value];
             var question = {
@@ -22,6 +23,7 @@ $(function() {
         });
         var voteData = {
             issueId: issueId,
+            issueSn: issueSn,
             questions: questions
         };
         $.ajax({
@@ -32,6 +34,9 @@ $(function() {
             data: JSON.stringify(voteData),
             success: function(data, err) {
                 console.log('L33', data);
+            },
+            error: function() {
+                alert('error');
             }
         });
     });

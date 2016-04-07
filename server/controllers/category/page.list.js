@@ -77,26 +77,6 @@ module.exports = function(req, res, next) {
         debug('issuesTotal = %d', issuesTotal);
         debug('news36 = %j', news36);
 
-        /*
-         * 處理投票人數問題
-         */
-
-        // 找出所有 issue Id
-        let issueIds = _.map(issues, function(issue) {
-            return issue._id;
-        });
-
-        // 找出這些 issue 投票的票數
-        let voteCounters = yield models.voteCounter.find()
-            .where('issue').in(issueIds)
-            .execAsync();
-        let voteCountersObj = _.keyBy(voteCounters, 'issue');
-
-        // 把每個 issue 加入 counter 欄位，並且將投票人數帶進去
-        _.forEach(issues, function(issue) {
-            issue.counter = voteCountersObj[issue._id].counter;
-        });
-
         // 處理 pagination
         let pageInfo = libs.pagination({
             total: issuesTotal,
