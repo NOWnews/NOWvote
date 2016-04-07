@@ -32,12 +32,38 @@ module.exports = function(req, res, next) {
         let hotNews = results[3];
         debug('categories = %j', categories);
         debug('banners = %j', banners);
-        debug('issues = %j', issues);
+        // debug('issues = %j', issues);
         debug('hotNews = %j', hotNews);
 
         /*
-         * TODO: 判斷使用者是否投過票了
+         * 判斷使用者是否投過票了
          */
+        let issueIds = _.map(issues, function(issue) {
+            return issue._id;
+        });
+
+        // TODO: user 要改用 req.session.user
+        let votedIssues = yield models.issueRelation.find()
+            .where('user').equals('500000000000000000000012')
+            .where('issue').in(issueIds)
+            .execAsync();
+
+        let votedIssueIds = _.map(votedIssues, function(votedIssue) {
+            return votedIssue.issue + '';
+        });
+
+        votedIssueIds = _.uniq(votedIssueIds);
+
+        _.forEach(issues, function(issue) {
+            if(_.indexOf(votedIssueIds, issue._id + '') >= 0) {
+                issue.isVoted = true;
+                return;
+            }
+            issue.isVoted = false;
+            return;
+        });
+
+        debug('issues = %j', issues);
 
         return res.render('home/home', {
             issues: issues,

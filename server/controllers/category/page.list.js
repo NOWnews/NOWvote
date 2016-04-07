@@ -73,9 +73,41 @@ module.exports = function(req, res, next) {
         let issues = results[0];
         let issuesTotal = results[1];
         let news36 = results[2];
-        debug('issues = %j', issues);
-        debug('issuesTotal = %d', issuesTotal);
-        debug('news36 = %j', news36);
+        // debug('issues = %j', issues);
+        // debug('issuesTotal = %d', issuesTotal);
+        // debug('news36 = %j', news36);
+
+        /*
+         * 判斷使用者是否投過票了
+         */
+        let issueIds = _.map(issues, function(issue) {
+            return issue._id;
+        });
+
+        debug('issueIds = %j', issueIds);
+
+        // TODO: user 要改用 req.session.user
+        let votedIssues = yield models.issueRelation.find()
+            .where('user').equals('500000000000000000000012')
+            .where('issue').in(issueIds)
+            .execAsync();
+
+        let votedIssueIds = _.map(votedIssues, function(votedIssue) {
+            return votedIssue.issue + '';
+        });
+
+        debug('votedIssueIds = %j', votedIssueIds);
+
+        votedIssueIds = _.uniq(votedIssueIds);
+
+        _.forEach(issues, function(issue) {
+            if(_.indexOf(votedIssueIds, issue._id + '') >= 0) {
+                issue.isVoted = true;
+                return;
+            }
+            issue.isVoted = false;
+            return;
+        });
 
         // 處理 pagination
         let pageInfo = libs.pagination({
@@ -87,7 +119,7 @@ module.exports = function(req, res, next) {
 
         // 抓取當前的 URL
         let urlPath = req.path;
-        debug('urlPath = %d', urlPath);
+        debug('urlPath = %s', urlPath);
 
         return res.render('category/list', {
             categories: categories,
