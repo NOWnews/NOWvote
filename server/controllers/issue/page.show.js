@@ -40,8 +40,19 @@ module.exports = function(req, res, next) {
         let issue = results[4];
         debug('issue = %j', issue);
 
+        issue.isVoted = false;
         issue.startTime = libs.formatDate(issue.startTime);
         issue.endTime = libs.formatDate(issue.endTime);
+
+        // TODO: user 要改用 req.session.user
+        let votedIssue = yield models.issueRelation.findOne()
+            .where('user').equals('500000000000000000000012')
+            .where('issue').equals(issue._id)
+            .execAsync();
+
+        if(votedIssue){
+            issue.isVoted = true;
+        }
 
         return res.render('issue/issue', {
           categories: categories,
