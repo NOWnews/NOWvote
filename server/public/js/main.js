@@ -71,4 +71,14 @@ $(function() {
         $('#' + tabchange + '>div').foundation('destroy');
         $('#' + tabchange + '>div').foundation();
     });
+
+    //hamburger menu
+    var $hamburger = $('.hamburger');
+    var $jsOffCanvasExit = $('.js-off-canvas-exit');
+    var hamburgerClickFunc = function () {
+        $hamburger.toggleClass('is-active');
+    };
+
+    $hamburger.on('click', hamburgerClickFunc);
+    $jsOffCanvasExit.on('click', hamburgerClickFunc);
 });
