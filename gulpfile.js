@@ -84,7 +84,8 @@ var serverBowerJsPaths = [
 var serverBowerScssPaths = [
     './server/public/scss/*.scss',
     './bower_components/font-awesome/scss/font-awesome.scss',
-    './bower_components/foundation-datepicker/css/foundation-datepicker.scss'
+    './bower_components/foundation-datepicker/css/foundation-datepicker.scss',
+    './bower_components/css-hamburgers/_sass/hamburgers/hamburgers.scss'
 ];
 
 var serverSettingsPaths = [

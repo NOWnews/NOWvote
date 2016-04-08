@@ -1,45 +1,35 @@
-<div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
-
-    <div class="off-canvas position-left" id="offCanvas" data-off-canvas>
-        Off Canvas Content
-    </div>
-
-    <div class="off-canvas-content" data-off-canvas-content>
-        <button type="button" class="button hide-for-medium" data-toggle="offCanvas">Open Menu</button>
-        <header class="header">
-            <div class="header-sticky-container" data-sticky-container>
-                <div class="title-bar" data-sticky data-options="marginTop:0;">
-                    <div class="title-bar-left">
-                        <a id="logo" href="/">
-                            <img src="/static/images/logo.png"/>
-                        </a>
-                        <ul class="category-menu menu float-left">
-                            {% for category in categories %}
-                                {% if loop.first %}
-                                    <li class="has-submenu">
-                                        <a class="hollow button" href="{{ category.url }}">{{ category.title }}</a>
-                                    </li>
-                                    <li class="straight-line">|</li>
-                                {% else %}
-                                    <li>
-                                        <a class="hollow button" href="{{ category.url }}">{{ category.title }}</a>
-                                    </li>
-                                {% endif %}
-                            {% endfor %}
-                        </ul>
-                    </div>
-                    <div class="title-bar-right">
-                        <ul class="menu">
-                            <li>
-                                <a href="#"><i class="fa fa-info-circle"></i>我的帳戶</a>
+<header class="header" id="widemenu">
+    <div class="header-sticky-container" data-sticky-container>
+        <div class="title-bar" data-sticky data-options="marginTop:0;">
+            <div class="title-bar-left">
+                <a id="logo" href="/">
+                    <img src="/static/images/logo.png"/>
+                </a>
+                <ul class="category-menu menu float-left">
+                    {% for category in categories %}
+                        {% if loop.first %}
+                            <li class="has-submenu">
+                                <a class="hollow button" href="{{ category.url }}">{{ category.title }}</a>
                             </li>
+                            <li class="straight-line">|</li>
+                        {% else %}
                             <li>
-                                <a class="button"><i class="fa fa-sign-in"></i>登入</a>
+                                <a class="hollow button" href="{{ category.url }}">{{ category.title }}</a>
                             </li>
-                        </ul>
-                    </div>
-                </div>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
             </div>
-        </header>
+            <div class="title-bar-right">
+                <ul class="menu">
+                    <li>
+                        <a href="#"><i class="fa fa-info-circle"></i>我的帳戶</a>
+                    </li>
+                    <li>
+                        <a class="button"><i class="fa fa-sign-in"></i>登入</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
-</div>
+</header>
