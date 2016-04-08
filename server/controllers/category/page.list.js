@@ -28,8 +28,8 @@ module.exports = function(req, res, next) {
             .where('trashed').equals(false)
             .where('status').equals(true)
             .or([
-            { continued: true },
-            { startTime: { $lte: now }, endTime: { $gte: now } }
+                { continued: true },
+                { startTime: { $lte: now }, endTime: { $gte: now } }
             ])
             .execAsync();
         debug('category = %j', category);
@@ -51,6 +51,7 @@ module.exports = function(req, res, next) {
             ])
             .limit(limit)
             .skip(skip)
+            .sort('-createdAt')
             .lean();
 
         let countQuery = models.issue.find()
