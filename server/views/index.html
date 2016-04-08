@@ -31,28 +31,28 @@
                     </button>
                 </div>
                 <a id="logo" href="/">
-                <img src="/static/images/logo.png"/ width="80px">
+                    <img src="/static/images/logo.png"/ width="80px">
                 </a>
             </div>
 
             <!-- off-canvas left menu -->
             <div class="off-canvas position-left" id="offCanvasLeft" data-off-canvas>
               <ul class="vertical dropdown menu" data-dropdown-menu>
-                <li><a href="left_item_1">Left item 1</a></li>
+                <li>
+                    <a href="/">
+                        <img src="/static/images/logo.png"/ width="80px">NOWVOTE
+                    </a>
+                </li>
+                {% for category in categories %}
+                    <li class="left_item{{loop.index}}">
+                        <a class="hollow" href="{{ category.url }}"><i class="fa fa-star"></i>{{ category.title }}</a>
+                    </li>
+                {% endfor %}
+               <!--  <li><a href="left_item_1">Left item 1</a></li>
                 <li><a href="left_item_2">Left item 2</a></li>
-                <li><a href="left_item_3">Left item 3</a></li>
+                <li><a href="left_item_3">Left item 3</a></li> -->
               </ul>
             </div>
-
-            <!-- off-canvas right menu -->
-            <div class="off-canvas position-right" id="offCanvasRight" data-off-canvas data-position="right">
-              <ul class="vertical dropdown menu" data-dropdown-menu>
-                <li><a href="right_item_1">Right item 1</a></li>
-                <li><a href="right_item_2">Right item 2</a></li>
-                <li><a href="right_item_3">Right item 3</a></li>
-              </ul>
-            </div>
-
 
             {% include "./blocks/header.html" %}
             <div class="off-canvas-content" data-off-canvas-content>
