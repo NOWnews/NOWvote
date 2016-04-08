@@ -9,22 +9,32 @@
                 <button class="orbit-next">
                     <span class="show-for-sr">下一張</span>&#9654;&#xFE0E;
                 </button>
-                <li class="is-active orbit-slide">
-                    <img class="orbit-image" src="http://filedisk.talk.tw/ArticlePic/29120160403194835_2.jpg" alt="Space">
-                    <figcaption class="orbit-caption">【這3種特質的男人，就像毒蘋果，女人千萬別碰、不能嫁！】</figcaption>
-                </li>
-                <li class="orbit-slide">
-                    <img class="orbit-image" src="http://filedisk.talk.tw/ArticlePic/29120160403194835_2.jpg" alt="Space">
-                    <figcaption class="orbit-caption">【2016年4月，12星座運勢大公開！】</figcaption>
-                </li>
-                <li class="orbit-slide">
-                    <img class="orbit-image" src="http://filedisk.talk.tw/ArticlePic/29120160403194835_2.jpg" alt="Space">
-                    <figcaption class="orbit-caption">【容易愛上別人的星座男排行！】</figcaption>
-                </li>
-                <li class="orbit-slide">
-                    <img class="orbit-image" src="http://filedisk.talk.tw/ArticlePic/29120160403194835_2.jpg" alt="Space">
-                    <figcaption class="orbit-caption">【我倆有未來嗎？男人不想娶妳的五大表現！】</figcaption>
-                </li>
+                {% for idx in range(0, 3) %}
+                    {% set title = news36[idx].title %}
+                    {% set img = news36[idx].imgs[0].img %}
+                    {% set imgtitle = news36[idx].imgs[0].title %}
+                    {% set date = news36[idx].d %}
+                    {% set time = news36[idx].t %}
+                    {% set url = "http://www.nownews.com" + news36[idx].url %}
+
+                    {% if loop.first %}
+                        <li class="is-active orbit-slide">
+                            <a href="{{ url }}" target="_blank">
+                                <img class="orbit-image" src="{{ img }}" alt="{{ imgtitle }}">
+                                <figcaption class="orbit-caption">{{ title }}</figcaption>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="orbit-slide">
+                            <a href="{{ url }}" target="_blank">
+                                <img class="orbit-image" src="{{ img }}" alt="{{ imgtitle }}">
+                                <figcaption class="orbit-caption">{{ title }}</figcaption>
+                            </a>
+                        </li>
+
+                    {% endif %}
+                {% endfor %}
+
             </ul>
             <nav class="orbit-bullets">
                 <button class="is-active" data-slide="0">
@@ -51,56 +61,37 @@
 
             <ul class="tabs " id="example-vert-tabs" data-tabs>
                 <li class="tabs-title is-active"><a href="#panel1v" aria-selected="true">分類新聞</a></li>
-                <li class="tabs-title"><a href="#panel2v">新聞</a></li>
+                <!-- <li class="tabs-title"><a href="#panel2v">新聞</a></li>
                 <li class="tabs-title"><a href="#panel3v">新聞</a></li>
                 <li class="tabs-title"><a href="#panel4v">新聞</a></li>
                 <li class="tabs-title"><a href="#panel5v">新聞</a></li>
-                <li class="tabs-title"><a href="#panelv">新聞</a></li>
+                <li class="tabs-title"><a href="#panelv">新聞</a></li> -->
             </ul>
             <div class="clearfix"></div>
         </div>
         <div class="tabs-content " data-tabs-content="example-vert-tabs">
             <div class="tabs-panel is-active" id="panel1v">
                 <div class="row" data-equalizer data-equalize-on="medium" id="test-eq">
-                    <div class="medium-5 columns">
-                        <div class="callout" data-equalizer-watch>
-                            <img src="http://filedisk.talk.tw/ArticlePic/01520160401133900_2.jpg" class="thumbnail">
-                            <h3>【當妳遇到這14種男人，請別浪費時間在他身上。】</h3>
+                    {% for idx in range(3, 9) %}
+                        {% set title = news36[idx].title %}
+                        {% set img = news36[idx].imgs[0].img %}
+                        {% set imgtitle = news36[idx].imgs[0].title %}
+                        {% set date = news36[idx].d %}
+                        {% set time = news36[idx].t %}
+                        {% set url = "http://www.nownews.com" + news36[idx].url %}
+                        <div class="medium-5 columns">
+                            <div class="callout" data-equalizer-watch>
+                                <a href="{{ url }}" target="_blank">
+                                    <img src="http://imgapi.nownews.com/?w=540&h=365&q=60&src={{ img }}" class="thumbnail">
+                                    <h3>{{ title }}</h3>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="medium-5 columns">
-                        <div class="callout" data-equalizer-watch>
-                            <img src="http://filedisk.talk.tw/ArticlePic/65120160402142505_2.png" class="thumbnail">
-                            <h3>【當妳遇到這14種男人，請別浪費時間在他身上。】</h3>
-                        </div>
-                    </div>
-                    <div class="medium-5 columns">
-                        <div class="callout" data-equalizer-watch>
-                            <img src="http://filedisk.talk.tw/ArticlePic/44420160329194727_2.jpg" class="thumbnail">
-                            <h3>【當妳遇到這14種男人，請別浪費時間在他身上。】</h3>
-                        </div>
-                    </div>
-                    <div class="medium-5 columns">
-                        <div class="callout" data-equalizer-watch>
-                            <img src="http://filedisk.talk.tw/ArticlePic/77520160329233530_2.jpg" class="thumbnail">
-                            <h3>【當妳遇到這14種男人，請別浪費時間在他身上。】</h3>
-                        </div>
-                    </div>
-                    <div class="medium-5 columns">
-                        <div class="callout" data-equalizer-watch>
-                            <img src="http://filedisk.talk.tw/ArticlePic/01520160401133900_2.jpg" class="thumbnail">
-                            <h3>【當妳遇到這14種男人，請別浪費時間在他身上。】</h3>
-                        </div>
-                    </div>
-                    <div class="medium-5 columns">
-                        <div class="callout" data-equalizer-watch>
-                            <img src="http://filedisk.talk.tw/ArticlePic/01520160401133900_2.jpg" class="thumbnail">
-                            <h3>【當妳遇到這14種男人，請別浪費時間在他身上。】</h3>
-                        </div>
-                    </div>
+                    {% endfor %}
+
                 </div>
             </div>
-            <div class="tabs-panel" id="panel2v">
+            <!-- <div class="tabs-panel" id="panel2v">
                 <div class="row" data-equalizer data-equalize-on="medium" id="test-eq2">
                     <div class="medium-5 columns">
                         <div class="callout" data-equalizer-watch="bbb">
@@ -146,7 +137,7 @@
             </div>
             <div class="tabs-panel" id="panel6v">
                 <img class="thumbnail" src="assets/img/generic/rectangle-5.jpg">
-            </div>
+            </div> -->
         </div>
     </div>
 
