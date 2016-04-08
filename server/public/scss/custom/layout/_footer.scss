@@ -1,24 +1,28 @@
 .footer {
     margin-top: 50px;
-    background-color: #333;
+    background-color: #fff;
 
     .follow-box .fa{
         font-size: 30px;
         padding: 10px;
+        color: #FFAA30;
     }
 
     .callout {
         border: 0px;
-        background-color: #333;
-        color: #efefef;
+        background-color: #f2f2f2;
+        color: #bebebe;
     }
 
     #copyleft {
-        color: #fff;
+        color: #b7b7b7;
     }
 
     .menu li {
         font-size: 12px;
+    }
+    .thumbnail {
+        box-shadow: none;
     }
 
 }
