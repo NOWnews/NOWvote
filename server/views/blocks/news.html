@@ -20,14 +20,14 @@
                     {% if loop.first %}
                         <li class="is-active orbit-slide">
                             <a href="{{ url }}" target="_blank">
-                                <img class="orbit-image" src="{{ img }}" alt="{{ imgtitle }}">
+                                <img class="orbit-image" src="http://imgapi.nownews.com/?w=485&h=280&q=60&src={{ img }}" alt="{{ imgtitle }}">
                                 <figcaption class="orbit-caption">{{ title }}</figcaption>
                             </a>
                         </li>
                     {% else %}
                         <li class="orbit-slide">
                             <a href="{{ url }}" target="_blank">
-                                <img class="orbit-image" src="{{ img }}" alt="{{ imgtitle }}">
+                                <img class="orbit-image" src="http://imgapi.nownews.com/?w=485&h=280&q=60&src={{ img }}" alt="{{ imgtitle }}">
                                 <figcaption class="orbit-caption">{{ title }}</figcaption>
                             </a>
                         </li>
@@ -59,20 +59,20 @@
                 <h4>熱門文章</h4>
             </div>
 
-            <ul class="tabs " id="example-vert-tabs" data-tabs>
+            <!-- <ul class="tabs " id="example-vert-tabs" data-tabs>
                 <li class="tabs-title is-active"><a href="#panel1v" aria-selected="true">分類新聞</a></li>
-                <!-- <li class="tabs-title"><a href="#panel2v">新聞</a></li>
+                <li class="tabs-title"><a href="#panel2v">新聞</a></li>
                 <li class="tabs-title"><a href="#panel3v">新聞</a></li>
                 <li class="tabs-title"><a href="#panel4v">新聞</a></li>
                 <li class="tabs-title"><a href="#panel5v">新聞</a></li>
-                <li class="tabs-title"><a href="#panelv">新聞</a></li> -->
-            </ul>
+                <li class="tabs-title"><a href="#panelv">新聞</a></li>
+            </ul> -->
             <div class="clearfix"></div>
         </div>
         <div class="tabs-content " data-tabs-content="example-vert-tabs">
             <div class="tabs-panel is-active" id="panel1v">
                 <div class="row" data-equalizer data-equalize-on="medium" id="test-eq">
-                    {% for idx in range(3, 9) %}
+                    {% for idx in range(3, 6) %}
                         {% set title = news36[idx].title %}
                         {% set img = news36[idx].imgs[0].img %}
                         {% set imgtitle = news36[idx].imgs[0].title %}
