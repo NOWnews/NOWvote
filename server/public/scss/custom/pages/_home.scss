@@ -111,3 +111,25 @@
         border-bottom: 1px solid #505050;
     }
 }
+
+
+.orbit-image {
+    width:100%;
+    height: 280px;
+    background-position: center;
+    display:block;
+    margin:0 auto;
+    background-size:contain;
+}
+.images-contain {
+    height:280px;
+    width:480px;
+    background: #000;
+    vertical-align: middle;
+}
+.orbit-slide {
+    width:100%;
+    height:280px;
+    margin:0 auto;
+
+}
