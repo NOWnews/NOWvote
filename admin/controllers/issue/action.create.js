@@ -49,7 +49,7 @@ module.exports = function(req, res, next) {
 
             let newImgName = `${imageStorage}/${fullImgName}`;
             let movedImgPosition = yield libs.moveFile(imgFile.path, newImgName);
-            let imgUrl = `${imageStorageUrl}/${fullImgName}`;
+            imgUrl = `${imageStorageUrl}/${fullImgName}`;
         }
 
         // 檢查列表頁縮圖
@@ -64,7 +64,7 @@ module.exports = function(req, res, next) {
             let fullMainImgName = `${mainImageName}.${extMainImgName}`;
             let newMainImgName = `${imageStorage}/${fullMainImgName}`;
             let movedMainImgPosition = yield libs.moveFile(mainImgFile.path, newMainImgName);
-            let mainImgUrl = `${imageStorageUrl}/${fullMainImgName}`;
+            mainImgUrl = `${imageStorageUrl}/${fullMainImgName}`;
         }
 
         debug('title = %j', data.title);
