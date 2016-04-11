@@ -165,3 +165,16 @@ gulp.task('default', [
     'adminScript:watch',
     'adminSass:watch'
 ]);
+
+gulp.task('deploy-static', [
+// server
+    'serverClean',
+    'serverMoveFontAwesomeFolder',
+    'serverSass',
+    'serverScript',
+// admin
+    'adminClean',
+    'adminMoveFontAwesomeFolder',
+    'adminSass',
+    'adminScript'
+]);
