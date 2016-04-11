@@ -1,0 +1,49 @@
+<link rel="stylesheet" href="/static/dist/css/remodal.min.css">
+<link rel="stylesheet" href="/static/dist/css/remodal-default-theme.min.css">
+<script src="/static/dist/js/remodal.min.js"></script>
+
+<div class="remodal" data-remodal-id="login-modal">
+    <div class="login-header">
+        <button data-remodal-action="close" class="remodal-close"></button>
+        <div class="title">
+            <h3>登入 / 註冊</h3>
+        </div>
+    </div>
+    <hr>
+    <div class="login-content row">
+        <div class="large-9 columns">
+            <form action="/localLogin" method="post" enctype="multipart/form-data">
+                <div class="large-15 columns">
+                    email:
+                    <input name="email"/>
+                </div>
+                <div class="large-15 columns">
+                    password:
+                    <input name="password"/>
+                </div>
+                <input type="submit" value="送出">
+            </form>
+        </div>
+        <div class="large-6 columns">
+            <a href="/auth/facebook" class="large-15 columns">
+                <div class="fb-btn">
+                    <i class="fa fa-facebook"></i>
+                    facebook 登入
+                </div>
+            </a>
+
+            <a href="/auth/google" class="large-15 columns">
+                <div class="google-box">
+                    <i class="fa fa-google"></i>
+                    google 登入
+                </div>
+            </a>
+        </div>
+
+    </div>
+    <div class="login-footer">
+        <!-- <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
+        <button data-remodal-action="confirm" class="remodal-confirm">OK</button> -->
+    </div>
+</div>
+<a href="#login-modal">11111</a>
