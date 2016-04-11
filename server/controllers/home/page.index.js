@@ -21,7 +21,9 @@ module.exports = function(req, res, next) {
             redis.getIndexIssues(true),
 
             // 取得即時新聞資料
-            redis.getInstantNews()
+            redis.getInstantNews(),
+
+            redis.get36News()
         ];
         debug('results = %j', results);
 
@@ -30,6 +32,7 @@ module.exports = function(req, res, next) {
         let banners = results[1];
         let issues = results[2];
         let hotNews = results[3];
+        let news36 = results[4];
         debug('categories = %j', categories);
         debug('banners = %j', banners);
         // debug('issues = %j', issues);
@@ -69,7 +72,8 @@ module.exports = function(req, res, next) {
             issues: issues,
             categories: categories,
             banners: banners,
-            hotnews: hotNews
+            hotNews: hotNews,
+            news36: news36
         });
     })
     .catch(next);
