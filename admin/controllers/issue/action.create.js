@@ -84,7 +84,7 @@ module.exports = function(req, res, next) {
             _id: newIssueId,
             title: data.title,
             status: status,
-            desc: data.desc,
+            desc: data.desc || 'NOWnews',
             counter: 0,
             mainImage: mainImgUrl,
             thumbnail: imgUrl,

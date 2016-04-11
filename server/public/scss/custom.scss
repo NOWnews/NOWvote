@@ -55,9 +55,15 @@
 .margin5 {
     margin: 0 15px;
 }
+.margin10 {
+    margin: 10px 0;
+}
+
 .vote_title {
-    font-size: 0.875rem;
-    height: 2.5rem;
+    font-size: 1.2rem;
+    a {
+        color: #000;
+    }
 }
 .vote_category {
     font-size: 0.75rem;
@@ -71,14 +77,17 @@
     float: left;
     width: 100px;
     height: 100px;
+    margin-right: 0.5rem;
 }
-.vote_list {}
+.vote_list {
+
+}
 .vote_item {
-    margin-bottom: 20px;
-    border-bottom: 1px solid #BDBDBD;
+    border-bottom: 1px dashed #BDBDBD;
     display: block;
     width: 100%;
     float: left;
+    padding: 0.5rem;
 }
 .title-bar {
     background: #fff;

@@ -20,7 +20,12 @@
                             <span class="num-count">{{ issue.counter }}</span>用戶 投過票
                         </div>
                     </div>
-                    <a href="/issues/{{ issue.sn }}" class="button bold"><i class="fa fa-hand-pointer-o"></i>VOTE NOW!</a>
+
+                    {% if issue.isVoted == true %}
+                        <a href="/issues/{{ issue.sn }}" class="button bold is-voted"><i class="fa-fw fa fa-hand-pointer-o"></i>您已經投過票！</a>
+                    {% else %}
+                       <a href="/issues/{{ issue.sn }}" class="button bold"><i class="fa-fw fa fa-hand-pointer-o"></i>VOTE NOW!</a>
+                    {% endif %}
                 </div>
             </div>
         {% endfor %}
