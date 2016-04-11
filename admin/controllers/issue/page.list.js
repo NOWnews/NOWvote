@@ -24,19 +24,42 @@ const formatIssuesDate = function (issues) {
 
 module.exports = function(req, res, next) {
 
+    let currentPage = req.query.page || 1;
+    let limit = 30;
+    let skip = ( currentPage - 1 ) * limit;
+
     co(function*() {
 
         let issues = yield models.issue.find()
             .where('trashed').equals(false)
             .deepPopulate('category questions.options')
             .lean()
+            .limit(limit)
+            .skip(skip)
+            .sort('-createdAt')
             .execAsync();
 
         issues = formatIssuesDate(issues);
-
         debug('issues = %j', issues);
 
-        return res.render('issue/list', {issues: issues});
+        let countQuery = yield models.issue.find()
+            .where('trashed').equals(false)
+            .count()
+            .execAsync();
+        debug('countQuery = %j', countQuery);
+
+        // 處理 pagination
+        let pageInfo = libs.pagination({
+            total: countQuery,
+            currnetPage: currentPage,
+            limit: limit
+        });
+        debug('pageInfo = %j', pageInfo);
+
+        return res.render('issue/list', {
+            issues: issues,
+            pageInfo: pageInfo
+        });
     })
     .catch(next);
 
