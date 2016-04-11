@@ -79,13 +79,16 @@ var serverBowerJsPaths = [
     './server/public/js/*.js',
     './bower_components/jquery/dist/jquery.js',
     './bower_components/foundation-sites/dist/foundation.js',
-    './node_modules/lodash/lodash.js'
+    './node_modules/lodash/lodash.js',
+    './bower_components/remodal/dist/remodal.js'
 ];
 var serverBowerScssPaths = [
     './server/public/scss/*.scss',
     './bower_components/font-awesome/scss/font-awesome.scss',
     './bower_components/foundation-datepicker/css/foundation-datepicker.scss',
-    './bower_components/css-hamburgers/_sass/hamburgers/hamburgers.scss'
+    './bower_components/css-hamburgers/_sass/hamburgers/hamburgers.scss',
+    './bower_components/remodal/dist/remodal.css',
+    './bower_components/remodal/dist/remodal-default-theme.css'
 ];
 
 var serverSettingsPaths = [

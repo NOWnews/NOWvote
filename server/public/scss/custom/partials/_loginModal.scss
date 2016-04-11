@@ -1,0 +1,31 @@
+// remodal
+.remodal {
+    .fb-btn {
+        background: #3b5998;
+        color: #fff;
+        padding: 10px;
+        margin: 5px 0;
+    }
+    .google-box {
+        background: #DD4B39;
+        color: #fff;
+        padding: 10px;
+        margin: 5px 0;
+    }
+    .left-content{
+        border-right: 1px solid #ddd;
+        padding-top: 8px;
+        .columns label{
+            font-size: 16px;
+            line-height: 39px;
+        }
+    }
+    .secondary.button {
+        background: #777;
+    }
+    .remodal-close {
+        left: auto;
+        right: 0;
+    }
+
+}
