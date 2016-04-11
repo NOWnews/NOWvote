@@ -41,6 +41,10 @@ imagemagick v6.9.3-0_2
 - 快速啟動指令: `npm run admin`
 - gulp編譯: `npm run admin-gulp`
 
+## gulp build
+
+`npm run deploy-static`
+
 ## Redis 共用 method
 
 - cache.set(key, value, expire)
