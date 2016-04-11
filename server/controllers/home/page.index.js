@@ -30,7 +30,6 @@ module.exports = function(req, res, next) {
         ];
         debug('results = %j', results);
 
-
         let categories = results[0];
         let banners = results[1];
         let issues = results[2];
@@ -40,7 +39,6 @@ module.exports = function(req, res, next) {
         debug('banners = %j', banners);
         // debug('issues = %j', issues);
         debug('hotNews = %j', hotNews);
-
 
         /*
          * 判斷使用者是否投過票了
