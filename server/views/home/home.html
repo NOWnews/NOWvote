@@ -11,13 +11,16 @@
                     <img class="thumbnail" src="{{ issue.thumbnail }}">
                     <h6>{{ issue.title }}</h6>
                     <div class="stats">
+                        <div class="votetime">
+                           <i class="fa fa-calendar"></i> {{ issue.startTime }} ~ {{ issue.endTime }}
+                        </div>
                         <div class="users">
                             <i class="fa fa-pie-chart"></i>
                             已有
                             <span class="num-count">{{ issue.counter }}</span>用戶 投過票
                         </div>
                     </div>
-                    <a href="/issues/{{ issue.sn }}" class="button bold">VOTE NOW!</a>
+                    <a href="/issues/{{ issue.sn }}" class="button bold"><i class="fa fa-hand-pointer-o"></i>VOTE NOW!</a>
                 </div>
             </div>
         {% endfor %}

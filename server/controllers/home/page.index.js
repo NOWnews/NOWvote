@@ -1,9 +1,12 @@
 
 const debug = require('debug')('NOWvote:server:controllers:home:page.index');
+const libs = require('../../../libs');
+
 
 import co from 'co';
 import models from '../../../models';
 import redis from '../../../caches';
+
 
 module.exports = function(req, res, next) {
 
@@ -38,6 +41,7 @@ module.exports = function(req, res, next) {
         // debug('issues = %j', issues);
         debug('hotNews = %j', hotNews);
 
+
         /*
          * 判斷使用者是否投過票了
          */
@@ -58,6 +62,8 @@ module.exports = function(req, res, next) {
         votedIssueIds = _.uniq(votedIssueIds);
 
         _.forEach(issues, function(issue) {
+            issue.startTime = libs.formatDate(issue.startTime);
+            issue.endTime = libs.formatDate(issue.endTime);
             if(_.indexOf(votedIssueIds, issue._id + '') >= 0) {
                 issue.isVoted = true;
                 return;
