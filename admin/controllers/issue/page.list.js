@@ -25,7 +25,7 @@ const formatIssuesDate = function (issues) {
 module.exports = function(req, res, next) {
 
     let currentPage = req.query.page || 1;
-    let limit = 12;
+    let limit = 30;
     let skip = ( currentPage - 1 ) * limit;
 
     co(function*() {
