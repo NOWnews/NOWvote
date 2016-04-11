@@ -2,7 +2,7 @@
 
 {% block container %}
     <div class="row column text-center">
-        <h2 class="main-title">æœ€æ–°è­°é¡Œ</h2>
+        <h2 class="main-title">×îĞÂ×hî}</h2>
     </div>
     <div class="row small-up-1 medium-up-2 large-up-4" data-toggler data-animate="slide-in-down slide-out-up">
         {% for issue in issues %}
@@ -16,13 +16,13 @@
                         </div>
                         <div class="users">
                             <i class="fa fa-pie-chart"></i>
-                            å·²æœ‰
-                            <span class="num-count">{{ issue.counter }}</span>ç”¨æˆ¶ æŠ•éç¥¨
+                            ÒÑÓĞ
+                            <span class="num-count">{{ issue.counter }}</span>ÓÃ‘ô Í¶ß^Æ±
                         </div>
                     </div>
 
                     {% if issue.isVoted == true %}
-                        <a href="/issues/{{ issue.sn }}" class="button bold is-voted"><i class="fa-fw fa fa-hand-pointer-o"></i>æ‚¨å·²ç¶“æŠ•éç¥¨ï¼</a>
+                        <a href="/issues/{{ issue.sn }}" class="button bold is-voted"><i class="fa-fw fa fa-hand-pointer-o"></i>VOTE NOW!</a>
                     {% else %}
                        <a href="/issues/{{ issue.sn }}" class="button bold"><i class="fa-fw fa fa-hand-pointer-o"></i>VOTE NOW!</a>
                     {% endif %}
