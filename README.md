@@ -25,7 +25,7 @@ redis v3.4.1
 
 照著文件上的安裝步驟，就可以成功啟動 mongo
 
-####啟動指令
+#### 啟動指令
 
 `$ mongo`
 
@@ -39,7 +39,7 @@ redis v3.4.1
 
 ### Install Redis
 
-####安裝 Redis
+#### 安裝 Redis
 
 `$ sudo apt-get install redis-server`
 
@@ -49,11 +49,11 @@ redis v3.4.1
 
 ### Install Node.js
 
-####建議使用 nvm 進行安裝，相關文件如下
+#### 建議使用 nvm 進行安裝，相關文件如下
 
 `https://github.com/creationix/nvm`
 
-####安裝 nvm
+#### 安裝 nvm
 
 `curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh | bash`
 
@@ -63,15 +63,15 @@ or
 
 如果找不到 nvm 這個指令，記得要 `source ~/.bashrc`
 
-####下載 Node.js
+#### 下載 Node.js
 
 `$ nvm install 5`
 
-####設定每次都會載入的 Node
+#### 設定每次都會載入的 Node
 
 `$ nvm alias default node`
 
-####安裝 Node.js 底層套件
+#### 安裝 Node.js 底層套件
 
 `$ npm install -g node-gyp pm2`
 
