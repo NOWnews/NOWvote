@@ -1,6 +1,6 @@
 // radio 樣式
 .radioholder, .radioresult {
-    width: 48%;
+    width: 100%;
     background: #fff;
     margin-bottom: 1em;
     font-size: 1.3em;
@@ -39,16 +39,16 @@
     }
 }
 .activeradioholder {
-    background: #39A9A4;
+    background: #FFAA30;
     color: #fff;
     &:hover {
-        background-color: #39A9A4;
+        background-color: #FFAA30;
         .tick {
-            background-color: #2A817C;
+            background-color: #EA951A;
         }
     }
     .tick {
-        background-color: #2A817C;
+        background-color: #EA951A;
         background-image: url('/static/images/voteRedio/radio_tick.png');
         background-size: cover;
     }
