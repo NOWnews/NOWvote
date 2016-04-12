@@ -10,7 +10,6 @@ const vote = require('./vote');
 
 module.exports = function(app) {
 
-    app.use('/', home);
     app.use('/', auth);
     app.use('/', login);
     app.use('/', user);
@@ -18,6 +17,7 @@ module.exports = function(app) {
     app.use('/', issue);
     app.use('/', tag);
     app.use('/', vote);
+    app.use('/', home);
 
     return function(req, res, next) {
         return next();
