@@ -11,9 +11,16 @@
                     <img class="thumbnail" src="{{ issue.thumbnail }}">
                     <h6>{{ issue.title }}</h6>
                     <div class="stats">
-                        <div class="votetime">
-                           <i class="fa fa-calendar"></i> {{ issue.startTime }} ~ {{ issue.endTime }}
-                        </div>
+                        {% if issue.continued %}
+                            <div class="votetime">
+                               <i class="fa fa-calendar"></i>
+                               <span>此為長期投票</span>
+                            </div>
+                        {% else %}
+                            <div class="votetime">
+                               <i class="fa fa-calendar"></i> {{ issue.startTime }} ~ {{ issue.endTime }}
+                            </div>
+                        {% endif %}
                         <div class="users">
                             <i class="fa fa-pie-chart"></i>
                             已有
@@ -32,4 +39,3 @@
     </div>
     {% include "../blocks/news.html" %}
 {% endblock %}
-
