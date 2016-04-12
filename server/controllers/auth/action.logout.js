@@ -7,5 +7,5 @@ module.exports = function(req, res, next) {
 
     req.session.user = null;
 
-    return res.redirect('/');
+    return res.redirect('/index');
 };
