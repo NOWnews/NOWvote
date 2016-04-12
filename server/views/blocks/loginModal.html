@@ -6,42 +6,24 @@
     <div class="login-header">
         <button data-remodal-action="close" class="remodal-close"></button>
         <div class="title">
-            <h3>登入 / 註冊</h3>
+            <h3>Nownews 議題票選</h3>
         </div>
     </div>
     <hr>
     <div class="login-content row">
-        <div class="large-9 columns left-content">
-            <form action="/localLogin" method="post" enctype="multipart/form-data">
-                <div class="medium-3 columns">
-                    <label>信箱:</label>
-                </div>
-                <div class="medium-12 columns">
-                    <input name="email" type="text" placeholder="請輸入你的信箱">
-                </div>
-                <div class="medium-3 columns">
-                    <label>密碼:</label>
-                </div>
-                <div class="medium-12 columns">
-                    <input name="password" type="text" placeholder="請輸入你的密碼">
-                </div>
-                <div class="medium-15 columns text-right">
-                    <input class="button" data-remodal-action="confirm" type="submit" value="送出">
-                    <a class="button secondary" data-remodal-action="cancel">取消</a>
-                </div>
-            </form>
-        </div>
-        <div class="large-6 columns">
-            <a href="/auth/facebook" class="large-15 columns">
+        <p>歡迎回來！你可以由此登入</p>
+        <div class="large-15 columns">
+            <a href="/auth/facebook" class="large-7 columns">
                 <div class="fb-btn">
-                    <i class="fa fa-facebook"></i>
-                    facebook 登入
+                    <i class="fa-fw fa fa-facebook"></i>
+                    FACEBOOK
                 </div>
             </a>
-            <a href="/auth/google" class="large-15 columns">
+            <div class="large-1 columns"></div>
+            <a href="/auth/google" class="large-7 columns">
                 <div class="google-box">
-                    <i class="fa fa-google"></i>
-                    google 登入
+                    <i class="fa-fw fa fa-google"></i>
+                    GOOGLE+
                 </div>
             </a>
         </div>
