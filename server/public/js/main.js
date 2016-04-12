@@ -33,10 +33,18 @@ $(function() {
             contentType: 'application/json',
             data: JSON.stringify(voteData),
             success: function(data, err) {
-                alert('投票完成摟!');
+                swal({
+                    title: '投票完成摟!',
+                    type: 'success'
+                },function(isConfirm){
+                    location.reload();
+                });
             },
             error: function() {
-                alert('您已經投過票摟!');
+                swal({
+                    title: '您已經投過票摟!',
+                    type: 'error'
+                });
             }
         });
     });

@@ -102,6 +102,7 @@
       "rootPath": false,
       "NODE_ENV": false,
       "$": false,
-      "imageStorage": false
+      "imageStorage": false,
+      "swal": false
   }
 }

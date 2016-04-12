@@ -80,7 +80,8 @@ var serverBowerJsPaths = [
     './bower_components/jquery/dist/jquery.js',
     './bower_components/foundation-sites/dist/foundation.js',
     './node_modules/lodash/lodash.js',
-    './bower_components/remodal/dist/remodal.js'
+    './bower_components/remodal/dist/remodal.js',
+    './bower_components/sweetalert/dist/sweetalert.min.js'
 ];
 var serverBowerScssPaths = [
     './server/public/scss/*.scss',
@@ -88,7 +89,8 @@ var serverBowerScssPaths = [
     './bower_components/foundation-datepicker/css/foundation-datepicker.scss',
     './bower_components/css-hamburgers/_sass/hamburgers/hamburgers.scss',
     './bower_components/remodal/dist/remodal.css',
-    './bower_components/remodal/dist/remodal-default-theme.css'
+    './bower_components/remodal/dist/remodal-default-theme.css',
+    './bower_components/sweetalert/dist/sweetalert.css'
 ];
 
 var serverSettingsPaths = [
@@ -131,7 +133,11 @@ gulp.task('serverScript', function() {
     return gulp.src(serverBowerJsPaths)
         .pipe(plugins.plumber())
         .pipe(plugins.uglify())
-        .pipe(plugins.rename({suffix: '.min'}))
+        .pipe(plugins.rename(function (path) {
+            if(path.basename.indexOf('.min') < 0){
+                path.basename += '.min';
+            }
+        }))
         .pipe(gulp.dest('./server/public/dist/js'));
 });
 
