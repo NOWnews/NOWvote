@@ -173,6 +173,9 @@ module.exports = function(app) {
             delete req.session.passport;
         }
 
+        // 將 session.user 放到 locals.user 裡，讓 site 可以取得資料
+        res.locals.user = req.session.user;
+
         return next();
     };
 };
