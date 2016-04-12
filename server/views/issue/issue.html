@@ -6,29 +6,52 @@
             <div class="container" id="content">
                 <section class="container" flex-container="row">
                     <article class="m-main-content m-competition" flex-item="8">
-
                         <h1 class="vote-title">
                             {{ issue.title }}
                         </h1>
                         <div class="margin10 info-block">
-                            <span class="info-counter">
-                                <i class="fa fa-users fa-fw"></i>投票人數：
-                            </span>
-                            {{ issue.counter }}
+                            <img src="http://lazyfamily.twbbs.org/social.png" class="social-btn">
+                        </div>
+                        <div class="margin10 info-block">
                             {% if issue.continued %}
                                 <span class="info-time">
                                     <i class="fa fa-calendar fa-fw"></i>開始時間：
                                 </span>
                                 <span>此為長期投票</span>
                             {% else %}
-                                <span class="margin5">
+                                <span class="info-time">
                                     <i class="fa fa-calendar fa-fw"></i>開始時間：
                                 </span>
                                 <span>{{ issue.startTime }}</span>
-                                <span class="margin5">~</span>
-                                <span>{{ issue.endTime }}</span>
+                                <span>~</span>
+                                <span>{{ issue.endTime }}  (GMT +8) </span>
                             {% endif %}
                         </div>
+                        <div class="margin10 info-block">
+                            <span class="info-category">
+                                <i class="fa-fw fa fa-th-large" aria-hidden="true"></i>議題分類：
+                            </span>
+                            <a href="/category/{{ issue.category.title }}" target="_blank">
+                                <span class="issue-category">{{ issue.category.title }}</span>
+                            </a>
+                        </div>
+                        <div class="margin10 info-block">
+                            <span class="info-counter">
+                                <i class="fa fa-users fa-fw"></i>投票人數：
+                            </span>
+                            <span>{{ issue.counter }}</span>
+                        </div>
+                        <div class="margin10 info-block last-block">
+                            <div class="article-tag">
+                            <i class="fa-fw fa fa-tag"></i>標籤：
+                                {% for tag in issue.tags %}
+                                    <span class="info label">
+                                        <i class="fa fa-hashtag"></i>{{ tag }}
+                                    </span>
+                                {% endfor %}
+                            </div>
+                        </div>
+
                          <div>
                             <img class="main-image" src="{{ issue.mainImage }}">
                         </div>
@@ -51,13 +74,6 @@
                                 {% endif %}
 
                             </form>
-                        </div>
-                        <div class="article-tag margin5">
-                            <i class="fa fa-tag"></i>標籤：
-                            {% for tag in issue.tags %}
-                                <span class="info label">
-                                    <i class="fa fa-hashtag"></i>{{ tag }}</span>
-                            {% endfor %}
                         </div>
                     </article>
                 </section>
