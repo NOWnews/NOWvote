@@ -74,9 +74,6 @@ module.exports = function(req, res, next) {
         let issues = results[0];
         let issuesTotal = results[1];
         let news36 = results[2];
-        // debug('issues = %j', issues);
-        // debug('issuesTotal = %d', issuesTotal);
-        // debug('news36 = %j', news36);
 
         /*
          * 判斷使用者是否投過票了
@@ -102,6 +99,8 @@ module.exports = function(req, res, next) {
         votedIssueIds = _.uniq(votedIssueIds);
 
         _.forEach(issues, function(issue) {
+            issue.startTime = libs.formatDate(issue.startTime);
+            issue.endTime = libs.formatDate(issue.endTime);
             if(_.indexOf(votedIssueIds, issue._id + '') >= 0) {
                 issue.isVoted = true;
                 return;
