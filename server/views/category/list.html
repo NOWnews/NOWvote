@@ -5,24 +5,7 @@
         <h2 class="main-title">分類議題</h2>
     </div>
     <div class="row small-up-1 medium-up-2 large-up-4" data-toggler data-animate="slide-in-down slide-out-up">
-        {% for issue in issues %}
-            <div class="column text-center">
-                <div class="issue_area">
-                    <a href="/issues/{{ issue.sn }}">
-                        <div class="thumbnail" style="background-image:url({{ issue.thumbnail }});"></div>
-                    </a>
-                    <h6>{{ issue.title }}</h6>
-                    <div class="stats">
-                        <div class="users">
-                            <i class="fa fa-pie-chart"></i>
-                            已有
-                            <span class="num-count">{{ issue.counter }}</span>用戶 投過票
-                        </div>
-                    </div>
-                    <a href="/issues/{{ issue.sn }}" class="button bold">VOTE NOW!</a>
-                </div>
-            </div>
-        {% endfor %}
+        {% include "../blocks/issuesArea.html" %}
     </div>
 
     {% include "../blocks/pagination.html" %}
