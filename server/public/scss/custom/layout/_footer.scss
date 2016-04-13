@@ -1,10 +1,14 @@
 .footer {
     margin-top: 50px;
     background-color: #fff;
+    h5 {
+        border-bottom: 1px solid #dbdbdb;
+        color: #C09333;
+    }
 
     .follow-box .fa{
         font-size: 30px;
-        padding: 10px;
+        padding: 0 10px;
         color: #FFAA30;
     }
 
@@ -12,6 +16,13 @@
         border: 0px;
         background-color: #f2f2f2;
         color: #bebebe;
+        a {
+            color: #6b6b6b;
+        }
+        a:hover {
+            color: #FFAA30;
+        }
+
     }
 
     #copyleft {
@@ -23,6 +34,9 @@
     }
     .thumbnail {
         box-shadow: none;
+    }
+    .columns {
+        margin-bottom: 15px;
     }
 
 }
