@@ -125,27 +125,37 @@
     margin: 0 auto;
 }
 //issueblock button
-.issue_area .button {
-    width: 100%;
-    margin: 0;
-    background: #FFAA30;
-    font-weight: bold;
-}
-.issue_area .button:hover,
-.button:focus {
-    background: #FF6C25;
-}
-.issue_area .votetime {
-    font-size: 0.6rem;
-}
-.issue_area h6 {
-    color: #242424;
-    font-size: 1.2rem;
-    font-weight: bold;
-}
-.issue_area .fa-hand-pointer-o {
-    font-size: 1.2rem;
-}
-.issue_area a.button.bold.is-voted {
-    background: #aaa;
+.issue_area {
+    .button {
+        width: 100%;
+        margin: 0;
+        background: #FFAA30;
+        font-weight: bold;
+        &:hover,
+        &:focus {
+            background: #FF6C25;
+        }
+    }
+    .votetime {
+        font-size: 0.6rem;
+    }
+    h6 {
+        color: #242424;
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+    .fa-hand-pointer-o {
+        font-size: 1.2rem;
+    }
+    a.button.bold.is-voted {
+        background: #aaa;
+    }
+    div.thumbnail {
+        width: 300px;
+        height: 250px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        background-color:#fff;
+    }
 }
