@@ -8,7 +8,9 @@
         {% for issue in issues %}
             <div class="column text-center">
                 <div class="issue_area">
-                    <img class="thumbnail" src="{{ issue.thumbnail }}">
+                    <a href="/issues/{{ issue.sn }}">
+                        <div class="thumbnail" style="background-image:url({{ issue.thumbnail }});"></div>
+                    </a>
                     <h6>{{ issue.title }}</h6>
                     <div class="stats">
                         {% if issue.continued %}
@@ -37,5 +39,6 @@
             </div>
         {% endfor %}
     </div>
+
     {% include "../blocks/news.html" %}
 {% endblock %}
