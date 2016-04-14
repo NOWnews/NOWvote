@@ -95,3 +95,29 @@
 .menu-icon {
     color: #333;
 }
+@media screen and (max-width: 39.9375em){
+    .orbit-slide {
+        height: auto;
+        img {
+            min-width: 100%;
+        }
+    }
+}
+@media screen and (min-width: 64em) {
+    .orbit-slide {
+        height: auto;
+        img {
+            min-width: 100%;
+        }
+    }
+}
+@media screen and (min-width: 40em) {
+    .orbit-slide {
+        height: auto;
+        img {
+            min-width: 100%;
+        }
+    }
+}
+
+
