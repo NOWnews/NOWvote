@@ -53,11 +53,20 @@
         </div>
         <div class="row">
             <div class="columns">
-                <label for="img-inp" class="button">上傳圖片</label>
-                <input type='file' class="show-for-sr img-input" id="img-inp" name="file">
-                <label for="img-inp">
-                    <img class="thumbnail" src="{{ item.image }}" id="blah" src="#" alt="your image">
+                <label for="img-desktop">
+                    <img class="thumbnail" src="{{ item.desktopImage }}" id="blah" src="#" alt="your image">
                 </label>
+                <label for="img-desktop" class="button">更新圖片(desktop)</label>
+                <input type='file' class="show-for-sr img-input" id="img-desktop" name="desktopBanner">
+            </div>
+        </div>
+        <div class="row">
+            <div class="columns">
+            <input type='file' class="show-for-sr img-input" id="img-mobile" name="mobileBanner">
+            <label for="img-mobile">
+                <img class="thumbnail" src="{{ item.mobileImage }}" id="blah" src="#" alt="your image">
+            </label>
+                <label for="img-mobile" class="button">更新圖片(mobile)</label>
             </div>
         </div>
         <div class="row">

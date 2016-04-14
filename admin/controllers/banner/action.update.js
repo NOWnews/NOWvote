@@ -7,12 +7,36 @@ import redis from '../../../caches';
 const libs = require('../../../libs');
 const debug = require('debug')('NOWvote:admin:controllers:banner:action.update');
 
+// 處理圖片資料
+const imageUrlMapping = co.wrap(function*(file, type) {
+
+    if(!file) {
+        return Promise.reject(new Error('File Needed'));
+    }
+
+    if(!type) {
+        let type = 'picture';
+    }
+
+    let extName = yield libs.checkExt(file);
+    let fileName = type + moment()
+        .tz('Asia/Taipei')
+        .format('YYYYMMDD-HHmmss');
+
+    let fullFileName = `${fileName}.${extName}`;
+    let newFileName = imageStorage + `/${fullFileName}`;
+
+    return yield Promise.resolve({
+        fullFileName: fullFileName,
+        newFileName: newFileName
+    });
+});
+
 module.exports = function(req, res, next) {
 
     let sn = parseInt(req.params.sn, 10);
     let data = req.body;
     let imageStorageUrl = '/images';
-    let imgFile = req.files.file;
 
     co(function*() {
 
@@ -41,21 +65,22 @@ module.exports = function(req, res, next) {
         banner.set('status', status);
         banner.set('continued', continued);
 
-        // 檢查 圖片資訊
-        if(imgFile){
+        // 如果有更新 desktop banner 圖
+        if(req.files && req.files.desktopBanner && req.files.desktopBanner[0]) {
+            let file = req.files.desktopBanner[0];
+            let desktopBannerInfo = yield imageUrlMapping(file, 'desktopBanner');
+            let movedfilePosition = yield libs.moveFile(file.path, desktopBannerInfo.newFileName);
+            let desktopImageUrl = `${imageStorageUrl}/${desktopBannerInfo.fullFileName}`;
+            banner.set('desktopImage', desktopImageUrl);
+        }
 
-            let extName = yield libs.checkExt(imgFile[0]);
-            let fileName = 'picture' + moment()
-                .tz('Asia/Taipei')
-                .format('YYYYMMDD-HHmmss');
-            let fullFileName = `${fileName}.${extName}`;
-            let newFileName = imageStorage + `/${fullFileName}`;
-
-             // 呼叫 libs.moveFile 搬移檔案
-            let movedfilePosition = yield libs.moveFile(imgFile[0].path, newFileName);
-            let imageUrl = `${imageStorageUrl}/${fullFileName}`;
-
-            banner.set('image', imageUrl);
+        // 如果有更新 mobile banner 圖
+        if(req.files && req.files.mobileBanner && req.files.mobileBanner[0]) {
+            let file = req.files.mobileBanner[0];
+            let mobileBannerInfo = yield imageUrlMapping(file, 'mobileBanner');
+            let movedfilePosition = yield libs.moveFile(file.path, mobileBannerInfo.newFileName);
+            let mobileImageUrl = `${imageStorageUrl}/${mobileBannerInfo.fullFileName}`;
+            banner.set('mobileImage', mobileImageUrl);
         }
 
         yield banner.saveAsync();
