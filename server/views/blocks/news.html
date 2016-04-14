@@ -20,13 +20,13 @@
 
                     {% if loop.first %}
                         <li class="is-active orbit-slide">
-                            <a href="{{ url }}" target="_blank" class="orbit-image" style="background-image:url({{ img }}) ;background-repeat:no-repeat">
+                            <a href="{{ url }}" target="_blank" class="orbit-image" style="background-image:url(http://imgapi.nownews.com/?h=280&q=60&src={{ img }}); background-repeat:no-repeat">
                                 <figcaption class="orbit-caption">{{ title }}</figcaption>
                             </a>
                         </li>
                     {% else %}
                         <li class="orbit-slide">
-                            <a href="{{ url }}" target="_blank" class="orbit-image" style="background-image:url({{ img }});background-repeat:no-repeat">
+                            <a href="{{ url }}" target="_blank" class="orbit-image" style="background-image:url(http://imgapi.nownews.com/?h=280&q=60&src={{ img }}); background-repeat:no-repeat">
                                 <figcaption class="orbit-caption">{{ title }}</figcaption>
                             </a>
                         </li>
