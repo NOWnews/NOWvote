@@ -49,7 +49,7 @@
 }
 .tabs-content {
     border: none;
-    height: 280px;
+    min-height: 280px;
     img.thumbnail {
         width: 100%;
         margin: 0 auto;
@@ -60,6 +60,9 @@
     h3 {
         font-size: 1rem;
         color: #333;
+    }
+    .tabs-panel {
+        padding-bottom: 0;
     }
 }
 //slide
@@ -118,7 +121,7 @@
     height: 280px;
     background: #000;
     vertical-align: middle;
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
 }
 .orbit-slide {
     width: 100%;
