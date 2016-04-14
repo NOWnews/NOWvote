@@ -19,7 +19,14 @@ const schema = new Schema({
         required: true
     },
 
-    image: {
+    // 桌面版用的 banner
+    desktopImage: {
+        type: String,
+        required: true
+    },
+
+    // 手機版用的 banner
+    mobileImage: {
         type: String,
         required: true
     },
