@@ -89,4 +89,13 @@ $(function() {
 
     $hamburger.on('click', hamburgerClickFunc);
     $jsOffCanvasExit.on('click', hamburgerClickFunc);
+
+    //slick js
+    $('.fade').slick({
+      dots: true,
+      infinite: true,
+      speed: 500,
+      fade: true,
+      cssEase: 'linear'
+    });
 });
