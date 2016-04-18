@@ -91,11 +91,8 @@ $(function() {
     $jsOffCanvasExit.on('click', hamburgerClickFunc);
 
     //slick js
-    $('.fade').slick({
-      dots: true,
-      infinite: true,
-      speed: 500,
-      fade: true,
-      cssEase: 'linear'
+    $('.image-slick').slick({
+        autoplay: true,
+        dots: true
     });
 });
