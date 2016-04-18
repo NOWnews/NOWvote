@@ -89,4 +89,12 @@ $(function() {
 
     $hamburger.on('click', hamburgerClickFunc);
     $jsOffCanvasExit.on('click', hamburgerClickFunc);
+
+    //slick js
+    $('.image-slick').slick({
+        autoplay: true,
+        dots: true,
+        adaptiveHeight: true,
+        respondTo: 'min'
+    });
 });

@@ -81,7 +81,8 @@ var serverBowerJsPaths = [
     './bower_components/foundation-sites/dist/foundation.js',
     './node_modules/lodash/lodash.js',
     './bower_components/remodal/dist/remodal.js',
-    './bower_components/sweetalert/dist/sweetalert.min.js'
+    './bower_components/sweetalert/dist/sweetalert.min.js',
+    './bower_components/slick-carousel/slick/slick.js'
 ];
 var serverBowerScssPaths = [
     './server/public/scss/*.scss',
@@ -90,7 +91,9 @@ var serverBowerScssPaths = [
     './bower_components/css-hamburgers/_sass/hamburgers/hamburgers.scss',
     './bower_components/remodal/dist/remodal.css',
     './bower_components/remodal/dist/remodal-default-theme.css',
-    './bower_components/sweetalert/dist/sweetalert.css'
+    './bower_components/sweetalert/dist/sweetalert.css',
+    './bower_components/slick-carousel/slick/slick.scss',
+    './bower_components/slick-carousel/slick/slick-theme.scss'
 ];
 
 var serverSettingsPaths = [
@@ -100,8 +103,13 @@ var serverSettingsPaths = [
 
 // 移動 font的檔案
 gulp.task('serverMoveFontAwesomeFolder', function() {
-    return gulp.src('./bower_components/font-awesome/fonts/*')
+    gulp.src('./bower_components/font-awesome/fonts/*')
         .pipe(gulp.dest('./server/public/dist/fonts'));
+    gulp.src('./bower_components/slick-carousel/slick/fonts/*')
+        .pipe(gulp.dest('./server/public/dist/css/fonts'));
+    gulp.src('./bower_components/slick-carousel/slick/ajax-loader.gif')
+        .pipe(gulp.dest('./server/public/dist/css/'));
+    return;
 });
 
 // 編譯 scss

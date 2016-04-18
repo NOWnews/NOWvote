@@ -1,15 +1,10 @@
 <div class="row collapse margin-class">
     <div class="large-6 medium-6 columns">
-        <div class="slide-title"><i class="fa fa-diamond"></i>今日熱門新聞</div>
+        <div class="slide-title">
+            <i class="fa fa-diamond"></i>今日熱門新聞
+        </div>
         <div class="images-contain">
-        <div class="orbit" role="region" aria-label="Favorite Space Pictures" data-orbit>
-            <ul class="orbit-container">
-                <button class="orbit-previous">
-                    <span class="show-for-sr">上一張</span>&#9664;&#xFE0E;
-                </button>
-                <button class="orbit-next">
-                    <span class="show-for-sr">下一張</span>&#9654;&#xFE0E;
-                </button>
+            <div class="image-slick">
                 {% for idx in range(0, 3) %}
                     {% set title = news36[idx].title %}
                     {% set img = news36[idx].imgs[0].img %}
@@ -18,43 +13,15 @@
                     {% set time = news36[idx].t %}
                     {% set url = "http://www.nownews.com" + news36[idx].url %}
 
-                    {% if loop.first %}
-                        <li class="is-active orbit-slide">
-                            <a href="{{ url }}" target="_blank" class="orbit-image" style="background-image:url(http://imgapi.nownews.com/?h=280&q=60&src={{ img }}); background-repeat:no-repeat">
-                                <figcaption class="orbit-caption">{{ title }}</figcaption>
-                            </a>
-                        </li>
-                    {% else %}
-                        <li class="orbit-slide">
-                            <a href="{{ url }}" target="_blank" class="orbit-image" style="background-image:url(http://imgapi.nownews.com/?h=280&q=60&src={{ img }}); background-repeat:no-repeat">
-                                <figcaption class="orbit-caption">{{ title }}</figcaption>
-                            </a>
-                        </li>
-
-                    {% endif %}
+                    <div>
+                        <a href="{{ url }}" target="_blank" class="orbit-image" style="background-image:url(http://imgapi.nownews.com/?h=280&q=60&src={{ img }}); background-repeat:no-repeat">
+                            <figcaption class="orbit-caption">{{ title }}</figcaption>
+                        </a>
+                    </div>
 
                 {% endfor %}
-
-
-            </ul>
-
-            <nav class="orbit-bullets show-for-medium-up">
-                <button class="is-active" data-slide="0">
-                    <span class="show-for-sr">First slide details.</span>
-                    <span class="show-for-sr">Current Slide</span>
-                </button>
-                <button data-slide="1">
-                    <span class="show-for-sr">Second slide details.</span>
-                </button>
-                <button data-slide="2">
-                    <span class="show-for-sr">Third slide details.</span>
-                </button>
-                <button data-slide="3">
-                    <span class="show-for-sr">Fourth slide details.</span>
-                </button>
-            </nav>
+            </div>
         </div>
-         </div>
     </div>
     <div class="large-9 medium-9 columns">
         <div class="news-block">

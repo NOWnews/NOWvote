@@ -5,6 +5,7 @@
 @import "vendors/vote-radio";
 @import "custom/pages/home";
 @import "custom/partials/loginModal";
+@import "custom/partials/slick";
 /*! custom css index home issue   */
 .issue_area {
     -webkit-box-shadow: 0 0 10px 1px rgba(171,171,171,0.39);
@@ -119,5 +120,3 @@
         }
     }
 }
-
-

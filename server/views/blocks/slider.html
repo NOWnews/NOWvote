@@ -1,71 +1,29 @@
 <div class="show-for-large">
-    <div class="orbit" role="region" aria-label="Favorite Space Pictures" data-orbit>
-        <ul class="orbit-container">
-            <button class="orbit-previous">
-                <span class="show-for-sr">上一張</span>&#9664;&#xFE0E;
-            </button>
-            <button class="orbit-next">
-                <span class="show-for-sr">下一張</span>&#9654;&#xFE0E;
-            </button>
-            {% for banner in banners %}
-                {% if loop.first %}
-                    <li class="orbit-slide is-active">
-                        <img src="{{banner.desktopImage}}">
-                    </li>
-                {% else %}
-                    <li class="orbit-slide">
-                        <img src="{{banner.desktopImage}}">
-                    </li>
-                {% endif %}
-            {% endfor %}
-        </ul>
+    <div class="image-slick">
+        {% for banner in banners %}
+            <div>
+                <img src="{{banner.desktopImage}}">
+            </div>
+        {% endfor %}
     </div>
 </div>
 
 <div class="show-for-small-only">
-    <div class="orbit" role="region" aria-label="Favorite Space Pictures" data-orbit>
-        <ul class="orbit-container">
-            <button class="orbit-previous">
-                <span class="show-for-sr">上一張</span>&#9664;&#xFE0E;
-            </button>
-            <button class="orbit-next">
-                <span class="show-for-sr">下一張</span>&#9654;&#xFE0E;
-            </button>
-            {% for banner in banners %}
-                {% if loop.first %}
-                    <li class="orbit-slide is-active">
-                        <img src="{{banner.mobileImage}}">
-                    </li>
-                {% else %}
-                    <li class="orbit-slide">
-                        <img src="{{banner.mobileImage}}">
-                    </li>
-                {% endif %}
-            {% endfor %}
-        </ul>
+    <div class="image-slick">
+        {% for banner in banners %}
+            <div>
+                <img src="{{banner.mobileImage}}">
+            </div>
+        {% endfor %}
     </div>
 </div>
 
 <div class="show-for-medium-only">
-    <div class="orbit" role="region" aria-label="Favorite Space Pictures" data-orbit>
-        <ul class="orbit-container">
-            <button class="orbit-previous">
-                <span class="show-for-sr">上一張</span>&#9664;&#xFE0E;
-            </button>
-            <button class="orbit-next">
-                <span class="show-for-sr">下一張</span>&#9654;&#xFE0E;
-            </button>
-            {% for banner in banners %}
-                {% if loop.first %}
-                    <li class="orbit-slide is-active">
-                        <img src="{{banner.desktopImage}}">
-                    </li>
-                {% else %}
-                    <li class="orbit-slide">
-                        <img src="{{banner.desktopImage}}">
-                    </li>
-                {% endif %}
-            {% endfor %}
-        </ul>
+    <div class="image-slick">
+        {% for banner in banners %}
+            <div>
+                <img src="{{banner.desktopImage}}">
+            </div>
+        {% endfor %}
     </div>
 </div>
