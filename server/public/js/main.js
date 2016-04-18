@@ -93,6 +93,7 @@ $(function() {
     //slick js
     $('.image-slick').slick({
         autoplay: true,
-        dots: true
+        dots: true,
+        adaptiveHeight: true
     });
 });

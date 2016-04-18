@@ -13,20 +13,11 @@
                     {% set time = news36[idx].t %}
                     {% set url = "http://www.nownews.com" + news36[idx].url %}
 
-                    {% if loop.first %}
-                        <div class="">
-                            <a href="{{ url }}" target="_blank" class="orbit-image" style="background-image:url(http://imgapi.nownews.com/?h=280&q=60&src={{ img }}); background-repeat:no-repeat">
-                                <figcaption class="orbit-caption">{{ title }}</figcaption>
-                            </a>
-                        </div>
-                    {% else %}
-                        <div class="">
-                            <a href="{{ url }}" target="_blank" class="orbit-image" style="background-image:url(http://imgapi.nownews.com/?h=280&q=60&src={{ img }}); background-repeat:no-repeat">
-                                <figcaption class="orbit-caption">{{ title }}</figcaption>
-                            </a>
-                        </div>
-
-                    {% endif %}
+                    <div>
+                        <a href="{{ url }}" target="_blank" class="orbit-image" style="background-image:url(http://imgapi.nownews.com/?h=280&q=60&src={{ img }}); background-repeat:no-repeat">
+                            <figcaption class="orbit-caption">{{ title }}</figcaption>
+                        </a>
+                    </div>
 
                 {% endfor %}
             </div>
