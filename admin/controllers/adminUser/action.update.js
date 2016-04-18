@@ -13,11 +13,17 @@ module.exports = function(req, res, next) {
 
     co(function*() {
 
+        let updatedUser = req.session.adminUser;
+        debug('updatedUser = %j', updatedUser);
         let adminUser = yield models.adminUser.findBySn(sn);
 
         updateFields.forEach(function(field) {
             adminUser.set(field, data[field]);
         });
+
+        if(updatedUser) {
+            adminUser.set('updatedBy', updatedUser._id);
+        }
 
         let updatedAdminUser = yield adminUser.saveAsync();
 
