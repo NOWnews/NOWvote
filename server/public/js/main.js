@@ -94,6 +94,7 @@ $(function() {
     $('.image-slick').slick({
         autoplay: true,
         dots: true,
-        adaptiveHeight: true
+        adaptiveHeight: true,
+        respondTo: 'min'
     });
 });
