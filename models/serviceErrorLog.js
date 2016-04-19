@@ -9,6 +9,11 @@ const schema = new Schema({
         type: String
     },
 
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'user'
+    },
+
     url: {
         type: String
     },
@@ -35,4 +40,4 @@ const schema = new Schema({
     }
 });
 
-module.exports = mongoose.model('adminErrorLog', schema);
+module.exports = mongoose.model('serviceErrorLog', schema);

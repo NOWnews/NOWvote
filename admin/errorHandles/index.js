@@ -23,7 +23,7 @@ module.exports = function(app) {
         console.log(errObject);
         console.log('-------------- ERROR --------------');
 
-        // 記錄錯誤
+        // 記錄 admin 錯誤
         models.adminErrorLog.createAsync({
             method: req.method,
             url: req.url,

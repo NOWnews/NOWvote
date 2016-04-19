@@ -31,6 +31,7 @@ const tagRelation = require('./tagRelation');
 const voteCounter = require('./voteCounter');
 const adminLog = require('./adminLog');
 const adminErrorLog = require('./adminErrorLog');
+const serviceErrorLog = require('./serviceErrorLog');
 
 module.exports = {
 
@@ -70,5 +71,8 @@ module.exports = {
     adminLog: adminLog,
 
     // 後台錯誤紀錄
-    adminErrorLog: adminErrorLog
+    adminErrorLog: adminErrorLog,
+
+    // 前台錯誤紀錄
+    serviceErrorLog: serviceErrorLog
 };
