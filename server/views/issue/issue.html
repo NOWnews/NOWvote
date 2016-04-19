@@ -1,4 +1,6 @@
 {% extends "../index.html" %}
+{% set title =  issue.title %}
+{% set description = issue.desc|striptags|truncate(120) %}
 
 {% block container %}
     <div class="row content-margin-top">
