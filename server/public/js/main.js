@@ -1,10 +1,15 @@
 $(function() {
     // 偵測瀏覽器
     var environmentChecks = function() {
-        if (is.ie()) {
+        if (true || is.ie()) {
             swal({
-                title: '非常抱歉! 您的瀏覽器過舊',
-                text: '請點選 <a target="_blank" href="https://www.google.com/chrome/browser/desktop/index.html">這裡</a> 來下載',
+                title: '非常抱歉!',
+                text: '您的瀏覽器無法最佳瀏覽體驗 <br> <span class="browser-info">請使用 ' +
+                    '<a class="chrome" target="_blank" href="https://www.google.com/chrome/browser/desktop/index.html">' +
+                    '<i class="fa fa-chrome" aria-hidden="true"></i> chrome</a>' +
+                    ' or ' +
+                    '<a class="firefox" target="_blank" href="http://mozilla.com.tw/firefox/new/">' +
+                    '<i class="fa fa-firefox" aria-hidden="true"></i> firefox</a> 來體驗</span>',
                 type: 'warning',
                 html: true
             });
