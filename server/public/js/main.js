@@ -4,7 +4,7 @@ $(function() {
         if (is.ie()) {
             swal({
                 title: '非常抱歉!',
-                text: '您的瀏覽器無法最佳瀏覽體驗 <br> <span class="browser-info">請使用 ' +
+                text: '您的瀏覽器無法最佳瀏覽體驗 <br><br> <span class="browser-info">請使用 ' +
                     '<a class="chrome" target="_blank" href="https://www.google.com/chrome/browser/desktop/index.html">' +
                     '<i class="fa fa-chrome" aria-hidden="true"></i> chrome</a>' +
                     ' or ' +
