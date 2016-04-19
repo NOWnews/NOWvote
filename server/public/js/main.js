@@ -1,4 +1,23 @@
 $(function() {
+    // 偵測瀏覽器
+    var environmentChecks = function() {
+        if (is.ie()) {
+            swal({
+                title: '非常抱歉!',
+                text: '您的瀏覽器無法最佳瀏覽體驗 <br><br> <span class="browser-info">請使用 ' +
+                    '<a class="chrome" target="_blank" href="https://www.google.com/chrome/browser/desktop/index.html">' +
+                    '<i class="fa fa-chrome" aria-hidden="true"></i> chrome</a>' +
+                    ' or ' +
+                    '<a class="firefox" target="_blank" href="http://mozilla.com.tw/firefox/new/">' +
+                    '<i class="fa fa-firefox" aria-hidden="true"></i> firefox</a> 來體驗</span>',
+                type: 'warning',
+                html: true
+            });
+        }
+    };
+    // 執行
+    environmentChecks();
+
 
     $(document).foundation();
     $('.title-bar').on('sticky.zf.stuckto:top', function() {
@@ -36,7 +55,7 @@ $(function() {
                 swal({
                     title: '投票完成摟!',
                     type: 'success'
-                },function(isConfirm){
+                }, function(isConfirm) {
                     location.reload();
                 });
             },
@@ -50,20 +69,20 @@ $(function() {
     });
 
     // 設定 redio 樣式
-    $('.radioholder').each(function () {
+    $('.radioholder').each(function() {
         $(this).children().hide();
         var description = $(this).children('label').html();
         $(this).append('<span class="desc">' + description + '</span>');
         $(this).prepend('<span class="tick"></span>');
         // click 後更新 radio 區塊
-        $(this).click(function () {
+        $(this).click(function() {
             $(this).children('input').prop('checked', true);
             $(this).children('input').trigger('change');
         });
     });
     // 當 radio 被更改，更動 redio 區塊裡面的 classes
-    $('.radioholder > input[type=radio]').change(function () {
-        $('input[type=radio]').each(function () {
+    $('.radioholder > input[type=radio]').change(function() {
+        $('input[type=radio]').each(function() {
             $(this).parent().removeClass('activeradioholder');
             if ($(this).prop('checked') === true) {
                 $(this).parent().addClass('activeradioholder');
@@ -83,7 +102,7 @@ $(function() {
     //hamburger menu
     var $hamburger = $('.hamburger');
     var $jsOffCanvasExit = $('.js-off-canvas-exit');
-    var hamburgerClickFunc = function () {
+    var hamburgerClickFunc = function() {
         $hamburger.toggleClass('is-active');
     };
 
