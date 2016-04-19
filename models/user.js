@@ -24,6 +24,10 @@ const schema = new Schema({
         required: true
     },
 
+    email: {
+        type: String
+    },
+
     oauthType: {
         type: String,
         enum: ['GOOGLE', 'FACEBOOK'],
