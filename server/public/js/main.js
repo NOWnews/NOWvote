@@ -1,7 +1,7 @@
 $(function() {
     // 偵測瀏覽器
     var environmentChecks = function() {
-        if (true || is.ie()) {
+        if (is.ie()) {
             swal({
                 title: '非常抱歉!',
                 text: '您的瀏覽器無法最佳瀏覽體驗 <br> <span class="browser-info">請使用 ' +
