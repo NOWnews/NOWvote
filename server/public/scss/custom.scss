@@ -174,4 +174,12 @@ span.issuediscuss {
     margin-bottom: 12px;
     padding-top: 8px;
     display: block;
+
+//登錄區塊SCSS
+.login-header {
+    .title {
+        p {
+            font-size: 2rem;
+        }
+    }
 }
