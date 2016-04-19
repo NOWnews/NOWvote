@@ -103,6 +103,7 @@
       "NODE_ENV": false,
       "$": false,
       "imageStorage": false,
-      "swal": false
+      "swal": false,
+      "is": false
   }
 }
