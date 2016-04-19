@@ -12,6 +12,7 @@ import methodOverride from 'method-override';
 
 const upload = multer({ dest: '/tmp' });
 const defaultUser = require('./defaultUser');
+const adminLog = require('./adminLog');
 
 module.exports = function(app) {
 
@@ -59,6 +60,8 @@ module.exports = function(app) {
     app.use(logger('dev'));
 
     app.use(defaultUser());
+
+    app.use(adminLog());
 
     return function(req, res, next) {
         return next();

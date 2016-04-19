@@ -29,6 +29,8 @@ const tag = require('./tag');
 const issueRelation = require('./issueRelation');
 const tagRelation = require('./tagRelation');
 const voteCounter = require('./voteCounter');
+const adminLog = require('./adminLog');
+const adminErrorLog = require('./adminErrorLog');
 
 module.exports = {
 
@@ -62,5 +64,11 @@ module.exports = {
     tagRelation: tagRelation,
 
     // 記錄 issue 總共有多少人來投票
-    voteCounter: voteCounter
+    voteCounter: voteCounter,
+
+    // 後台操作記錄
+    adminLog: adminLog,
+
+    // 後台錯誤紀錄
+    adminErrorLog: adminErrorLog
 };
