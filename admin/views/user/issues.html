@@ -1,0 +1,73 @@
+{% extends "../index.html" %}
+
+{# 設定變數 #}
+{% set pageTitle = "會員投票議題" %}
+{% set pageRoute = "/user" %}
+
+{% block breadcrumbs %}
+<li>
+    <a href="{{ pageRoute }}">一般會員系統</a>
+</li>
+<li>{{ pageTitle }}</li>
+{% endblock %}
+
+{% block container %}
+        <form id="menuList" method="post" action="{{ pageRoute }}">
+            <input type="hidden" name="_method" value="put"/>
+            <input type="hidden" name="weightList" value=""/>
+
+            {% if issues[0] %}
+                <span class="subheader">
+                    發表日期為
+                    <span class="success-schedule">綠色</span>
+                    代表正在走期中，
+                    <span class="alert-schedule">紅色</span>
+                    代表不在走期
+                </span>
+                <div class="table-scroll table-default">
+                    <table>
+                        <thead>
+                            <th class="th-title">標題</th>
+                            <th class="th-thumbnail">縮圖</th>
+                            <th class="th-time">結束時間</th>
+                            <th class="th-edit">查看</th>
+                        </thead>
+                        <tbody>
+                            {% for issue in issues %}
+                                <tr class="bullet-item" item-sn="{{ issue.sn }}">
+                                    <td>{{ issue.title }}</td>
+                                    <td>
+                                        <div>
+                                            <img src="{{ issue.thumbnail }}" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        {% if issue.continued %}
+                                            <span class="success-schedule">永久顯示</span>
+                                        {% else %}
+                                            {% if issue.isSchedule %}
+                                                <span class="success-schedule">{{ issue.endTime }}</span>
+                                            {% else %}
+                                                <span class="alert-schedule">{{ issue.endTime }}</span>
+                                            {% endif %}
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <a href="{{ pageRoute }}/{{ user.sn }}/issues/{{ issue.sn }}">
+                                            <i class="fa fa-2x fa-sitemap"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% include "../blocks/pagination.html" %}
+                </div>
+            {% else %}
+                <div class="callout">
+                    <h5>這位 USER 還沒有投過票唷</h5>
+                </div>
+            {% endif %}
+        </form>
+    </article>
+{% endblock %}

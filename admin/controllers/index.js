@@ -1,6 +1,7 @@
 
 import home from './home';
 import auth from './auth';
+import user from './user';
 import adminUser from './adminUser';
 import banner from './banner';
 import category from './category';
@@ -11,6 +12,7 @@ module.exports = function(app) {
 
     app.use('/', home);
     app.use('/auth', auth);
+    app.use('/user', user);
     app.use('/adminUser', adminUser);
     app.use('/banner', banner);
     app.use('/issue', issue);

@@ -35,6 +35,22 @@ const schema = new Schema({
         required: true
     },
 
+    email: {
+        type: String
+    },
+
+    password: {
+        type: String
+    },
+
+    phone: {
+        type: String
+    },
+
+    address: {
+        type: String
+    },
+
     createdAt: {
         type: Date,
         default: Date.now
