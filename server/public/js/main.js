@@ -132,7 +132,9 @@ $(function() {
         var userData = {};
 
         _.forEach(voteFormDatas, function(data){
-            userData[data.name] = data.value;
+            if (data.value.replace(/ /g, '') !== ''){
+                userData[data.name] = data.value;
+            }
         });
 
         $.ajax({
