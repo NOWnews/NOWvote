@@ -6,7 +6,7 @@ const pageShow = require('./page.show');
 const actionUpdate = require('./action.update');
 const pageMeIssues = require('./page.meIssues');
 
-router.route('/user/me')
+router.route('/user/me/:sn')
     .get(pageShow)
     .put(actionUpdate);
 

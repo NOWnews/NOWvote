@@ -5,7 +5,7 @@
         <main class="main-right column large-10">
             <section class="container" flex-container="row">
                 <article class="m-main-content m-competition" flex-item="8">
-                    <form class="user-form row" action="/user/me" user-id="{{ user._id }}">
+                    <form class="user-form row" action="/user/me/{{ user.sn }}" user-id="{{ user._id }}">
                         <div class="small-12 small-centered columns">
                             <div class="user-title">
                                 {% if user.oauthType == 'GOOGLE' %}

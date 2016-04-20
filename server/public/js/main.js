@@ -128,7 +128,7 @@ $(function() {
         var form = $('.user-form');
         var voteFormDatas = form.serializeArray();
         var url = form.attr('action');
-        var issueId = form.attr('user-id');
+        var userId = form.attr('user-id');
         var userData = {};
 
         _.forEach(voteFormDatas, function(data){
@@ -151,9 +151,13 @@ $(function() {
                     location.reload();
                 });
             },
-            error: function() {
+            error: function(error) {
+                var title = '更新失敗';
+                if(error && error.responseText) {
+                    title = JSON.parse(error.responseText).message;
+                }
                 swal({
-                    title: '更新失敗!',
+                    title: title,
                     type: 'error'
                 });
             }
