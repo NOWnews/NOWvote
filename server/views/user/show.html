@@ -5,7 +5,7 @@
         <main class="main-right column large-10">
             <section class="container" flex-container="row">
                 <article class="m-main-content m-competition" flex-item="8">
-                    <form class="user-form row" action="/user/me/{{ user.sn }}" user-id="{{ user._id }}">
+                    <form class="user-form row" action="/user/me" user-id="{{ user._id }}">
                         <div class="small-12 small-centered columns">
                             <div class="user-title">
                                 {% if user.oauthType == 'GOOGLE' %}
@@ -119,7 +119,7 @@
                         <a class="user-switch active">基本資料</a>
                     </li>
                     <li>
-                        <a class="user-switch" href="/user/me/issues/{{ user._id }}">投過的議題</a>
+                        <a class="user-switch" href="/user/me/issues">投過的議題</a>
                     </li>
                 </ul>
             </section>

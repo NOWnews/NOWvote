@@ -5,7 +5,7 @@ const models = require('../../../models');
 const libs = require('../../../libs');
 
 module.exports = function(req, res, next) {
-    let userId = req.params.userId;
+    let userId = req.session.user._id;
     let currentPage = req.query.page || 1;
     let limit = 30;
     let skip = ( currentPage - 1 ) * limit;

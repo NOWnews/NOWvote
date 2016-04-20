@@ -5,7 +5,7 @@ import models from '../../../models';
 const debug = require('debug')('NOWvote:server:controllers:user:page.show');
 
 module.exports = function(req, res, next) {
-    let sn = parseInt(req.params.sn, 10);
+    let sn = parseInt(req.session.user.sn, 10);
 
     co(function*() {
 
