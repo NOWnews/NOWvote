@@ -103,6 +103,14 @@
             min-width: 100%;
         }
     }
+    h1 {
+        text-align: center;
+    }
+    #logo {
+        span {
+            display: none;
+        }
+    }
 }
 @media screen and (min-width: 64em) {
     .orbit-slide {
