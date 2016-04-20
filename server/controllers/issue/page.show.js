@@ -26,6 +26,8 @@ module.exports = function(req, res, next) {
             redis.getHotNews(),
             redis.get36News(),
 
+            redis.getHotIssues(),
+
             // 取得 issue
             models.issue.findBySn(req.params.sn)
         ];
@@ -42,7 +44,10 @@ module.exports = function(req, res, next) {
         let news36 = results[3];
         debug('news36 = %j', news36);
 
-        let issue = results[4];
+        let hotIssues = results[4];
+        debug('hotIssues = %j', hotIssues);
+
+        let issue = results[5];
 
         issue.isVoted = false;
         issue.startTime = libs.formatDate(issue.startTime);
@@ -78,7 +83,8 @@ module.exports = function(req, res, next) {
           categories: categories,
           issue: issue,
           hotNews: hotNews,
-          news36: news36
+          news36: news36,
+          hotIssues: hotIssues
         });
     })
     .catch(next);

@@ -12,4 +12,7 @@ module.exports = {
     getHotNews: require('./getHotNews'),
     get36News: require('./get36News'),
     getInstantNews: require('./getInstantNews'),
+
+    // 取得熱門 issues
+    getHotIssues: require('./getHotIssues'),
 };

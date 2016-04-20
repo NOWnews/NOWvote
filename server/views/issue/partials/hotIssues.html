@@ -1,0 +1,26 @@
+<aside class="aside-left column large-5">
+    <section>
+        <h3 class="news-title">
+            熱門議題
+        </h3>
+        <div class="vote_list">
+            {% for issue in hotIssues %}
+                <div class="vote_item">
+                    <div class="div-circle">{{ loop.index}}</div>
+                    <div class="vote_img">
+                        <a target="_blank" href="/issues/{{issue.sn}}">
+                            <img style="border: solid 1px #ccc;" src="{{ issue.thumbnail }}">
+                        </a>
+                    </div>
+                    <div class="vote_description">
+                        <div class="vote_title">
+                            <a target="_blank" href="/issues/{{issue.sn}}">{{issue.title}}</a>
+                        </div>
+                        <span class="vote_category">熱門議題</span>
+                        <span class="vote_category">投票數 {{issue.counter}}</span>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+</aside>
