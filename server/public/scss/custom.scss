@@ -135,3 +135,40 @@
         margin: 0 0.5rem;
     }
 }
+
+//前台標籤區塊顯示
+
+.thumbnail {
+    position: relative;
+}
+span.issuemark {
+    position: absolute;
+    top: 0.8rem;
+    left: 0.8rem;
+    display: block;
+    padding: 0.5rem 0.4rem;
+    color: #fff;
+    background-color: #FFAA30;
+    font-size: 0.8rem;
+    text-align: center;
+    border-radius: 0.2rem;
+    z-index: 9;
+}
+span.votemark {
+    position: absolute;
+    top: 0.8rem;
+    left: 0.8rem;
+    display: block;
+    padding: 0.5rem 0.4rem;
+    color: #fff;
+    background-color: #2AA6FF;
+    font-size: 0.8rem;
+    text-align: center;
+    border-radius: 0.2rem;
+    z-index: 9;
+}
+span.issuediscuss {
+    margin-bottom: 12px;
+    padding-top: 8px;
+    display: block;
+}
