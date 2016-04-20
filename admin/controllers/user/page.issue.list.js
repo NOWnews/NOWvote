@@ -44,7 +44,7 @@ module.exports = function(req, res, next) {
 
         let issues = yield models.issue.find()
             .where('_id').in(issueIds)
-            // .where('type').equals('ISSUE')
+            .where('type').equals('ISSUE')
             .execAsync();
         debug('issues = %j', issues);
 
