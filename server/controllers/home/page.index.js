@@ -10,6 +10,11 @@ import redis from '../../../caches';
 
 module.exports = function(req, res, next) {
 
+    let userId;
+    if(req.session && req.session.user){
+        userId = req.session.user._id;
+    }
+
     co(function*() {
 
         // 非同步去取得資料
@@ -47,9 +52,9 @@ module.exports = function(req, res, next) {
             return issue._id;
         });
 
-        // TODO: user 要改用 req.session.user
         let votedIssues = yield models.issueRelation.find()
-            .where('user').equals('500000000000000000000012')
+            // .where('user').equals('500000000000000000000012')
+            .where('user').equals(userId)
             .where('issue').in(issueIds)
             .execAsync();
 

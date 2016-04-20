@@ -14,6 +14,11 @@ module.exports = function(req, res, next) {
     let limit = 12;
     let skip = ( currentPage - 1 ) * limit;
 
+    let userId;
+    if(req.session && req.session.user){
+        userId = req.session.user._id;
+    }
+
     debug('categoryName = %s', categoryName);
     debug('limit = %s', limit);
     debug('skip = %s', skip);
@@ -84,9 +89,9 @@ module.exports = function(req, res, next) {
 
         debug('issueIds = %j', issueIds);
 
-        // TODO: user 要改用 req.session.user
         let votedIssues = yield models.issueRelation.find()
-            .where('user').equals('500000000000000000000012')
+            // .where('user').equals('500000000000000000000012')
+            .where('user').equals(userId)
             .where('issue').in(issueIds)
             .execAsync();
 
