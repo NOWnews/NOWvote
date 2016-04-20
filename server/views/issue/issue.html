@@ -8,7 +8,7 @@
         <main class="main-right column large-10">
             <div class="container" id="content">
                 <section class="container" flex-container="row">
-                    <article class="m-main-content m-competition" flex-item="8">
+                    <article class="m-main-content m-competition" flex-item="8" itemprop="articleBody">
                         <h1 class="vote-title">
                             {{ issue.title }}
                         </h1>
@@ -75,7 +75,7 @@
                         </div>
 
                          <div>
-                            <img class="main-image" src="{{ issue.mainImage }}" alt="{{ issue.title }}">
+                            <img itemprop="image" class="main-image" src="{{ issue.mainImage }}" alt="{{ issue.title }}">
                         </div>
                         <div class="article-content">
                             {{ issue.desc | safe }}
