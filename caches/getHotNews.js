@@ -21,7 +21,9 @@ module.exports = co.wrap(function*() {
         return yield Promise.resolve(hotNews);
     }
 
-    let hotNewsFromApi = yield fetch('http://v2.api.nownews.com/hot')
+    let hotNewsFromApi = yield fetch('http://v2.api.nownews.com/hot', {
+            timeout: 3000
+        })
         .then(function(res) {
             return res.json();
         }).then(function(json) {

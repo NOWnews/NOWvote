@@ -21,7 +21,9 @@ module.exports = co.wrap(function*() {
         return yield Promise.resolve(newsInstant);
     }
 
-    let newsInstantFromApi = yield fetch('http://v2.api.nownews.com/instant')
+    let newsInstantFromApi = yield fetch('http://v2.api.nownews.com/instant', {
+            timeout: 2000
+        })
         .then(function(res) {
             return res.json();
         }).then(function(json) {

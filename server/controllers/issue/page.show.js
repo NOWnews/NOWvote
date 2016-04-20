@@ -9,6 +9,8 @@ const libs = require('../../../libs');
 
 module.exports = function(req, res, next) {
 
+    let userId = req.session.user._id;
+
     co(function*() {
 
        // 非同步去取得資料
@@ -43,9 +45,8 @@ module.exports = function(req, res, next) {
         issue.startTime = libs.formatDate(issue.startTime);
         issue.endTime = libs.formatDate(issue.endTime);
 
-        // TODO: user 要改用 req.session.user
         let votedIssues = yield models.issueRelation.find()
-            .where('user').equals('500000000000000000000012')
+            .where('user').equals(userId)
             .where('issue').equals(issue._id)
             .execAsync();
 

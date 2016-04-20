@@ -8,6 +8,7 @@ const redis = require('../../../caches');
 
 module.exports = function(req, res, next) {
 
+    let userId = req.session.user._id;
     let data = req.body;
     debug('data = %j', data);
 
@@ -15,10 +16,6 @@ module.exports = function(req, res, next) {
 
         let issueId = data.issueId;
         let issueSn = data.issueSn;
-
-        // TODO: 之後要換成真正的 userId
-        let userId = '500000000000000000000012';
-
         let relationData = [];
         let optionsIds = [];
 

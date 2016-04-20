@@ -1,0 +1,81 @@
+{% extends "../index.html" %}
+
+{# 設定變數 #}
+{% set pageTitle = "會員資料" %}
+{% set pageRoute = "/user" %}
+
+{% block breadcrumbs %}
+<li>
+    <a href="{{ pageRoute }}">一般會員系統</a>
+</li>
+<li>{{ pageTitle }}</li>
+{% endblock %}
+
+{% block container %}
+<article>
+    <form id="issue-form">
+        <h3>{{ pageTitle }}</h3>
+        <div class="row">
+            <div class="large-12 columns">
+                <label>編號
+                    <input name="sn" type="text" value="{{ user.sn }}" disabled />
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <label>姓名
+                    <input name="name" type="text" value="{{ user.name }}" disabled />
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <label>暱稱
+                    <input name="nickname" type="text" value="{{ user.nickname }}" disabled />
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <label>帳號提供商
+                    <input name="oauthType" type="text" value="{{ user.oauthType }}" disabled />
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <label>ID
+                    <input name="oauthId" type="text" value="{{ user.oauthId }}" disabled />
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <label> Email
+                    <input name="email" type="text" value="{{ user.email }}" disabled />
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <label>電話
+                    <input name="phone" type="text" value="{{ user.phone }}" disabled />
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <label>住家地址
+                    <input name="address" type="text" value="{{ user.address }}" disabled />
+                </label>
+            </div>
+        </div>
+    </form>
+    <div class="btn-box">
+        <a href="/user/{{ user.sn }}/issues" class="large button">
+            查看議題 <i class="fa fa-list-ul" aria-hidden="true"></i>
+        </a>
+    </div>
+</article>
+{% endblock %}

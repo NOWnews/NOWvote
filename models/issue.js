@@ -16,6 +16,12 @@ const schema = new Schema({
         required: true
     },
 
+    type: {
+        type: String,
+        enum: ['ISSUE', 'VOTE'],
+        default: 'ISSUE'
+    },
+
     title: {
         type: String,
         required: true

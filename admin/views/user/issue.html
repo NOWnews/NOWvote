@@ -1,0 +1,92 @@
+{% extends "../index.html" %}
+
+{# 設定變數 #}
+{% set pageTitle = "會員投票議題" %}
+{% set pageRoute = "/user" %}
+
+{% block breadcrumbs %}
+<li>
+    <a href="{{ pageRoute }}">一般會員系統</a>
+</li>
+<li>{{ pageTitle }}</li>
+{% endblock %}
+
+{% block container %}
+    <article>
+        <form id="issue-form" method="post" action="{{ pageRoute }}/update/{{ issue.sn }}" enctype="multipart/form-data">
+            <input type="hidden" name="_method" value="put"/>
+            <h3>{{ pageTitle }}</h3>
+            <div class="row">
+                <div class="large-12 columns">
+                    <label>標題
+                        <input name="title" type="text" value="{{ issue.title }}" disabled />
+                    </label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="large-12 columns">
+                    <label>分類
+                        <input name="title" type="text" value="{{ issue.category.title }}" disabled />
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <fieldset class="fieldset">
+                        <legend>內容頁主圖 (mainImage)</legend>
+                        <label for="main-img">
+                            <img class="thumbnail" src="{{ issue.mainImage }}" alt="your image">
+                        </label>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <label>內文
+                        <textarea class="ckeditor" id="editor" name="desc">{{ issue.desc }}</textarea>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <fieldset class="fieldset">
+                        <legend>列表頁縮圖 (thumbnail)</legend>
+                        <label for="vice-img">
+                            <img class="thumbnail" src="{{ issue.thumbnail }}" alt="your image">
+                        </label>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <label>分類 (Tags)
+                        <div id="tagBox2" class="tag-box">{{ tags }}</div>
+                    </label>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="large-12 columns">
+                <label>問題與選項</label>
+                {% for question in issue.questions %}
+                    <div class="callout secondary">
+                        <h5>{{ question.content }}</h5>
+                        {% for option in question.options %}
+                            {% if option.isVoted == true %}
+                                <p style="color: blue;">{{ option.content }}</p>
+                            {% else %}
+                                <p>{{ option.content }}</p>
+                            {% endif %}
+                      {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="btn-box">
+            <a href="/issue/update/{{ issue.sn }}" class="large button">
+                修改此議題<i class="fa fa-pencil" aria-hidden="true"></i>
+            </a>
+        </div>
+    </article>
+{% endblock %}
