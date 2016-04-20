@@ -13,8 +13,8 @@ module.exports = function(app) {
     app.use(function(err, req, res, next) {
 
         let errObject = {
-            // error:err.code,
-            // name: err.name,
+            error: err.code,
+            type: err.type,
             message: err.message,
             stack: err.stack
         };
@@ -31,11 +31,18 @@ module.exports = function(app) {
             body: req.body,
             query: req.query,
             params: req.params,
+            code: errObject.code,
+            type: errObject.type,
             message: errObject.message,
             stack: errObject.stack
         });
 
-        return res.render('503', { error: errObject });
+        res.status(503);
+        if(err.type === 'json') {
+            return res.json(errObject);
+        }else{
+            return res.render('503', { error: errObject });
+        }
     });
 
     return function(req, res, next) {

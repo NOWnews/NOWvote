@@ -59,9 +59,13 @@ $(function() {
                     location.reload();
                 });
             },
-            error: function() {
+            error: function(error) {
+                var title = '您已經投過票摟';
+                if(error && error.responseText) {
+                    title = JSON.parse(error.responseText).message;
+                }
                 swal({
-                    title: '您已經投過票摟!',
+                    title: title,
                     type: 'error'
                 });
             }
