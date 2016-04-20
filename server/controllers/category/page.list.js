@@ -35,7 +35,8 @@ module.exports = function(req, res, next) {
         debug('category = %j', category);
 
         if(!category) {
-            return yield Promise.reject(new Error('此分類無效'));
+            let err = libs.errorWrapper(10001, '此分類無效', 'page', new Error());
+            return yield Promise.reject(err);
         }
 
         let categoryId = category._id;

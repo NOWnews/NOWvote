@@ -6,6 +6,7 @@ const formatDate = require('./formatDate');
 const isSchedule = require('./isSchedule');
 const pagination = require('./pagination');
 const checkVotedIssueAndOptions = require('./checkVotedIssueAndOptions');
+const errorWrapper = require('./errorWrapper');
 
 module.exports = {
     hashPwd: hashPwd,
@@ -14,5 +15,6 @@ module.exports = {
     formatDate: formatDate,
     isSchedule: isSchedule,
     pagination: pagination,
-    checkVotedIssueAndOptions: checkVotedIssueAndOptions
+    checkVotedIssueAndOptions: checkVotedIssueAndOptions,
+    errorWrapper: errorWrapper
 };

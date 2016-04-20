@@ -9,7 +9,10 @@ const libs = require('../../../libs');
 
 module.exports = function(req, res, next) {
 
-    let userId = req.session.user._id;
+    let userId;
+    if(req.session && req.session.user) {
+        userId = req.session.user._id;
+    }
 
     co(function*() {
 

@@ -46,7 +46,8 @@ module.exports = function(req, res, next) {
             });
 
         if(isVote === true) {
-            return Promise.reject(new Error('已經投票過了'));
+            let err = libs.errorWrapper(10002, '已經投票過了唷', 'json', new Error());
+            return Promise.reject(err);
         }
 
         // 這段 code 是逐一確認每個 options 與使用者個關係...
