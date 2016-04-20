@@ -57,8 +57,8 @@ const schema = new Schema({
 
     gender: {
         type: String,
-        enum: ['boy', 'girl', 'pending'],
-        default: 'pending'
+        enum: ['BOY', 'GIRL', 'PENDING'],
+        default: 'PENDING'
     },
 
     birthday: {

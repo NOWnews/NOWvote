@@ -9,13 +9,20 @@ module.exports = function(req, res, next) {
     let data = req.body;
 
     co(function*() {
-
+        let fields = [
+            'email',
+            'phone',
+            'address',
+            'info',
+            'gender',
+            'birthday'
+        ];
         let user = yield models.user.findOne()
             .where('sn').equals(sn)
             .execAsync();
 
-        _.forEach(data, function(value, key){
-            user.set(key, value);
+        _.forEach(fields, function(value){
+            user.set(value, data[value]);
         });
         user.set('updatedAt', Date.now());
 

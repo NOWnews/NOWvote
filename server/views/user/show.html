@@ -29,43 +29,43 @@
                             </div>
                             <div class="user-gender">
                                 <p>性別</p>
-                                {% if user.gender == 'boy' %}
+                                {% if user.gender == 'BOY' %}
                                     <div class="input pull-left">
-                                        <input type="radio" id="gender-boy" value="boy" name="gender" checked>
+                                        <input type="radio" id="gender-boy" value="BOY" name="gender" checked>
                                         <label for="gender-boy">男生</label>
                                     </div>
                                     <div class="input pull-left">
-                                        <input type="radio" id="gender-girl" value="girl" name="gender">
+                                        <input type="radio" id="gender-girl" value="GIRL" name="gender">
                                         <label for="gender-girl">女生</label>
                                     </div>
                                     <div class="input pull-left">
-                                        <input type="radio" id="gender-pending" value="pending" name="gender">
+                                        <input type="radio" id="gender-pending" value="PENDING" name="gender">
                                         <label for="gender-pending">待確認</label>
                                     </div>
-                                {% elif user.gender == 'girl' %}
+                                {% elif user.gender == 'GIRL' %}
                                     <div class="input pull-left">
-                                        <input type="radio" id="gender-boy" value="boy" name="gender">
+                                        <input type="radio" id="gender-boy" value="BOY" name="gender">
                                         <label for="gender-boy">男生</label>
                                     </div>
                                     <div class="input pull-left">
-                                        <input type="radio" id="gender-girl" value="girl" name="gender" checked>
+                                        <input type="radio" id="gender-girl" value="GIRL" name="gender" checked>
                                         <label for="gender-girl">女生</label>
                                     </div>
                                     <div class="input pull-left">
-                                        <input type="radio" id="gender-pending" value="pending" name="gender">
+                                        <input type="radio" id="gender-pending" value="PENDING" name="gender">
                                         <label for="gender-pending">待確認</label>
                                     </div>
                                 {% else %}
                                     <div class="input pull-left">
-                                        <input type="radio" id="gender-boy" value="boy" name="gender">
+                                        <input type="radio" id="gender-boy" value="BOY" name="gender">
                                         <label for="gender-boy">男生</label>
                                     </div>
                                     <div class="input pull-left">
-                                        <input type="radio" id="gender-girl" value="girl" name="gender">
+                                        <input type="radio" id="gender-girl" value="GIRL" name="gender">
                                         <label for="gender-girl">女生</label>
                                     </div>
                                     <div class="input pull-left">
-                                        <input type="radio" id="gender-pending" value="pending" name="gender" checked>
+                                        <input type="radio" id="gender-pending" value="PENDING" name="gender" checked>
                                         <label for="gender-pending">待確認</label>
                                     </div>
                                 {% endif %}
