@@ -1,0 +1,66 @@
+.user-title {
+    text-align: center;
+    .fa-3x {
+        border: 1px solid #ddd;
+        border-radius: 50%;
+        color: #fff;
+    }
+    .fa-facebook {
+        background: #3b5998;
+        padding: 10px 20px 2px 16px;
+    }
+    .fa-google {
+        padding: 7px 15px 5px 11px;
+        background: #dc4e41;
+    }
+    .name {
+        line-height: 50px;
+    }
+}
+.user-gender {
+    p {
+        margin: 0;
+        font-size: 12px;
+        color: rgba(0,0,0,0.54);
+        padding-top: 3px;
+    }
+    .input {
+        margin-bottom: 10px;
+        input[type='radio'] {
+            &:checked+label:before {
+                border-color: #FFAA30;
+            }
+            &:focus+label:before {
+                box-shadow: 0 0 5px #FFAA30;
+            }
+            + label:after {
+                background: #FFAA30;
+            }
+        }
+    }
+}
+.user-switch {
+    font-weight: 800;
+    text-align: left;
+    text-transform: inherit;
+    display: block;
+    width: 100%;
+    margin: 1rem auto;
+    border-left: 0.3rem solid #fff;
+    -moz-border-radius: 0.3rem;
+    -webkit-border-radius: 0.3rem;
+    border-radius: 0.3rem;
+    border: 1px solid #ddd;
+    color: #555555;
+    &:hover, &.active {
+        box-shadow: 0 2px 4px -1px rgba(0,0,0,0.14),0 4px 5px 0 rgba(0,0,0,0.098),0 1px 10px 0 rgba(0,0,0,0.084);
+        border-left: 0.3rem solid #FF6C25;
+    }
+}
+.user-form-button {
+    outline: medium none;
+    background: #FFAA30;
+    &:hover, &:focus {
+        background: #FF6C25;
+    }
+}

@@ -1,0 +1,38 @@
+{% extends "../index.html" %}
+
+{% block container %}
+    <div class="row content-margin-top">
+        <main class="main-right column large-10">
+            <section class="container" flex-container="row">
+                {% for issue in issues %}
+                    <article class="m-main-content m-competition callout" flex-item="8">
+                        <a class="media-object" href="/issues/{{ issue.sn }}">
+                            <div class="media-object-section">
+                                <img class="issue-img" src="{{ issue.thumbnail }}">
+                            </div>
+                            <div class="media-object-section">
+                                <h4>{{ issue.title }}</h4>
+                                <div class="desc">
+                                    {{ issue.desc|safe }}
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+                {% endfor %}
+            </section>
+        </main>
+        {# ---- 側邊欄 ---- #}
+        <aside class="aside-left column large-5">
+            <section>
+                <ul class="menu vertical">
+                    <li>
+                        <a class="user-switch" href="/user/me">基本資料</a>
+                    </li>
+                    <li>
+                        <a class="user-switch active">投過的議題</a>
+                    </li>
+                </ul>
+            </section>
+        </aside>
+    </div>
+{% endblock %}

@@ -123,6 +123,7 @@ module.exports = function(app) {
             let newUser = await models.user.createAsync({
                 name: profile.displayName || '',
                 nickname: profile.displayName || '',
+                email: profile.email || '',
                 oauthType: 'GOOGLE',
                 oauthId: profile.id
             });

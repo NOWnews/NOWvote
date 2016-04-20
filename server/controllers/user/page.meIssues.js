@@ -1,29 +1,25 @@
-
 import co from 'co';
 
-const debug = require('debug')('NOWvote:admin:controllers:user:page.issue.list');
+const debug = require('debug')('NOWvote:server:controllers:user:page.myIssues');
 const models = require('../../../models');
 const libs = require('../../../libs');
 
 module.exports = function(req, res, next) {
-
-    let sn = parseInt(req.params.sn, 10);
+    let userId = req.session.user._id;
     let currentPage = req.query.page || 1;
     let limit = 30;
     let skip = ( currentPage - 1 ) * limit;
 
     co(function*() {
 
-        let user = yield models.user.findBySn(sn);
-        debug('user = %j', user);
 
         let results = yield [
             models.issueRelation.find()
-                .where('user').equals(user._id)
+                .where('user').equals(userId)
                 .execAsync(),
 
             models.issueRelation.find()
-                .where('user').equals(user._id)
+                .where('user').equals(userId)
                 .count()
                 .execAsync()
         ];
@@ -49,10 +45,11 @@ module.exports = function(req, res, next) {
             limit: limit
         });
         debug('pageInfo = %j', pageInfo);
-
-
-        return res.render('user/issues', {
-            user: user,
+        // return res.json({
+        //     issues: issues,
+        //     pageInfo: pageInfo
+        // });
+        return res.render('user/meIssues', {
             issues: issues,
             pageInfo: pageInfo
         });

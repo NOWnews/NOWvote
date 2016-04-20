@@ -2,10 +2,13 @@
 @import "custom/layout/footer";
 @import "custom/layout/header";
 @import "custom/pages/issue";
+@import "custom/pages/user";
 @import "vendors/vote-radio";
 @import "custom/pages/home";
+@import "custom/pages/meIssues";
 @import "custom/partials/loginModal";
 @import "custom/partials/slick";
+@import "custom/partials/inputs";
 /*! custom css index home issue   */
 .issue_area {
     -webkit-box-shadow: 0 0 10px 1px rgba(171,171,171,0.39);

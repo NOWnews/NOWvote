@@ -1,0 +1,18 @@
+.input {
+    input[type='text'],
+    input[type='email'],
+    input[type='password'],
+    textarea {
+        box-shadow: none;
+        padding-left: 5px;
+        display: inline-block;
+        &:focus {
+            background: none;
+            border: none;
+        }
+        + label {
+            color: rgba(0,0,0,0.54);
+            font-size: 1rem;
+        }
+    }
+}

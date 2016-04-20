@@ -28,10 +28,11 @@ $(function() {
 
     // vote
     $('#vote-btn').on('click', function() {
-        var voteFormDatas = $('.vote-form').serializeArray();
-        var url = $('.vote-form').attr('action');
-        var issueId = $('.vote-form').attr('issue-id');
-        var issueSn = $('.vote-form').attr('issue-sn');
+        var form = $('.vote-form');
+        var voteFormDatas = form.serializeArray();
+        var url = form.attr('action');
+        var issueId = form.attr('issue-id');
+        var issueSn = form.attr('issue-sn');
         var questions = _.map(voteFormDatas, function(date) {
             var optionIds = _.isArray(date.value) ? date.value : [date.value];
             var question = {
@@ -120,4 +121,47 @@ $(function() {
         adaptiveHeight: true,
         respondTo: 'min'
     });
+
+    // User
+    $('#user-btn').on('click', function() {
+        event.preventDefault();
+        var form = $('.user-form');
+        var voteFormDatas = form.serializeArray();
+        var url = form.attr('action');
+        var userId = form.attr('user-id');
+        var userData = {};
+
+        _.forEach(voteFormDatas, function(data){
+            if (data.value.replace(/ /g, '') !== ''){
+                userData[data.name] = data.value;
+            }
+        });
+
+        $.ajax({
+            url: url,
+            type: 'put',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify(userData),
+            success: function(data, err) {
+                swal({
+                    title: '更新成功!',
+                    type: 'success'
+                },function(isConfirm){
+                    location.reload();
+                });
+            },
+            error: function(error) {
+                var title = '更新失敗';
+                if(error && error.responseText) {
+                    title = JSON.parse(error.responseText).message;
+                }
+                swal({
+                    title: title,
+                    type: 'error'
+                });
+            }
+        });
+    });
+
 });

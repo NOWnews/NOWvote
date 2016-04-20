@@ -83,7 +83,8 @@ var serverBowerJsPaths = [
     './bower_components/remodal/dist/remodal.js',
     './bower_components/sweetalert/dist/sweetalert.min.js',
     './bower_components/slick-carousel/slick/slick.js',
-    './node_modules/is_js/is.js'
+    './node_modules/is_js/is.js',
+    './bower_components/inputs/assets/javascripts/inputs.js'
 ];
 var serverBowerScssPaths = [
     './server/public/scss/*.scss',
@@ -94,7 +95,8 @@ var serverBowerScssPaths = [
     './bower_components/remodal/dist/remodal-default-theme.css',
     './bower_components/sweetalert/dist/sweetalert.css',
     './bower_components/slick-carousel/slick/slick.scss',
-    './bower_components/slick-carousel/slick/slick-theme.scss'
+    './bower_components/slick-carousel/slick/slick-theme.scss',
+    './bower_components/inputs/dist/css/generic-inputs.css'
 ];
 
 var serverSettingsPaths = [

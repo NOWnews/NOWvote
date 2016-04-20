@@ -1,0 +1,128 @@
+{% extends "../index.html" %}
+
+{% block container %}
+    <div class="row content-margin-top">
+        <main class="main-right column large-10">
+            <section class="container" flex-container="row">
+                <article class="m-main-content m-competition" flex-item="8">
+                    <form class="user-form row" action="/user/me" user-id="{{ user._id }}">
+                        <div class="small-12 small-centered columns">
+                            <div class="user-title">
+                                {% if user.oauthType == 'GOOGLE' %}
+                                    <div class="user-icon">
+                                        <i class="fa-fw fa fa-3x fa-google"></i>
+                                    </div>
+                                {% else %}
+                                    <div class="user-icon">
+                                        <i class="fa-fw fa fa-3x fa-facebook"></i>
+                                    </div>
+                                {% endif %}
+                                <h5 class="name">{{ user.name }}</h5>
+                            </div>
+                            <div class="input">
+                                {% if user.email %}
+                                    <input type="text" value="{{ user.email }}" id="user-email" name="email">
+                                {% else %}
+                                    <input type="text" id="user-email" name="email">
+                                {% endif %}
+                                <label for="user-email">帳號 Email</label>
+                            </div>
+                            <div class="user-gender">
+                                <p>性別</p>
+                                {% if user.gender == 'BOY' %}
+                                    <div class="input pull-left">
+                                        <input type="radio" id="gender-boy" value="BOY" name="gender" checked>
+                                        <label for="gender-boy">男生</label>
+                                    </div>
+                                    <div class="input pull-left">
+                                        <input type="radio" id="gender-girl" value="GIRL" name="gender">
+                                        <label for="gender-girl">女生</label>
+                                    </div>
+                                    <div class="input pull-left">
+                                        <input type="radio" id="gender-pending" value="PENDING" name="gender">
+                                        <label for="gender-pending">待確認</label>
+                                    </div>
+                                {% elif user.gender == 'GIRL' %}
+                                    <div class="input pull-left">
+                                        <input type="radio" id="gender-boy" value="BOY" name="gender">
+                                        <label for="gender-boy">男生</label>
+                                    </div>
+                                    <div class="input pull-left">
+                                        <input type="radio" id="gender-girl" value="GIRL" name="gender" checked>
+                                        <label for="gender-girl">女生</label>
+                                    </div>
+                                    <div class="input pull-left">
+                                        <input type="radio" id="gender-pending" value="PENDING" name="gender">
+                                        <label for="gender-pending">待確認</label>
+                                    </div>
+                                {% else %}
+                                    <div class="input pull-left">
+                                        <input type="radio" id="gender-boy" value="BOY" name="gender">
+                                        <label for="gender-boy">男生</label>
+                                    </div>
+                                    <div class="input pull-left">
+                                        <input type="radio" id="gender-girl" value="GIRL" name="gender">
+                                        <label for="gender-girl">女生</label>
+                                    </div>
+                                    <div class="input pull-left">
+                                        <input type="radio" id="gender-pending" value="PENDING" name="gender" checked>
+                                        <label for="gender-pending">待確認</label>
+                                    </div>
+                                {% endif %}
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="input">
+                                {% if user.birthday %}
+                                    <input type="text" value="{{ user.birthday }}" id="user-birthday" name="birthday">
+                                {% else %}
+                                    <input type="text" id="user-birthday" name="birthday">
+                                {% endif %}
+                                <label for="user-birthday">生日 (YYYY-MM-DD)</label>
+                            </div>
+                            <div class="input">
+                                {% if user.phone %}
+                                    <input type="text" value="{{ user.phone }}" id="user-phone" name="phone">
+                                {% else %}
+                                    <input type="text" id="user-phone" name="phone">
+                                {% endif %}
+                                <label for="user-phone">電話</label>
+                            </div>
+                            <div class="input">
+                                {% if user.address %}
+                                    <input type="text" value="{{ user.address }}" id="user-address" name="address">
+                                {% else %}
+                                    <input type="text" id="user-address" name="address">
+                                {% endif %}
+                                <label for="user-address">地址</label>
+                            </div>
+                            <div class="input">
+                                {% if user.info %}
+                                    <textarea rows="3" value="{{ user.info }}" id="user-info" name="info"></textarea>
+                                {% else %}
+                                    <textarea rows="3" id="user-info" name="info"></textarea>
+                                {% endif %}
+                                <label for="user-info">簡介</label>
+                            </div>
+                            <div class="user-footer text-center">
+                                <button id="user-btn" class="user-form-button button">儲存</button>
+                            </div>
+                        </div>
+                    </form>
+                </article>
+            </section>
+        </main>
+        {# ---- 側邊欄 ---- #}
+        <aside class="aside-left column large-5">
+            <section>
+                <ul class="menu vertical">
+                    <li>
+                        <a class="user-switch active">基本資料</a>
+                    </li>
+                    <li>
+                        <a class="user-switch" href="/user/me/issues">投過的議題</a>
+                    </li>
+                </ul>
+            </section>
+        </aside>
+    </div>
+{% endblock %}
