@@ -17,10 +17,6 @@ module.exports = function(req, res, next) {
         let user = yield models.user.findBySn(sn);
         debug('user = %j', user);
 
-        if(!user) {
-
-        }
-
         let results = yield [
             models.issueRelation.find()
                 .where('user').equals(user._id)
@@ -62,4 +58,4 @@ module.exports = function(req, res, next) {
         });
     })
     .catch(next);
-}; 
+};
