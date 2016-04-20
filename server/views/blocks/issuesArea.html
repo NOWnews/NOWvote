@@ -2,7 +2,13 @@
     <div class="column text-center">
         <div class="issue_area">
             <a href="/issues/{{ issue.sn }}">
-                <div class="thumbnail" style="background-image:url({{ issue.thumbnail }});"></div>
+                <div class="thumbnail" style="background-image:url({{ issue.thumbnail }});">
+                    {% if issue.type == "VOTE" %}
+                    <span class="votemark"><i class="fa fa-fw fa-paper-plane" aria-hidden="true"></i> 投票</span>
+                    {% else %}
+                    <span class="issuemark"><i class="fa fa-fw fa-bullhorn" aria-hidden="true"></i> 討論</span>
+                    {% endif %}
+                </div>
             </a>
             <h6>{{ issue.title }}</h6>
             <div class="stats">
@@ -17,16 +23,22 @@
                     </div>
                 {% endif %}
                 <div class="users">
-                    <i class="fa fa-pie-chart"></i>
-                    已有
-                    <span class="num-count">{{ issue.counter }}</span>用戶 投過票
+                    {% if issue.type == "VOTE" %}
+                        <i class="fa fa-pie-chart"></i>
+                        已有
+                        <span class="num-count">{{ issue.counter }}</span>用戶 投過票
+                    {% else %}
+                        <span class="issuediscuss">議題討論</span>
+                    {% endif %}
                 </div>
             </div>
 
             {% if issue.isVoted == true %}
                 <a href="/issues/{{ issue.sn }}" class="button bold is-voted"><i class="fa-fw fa fa-hand-pointer-o"></i>您已經投過票！</a>
+            {% elif issue.type == "ISSUE" %}
+                <a href="/issues/{{ issue.sn }}" class="button bold is-issue"><i class="fa-fw fa fa-hand-pointer-o"></i>觀看此議題</a>
             {% else %}
-               <a href="/issues/{{ issue.sn }}" class="button bold"><i class="fa-fw fa fa-hand-pointer-o"></i>VOTE NOW!</a>
+               <a href="/issues/{{ issue.sn }}" class="button bold"><i class="fa-fw fa fa-paper-plane" aria-hidden="true"></i></i>VOTE NOW!</a>
             {% endif %}
         </div>
     </div>
