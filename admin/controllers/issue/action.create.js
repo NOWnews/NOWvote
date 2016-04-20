@@ -141,6 +141,10 @@ module.exports = function(req, res, next) {
         debug('new question data = %j', questionsData);
         debug('new options data = %j', optionsData);
 
+        // 確認這個議題還是投票
+        if(newIssue.questions.length !== 0) {
+            newIssue.type = 'VOTE';
+        }
 
         // 將所有資料存入資料庫
         yield [
