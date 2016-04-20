@@ -24,10 +24,12 @@ module.exports = function(req, res, next) {
         let results = yield [
             models.issueRelation.find()
                 .where('user').equals(user._id)
+                // .where('user').equals('500000000000000000000012')
                 .execAsync(),
 
             models.issueRelation.find()
                 .where('user').equals(user._id)
+                // .where('user').equals('500000000000000000000012')
                 .count()
                 .execAsync()
         ];

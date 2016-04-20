@@ -66,6 +66,23 @@
                 </div>
             </div>
         </form>
+        <div class="row">
+            <div class="large-12 columns">
+                <label>問題與選項</label>
+                {% for question in issue.questions %}
+                    <div class="callout secondary">
+                        <h5>{{ question.content }}</h5>
+                        {% for option in question.options %}
+                            {% if option.isVoted == true %}
+                                <p style="color: blue;">{{ option.content }}</p>
+                            {% else %}
+                                <p>{{ option.content }}</p>
+                            {% endif %}
+                      {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
         <div class="btn-box">
             <a href="/issue/update/{{ issue.sn }}" class="large button">
                 修改此議題<i class="fa fa-pencil" aria-hidden="true"></i>

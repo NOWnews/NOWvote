@@ -5,6 +5,7 @@ const hashPwd = require('./hashPwd');
 const formatDate = require('./formatDate');
 const isSchedule = require('./isSchedule');
 const pagination = require('./pagination');
+const checkVotedIssueAndOptions = require('./checkVotedIssueAndOptions');
 
 module.exports = {
     hashPwd: hashPwd,
@@ -12,5 +13,6 @@ module.exports = {
     checkExt: checkExt,
     formatDate: formatDate,
     isSchedule: isSchedule,
-    pagination: pagination
+    pagination: pagination,
+    checkVotedIssueAndOptions: checkVotedIssueAndOptions
 };
