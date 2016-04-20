@@ -1,7 +1,21 @@
 {% extends "../index.html" %}
+{% set title =  categoryName %}
 
 {% block container %}
+
     <div class="row column text-center">
+        <ul class="breadcrumbs">
+            <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                <a itemprop="url" href="/">
+                    <span itemprop="title"><i class="fa fa-home fa-fw" aria-hidden="true"></i>首頁</span>
+                </a>
+            </li>
+            <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                <a itemprop="url" href="/category/{{ categoryName }}" target="_blank">
+                    <span itemprop="title">{{ categoryName }}</span>
+                </a>
+            </li>
+        </ul>
         <h2 class="main-title">分類議題</h2>
     </div>
     <div class="row small-up-1 medium-up-2 large-up-4" data-toggler data-animate="slide-in-down slide-out-up">
