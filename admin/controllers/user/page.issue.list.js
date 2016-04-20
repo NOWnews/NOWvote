@@ -24,12 +24,10 @@ module.exports = function(req, res, next) {
         let results = yield [
             models.issueRelation.find()
                 .where('user').equals(user._id)
-                // .where('user').equals('500000000000000000000012')
                 .execAsync(),
 
             models.issueRelation.find()
                 .where('user').equals(user._id)
-                // .where('user').equals('500000000000000000000012')
                 .count()
                 .execAsync()
         ];
@@ -44,7 +42,7 @@ module.exports = function(req, res, next) {
 
         let issues = yield models.issue.find()
             .where('_id').in(issueIds)
-            .where('type').equals('ISSUE')
+            .where('type').equals('VOTE')
             .execAsync();
         debug('issues = %j', issues);
 
