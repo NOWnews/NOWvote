@@ -6,11 +6,11 @@ const pageShow = require('./page.show');
 const actionUpdate = require('./action.update');
 const pageMeIssues = require('./page.meIssues');
 
+router.route('/user/me/issues')
+.get(pageMeIssues);
+
 router.route('/user/me/:sn')
     .get(pageShow)
     .put(actionUpdate);
-
-router.route('/user/me/issues')
-    .get(pageMeIssues);
 
 module.exports = router;

@@ -17,6 +17,7 @@ module.exports = function(req, res, next) {
         _.forEach(data, function(value, key){
             user.set(key, value);
         });
+        user.set('updatedAt', Date.now());
 
         yield user.saveAsync();
 
