@@ -1,13 +1,18 @@
 .input {
-    input[type='text'], .input input[type='email'], .input input[type='password'], .input textarea {
+    input[type='text'],
+    input[type='email'],
+    input[type='password'],
+    textarea {
         box-shadow: none;
         padding-left: 5px;
-
+        display: inline-block;
         &:focus {
             background: none;
+            border: none;
         }
         + label {
-            top: 0.75em;
+            color: rgba(0,0,0,0.54);
+            font-size: 1rem;
         }
     }
 }
