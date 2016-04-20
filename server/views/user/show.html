@@ -1,0 +1,40 @@
+{% extends "../index.html" %}
+
+{% block container %}
+    <div class="row content-margin-top">
+        <main class="main-right column large-10">
+            <div class="container" id="content">
+                <section class="container" flex-container="row">
+                    <article class="m-main-content m-competition" flex-item="8">
+                        <form data-abide novalidate>
+                            <div class="row">
+                                <div class="small-12 small-centered columns">
+                                    <div class="user-title"></div>
+                                    <h5>基本設定</h5>
+                                    <div class='input'>
+                                          <input type='text' value="{{ user.email }}" id="user-email" placeholder='Type your first name'>
+                                          <label for="user-email">帳號 Email</label>
+                                    </div>
+                                    <div class='input'>
+                                          <input type='text' value="{{ user.phone }}" id="user-phone">
+                                          <label for="user-phone">電話</label>
+                                    </div>
+                                    <div class='input'>
+                                          <input type='text' value="{{ user.address }}" id="user-address">
+                                          <label for="user-address">地址</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </article>
+                </section>
+            </div>
+        </main>
+        {# ---- 側邊欄 ---- #}
+        <aside class="aside-left column large-5">
+            <section>
+                h1h1
+            </section>
+        </aside>
+    </div>
+{% endblock %}
