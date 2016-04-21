@@ -47,7 +47,7 @@
                             </a>
                         </li>
                         {% for category in categories %}
-                            <li class="left_item{{loop.index}}">
+                            <li class="left_item{{ loop.index }}">
                                 <a class="hollow" href="{{ category.url }}">
                                     <i class="fa fa-star"></i>{{ category.title }}</a>
                             </li>
