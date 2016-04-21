@@ -12,6 +12,8 @@ const debug = require('debug')('NOWvote:caches:index');
  */
 Promise.promisifyAll(redis.RedisClient.prototype);
 Promise.promisifyAll(redis.Multi.prototype);
-const client = redis.createClient();
+const client = redis.createClient({
+    host: config.redis.host
+});
 
 module.exports = client;

@@ -13,7 +13,7 @@ module.exports = co.wrap(function*(key, value, expire) {
 
     // 如果沒有帶過期時間，預設 3600 毫秒
     if(!expire) {
-        let expire = config.redisExpireSeconds;
+        let expire = config.redis.expireSeconds;
     }
 
     let valueString = JSON.stringify(value);

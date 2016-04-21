@@ -21,13 +21,13 @@ module.exports = co.wrap(function*(key) {
     if(key === 'banner') {
         let banner = yield models.banner.findEffective();
         debug('banner = %j', banner);
-        return yield setRedisValue('banner', banner, config.redisExpireSeconds);
+        return yield setRedisValue('banner', banner, config.redis.expireSeconds);
     }
 
     if(key === 'category') {
         let menu = yield models.category.findEffective();
         debug('menu = %j', menu);
-        return yield setRedisValue('category', menu, config.redisExpireSeconds);
+        return yield setRedisValue('category', menu, config.redis.expireSeconds);
     }
 
     if(key === 'indexIssues') {

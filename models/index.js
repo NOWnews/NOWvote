@@ -8,7 +8,7 @@ import autoIncrement from 'mongoose-auto-increment';
  */
 Promise.promisifyAll(mongoose);
 
-const dbUrl = `${config.mongodb}/vote_${NODE_ENV}`;
+const dbUrl = `${config.mongodb.host}/${config.mongodb.dbName}`;
 mongoose.connect(dbUrl);
 const connection = mongoose.connection;
 console.log(`mongodb connect to: ${dbUrl}`);
