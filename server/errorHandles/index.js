@@ -37,6 +37,11 @@ module.exports = function(app) {
             stack: errObject.stack
         });
 
+        if(err.code === 10404) {
+            res.status(404);
+            return res.render('404');
+        }
+
         res.status(503);
         if(err.type === 'json') {
             return res.json(errObject);

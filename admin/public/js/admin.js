@@ -35,6 +35,8 @@ $(function() {
             contentType: 'application/json',
             data: JSON.stringify(data),
             success: function(data, err) {
+                console.log(data.token);
+                window.open('http://localhost:8998/previews/' + data.token);
             }
         });
     });
