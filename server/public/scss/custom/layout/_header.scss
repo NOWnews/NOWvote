@@ -16,6 +16,9 @@
         float: left;
         margin-left: 20px;
         border: none;
+        img {
+            width: 80px;
+        }
     }
     .category-menu {
         .straight-line {
@@ -42,4 +45,10 @@
 }
 .hamburger {
     padding: 8px 0;
+}
+
+#mobile-logo {
+    img {
+        width: 80px;
+    }
 }

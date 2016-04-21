@@ -126,13 +126,13 @@ module.exports = function(req, res, next) {
         // 抓取當前的 URL
         let urlPath = req.path;
         debug('urlPath = %s', urlPath);
-
         return res.render('category/list', {
             categories: categories,
             issues: issues,
             pageInfo: pageInfo,
             news36: news36,
-            urlPath: urlPath
+            urlPath: urlPath,
+            categoryName: categoryName
         });
     })
     .catch(next);

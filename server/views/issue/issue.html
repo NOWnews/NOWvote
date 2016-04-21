@@ -1,16 +1,38 @@
 {% extends "../index.html" %}
+{% set title =  categoryName %}
+{% set description = issue.desc|striptags|truncate(120) %}
+{% set shareimage = issue.mainImage %}
 
 {% block container %}
     <div class="row content-margin-top">
         <main class="main-right column large-10">
             <div class="container" id="content">
                 <section class="container" flex-container="row">
-                    <article class="m-main-content m-competition" flex-item="8">
+                    <article class="m-main-content m-competition" flex-item="8" itemprop="articleBody">
                         <h1 class="vote-title">
                             {{ issue.title }}
                         </h1>
                         <div class="margin10 info-block">
                             <img src="http://lazyfamily.twbbs.org/social.png" class="social-btn">
+                        </div>
+                        <div class="margin10 info-block">
+                            <ul class="breadcrumbs">
+                                <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                                    <a itemprop="url" href="/">
+                                        <span itemprop="title"><i class="fa fa-home fa-fw" aria-hidden="true"></i>首頁</span>
+                                    </a>
+                                </li>
+                                <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                                    <a itemprop="url" href="/category/{{ issue.category.title }}" target="_blank">
+                                        <span itemprop="title">{{ issue.category.title }}</span>
+                                    </a>
+                                </li>
+                                <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                                    <a itemprop="url" href="/issues/{{ issue.sn }}" target="_blank">
+                                        <span itemprop="title">{{ issue.title }}</span>
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
                         <div class="margin10 info-block">
                             {% if issue.continued %}
@@ -53,7 +75,7 @@
                         </div>
 
                          <div>
-                            <img class="main-image" src="{{ issue.mainImage }}">
+                            <img itemprop="image" class="main-image" src="{{ issue.mainImage }}" alt="{{ issue.title }}">
                         </div>
                         <div class="article-content">
                             {{ issue.desc | safe }}

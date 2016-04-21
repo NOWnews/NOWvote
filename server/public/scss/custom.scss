@@ -62,7 +62,6 @@
 .margin10 {
     margin: 10px 0;
 }
-
 .vote_title {
     font-size: 1.2rem;
     a {
@@ -83,9 +82,7 @@
     height: 100px;
     margin-right: 0.5rem;
 }
-.vote_list {
-
-}
+.vote_list {}
 .vote_item {
     border-bottom: 1px dashed #BDBDBD;
     display: block;
@@ -99,11 +96,19 @@
 .menu-icon {
     color: #333;
 }
-@media screen and (max-width: 39.9375em){
+@media screen and (max-width: 39.9375em) {
     .orbit-slide {
         height: auto;
         img {
             min-width: 100%;
+        }
+    }
+    h1 {
+        text-align: center;
+    }
+    #logo {
+        span {
+            display: none;
         }
     }
 }
@@ -123,7 +128,6 @@
         }
     }
 }
-
 .browser-info {
     // font-size: 20px;
     line-height: 150%;
@@ -138,9 +142,7 @@
         margin: 0 0.5rem;
     }
 }
-
 //前台標籤區塊顯示
-
 .thumbnail {
     position: relative;
 }
@@ -174,4 +176,16 @@ span.issuediscuss {
     margin-bottom: 12px;
     padding-top: 8px;
     display: block;
+}
+//登錄區塊SCSS
+.login-header {
+    .title {
+        p {
+            font-size: 2rem;
+        }
+    }
+}
+//麵包屑
+.breadcrumbs li {
+    font-size: 0.8rem;
 }
