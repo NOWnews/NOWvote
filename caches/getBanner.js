@@ -26,7 +26,7 @@ module.exports = co.wrap(function*() {
     let bannerFromModels = yield models.banner.findEffective();
     debug('mongodb banner data = %j', bannerFromModels);
 
-    let updateRedisBanner = yield setRedisValue('banner', bannerFromModels, config.redisExpireSeconds);
+    let updateRedisBanner = yield setRedisValue('banner', bannerFromModels, config.redis.expireSeconds);
 
     return yield Promise.resolve(updateRedisBanner);
 });

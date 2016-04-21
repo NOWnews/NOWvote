@@ -40,7 +40,7 @@ module.exports = co.wrap(function*() {
 
     debug('mongodb hotIssues data = %j', issuesFromModels);
 
-    let updateRedisHotIssues = yield setRedisValue('hotIssues', issuesFromModels, config.redisExpireSeconds);
+    let updateRedisHotIssues = yield setRedisValue('hotIssues', issuesFromModels, config.redis.expireSeconds);
 
     return yield Promise.resolve(updateRedisHotIssues);
 });

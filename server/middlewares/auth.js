@@ -77,9 +77,9 @@ module.exports = function(app) {
     );
 
     passport.use(new FacebookStrategy({
-            clientID: '985803784832015',
-            clientSecret: '94fd018adb7ea437c3a0a56f41591c58',
-            callbackURL: 'http://localhost:8998/auth/facebook/callback'
+            clientID: config.facebook.clientID,
+            clientSecret: config.facebook.clientSecret,
+            callbackURL: config.facebook.callbackURL
         },
         async function(accessToken, refreshToken, profile, done) {
 
@@ -104,9 +104,9 @@ module.exports = function(app) {
     ));
 
     passport.use(new GoogleStrategy({
-            clientID: '727890972053-lih4t2kbdj1vt21oa7evfeqfdpqjrn4a.apps.googleusercontent.com',
-            clientSecret: 'haYoLRbQxe91WCFLdme4t-zV',
-            callbackURL: 'http://localhost:8998/auth/google/callback',
+            clientID: config.google.clientID,
+            clientSecret: config.google.clientSecret,
+            callbackURL: config.google.callbackURL,
             passReqToCallback: true
         },
         async function(request, accessToken, refreshToken, profile, done) {
