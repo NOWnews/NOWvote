@@ -1,6 +1,44 @@
+// serializeObject liberay
+$.fn.serializeObject = function(){
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function() {
+        if (o[this.name] !== undefined) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+        } else {
+            if (this.name.indexOf('[]') > -1){
+                o[this.name] = [this.value] || '';
+            }else {
+                o[this.name] = this.value || '';
+            }
+        }
+    });
+    return o;
+};
+
 $(function() {
     $(document).foundation();
     // library
+    $('#preview-btn').on('click', function(){
+        var url = '/issue/preview';
+        var form = $('#issue-form');
+        var data = form.serializeObject();
+        delete data._method;
+        console.log('L8', data);
+        $.ajax({
+            url: url,
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            success: function(data, err) {
+            }
+        });
+    });
+
     // adminUser -----------------------
     $('.remove-btn').on('click', function() {
         event.preventDefault();
@@ -14,7 +52,10 @@ $(function() {
                     $('.bullet-item[item-sn=' + sn + ']').remove();
                     $('#deleteModal' + sn).foundation('close');
                 } else {
-                    alert('資料有誤 請重新整理！');
+                    swal({
+                        title: '資料有誤 請重新整理！!',
+                        type: 'error'
+                    });
                 }
             }
         });
@@ -155,7 +196,10 @@ $(function() {
             var targetShow = $(input).siblings('label').find('img');
 
             if (fileSize > 409600) {
-                return alert('檔案過大，請選擇小於500KB以下');
+                return swal({
+                    title: '檔案過大，請選擇小於500KB以下',
+                    type: 'error'
+                });
             }
 
             if (input.files && input.files[0]) {
