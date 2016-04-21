@@ -83,16 +83,23 @@
                         <div class="article-vote">
                             <form class="vote-form" action="/vote" issue-id="{{ issue._id }}" issue-sn="{{ issue.sn }}">
                                 {% for question in issue.questions %}
-                                    {% if issue.isVoted %}
-                                        {# ---- 投過票的版面 ---- #}
+                                    {% if user and issue.isVoted %}
+                                        {# ---- 有登入且投過票的版面 ---- #}
                                         {% include "./partials/hasVoted.html" %}
-                                    {% else %}
-                                        {# ---- 沒有投過票的版面 ---- #}
+                                    {% elif user %}
+                                        {# ---- 有登入且沒有投過票的版面 ---- #}
                                         {% include "./partials/notVoted.html" %}
+                                    {% else %}
+                                        {# ---- 沒有登入 ---- #}
+                                        {% include "./partials/notLogin.html" %}
                                     {% endif %}
                                 {% endfor %}
-                                {% if not issue.isVoted %}
+                                {% if user and not issue.isVoted %}
+                                    {# ---- 有登入且沒有投過票的按鈕 ---- #}
                                     <a id="vote-btn" class="button success">投票</a>
+                                {% elif not user %}
+                                    {# ---- 有登入且沒有投過票的按鈕 ---- #}
+                                    <a href="/#login-modal" class="button success">請登入進行投票</a>
                                 {% endif %}
 
                             </form>
