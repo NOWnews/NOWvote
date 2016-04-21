@@ -95,7 +95,6 @@ var serverBowerScssPaths = [
     './bower_components/remodal/dist/remodal-default-theme.css',
     './bower_components/sweetalert/dist/sweetalert.css',
     './bower_components/slick-carousel/slick/slick.scss',
-    './bower_components/slick-carousel/slick/slick-theme.scss',
     './bower_components/inputs/dist/css/generic-inputs.css'
 ];
 
@@ -108,8 +107,6 @@ var serverSettingsPaths = [
 gulp.task('serverMoveFontAwesomeFolder', function() {
     gulp.src('./bower_components/font-awesome/fonts/*')
         .pipe(gulp.dest('./server/public/dist/fonts'));
-    gulp.src('./bower_components/slick-carousel/slick/fonts/*')
-        .pipe(gulp.dest('./server/public/dist/css/fonts'));
     gulp.src('./bower_components/slick-carousel/slick/ajax-loader.gif')
         .pipe(gulp.dest('./server/public/dist/css/'));
     return;
