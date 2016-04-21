@@ -1,0 +1,16 @@
+<div class="callout custom-border">
+    <h3>{{ question.content }}</h3>
+    {% for option in question.options %}
+        {% if option.isVoted %}
+            <div class="radioresult activeradioholder">
+                <span class="tick"></span>
+                <span class="desc">{{ option.content }}</span>
+            </div>
+        {% else %}
+            <div class="radioresult">
+                <span class="tick"></span>
+                <span class="desc">{{ option.content }}</span>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
