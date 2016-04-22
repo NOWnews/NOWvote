@@ -157,10 +157,10 @@ span.alert-schedule {
             @include absolute-width(60px);
         }
         &.th-title {
-            @include absolute-width(328px);
+            @include absolute-width(315px);
         }
         &.th-status {
-            @include absolute-width(85px);
+            @include absolute-width(80px);
         }
         &.th-thumbnail {
             @include absolute-width(210px);
@@ -169,10 +169,16 @@ span.alert-schedule {
             @include absolute-width(125px);
         }
         &.th-edit {
-            @include absolute-width(60px);
+            @include absolute-width(45px);
+            padding: 0;
         }
         &.th-delete {
-            @include absolute-width(60px);
+            @include absolute-width(45px);
+            padding: 0;
+        }
+        &.th-export {
+            @include absolute-width(45px);
+            padding: 0;
         }
     }
 }
