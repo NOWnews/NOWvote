@@ -8,10 +8,14 @@ const tag = require('./tag');
 const issue = require('./issue');
 const vote = require('./vote');
 <<<<<<< HEAD
+<<<<<<< HEAD
 const preview = require('./preview');
 =======
 const errorpage = require('./errorpage')
 >>>>>>> 前端頁面增加404頁面
+=======
+const errorpage = require('./errorpage')
+>>>>>>> 9815d5e3cb53d304e417575d57343304fe23d61f
 
 module.exports = function(app) {
 
