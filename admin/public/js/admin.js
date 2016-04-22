@@ -26,7 +26,30 @@ $(function() {
         var url = '/issue/preview';
         var form = $('#issue-form');
         var data = form.serializeObject();
+        data.category = {
+            title: $('option[value='+ data.category +']').text()
+        };
+        data.desc = CKEDITOR.instances.editor.getData();
+        data.tags = data['tags[]'];
+        data.mainImage = $('#main-img + label > img').attr('src');
+        data.thumbnail = $('#vice-img + label > img').attr('src');
+        // 將 question 資料取出來變 object
+        data.question = [];
+        $('.question-box > li').each( function(index, value) {
+            data.question[index] = {
+                content: $(value).find('.accordion-title').text(),
+                option: []
+            };
+            $(value).find('li').each( function(i, v) {
+                data.question[index].option[i] = {
+                    content: $(v).text()
+                };
+            });
+        });
+
         delete data._method;
+        delete data['tags[]'];
+
         console.log('L8', data);
         $.ajax({
             url: url,
