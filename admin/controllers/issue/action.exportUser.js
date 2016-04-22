@@ -2,7 +2,7 @@
 import Promise from 'bluebird';
 import co from 'co';
 import moment from 'moment-timezone';
-import iconv from 'iconv';
+import iconv from 'iconv-lite';
 
 const debug = require('debug')('NOWvote:admin:controllers:issue:action.exportUser');
 const json2csv = Promise.promisify(require('json2csv'));
