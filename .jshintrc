@@ -104,6 +104,7 @@
       "$": false,
       "imageStorage": false,
       "swal": false,
-      "is": false
+      "is": false,
+      "CKEDITOR": false
   }
 }
