@@ -8,8 +8,7 @@ const tag = require('./tag');
 const issue = require('./issue');
 const vote = require('./vote');
 const preview = require('./preview');
-const errorpage = require('./errorpage')
-const errorpage = require('./errorpage')
+const errorpage = require('./errorpage');
 
 module.exports = function(app) {
 
