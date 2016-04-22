@@ -42,10 +42,9 @@ module.exports = function(req, res, next) {
         let fileName = `issue_${issue.sn}_VotedUsers_${time}.csv`;
         let csv = yield json2csv({ data: data, fields: fields});
 
-        res.setHeader('Content-disposition', `attachment; filename=${fileName}`);
-        res.setHeader('Content-type', 'text/csv');
+        res.header('Content-disposition', `attachment; filename=${fileName}`);
+        res.header('Content-type', 'text/csv;  charset=utf-8;');
         return res.end(csv);
-
     })
     .catch(next);
 };
