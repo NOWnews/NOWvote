@@ -45,9 +45,10 @@
                                 <span class="info-time">
                                     <i class="fa fa-calendar fa-fw"></i>開始時間：
                                 </span>
-                                <span>{{ previewData.startTime }}</span>
-                                <span>~</span>
-                                <span>{{ previewData.endTime }}  (GMT +8) </span>
+                                <span>
+                                    {{ previewData.startAtDay }} {{previewData.startAtHour }} ~
+                                    {{ previewData.endAtDay }} {{previewData.endAtHour }} (GMT +8)
+                                </span>
                             {% endif %}
                         </div>
                         <div class="margin10 info-block">
@@ -62,7 +63,7 @@
                             <span class="info-counter">
                                 <i class="fa fa-users fa-fw"></i>投票人數：
                             </span>
-                            <span>{{ previewData.counter }}</span>
+                            <span>0</span>
                         </div>
                         <div class="margin10 info-block last-block">
                             <div class="article-tag">
@@ -84,18 +85,8 @@
                         <div class="article-vote">
                             <form class="vote-form" action="/vote" issue-id="{{ previewData._id }}" issue-sn="{{ previewData.sn }}">
                                 {% for question in previewData.questions %}
-                                    {% if previewData.isVoted %}
-                                        {# ---- 投過票的版面 ---- #}
-                                        {% include "./partials/hasVoted.html" %}
-                                    {% else %}
-                                        {# ---- 沒有投過票的版面 ---- #}
-                                        {% include "./partials/notVoted.html" %}
-                                    {% endif %}
+                                    {% include "./partials/previewVoted.html" %}
                                 {% endfor %}
-                                {% if not previewData.isVoted %}
-                                    <a id="vote-btn" class="button success">投票</a>
-                                {% endif %}
-
                             </form>
                         </div>
                     </article>
@@ -103,7 +94,6 @@
             </div>
         </main>
         {# ---- 側邊欄 ---- #}
-        {# {% include "./partials/hotIssues.html" %}
-        {% include "./partials/aside.html" %} #}
+        {% include "./partials/hotIssues.html" %}
     </div>
 {% endblock %}

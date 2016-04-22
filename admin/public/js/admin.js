@@ -26,6 +26,8 @@ $(function() {
         var url = '/issue/preview';
         var form = $('#issue-form');
         var data = form.serializeObject();
+
+        // 設定抓出來的 Data
         data.category = {
             title: $('option[value='+ data.category +']').text()
         };
@@ -33,24 +35,22 @@ $(function() {
         data.tags = data['tags[]'];
         data.mainImage = $('#main-img + label > img').attr('src');
         data.thumbnail = $('#vice-img + label > img').attr('src');
+        delete data._method;
+        delete data['tags[]'];
         // 將 question 資料取出來變 object
-        data.question = [];
+        data.questions = [];
         $('.question-box > li').each( function(index, value) {
-            data.question[index] = {
+            data.questions[index] = {
                 content: $(value).find('.accordion-title').text(),
-                option: []
+                options: []
             };
             $(value).find('li').each( function(i, v) {
-                data.question[index].option[i] = {
+                data.questions[index].options[i] = {
                     content: $(v).text()
                 };
             });
         });
 
-        delete data._method;
-        delete data['tags[]'];
-
-        console.log('L8', data);
         $.ajax({
             url: url,
             type: 'POST',
@@ -58,8 +58,17 @@ $(function() {
             contentType: 'application/json',
             data: JSON.stringify(data),
             success: function(data, err) {
-                console.log(data.token);
                 window.open('http://localhost:8998/previews/' + data.token);
+            },
+            error: function(error) {
+                var title = '資料有誤請重整';
+                if(error && error.responseText) {
+                    title = JSON.parse(error.responseText).message;
+                }
+                swal({
+                    title: title,
+                    type: 'error'
+                });
             }
         });
     });
