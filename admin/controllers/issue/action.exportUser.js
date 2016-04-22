@@ -2,6 +2,7 @@
 import Promise from 'bluebird';
 import co from 'co';
 import moment from 'moment-timezone';
+var iconv = require('iconv-lite');
 
 const debug = require('debug')('NOWvote:admin:controllers:issue:action.exportUser');
 const json2csv = Promise.promisify(require('json2csv'));
@@ -41,16 +42,11 @@ module.exports = function(req, res, next) {
         let time = moment(Date.now()).format('YYYYMMDDHHmm');
         let fileName = `issue_${issue.sn}_VotedUsers_${time}.csv`;
         let csv = yield json2csv({ data: data, fields: fields});
-        // csv = utf8.encode(csv);
-        debug('csv = %j', csv);
+        let buf = iconv.encode(csv, 'UTF-16');
 
-        // res.setHeader('Content-Type', 'application/octet-stream');
-        res.header('Content-type', 'text/csv;  charset=utf-8;');
+        res.header('Content-type', 'text/csv;charset=utf-8;');
         res.header('Content-Disposition', `attachment; filename=${fileName}`);
-        res.end(csv, 'utf8');
-        // res.header('Content-disposition', `attachment; filename=${fileName}`);
-        // res.header('Content-type', 'text/csv;  charset=utf-8;');
-        // return res.end(csv);
+        return res.end(buf);
     })
     .catch(next);
 };
