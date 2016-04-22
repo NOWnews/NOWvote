@@ -1,5 +1,69 @@
 {% extends "./index.html" %}
-
+{% set title =  'Oops!很抱歉，您查詢的網頁暫時無法使用，或者已經被移除。' %}
 {% block container %}
-    <h1>404 ERROR</h1>
+<div class="row page404">
+    <!-- <h1 class="swing animated" style="">404</h1> -->
+    <div id='oopss' class="swing animated">
+      <div class='error-text'>
+        <span>404</span>
+      </div>
+    </div>
+    <p style="">Oops!很抱歉，您查詢的網頁暫時無法使用，或者已經被移除。</p>
+    <a class="button" href="#"><i class="fa fa-home" aria-hidden="true"></i> 回首頁</a>
+</div>
+
+<div class="row small-up-1 medium-up-2 large-up-2 errorpage-news">
+    <section class="column">
+        <h3 class="news-title">
+            熱門議題
+        </h3>
+        <div class="vote_list">
+            {% for issue in hotIssues %}
+                <div class="vote_item">
+                    <div class="div-circle">{{ loop.index}}</div>
+                    <div class="vote_img">
+                        <a target="_blank" href="/issues/{{issue.sn}}">
+                            <img style="border: solid 1px #ccc;" src="{{ issue.thumbnail }}">
+                        </a>
+                    </div>
+                    <div class="vote_description">
+                        <div class="vote_title">
+                            <a target="_blank" href="/issues/{{issue.sn}}">{{issue.title}}</a>
+                        </div>
+                        <span class="vote_category">熱門議題</span>
+                        <span class="vote_category">投票數 {{issue.counter}}</span>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+    <section class="column">
+        <h3 class="news-title">
+            熱門新聞
+        </h3>
+        <div class="vote_list">
+            {% for idx in range(0, 5) %}
+                {% set shortTitle = hotNews[idx].stitle %}
+                {% set img = hotNews[idx].imgs[0].img %}
+                {% set date = hotNews[idx].d %}
+                {% set time = hotNews[idx].t %}
+                {% set url = "http://www.nownews.com" + hotNews[idx].url %}
+                <div class="vote_item">
+                    <div class="div-circle">{{ loop.index}}</div>
+                    <div class="vote_img">
+                        <a target="_blank" href="{{ url }}"><img src="http://imgapi.nownews.com/?w=100&h=100&q=60&src={{ img }}"></a>
+                    </div>
+                    <div class="vote_description">
+                        <div class="vote_title">
+                            <a target="_blank" href="{{ url }}">{{ shortTitle }}</a>
+                        </div>
+                        <span class="vote_category">熱門新聞 |</span>
+                        <span class="vote_date">{{ date }} {{ time }}</span>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+    <div class="clearfix"></div>
+</div>
 {% endblock %}
