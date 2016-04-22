@@ -17,25 +17,6 @@
                             <img src="http://lazyfamily.twbbs.org/social.png" class="social-btn">
                         </div>
                         <div class="margin10 info-block">
-                            <ul class="breadcrumbs">
-                                <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
-                                    <a itemprop="url" href="/">
-                                        <span itemprop="title"><i class="fa fa-home fa-fw" aria-hidden="true"></i>首頁</span>
-                                    </a>
-                                </li>
-                                <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
-                                    <a itemprop="url" href="/category/{{ previewData.category.title }}" target="_blank">
-                                        <span itemprop="title">{{ previewData.category.title }}</span>
-                                    </a>
-                                </li>
-                                <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
-                                    <a itemprop="url" href="/issues/{{ previewData.sn }}" target="_blank">
-                                        <span itemprop="title">{{ previewData.title }}</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="margin10 info-block">
                             {% if previewData.continued %}
                                 <span class="info-time">
                                     <i class="fa fa-calendar fa-fw"></i>開始時間：
