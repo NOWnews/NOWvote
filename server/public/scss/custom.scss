@@ -189,3 +189,15 @@ span.issuediscuss {
 .breadcrumbs li {
     font-size: 0.8rem;
 }
+// 預覽用的標示
+.preview-logo {
+    background: rgba(247,85,7,0.40);
+    border-bottom: 6px solid #FFAA30;
+    padding: 3px 35px;
+    position: absolute;
+    left: 50%;
+    font-size: 60px;
+    font-weight: bold;
+    margin-left: -155px;
+    border-radius: 10px 10px 15px 15px;
+}

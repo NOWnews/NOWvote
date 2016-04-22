@@ -14,13 +14,15 @@ var adminBowerJsPaths = [
     './bower_components/taggingJS/tagging.js',
     './bower_components/foundation-datepicker/js/foundation-datepicker.js',
     './bower_components/foundation-datepicker/js/locales/foundation-datepicker.zh-TW.js',
-    './bower_components/html.sortable/dist/html.sortable.js'
+    './bower_components/html.sortable/dist/html.sortable.js',
+    './bower_components/sweetalert/dist/sweetalert.min.js'
 ];
 var adminBowerScssPaths = [
     './admin/public/scss/admin.scss',
     './bower_components/foundation-sites/assets/foundation.scss',
     './bower_components/font-awesome/scss/font-awesome.scss',
-    './bower_components/foundation-datepicker/css/foundation-datepicker.scss'
+    './bower_components/foundation-datepicker/css/foundation-datepicker.scss',
+    './bower_components/sweetalert/dist/sweetalert.css'
 ];
 
 // 移動 font的檔案
@@ -57,7 +59,11 @@ gulp.task('adminScript', function() {
     return gulp.src(adminBowerJsPaths)
         .pipe(plugins.plumber())
         .pipe(plugins.uglify())
-        .pipe(plugins.rename({suffix: '.min'}))
+        .pipe(plugins.rename(function (path) {
+            if(path.basename.indexOf('.min') < 0){
+                path.basename += '.min';
+            }
+        }))
         .pipe(gulp.dest('./admin/public/dist/js'));
 });
 

@@ -1,0 +1,9 @@
+<div class="callout custom-border">
+    <h3>{{ question.content }}</h3>
+    {% for option in question.options %}
+        <div class="radioholder">
+            <input type="radio" name="{{ question.content }}" value="{{ option.content }}">
+            <label>{{ option.content }}</label>
+        </div>
+    {% endfor %}
+</div>

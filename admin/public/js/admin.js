@@ -1,6 +1,78 @@
+// serializeObject liberay
+$.fn.serializeObject = function(){
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function() {
+        if (o[this.name] !== undefined) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+        } else {
+            if (this.name.indexOf('[]') > -1){
+                o[this.name] = [this.value] || '';
+            }else {
+                o[this.name] = this.value || '';
+            }
+        }
+    });
+    return o;
+};
+
 $(function() {
     $(document).foundation();
     // library
+    $('#preview-btn').on('click', function(){
+        var url = '/issue/preview';
+        var form = $('#issue-form');
+        var data = form.serializeObject();
+
+        // 設定抓出來的 Data
+        data.category = {
+            title: $('option[value='+ data.category +']').text()
+        };
+        data.desc = CKEDITOR.instances.editor.getData();
+        data.tags = data['tags[]'];
+        data.mainImage = $('#main-img + label > img').attr('src');
+        data.thumbnail = $('#vice-img + label > img').attr('src');
+        delete data._method;
+        delete data['tags[]'];
+        // 將 question 資料取出來變 object
+        data.questions = [];
+        $('.question-box > li').each( function(index, value) {
+            data.questions[index] = {
+                content: $(value).find('.accordion-title').text(),
+                options: []
+            };
+            $(value).find('li').each( function(i, v) {
+                data.questions[index].options[i] = {
+                    content: $(v).text()
+                };
+            });
+        });
+
+        $.ajax({
+            url: url,
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            success: function(data, err) {
+                window.open('http://localhost:8998/previews/' + data.token);
+            },
+            error: function(error) {
+                var title = '資料有誤請重整';
+                if(error && error.responseText) {
+                    title = JSON.parse(error.responseText).message;
+                }
+                swal({
+                    title: title,
+                    type: 'error'
+                });
+            }
+        });
+    });
+
     // adminUser -----------------------
     $('.remove-btn').on('click', function() {
         event.preventDefault();
@@ -14,7 +86,10 @@ $(function() {
                     $('.bullet-item[item-sn=' + sn + ']').remove();
                     $('#deleteModal' + sn).foundation('close');
                 } else {
-                    alert('資料有誤 請重新整理！');
+                    swal({
+                        title: '資料有誤 請重新整理！!',
+                        type: 'error'
+                    });
                 }
             }
         });
@@ -155,7 +230,10 @@ $(function() {
             var targetShow = $(input).siblings('label').find('img');
 
             if (fileSize > 409600) {
-                return alert('檔案過大，請選擇小於500KB以下');
+                return swal({
+                    title: '檔案過大，請選擇小於500KB以下',
+                    type: 'error'
+                });
             }
 
             if (input.files && input.files[0]) {

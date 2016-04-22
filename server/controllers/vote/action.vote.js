@@ -5,6 +5,7 @@ import Promise from 'bluebird';
 const debug = require('debug')('NOWvote:server:controllers:vote:action.vote');
 const models = require('../../../models');
 const redis = require('../../../caches');
+const libs = require('../../../libs');
 
 module.exports = function(req, res, next) {
 

@@ -176,6 +176,7 @@ module.exports = function(app) {
 
         // 將 session.user 放到 locals.user 裡，讓 site 可以取得資料
         res.locals.user = req.session.user;
+        res.locals.thisPagePath = req.path;
 
         return next();
     };
