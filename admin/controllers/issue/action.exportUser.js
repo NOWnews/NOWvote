@@ -2,7 +2,7 @@
 import Promise from 'bluebird';
 import co from 'co';
 import moment from 'moment-timezone';
-var iconv = require('iconv-lite');
+import iconv from 'iconv';
 
 const debug = require('debug')('NOWvote:admin:controllers:issue:action.exportUser');
 const json2csv = Promise.promisify(require('json2csv'));
@@ -14,13 +14,11 @@ module.exports = function(req, res, next) {
     co(function*() {
 
         let issue = yield models.issue.findBySn(sn);
-        // debug('issue = %j', issue);
 
         let relations = yield models.issueRelation.find()
             .where('issue').equals(issue._id)
             .populate('user')
             .execAsync();
-        // debug('relations = %j', relations);
 
         let users = _.map(relations, function(relation) {
             return relation.user;
@@ -42,6 +40,8 @@ module.exports = function(req, res, next) {
         let time = moment(Date.now()).format('YYYYMMDDHHmm');
         let fileName = `issue_${issue.sn}_VotedUsers_${time}.csv`;
         let csv = yield json2csv({ data: data, fields: fields});
+
+        // windows 上面 excel 預設是用 utf-16 開啟，所以這邊要轉碼
         let buf = iconv.encode(csv, 'UTF-16');
 
         res.header('Content-type', 'text/csv;charset=utf-8;');
