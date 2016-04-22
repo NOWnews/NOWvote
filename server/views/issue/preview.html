@@ -1,1 +1,109 @@
 <h1>{{ previewData.title }}</h1>
+{% extends "../index.html" %}
+{% set title = previewData.title %}
+{% set description = previewData.desc|striptags|truncate(120) %}
+{% set shareimage = previewData.mainImage %}
+
+{% block container %}
+    <div class="row content-margin-top">
+        <main class="main-right column large-10">
+            <div class="container" id="content">
+                <section class="container" flex-container="row">
+                    <article class="m-main-content m-competition" flex-item="8" itemprop="articleBody">
+                        <h1 class="vote-title">
+                            {{ previewData.title }}
+                        </h1>
+                        <div class="margin10 info-block">
+                            <img src="http://lazyfamily.twbbs.org/social.png" class="social-btn">
+                        </div>
+                        <div class="margin10 info-block">
+                            <ul class="breadcrumbs">
+                                <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                                    <a itemprop="url" href="/">
+                                        <span itemprop="title"><i class="fa fa-home fa-fw" aria-hidden="true"></i>首頁</span>
+                                    </a>
+                                </li>
+                                <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                                    <a itemprop="url" href="/category/{{ previewData.category.title }}" target="_blank">
+                                        <span itemprop="title">{{ previewData.category.title }}</span>
+                                    </a>
+                                </li>
+                                <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                                    <a itemprop="url" href="/issues/{{ previewData.sn }}" target="_blank">
+                                        <span itemprop="title">{{ previewData.title }}</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="margin10 info-block">
+                            {% if previewData.continued %}
+                                <span class="info-time">
+                                    <i class="fa fa-calendar fa-fw"></i>開始時間：
+                                </span>
+                                <span>此為長期投票</span>
+                            {% else %}
+                                <span class="info-time">
+                                    <i class="fa fa-calendar fa-fw"></i>開始時間：
+                                </span>
+                                <span>{{ previewData.startTime }}</span>
+                                <span>~</span>
+                                <span>{{ previewData.endTime }}  (GMT +8) </span>
+                            {% endif %}
+                        </div>
+                        <div class="margin10 info-block">
+                            <span class="info-category">
+                                <i class="fa-fw fa fa-th-large" aria-hidden="true"></i>議題分類：
+                            </span>
+                            <a href="/category/{{ previewData.category.title }}" target="_blank">
+                                <span class="issue-category">{{ previewData.category.title }}</span>
+                            </a>
+                        </div>
+                        <div class="margin10 info-block">
+                            <span class="info-counter">
+                                <i class="fa fa-users fa-fw"></i>投票人數：
+                            </span>
+                            <span>{{ previewData.counter }}</span>
+                        </div>
+                        <div class="margin10 info-block last-block">
+                            <div class="article-tag">
+                            <i class="fa-fw fa fa-tag"></i>標籤：
+                                {% for tag in previewData.tags %}
+                                    <span class="info label">
+                                        <i class="fa fa-hashtag"></i>{{ tag }}
+                                    </span>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                         <div>
+                            <img itemprop="image" class="main-image" src="{{ previewData.mainImage }}" alt="{{ previewData.title }}">
+                        </div>
+                        <div class="article-content">
+                            {{ previewData.desc | safe }}
+                        </div>
+                        <div class="article-vote">
+                            <form class="vote-form" action="/vote" issue-id="{{ previewData._id }}" issue-sn="{{ previewData.sn }}">
+                                {% for question in previewData.questions %}
+                                    {% if previewData.isVoted %}
+                                        {# ---- 投過票的版面 ---- #}
+                                        {% include "./partials/hasVoted.html" %}
+                                    {% else %}
+                                        {# ---- 沒有投過票的版面 ---- #}
+                                        {% include "./partials/notVoted.html" %}
+                                    {% endif %}
+                                {% endfor %}
+                                {% if not previewData.isVoted %}
+                                    <a id="vote-btn" class="button success">投票</a>
+                                {% endif %}
+
+                            </form>
+                        </div>
+                    </article>
+                </section>
+            </div>
+        </main>
+        {# ---- 側邊欄 ---- #}
+        {# {% include "./partials/hotIssues.html" %}
+        {% include "./partials/aside.html" %} #}
+    </div>
+{% endblock %}
