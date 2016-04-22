@@ -7,7 +7,11 @@ const category = require('./category');
 const tag = require('./tag');
 const issue = require('./issue');
 const vote = require('./vote');
+<<<<<<< HEAD
 const preview = require('./preview');
+=======
+const errorpage = require('./errorpage')
+>>>>>>> 前端頁面增加404頁面
 
 module.exports = function(app) {
 
@@ -20,6 +24,7 @@ module.exports = function(app) {
     app.use('/', tag);
     app.use('/', vote);
     app.use('/', preview);
+    app.use('/', errorpage)
 
     return function(req, res, next) {
         return next();
