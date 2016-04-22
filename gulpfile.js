@@ -101,7 +101,8 @@ var serverBowerScssPaths = [
     './bower_components/remodal/dist/remodal-default-theme.css',
     './bower_components/sweetalert/dist/sweetalert.css',
     './bower_components/slick-carousel/slick/slick.scss',
-    './bower_components/inputs/dist/css/generic-inputs.css'
+    './bower_components/inputs/dist/css/generic-inputs.css',
+    './bower_components/animate.css/animate.css'
 ];
 
 var serverSettingsPaths = [
