@@ -77,6 +77,37 @@ module.exports = function(req, res, next) {
             });
         });
 
+        /*
+         * 取得上一頁跟下一頁的資料
+         */
+        let now = Date.now();
+        let nextAndPrevIssue = yield {
+            prev:  models.issue.find()
+                .where('_id').gt(issue._id)
+                .where('trashed').equals(false)
+                .where('status').equals(true)
+                .or([
+                    { continued: true },
+                    { startTime: { $lte: now }, endTime: { $gte: now } }
+                ])
+                .sort('_id')
+                .select('title sn')
+                .limit(1),
+            next: models.issue.find()
+                .where('_id').lt(issue._id)
+                .where('trashed').equals(false)
+                .where('status').equals(true)
+                .or([
+                    { continued: true },
+                    { startTime: { $lte: now }, endTime: { $gte: now } }
+                ])
+                .sort('-_id')
+                .limit(1)
+                .select('title sn')
+        };
+
+        debug('prev issue = %j', nextAndPrevIssue.prev[0]);
+        debug('next issue = %j', nextAndPrevIssue.next[0]);
         debug('issue = %j', issue);
 
         return res.render('issue/issue', {
@@ -84,7 +115,9 @@ module.exports = function(req, res, next) {
           issue: issue,
           hotNews: hotNews,
           news36: news36,
-          hotIssues: hotIssues
+          hotIssues: hotIssues,
+          nextIssue: nextAndPrevIssue.next[0],
+          prevIssue: nextAndPrevIssue.prev[0]
         });
     })
     .catch(next);
