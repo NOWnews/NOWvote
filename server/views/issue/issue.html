@@ -94,12 +94,12 @@
                                         {% include "./partials/notLogin.html" %}
                                     {% endif %}
                                 {% endfor %}
-                                {% if user and not issue.isVoted %}
+                                {% if user and not issue.isVoted and issue.type == "VOTE" %}
                                     {# ---- 有登入且沒有投過票的按鈕 ---- #}
                                     <a id="vote-btn" class="button success">投票</a>
-                                {% elif not user %}
-                                    {# ---- 有登入且沒有投過票的按鈕 ---- #}
-                                    <a href="/#login-modal" class="button success">請登入進行投票</a>
+                                {% elif not user and issue.type == "VOTE" %}
+                                    {# ---- 沒登入的按鈕 ---- #}
+                                    <a href="#login-modal" class="button success">請登入進行投票</a>
                                 {% endif %}
 
                             </form>
