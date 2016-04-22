@@ -8,6 +8,7 @@ const tag = require('./tag');
 const issue = require('./issue');
 const vote = require('./vote');
 const preview = require('./preview');
+const errorpage = require('./errorpage');
 
 module.exports = function(app) {
 
@@ -20,6 +21,7 @@ module.exports = function(app) {
     app.use('/', tag);
     app.use('/', vote);
     app.use('/', preview);
+    app.use('/', errorpage)
 
     return function(req, res, next) {
         return next();
