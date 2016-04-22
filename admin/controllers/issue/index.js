@@ -8,6 +8,7 @@ import actionUpdateList from './action.updateList';
 import actionRemove from './action.remove';
 import actionUpdate from './action.update';
 import actionCreate from './action.create';
+import actionExportUser from './action.exportUser';
 
 // 驗證是否登入
 const isLogin = require('../../middlewares/isLogin');
@@ -22,6 +23,9 @@ router.route('/:sn')
 router.route('/create')
     .get(isLogin, pageCreate)
     .post(isLogin, actionCreate);
+
+router.route('/exportUsersCsv/:sn')
+    .get(isLogin, actionExportUser);
 
 router.route('/update/:sn')
     .put(isLogin, actionUpdate)
