@@ -40,7 +40,8 @@ module.exports = function(app) {
 
         if(err.code === 10404) {
             res.status(404);
-            return res.render('404');
+            return res.redirect('/404');
+            // return res.render('404');
         }
 
         res.status(503);

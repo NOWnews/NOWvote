@@ -31,7 +31,7 @@ module.exports = function(req, res, next) {
         let hotNews = results[2];
         debug('hotNews = %j', hotNews);
 
-        let hotIssues = results[4];
+        let hotIssues = results[3];
         debug('hotIssues = %j', hotIssues);
 
 
