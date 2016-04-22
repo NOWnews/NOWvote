@@ -17,9 +17,8 @@ module.exports = function(req, res, next) {
             redis.getCategory(),
             redis.getBanner(),
 
-            // 取得新聞
+            // 取得新聞、熱門議題
             redis.getHotNews(),
-            redis.get36News(),
             redis.getHotIssues()
         ];
 
@@ -32,9 +31,6 @@ module.exports = function(req, res, next) {
         let hotNews = results[2];
         debug('hotNews = %j', hotNews);
 
-        let news36 = results[3];
-        debug('news36 = %j', news36);
-
         let hotIssues = results[4];
         debug('hotIssues = %j', hotIssues);
 
@@ -43,7 +39,6 @@ module.exports = function(req, res, next) {
         return res.render('404', {
           categories: categories,
           hotNews: hotNews,
-          news36: news36,
           hotIssues: hotIssues
         });
     })
