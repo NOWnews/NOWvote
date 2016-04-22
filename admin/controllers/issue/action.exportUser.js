@@ -41,10 +41,16 @@ module.exports = function(req, res, next) {
         let time = moment(Date.now()).format('YYYYMMDDHHmm');
         let fileName = `issue_${issue.sn}_VotedUsers_${time}.csv`;
         let csv = yield json2csv({ data: data, fields: fields});
+        // csv = utf8.encode(csv);
+        debug('csv = %j', csv);
 
-        res.header('Content-disposition', `attachment; filename=${fileName}`);
+        // res.setHeader('Content-Type', 'application/octet-stream');
         res.header('Content-type', 'text/csv;  charset=utf-8;');
-        return res.end(csv);
+        res.header('Content-Disposition', `attachment; filename=${fileName}`);
+        res.end(csv, 'utf8');
+        // res.header('Content-disposition', `attachment; filename=${fileName}`);
+        // res.header('Content-type', 'text/csv;  charset=utf-8;');
+        // return res.end(csv);
     })
     .catch(next);
 };
