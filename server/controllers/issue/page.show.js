@@ -82,18 +82,7 @@ module.exports = function(req, res, next) {
          */
         let now = Date.now();
         let nextAndPrevIssue = yield {
-            prev:  models.issue.find()
-                .where('_id').gt(issue._id)
-                .where('trashed').equals(false)
-                .where('status').equals(true)
-                .or([
-                    { continued: true },
-                    { startTime: { $lte: now }, endTime: { $gte: now } }
-                ])
-                .sort('_id')
-                .select('title sn')
-                .limit(1),
-            next: models.issue.find()
+            prev: models.issue.find()
                 .where('_id').lt(issue._id)
                 .where('trashed').equals(false)
                 .where('status').equals(true)
@@ -103,7 +92,18 @@ module.exports = function(req, res, next) {
                 ])
                 .sort('-_id')
                 .limit(1)
+                .select('title sn'),
+            next:  models.issue.find()
+                .where('_id').gt(issue._id)
+                .where('trashed').equals(false)
+                .where('status').equals(true)
+                .or([
+                    { continued: true },
+                    { startTime: { $lte: now }, endTime: { $gte: now } }
+                ])
+                .sort('_id')
                 .select('title sn')
+                .limit(1)
         };
 
         debug('prev issue = %j', nextAndPrevIssue.prev[0]);
