@@ -15,8 +15,6 @@ module.exports = function(req, res, next) {
         let results = yield [
             // 從 redis 取得 Category 的資料
             redis.getCategory(),
-            redis.getBanner(),
-
             // 取得新聞、熱門議題
             redis.getHotNews(),
             redis.getHotIssues()
@@ -25,13 +23,10 @@ module.exports = function(req, res, next) {
         let categories = results[0];
         debug('category = %j', categories);
 
-        let banners = results[1];
-        debug('banner = %j', banners);
-
-        let hotNews = results[2];
+        let hotNews = results[1];
         debug('hotNews = %j', hotNews);
 
-        let hotIssues = results[3];
+        let hotIssues = results[2];
         debug('hotIssues = %j', hotIssues);
 
 
