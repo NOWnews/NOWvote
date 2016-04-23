@@ -20,11 +20,12 @@ module.exports = function(req, res, next) {
         data.token = token;
 
         let tmpPreview = yield redis.setRedisValue(token, data, 60);
-
+        let serviceUrl = config.webSite.serviceUrl;
         debug('tmpPreview = %j', tmpPreview);
 
         return res.json({
-            token: token
+            token: token,
+            serviceUrl: serviceUrl
         });
     })
     .catch(next);
