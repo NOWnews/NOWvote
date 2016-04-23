@@ -38,6 +38,11 @@ module.exports = function(app) {
     // 靜態檔案位置
     app.use('/static', express.static(rootPath + '/server/public/'));
     app.use('/images', express.static(rootPath + '/imageStorage/'));
+    //
+    app.use(function(req, res, next) {
+        res.locals.serviceUrl = config.webSite.serviceUrl;
+        return next();
+    })
 
      // TODO 暫時用此方法引入 foundation
     app.use('/bower', express.static(rootPath + '/bower_components/'));
