@@ -52,7 +52,7 @@ module.exports = function(req, res, next) {
 
         // 檢查 主圖資訊
         if(mainImgFile){
-            let extMainImgName = yield libs.checkExt(mainImgFile[0]);
+            let extMainImgName = libs.checkExt(mainImgFile[0]);
             let mainImageName = 'issue' + moment()
                 .tz('Asia/Taipei')
                 .format('YYYYMMDD-HHmmss');
@@ -68,7 +68,7 @@ module.exports = function(req, res, next) {
 
         // 檢查 縮圖資訊
         if(imgFile){
-            let extName = yield libs.checkExt(imgFile[0]);
+            let extName = libs.checkExt(imgFile[0]);
             let fileName = 'picture' + moment()
                 .tz('Asia/Taipei')
                 .format('YYYYMMDD-HHmmss');
@@ -91,8 +91,11 @@ module.exports = function(req, res, next) {
 
         yield issue.saveAsync();
 
-        // 讓 redis 重整資料，只更新前台會用到的資料
-        yield redis.updateRedisByKey('indexIssues');
+        // 更新首頁 redis issue 與 hotIssues
+        yield [
+            redis.updateRedisByKey('indexIssues'),
+            redis.updateRedisByKey('hotIssues')
+        ];
 
         return res.redirect('/issue');
     })

@@ -19,7 +19,7 @@ const imageUrlMapping = co.wrap(function*(file, type) {
         let type = 'picture';
     }
 
-    let extName = yield libs.checkExt(file);
+    let extName = libs.checkExt(file);
     let fileName = type + moment()
         .tz('Asia/Taipei')
         .format('YYYYMMDD-HHmmss');

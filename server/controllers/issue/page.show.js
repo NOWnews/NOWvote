@@ -32,6 +32,13 @@ module.exports = function(req, res, next) {
             models.issue.findBySn(req.params.sn)
         ];
 
+        let issue = results[5];
+
+        if(!issue) {
+            let err = libs.errorWrapper(10404, '找不到頁面', 'page', new Error());
+            return Promise.reject(err);
+        }
+
         let categories = results[0];
         debug('category = %j', categories);
 
@@ -46,8 +53,6 @@ module.exports = function(req, res, next) {
 
         let hotIssues = results[4];
         debug('hotIssues = %j', hotIssues);
-
-        let issue = results[5];
 
         issue.isVoted = false;
         issue.startTime = libs.formatDate(issue.startTime);
