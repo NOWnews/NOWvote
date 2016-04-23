@@ -58,7 +58,7 @@ $(function() {
             contentType: 'application/json',
             data: JSON.stringify(data),
             success: function(data, err) {
-                window.open(data.foregroundUrl + 'previews/' + data.token);
+                window.open(data.serviceUrl + 'previews/' + data.token);
             },
             error: function(error) {
                 var title = '資料有誤請重整';
