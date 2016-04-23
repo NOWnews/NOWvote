@@ -6,9 +6,13 @@ const pageList = require('./page.list.js');
 const pageShow = require('./page.show.js');
 const pageIssueList = require('./page.issue.list.js');
 const pageIssueShow = require('./page.issue.show.js');
+const pageUserReceiptList = require('./page.userReceipt.list.js');
 
 router.route('/')
     .get(pageList);
+
+router.route('/receipts')
+    .get(pageUserReceiptList);
 
 router.route('/:sn')
     .get(pageShow);
