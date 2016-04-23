@@ -20,9 +20,15 @@ const fbCallbackURL = process.env.NODE_ENV === 'production' ? 'http://vote.nowne
 /*
  * google+ 資訊
  */
- const googleClientID = process.env.NODE_ENV === 'production' ? '77192640596-ljtm6bjf42h120blu0u7uqv0u53p4lq1.apps.googleusercontent.com' : '727890972053-lih4t2kbdj1vt21oa7evfeqfdpqjrn4a.apps.googleusercontent.com';
- const googleClientSecret = process.env.NODE_ENV === 'production' ? 'mfS9QJmvBWuzs2BNt4Q4A4U3' : 'haYoLRbQxe91WCFLdme4t-zV';
- const googleCallbackURL = process.env.NODE_ENV === 'production' ? 'http://vote.nownews.com/auth/google/callback' : 'http://localhost:8998/auth/google/callback';
+const googleClientID = process.env.NODE_ENV === 'production' ? '77192640596-ljtm6bjf42h120blu0u7uqv0u53p4lq1.apps.googleusercontent.com' : '727890972053-lih4t2kbdj1vt21oa7evfeqfdpqjrn4a.apps.googleusercontent.com';
+const googleClientSecret = process.env.NODE_ENV === 'production' ? 'mfS9QJmvBWuzs2BNt4Q4A4U3' : 'haYoLRbQxe91WCFLdme4t-zV';
+const googleCallbackURL = process.env.NODE_ENV === 'production' ? 'http://vote.nownews.com/auth/google/callback' : 'http://localhost:8998/auth/google/callback';
+
+/*
+ * web url 資訊
+ */
+const foregroundUrl = process.env.NODE_ENV === 'production' ? 'http://vote.nownews.com/' : 'http://localhost:8998/';
+const backgroundUrl = process.env.NODE_ENV === 'production' ? 'http://admin.vote.nownews.com/' : 'http://localhost:8999/';
 
 module.exports = {
     /*
@@ -57,5 +63,14 @@ module.exports = {
         clientID: googleClientID,
         clientSecret: googleClientSecret,
         callbackURL: googleCallbackURL
+    },
+
+    /*
+     * web url 資訊
+     */
+    webSite: {
+        foreground: foregroundUrl,
+        background: backgroundUrl
     }
+
 };
