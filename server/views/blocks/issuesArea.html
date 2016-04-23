@@ -4,41 +4,59 @@
             <a href="/issues/{{ issue.sn }}">
                 <div class="thumbnail" style="background-image:url({{ issue.thumbnail }});">
                     {% if issue.type == "VOTE" %}
-                    <span class="votemark"><i class="fa fa-fw fa-paper-plane" aria-hidden="true"></i> 投票</span>
+                        <span class="votemark">
+                            <i class="fa fa-fw fa-paper-plane" aria-hidden="true"></i>
+                            投票
+                        </span>
                     {% else %}
-                    <span class="issuemark"><i class="fa fa-fw fa-bullhorn" aria-hidden="true"></i> 討論</span>
+                        <span class="issuemark">
+                            <i class="fa fa-fw fa-bullhorn" aria-hidden="true"></i>
+                            討論
+                        </span>
                     {% endif %}
                 </div>
             </a>
             <h3>{{ issue.title }}</h3>
             <div class="stats">
-                {% if issue.continued %}
+                {% if not issue.continued %}
                     <div class="votetime">
-                       <i class="fa fa-calendar"></i>
-                       <span>此為長期投票</span>
+                        <i class="fa fa-calendar"></i>
+                        {{ issue.startTime }}
+                        ~
+                        {{ issue.endTime }}
+                    </div>
+                    {% elif issue.type == "ISSUE" %}
+                    <div class="votetime">
+                        <i class="fa fa-calendar"></i>
+                        <span>此為長期議題</span>
                     </div>
                 {% else %}
                     <div class="votetime">
-                       <i class="fa fa-calendar"></i> {{ issue.startTime }} ~ {{ issue.endTime }}
+                        <i class="fa fa-calendar"></i>
+                        <span>此為長期投票</span>
                     </div>
-                {% endif %}
-                <div class="users">
-                    {% if issue.type == "VOTE" %}
-                        <i class="fa fa-pie-chart"></i>
-                        已有
-                        <span class="num-count">{{ issue.counter }}</span>用戶 投過票
-                    {% else %}
-                        <span class="issuediscuss">議題討論</span>
-                    {% endif %}
+                    {% endif%}
+                    <div class="users">
+                        {% if issue.type == "VOTE" %}
+                            <i class="fa fa-pie-chart"></i>
+                            已有
+                            <span class="num-count">{{ issue.counter }}</span>用戶 投過票
+                        {% else %}
+                            <span class="issuediscuss">議題討論</span>
+                        {% endif %}
+                    </div>
                 </div>
-            </div>
 
-            {% if issue.isVoted == true %}
-                <a href="/issues/{{ issue.sn }}" class="button bold is-voted"><i class="fa-fw fa fa-hand-pointer-o"></i>您已經投過票！</a>
-            {% elif issue.type == "ISSUE" %}
-                <a href="/issues/{{ issue.sn }}" class="button bold is-issue"><i class="fa-fw fa fa-hand-pointer-o"></i>觀看此議題</a>
-            {% else %}
-               <a href="/issues/{{ issue.sn }}" class="button bold"><i class="fa-fw fa fa-paper-plane" aria-hidden="true"></i></i>VOTE NOW!</a>
+                {% if issue.isVoted == true %}
+                    <a href="/issues/{{ issue.sn }}" class="button bold is-voted">
+                        <i class="fa-fw fa fa-hand-pointer-o"></i>您已經投過票！</a>
+                    {% elif issue.type == "ISSUE" %}
+                    <a href="/issues/{{ issue.sn }}" class="button bold is-issue">
+                        <i class="fa-fw fa fa-hand-pointer-o"></i>觀看此議題</a>
+                {% else %}
+                    <a href="/issues/{{ issue.sn }}" class="button bold">
+                        <i class="fa-fw fa fa-paper-plane" aria-hidden="true"></i>
+                    </i>VOTE NOW!</a>
             {% endif %}
         </div>
     </div>
