@@ -20,8 +20,11 @@ module.exports = function(req, res, next) {
 
         debug('removedIssue = %j', removedIssue);
 
-        // 讓 redis 重整資料，只更新前台會用到的資料
-        yield redis.updateRedisByKey('indexIssues');
+        // 更新首頁 redis issue 與 hotIssues
+        yield [
+            redis.updateRedisByKey('indexIssues'),
+            redis.updateRedisByKey('hotIssues')
+        ];
 
         return res.json(removedIssue);
     })

@@ -8,22 +8,16 @@ import Promise from 'bluebird';
 
 module.exports = function(file) {
 
-    return co(function*() {
+    let extType;
 
-        let extType;
+    switch(file.mimetype) {
+        case 'image/png':
+            extType = 'png';
+            break;
+        case 'image/jpeg':
+            extType = 'jpg';
+            break;
+    }
 
-        switch(file.mimetype) {
-            case 'image/png':
-                extType = 'png';
-                break;
-            case 'image/jpeg':
-                extType = 'jpg';
-                break;
-        }
-
-        return yield Promise.resolve(extType);
-    })
-    .catch(function(err) {
-        return Promise.reject(err);
-    });
+    return extType;
 };

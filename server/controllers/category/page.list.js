@@ -40,8 +40,8 @@ module.exports = function(req, res, next) {
         debug('category = %j', category);
 
         if(!category) {
-            let err = libs.errorWrapper(10001, '此分類無效', 'page', new Error());
-            return yield Promise.reject(err);
+            let err = libs.errorWrapper(10404, '找不到頁面', 'page', new Error());
+            return Promise.reject(err);
         }
 
         let categoryId = category._id;

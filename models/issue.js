@@ -5,6 +5,8 @@ import is from 'is_js';
 import mongoose from 'mongoose';
 import autoIncrement from 'mongoose-auto-increment';
 
+
+const libs = require('../libs');
 const deepPopulate = require('mongoose-deep-populate')(mongoose);
 
 const Schema = mongoose.Schema;
@@ -111,8 +113,10 @@ schema.statics.findBySn = co.wrap(function*(sn) {
     let self = this;
     let thisSn = parseInt(sn, 10);
 
+    // 因為不是數字絕對找不到，所以直接噴到 404
     if(!is.number(thisSn)){
-        return yield Promise.reject(new Error('sn must number'));
+        let err = libs.errorWrapper(10404, '找不到頁面', 'page', new Error());
+        return Promise.reject(err);
     }
 
     return yield self

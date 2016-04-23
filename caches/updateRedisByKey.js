@@ -12,7 +12,7 @@ const setRedisValue = require('./setRedisValue');
  */
 module.exports = co.wrap(function*(key) {
 
-    const validateArray = ['banner', 'category', 'indexIssues'];
+    const validateArray = ['banner', 'category', 'indexIssues', 'hotIssues'];
 
     if(!key || _.indexOf(validateArray, key) === -1) {
         return yield Promise.reject(new Error('update redis data need current key'));
@@ -35,5 +35,22 @@ module.exports = co.wrap(function*(key) {
         debug('issues = %j', issues);
         // 首頁 issue 過期時間為 5 分鐘
         return yield setRedisValue('indexIssues', issues, 300);
+    }
+
+    if(key === 'hotIssues') {
+        let now = Date.now();
+        let hotIssues = yield models.issue.find()
+            .where('trashed').equals(false)
+            .where('status').equals(true)
+            .where('type').equals('VOTE')
+            .or([
+                { continued: true },
+                { startTime: { $lte: now }, endTime: { $gte: now } }
+            ])
+            .sort('-counter')
+            .limit(5)
+            .execAsync();
+        debug('hotIssues = %j', hotIssues);
+        return yield setRedisValue('hotIssues', hotIssues, config.redis.expireSeconds);
     }
 });

@@ -18,7 +18,7 @@ module.exports = function(req, res, next) {
 
         debug('file = %j', file);
 
-        let extName = yield libs.checkExt(file);
+        let extName = libs.checkExt(file);
         let fileName = 'picture' + moment()
             .tz('Asia/Taipei')
             .format('YYYYMMDD-HHmmss');

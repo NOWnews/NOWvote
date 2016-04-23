@@ -12,9 +12,7 @@ import Promise from 'bluebird';
 
 Promise.promisifyAll(require('fs'));
 
-module.exports = function(source, target) {
-
-    return co(function*() {
+module.exports = co.wrap(function*(source, target) {
 
         if(!source) {
             return yield Promise.reject(new Error('source not found'));
@@ -39,8 +37,4 @@ module.exports = function(source, target) {
         let returnFilePath = existFile ? target : undefined;
 
         return Promise.resolve(returnFilePath);
-    })
-    .catch(function(err) {
-        return Promise.reject(err);
-    });
-};
+});

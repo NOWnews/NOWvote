@@ -2,9 +2,11 @@
 import express from 'express';
 let router = express.Router();
 
-import pageIndex from './page.index';
+const disableCache = require('../../middlewares/disableCache');
+
+const pageIndex = require('./page.index');
 
 router.route('/')
-    .get(pageIndex);
+    .get(disableCache, pageIndex);
 
 module.exports = router;

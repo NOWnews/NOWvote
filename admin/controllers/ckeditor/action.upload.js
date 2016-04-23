@@ -13,7 +13,7 @@ module.exports = function(req, res, next) {
     co(function*() {
 
         // 檢查 圖片資訊
-        let extName = yield libs.checkExt(imgFile);
+        let extName = libs.checkExt(imgFile);
         let fileName = 'picture' + moment()
             .tz('Asia/Taipei')
             .format('YYYYMMDD-HHmmss');

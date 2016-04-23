@@ -153,8 +153,11 @@ module.exports = function(req, res, next) {
             models.option.createAsync(optionsData)
         ];
 
-        // 更新首頁 redis issue
-        yield redis.updateRedisByKey('indexIssues');
+        // 更新首頁 redis issue 與 hotIssues
+        yield [
+            redis.updateRedisByKey('indexIssues'),
+            redis.updateRedisByKey('hotIssues')
+        ];
 
         return res.redirect('/issue');
     })
