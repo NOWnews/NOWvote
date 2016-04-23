@@ -28,13 +28,16 @@ module.exports = function(req, res, next) {
         let fields = ['name', 'email', 'address', 'gender', 'phone'];
 
         let data = _.map(users, function(user) {
-            return {
-                'name': user.name,
-                'email': user.email || '',
-                'address': user.address || '',
-                'gender': user.gender || '',
-                'phone': user.phone || ''
-            };
+
+            if(user !== null || user !== undefined) {
+                return {
+                    'name': user.name,
+                    'email': user.email || '',
+                    'address': user.address || '',
+                    'gender': user.gender || '',
+                    'phone': user.phone || ''
+                };
+            }
         });
 
         let time = moment(Date.now()).format('YYYYMMDDHHmm');
