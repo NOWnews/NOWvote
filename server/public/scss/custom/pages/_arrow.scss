@@ -4,8 +4,6 @@
 .blockarea:hover {
     background: #E18C14!important;
 }
-
-
 span.prev {
     color: #fff;
     z-index: 5;
@@ -26,7 +24,6 @@ span.next {
     overflow: hidden;
     text-align: right;
 }
-
 .blockarea {
     width: 49%;
     background: #FFAA30;
@@ -34,22 +31,20 @@ span.next {
     padding: 1rem;
 }
 .blockarea:first-child {
-    margin-right:1%;
+    margin-right: 1%;
 }
-
 .arrow-prev-next {
-    margin-bottom:1rem;
+    margin-bottom: 1rem;
     display: inline-block;
     width: 100%;
 }
-
 .fa-chevron-right {
-    float:right;
-    margin-top:5px;
+    float: right;
+    margin-top: 5px;
     color: #fff;
 }
 .fa-chevron-left {
-    float:left;
-    margin-top:5px;
+    float: left;
+    margin-top: 5px;
     color: #fff;
 }

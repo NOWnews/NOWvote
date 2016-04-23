@@ -1,6 +1,6 @@
 {% extends "../index.html" %}
 {% set title = issue.title %}
-{% set description = issue.desc|striptags|truncate(120) %}
+{% set description = issue.desc | striptags | truncate(120) %}
 {% set shareimage = issue.mainImage %}
 
 {% block container %}
@@ -20,7 +20,8 @@
                             <ul class="breadcrumbs">
                                 <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
                                     <a itemprop="url" href="/">
-                                        <span itemprop="title"><i class="fa fa-home fa-fw" aria-hidden="true"></i>首頁</span>
+                                        <span itemprop="title">
+                                            <i class="fa fa-home fa-fw" aria-hidden="true"></i>首頁</span>
                                     </a>
                                 </li>
                                 <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
@@ -47,7 +48,9 @@
                                 </span>
                                 <span>{{ issue.startTime }}</span>
                                 <span>~</span>
-                                <span>{{ issue.endTime }}  (GMT +8) </span>
+                                <span>{{ issue.endTime }}
+                                    (GMT +8)
+                                </span>
                             {% endif %}
                         </div>
                         <div class="margin10 info-block">
@@ -66,7 +69,7 @@
                         </div>
                         <div class="margin10 info-block last-block">
                             <div class="article-tag">
-                            <i class="fa-fw fa fa-tag"></i>標籤：
+                                <i class="fa-fw fa fa-tag"></i>標籤：
                                 {% for tag in issue.tags %}
                                     <span class="info label">
                                         <i class="fa fa-hashtag"></i>{{ tag }}
@@ -75,7 +78,7 @@
                             </div>
                         </div>
 
-                         <div>
+                        <div>
                             <img itemprop="image" class="main-image" src="{{ issue.mainImage }}" alt="{{ issue.title }}">
                         </div>
                         <div class="article-content">
@@ -87,7 +90,7 @@
                                     {% if user and issue.isVoted %}
                                         {# ---- 有登入且投過票的版面 ---- #}
                                         {% include "./partials/hasVoted.html" %}
-                                    {% elif user %}
+                                        {% elif user %}
                                         {# ---- 有登入且沒有投過票的版面 ---- #}
                                         {% include "./partials/notVoted.html" %}
                                     {% else %}
@@ -98,7 +101,7 @@
                                 {% if user and not issue.isVoted and issue.type == "VOTE" %}
                                     {# ---- 有登入且沒有投過票的按鈕 ---- #}
                                     <a id="vote-btn" class="button success">投票</a>
-                                {% elif not user and issue.type == "VOTE" %}
+                                    {% elif not user and issue.type == "VOTE" %}
                                     {# ---- 沒登入的按鈕 ---- #}
                                     <a href="#login-modal" class="button success">請登入進行投票</a>
                                 {% endif %}
@@ -107,34 +110,35 @@
                         </div>
                         <div class="arrow-prev-next">
                             {% if prevIssue %}
-                            <div class="blockarea" style="height: 3.5rem">
-                                <!-- <a class="arrow prev" href="/issues/{{ prevIssue.sn }}" target="_blank"></a> -->
                                 <a href="/issues/{{ prevIssue.sn }}" target="_blank">
-                                    <i class="fa fa-chevron-left fa-fw fa-1x" aria-hidden="true"></i><span class="prev">{{ prevIssue.title }}</span>
+                                    <div class="blockarea" style="height: 3.5rem">
+                                        <i class="fa fa-chevron-left fa-fw fa-1x" aria-hidden="true"></i>
+                                        <span class="prev">{{ prevIssue.title }}</span>
+                                    </div>
                                 </a>
-                            </div>
+
                             {% else %}
-                            <div class="blockarea" style="height: 3.5rem">
-                                <!-- <a class="arrow prev" href="/" target="_blank"></a> -->
                                 <a href="/" target="_blank">
-                                    <i class="fa fa-chevron-left fa-fw fa-1x" aria-hidden="true"></i><span class="prev">回首頁</span>
+                                    <div class="blockarea" style="height: 3.5rem">
+                                        <i class="fa fa-chevron-left fa-fw fa-1x" aria-hidden="true"></i>
+                                        <span class="prev">回首頁</span>
+                                    </div>
                                 </a>
-                            </div>
                             {% endif %}
                             {% if nextIssue %}
-                            <div class="blockarea">
-                                <!-- <a class="arrow next" href="/issues/{{ nextIssue.sn }}" target="_blank"></a> -->
                                 <a href="/issues/{{ nextIssue.sn }}" target="_blank">
-                                    <i class="fa fa-chevron-right fa-fw fa-1x" aria-hidden="true"></i><span class="next">{{ nextIssue.title }}</span>
+                                    <div class="blockarea">
+                                        <i class="fa fa-chevron-right fa-fw fa-1x" aria-hidden="true"></i>
+                                        <span class="next">{{ nextIssue.title }}</span>
+                                    </div>
                                 </a>
-                            </div>
                             {% else %}
-                            <div class="blockarea">
-                                <!-- <a class="arrow next" href="/"></a> -->
                                 <a href="/">
-                                    <i class="fa fa-chevron-right fa-fw fa-1x" aria-hidden="true"></i><span class="next">回首頁</span>
+                                    <div class="blockarea">
+                                        <i class="fa fa-chevron-right fa-fw fa-1x" aria-hidden="true"></i>
+                                        <span class="next">回首頁</span>
+                                    </div>
                                 </a>
-                            </div>
                             {% endif %}
                         </div>
                     </article>
