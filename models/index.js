@@ -32,6 +32,7 @@ const voteCounter = require('./voteCounter');
 const adminLog = require('./adminLog');
 const adminErrorLog = require('./adminErrorLog');
 const serviceErrorLog = require('./serviceErrorLog');
+const userReceipt = require('./userReceipt');
 
 module.exports = {
 
