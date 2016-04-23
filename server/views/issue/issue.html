@@ -8,6 +8,7 @@
         <main class="main-right column large-10">
             <div class="container" id="content">
                 <section class="container" flex-container="row">
+
                     <article class="m-main-content m-competition" flex-item="8" itemprop="articleBody">
                         <h1 class="vote-title">
                             {{ issue.title }}
@@ -103,6 +104,38 @@
                                 {% endif %}
 
                             </form>
+                        </div>
+                        <div class="arrow-prev-next">
+                            {% if prevIssue %}
+                            <div class="blockarea" style="height: 3.5rem">
+                                <!-- <a class="arrow prev" href="/issues/{{ prevIssue.sn }}" target="_blank"></a> -->
+                                <a href="/issues/{{ prevIssue.sn }}" target="_blank">
+                                    <i class="fa fa-chevron-left fa-fw fa-1x" aria-hidden="true"></i><span class="prev">{{ prevIssue.title }}</span>
+                                </a>
+                            </div>
+                            {% else %}
+                            <div class="blockarea" style="height: 3.5rem">
+                                <!-- <a class="arrow prev" href="/" target="_blank"></a> -->
+                                <a href="/" target="_blank">
+                                    <i class="fa fa-chevron-left fa-fw fa-1x" aria-hidden="true"></i><span class="prev">回首頁</span>
+                                </a>
+                            </div>
+                            {% endif %}
+                            {% if nextIssue %}
+                            <div class="blockarea">
+                                <!-- <a class="arrow next" href="/issues/{{ nextIssue.sn }}" target="_blank"></a> -->
+                                <a href="/issues/{{ nextIssue.sn }}" target="_blank">
+                                    <i class="fa fa-chevron-right fa-fw fa-1x" aria-hidden="true"></i><span class="next">{{ nextIssue.title }}</span>
+                                </a>
+                            </div>
+                            {% else %}
+                            <div class="blockarea">
+                                <!-- <a class="arrow next" href="/"></a> -->
+                                <a href="/">
+                                    <i class="fa fa-chevron-right fa-fw fa-1x" aria-hidden="true"></i><span class="next">回首頁</span>
+                                </a>
+                            </div>
+                            {% endif %}
                         </div>
                     </article>
                 </section>
