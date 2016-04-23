@@ -12,16 +12,21 @@
             </a>
             <h3>{{ issue.title }}</h3>
             <div class="stats">
-                {% if issue.continued %}
+                 {% if not issue.continued %}
+                    <div class="votetime">
+                        <i class="fa fa-calendar"></i> {{ issue.startTime }} ~ {{ issue.endTime }}
+                    </div>
+                 {% elif issue.type == "ISSUE" %}
+                    <div class="votetime">
+                       <i class="fa fa-calendar"></i>
+                       <span>此為長期議題</span>
+                    </div>
+                {% else %}
                     <div class="votetime">
                        <i class="fa fa-calendar"></i>
                        <span>此為長期投票</span>
                     </div>
-                {% else %}
-                    <div class="votetime">
-                       <i class="fa fa-calendar"></i> {{ issue.startTime }} ~ {{ issue.endTime }}
-                    </div>
-                {% endif %}
+                {% endif%}
                 <div class="users">
                     {% if issue.type == "VOTE" %}
                         <i class="fa fa-pie-chart"></i>

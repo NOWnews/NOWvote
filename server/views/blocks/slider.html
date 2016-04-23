@@ -2,7 +2,11 @@
     <div class="image-slick">
         {% for banner in banners %}
             <div>
-                <img src="{{banner.desktopImage}}">
+                {% if banner.url %}
+                    <a href="{{ banner.url }}" target="_blank"><img src="{{banner.desktopImage}}"></a>
+                {% else %}
+                    <img src="{{banner.desktopImage}}">
+                {% endif %}
             </div>
         {% endfor %}
     </div>
@@ -12,7 +16,11 @@
     <div class="image-slick">
         {% for banner in banners %}
             <div>
-                <img src="{{banner.mobileImage}}">
+                {% if banner.url %}
+                    <a href="{{ banner.url }}" target="_blank"><img src="{{banner.desktopImage}}"></a>
+                {% else %}
+                    <img src="{{banner.desktopImage}}">
+                {% endif %}
             </div>
         {% endfor %}
     </div>
@@ -22,7 +30,11 @@
     <div class="image-slick">
         {% for banner in banners %}
             <div>
-                <img src="{{banner.desktopImage}}">
+                {% if banner.url %}
+                    <a href="{{ banner.url }}" target="_blank"><img src="{{banner.desktopImage}}"></a>
+                {% else %}
+                    <img src="{{banner.desktopImage}}">
+                {% endif %}
             </div>
         {% endfor %}
     </div>
