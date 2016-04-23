@@ -1,0 +1,50 @@
+.blockarea:hover > span {
+    color: #fff;
+}
+.blockarea:hover {
+    background: #E18C14!important;
+}
+span.prev {
+    color: #fff;
+    z-index: 5;
+    white-space: nowrap;
+    padding: 0 1rem;
+    display: inline-block;
+    width: 85%;
+    overflow: hidden;
+}
+span.next {
+    color: #fff;
+    z-index: 5;
+    float: right;
+    white-space: nowrap;
+    padding: 0 1rem;
+    display: inline-block;
+    width: 85%;
+    overflow: hidden;
+    text-align: right;
+}
+.blockarea {
+    width: 49%;
+    background: #FFAA30;
+    float: left;
+    padding: 1rem;
+}
+.blockarea:first-child {
+    margin-right: 1%;
+}
+.arrow-prev-next {
+    margin-bottom: 1rem;
+    display: inline-block;
+    width: 100%;
+}
+.fa-chevron-right {
+    float: right;
+    margin-top: 5px;
+    color: #fff;
+}
+.fa-chevron-left {
+    float: left;
+    margin-top: 5px;
+    color: #fff;
+}
