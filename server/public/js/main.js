@@ -18,12 +18,56 @@ $(function() {
     // 執行
     environmentChecks();
 
-
     $(document).foundation();
     $('.title-bar').on('sticky.zf.stuckto:top', function() {
         $(this).addClass('shrink');
     }).on('sticky.zf.unstuckfrom:top', function() {
         $(this).removeClass('shrink');
+    });
+
+    // user-receipt 建議的議題
+    $('#user-receipt').on('click', function(){
+        swal({
+            title: '大膽做自己',
+            text: '您可以將您的想法提供給我們！<br>讓我們一起讓世界變好。',
+            type: 'input',
+            html: true,
+            showCancelButton: true,
+            confirmButtonColor: '#DD6B55',
+            confirmButtonText: '送出',
+            cancelButtonText: '取消',
+            closeOnConfirm: false,
+            inputPlaceholder: '輸入你想說的話'
+            },
+            function(inputValue){
+                if (inputValue === false) {
+                    return false;
+                }
+                if (inputValue === '') {
+                    swal.showInputError('你沒有寫任何文字唷!');
+                    return false;
+                }
+
+                $.ajax({
+                    url: '/user/receipt',
+                    type: 'POST',
+                    data: { text: inputValue },
+                    success: function(data) {
+                        swal('謝謝!', '您的建議是: ' + data.text, 'success');
+                    },
+                    error: function(error) {
+                        var title = '資料有誤，請重新輸入';
+                        if(error && error.responseText) {
+                            title = JSON.parse(error.responseText).message;
+                        }
+                        swal({
+                            title: title,
+                            type: 'error'
+                        });
+                    }
+                });
+            }
+        );
     });
 
     // vote

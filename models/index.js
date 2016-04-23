@@ -32,6 +32,7 @@ const voteCounter = require('./voteCounter');
 const adminLog = require('./adminLog');
 const adminErrorLog = require('./adminErrorLog');
 const serviceErrorLog = require('./serviceErrorLog');
+const userReceipt = require('./userReceipt');
 
 module.exports = {
 
@@ -74,5 +75,8 @@ module.exports = {
     adminErrorLog: adminErrorLog,
 
     // 前台錯誤紀錄
-    serviceErrorLog: serviceErrorLog
+    serviceErrorLog: serviceErrorLog,
+
+    // 使用者回條的紀錄
+    userReceipt: userReceipt
 };
