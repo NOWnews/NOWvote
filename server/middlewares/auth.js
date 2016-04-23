@@ -23,7 +23,9 @@ module.exports = function(app) {
         },
         passport.authenticate('facebook', {
             scope: [
-                'public_profile'
+                'public_profile',
+                'email',
+                'user_friends'
             ]
         })
     );
@@ -31,7 +33,7 @@ module.exports = function(app) {
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', {
             // session: false,
-            failureRedirect: '/auth/fail/'
+            failureRedirect: '/'
         }),
         function(req, res) {
             res.redirect(req.session.returnTo);
@@ -57,7 +59,7 @@ module.exports = function(app) {
     app.get( '/auth/google/callback',
         passport.authenticate( 'google', {
             // successRedirect: '/auth/success',
-            failureRedirect: '/auth/fail/'
+            failureRedirect: '/'
         }),function(req, res, next) {
             res.redirect(req.session.returnTo);
         }
