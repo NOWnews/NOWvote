@@ -20,24 +20,29 @@ module.exports = function(req, res, next) {
             .populate('user')
             .execAsync();
 
-        let users = _.map(relations, function(relation) {
-            return relation.user;
+        let users = [];
+
+        _.forEach(relations, function(relation) {
+
+            if(!relation.user) {
+                return;
+            }
+
+            users.push(relation.user);
+            return;
         });
         debug('users = %j', users);
 
         let fields = ['name', 'email', 'address', 'gender', 'phone'];
 
         let data = _.map(users, function(user) {
-
-            if(user !== null || user !== undefined) {
-                return {
-                    'name': user.name,
-                    'email': user.email || '',
-                    'address': user.address || '',
-                    'gender': user.gender || '',
-                    'phone': user.phone || ''
-                };
-            }
+            return {
+                'name': user.name,
+                'email': user.email || '',
+                'address': user.address || '',
+                'gender': user.gender || '',
+                'phone': user.phone || ''
+            };
         });
 
         let time = moment(Date.now()).format('YYYYMMDDHHmm');
