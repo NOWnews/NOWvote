@@ -92,3 +92,10 @@ img.social-btn {
     height: 55px;
     float: right;
 }
+article {
+    position: relative;
+    .social-btn {
+        position: absolute;
+        right: 0;
+    }
+}

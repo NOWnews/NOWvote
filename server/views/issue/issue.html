@@ -2,6 +2,9 @@
 {% set title = issue.title %}
 {% set description = issue.desc | striptags | truncate(120) %}
 {% set shareimage = issue.mainImage %}
+{% block head %}
+    <script type='text/javascript' data-cfasync='false' src='//dsms0mj1bbhn4.cloudfront.net/assets/pub/shareaholic.js' data-shr-siteid='4b1680817c1becbb542777133c8125b1' async='async'></script>
+{% endblock %}
 
 {% block container %}
     <div class="row content-margin-top">
@@ -14,7 +17,10 @@
                             {{ issue.title }}
                         </h1>
                         <div class="margin10 info-block">
-                            <img src="http://lazyfamily.twbbs.org/social.png" class="social-btn">
+                            <!-- <img src="http://lazyfamily.twbbs.org/social.png" class="social-btn"> -->
+                            <div class="social-btn">
+                                <div class="shareaholic-canvas" data-app='share_buttons' data-app-id='24434417'></div>
+                            </div>
                         </div>
                         <div class="margin10 info-block">
                             <ul class="breadcrumbs">
