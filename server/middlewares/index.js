@@ -1,4 +1,3 @@
-
 import express from 'express';
 import compression from 'compression';
 import logger from 'morgan';
@@ -38,7 +37,8 @@ module.exports = function(app) {
     // 靜態檔案位置
     app.use('/static', express.static(rootPath + '/server/public/'));
     app.use('/images', express.static(rootPath + '/imageStorage/'));
-    //
+    
+    // 將前台網址加入 locals 給 og 用
     app.use(function(req, res, next) {
         res.locals.serviceUrl = config.webSite.serviceUrl;
         return next();
