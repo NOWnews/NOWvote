@@ -27,8 +27,8 @@ const googleCallbackURL = process.env.NODE_ENV === 'production' ? 'http://vote.n
 /*
  * web url 資訊
  */
-const serviceUrl = process.env.NODE_ENV === 'production' ? 'http://vote.nownews.com/' : 'http://localhost:8998/';
-const adminUrl = process.env.NODE_ENV === 'production' ? 'http://admin.vote.nownews.com/' : 'http://localhost:8999/';
+const serviceUrl = process.env.NODE_ENV === 'production' ? 'http://vote.nownews.com' : 'http://localhost:8998';
+const adminUrl = process.env.NODE_ENV === 'production' ? 'http://admin.vote.nownews.com' : 'http://localhost:8999';
 
 module.exports = {
     /*
