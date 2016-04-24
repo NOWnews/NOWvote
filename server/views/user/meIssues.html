@@ -1,24 +1,51 @@
 {% extends "../index.html" %}
 
+{% set title = '投過的議題' %}
+
 {% block container %}
     <div class="row content-margin-top">
         <main class="main-right column large-10">
             <section class="container" flex-container="row">
-                {% for issue in issues %}
-                    <article class="m-main-content m-competition callout" flex-item="8">
-                        <a class="media-object" href="/issues/{{ issue.sn }}">
-                            <div class="media-object-section">
-                                <img class="issue-img" src="{{ issue.thumbnail }}">
-                            </div>
-                            <div class="media-object-section">
-                                <h4>{{ issue.title }}</h4>
-                                <div class="desc">
-                                    {{ issue.desc|safe }}
+                <div class="row me-lissue">
+                    <div class="small-12 small-centered columns">
+                        {# 麵包屑 #}
+                        <ul class="breadcrumbs">
+                            <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                                <a itemprop="url" href="/">
+                                    <span itemprop="title">
+                                        <i class="fa fa-home fa-fw" aria-hidden="true"></i>首頁</span>
+                                </a>
+                            </li>
+                            <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                                <a itemprop="url" href="/user/me">
+                                    <span itemprop="title">
+                                        <i class="fa fa-user fa-fw" aria-hidden="true"></i>我的帳戶</span>
+                                </a>
+                            </li>
+                            <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                                <span itemprop="title">{{ title }}</span>
+                            </li>
+                        </ul>
+
+                        {% for issue in issues %}
+                            <article class="m-main-content m-competition" flex-item="8">
+                                <div class="callout issue-area">
+                                    <a class="media-object" href="/issues/{{ issue.sn }}">
+                                        <div class="media-object-section">
+                                            <img class="issue-img" src="{{ issue.thumbnail }}">
+                                        </div>
+                                        <div class="media-object-section">
+                                            <h4>{{ issue.title }}</h4>
+                                            <div class="desc">
+                                                {{ issue.desc|safe }}
+                                            </div>
+                                        </div>
+                                    </a>
                                 </div>
-                            </div>
-                        </a>
-                    </article>
-                {% endfor %}
+                            </article>
+                        {% endfor %}
+                    </div>
+                </div>
             </section>
         </main>
         {# ---- 側邊欄 ---- #}
