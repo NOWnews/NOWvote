@@ -1,5 +1,7 @@
 {% extends "../index.html" %}
 
+{% set title = '我的帳戶' %}
+
 {% block container %}
     <div class="row content-margin-top">
         <main class="main-right column large-10">
@@ -7,6 +9,19 @@
                 <article class="m-main-content m-competition" flex-item="8">
                     <form class="user-form row" action="/user/me" user-id="{{ user._id }}">
                         <div class="small-12 small-centered columns">
+                            {# 麵包屑 #}
+                            <ul class="breadcrumbs">
+                                <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                                    <a itemprop="url" href="/">
+                                        <span itemprop="title">
+                                            <i class="fa fa-home fa-fw" aria-hidden="true"></i>首頁</span>
+                                    </a>
+                                </li>
+                                <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                                    <span itemprop="title">{{ title }}</span>
+                                </li>
+                            </ul>
+
                             <div class="user-title">
                                 {% if user.oauthType == 'GOOGLE' %}
                                     <div class="user-icon">
