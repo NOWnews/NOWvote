@@ -19,7 +19,7 @@ module.exports = function(req, res, next) {
 
         data.token = token;
 
-        let tmpPreview = yield redis.setRedisValue(token, data, 60);
+        let tmpPreview = yield redis.setRedisValue(token, data, 10);
         let serviceUrl = config.webSite.serviceUrl;
         debug('tmpPreview = %j', tmpPreview);
 
