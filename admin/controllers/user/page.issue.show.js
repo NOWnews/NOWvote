@@ -1,6 +1,7 @@
 
 import co from 'co';
 import is from 'is_js';
+import Promise from 'bluebird';
 import moment from 'moment-timezone';
 
 const debug = require('debug')('NOWvote:admin:controllers:user:page.issue.show');
