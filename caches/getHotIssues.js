@@ -34,13 +34,15 @@ module.exports = co.wrap(function*() {
             { continued: true },
             { startTime: { $lte: now }, endTime: { $gte: now } }
         ])
+        .populate('category')
         .sort('-counter')
         .limit(5)
         .execAsync();
 
     debug('mongodb hotIssues data = %j', issuesFromModels);
 
-    let updateRedisHotIssues = yield setRedisValue('hotIssues', issuesFromModels, config.redis.expireSeconds);
+    // 過期時間預設 20 分鐘
+    let updateRedisHotIssues = yield setRedisValue('hotIssues', issuesFromModels, 1200);
 
     return yield Promise.resolve(updateRedisHotIssues);
 });

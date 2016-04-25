@@ -51,6 +51,7 @@ module.exports = co.wrap(function*(key) {
             .limit(5)
             .execAsync();
         debug('hotIssues = %j', hotIssues);
-        return yield setRedisValue('hotIssues', hotIssues, config.redis.expireSeconds);
+        // 內頁過期時間為 20 分鐘
+        return yield setRedisValue('hotIssues', hotIssues, 1200);
     }
 });
