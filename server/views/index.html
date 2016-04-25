@@ -21,7 +21,7 @@
             <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
 
                 <!-- off-canvas title bar for 'small' screen -->
-                <div class="title-bar" data-responsive-toggle="widemenu" data-hide-for="medium">
+                <div class="title-bar" data-responsive-toggle="widemenu" data-hide-for="large">
                     <div class="title-bar-left">
                         <button class="menu-icon" data-open="offCanvasLeft">
                             <div class="hamburger hamburger--slider js-hamburger" type="button">
@@ -53,6 +53,23 @@
                                     <i class="fa fa-star"></i>{{ category.title }}</a>
                             </li>
                         {% endfor %}
+                        {# 從 middlewares auth 裡面的 res.locals.user 取得 #}
+                        {% if user %}
+                            <li class="title title-custom">會員專區</li>
+                            <li>
+                                <a href="/user/me"><i class="fa fa-user fa-fw"></i>我的帳戶</a>
+                            </li>
+                            <li>
+                                <a id="user-receipt" href="#"><i class="fa fa-wpforms fa-fw"></i>建議議題</a>
+                            </li>
+                            <li>
+                                <a class="button" href="/auth/logout"><i class="fa-fw fa fa-sign-out"></i>登出</a>
+                            </li>
+                        {% else %}
+                            <li>
+                                <a class="button" href="#login-modal"><i class="fa-fw fa fa-sign-in"></i>登入</a>
+                            </li>
+                        {% endif %}
                     </ul>
                 </div>
 

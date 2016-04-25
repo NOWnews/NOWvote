@@ -7,9 +7,10 @@
                 </a>
                 <ul class="category-menu menu float-left">
                     {% for category in categories %}
-                        {% if loop.first %}
+                        {% if category.externalLink %}
                             <li class="has-submenu">
-                                <a class="hollow button" href="{{ category.url }}">{{ category.title }}</a>
+
+                                <a class="hollow button" href="{{ category.url }}" target="_blank">{{ category.title }}</a>
                             </li>
                         {% else %}
                             <li>
