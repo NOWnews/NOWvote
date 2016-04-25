@@ -2,10 +2,10 @@
 import co from 'co';
 import is from 'is_js';
 import moment from 'moment-timezone';
-import models from '../../../models';
 
 const debug = require('debug')('NOWvote:admin:controllers:user:page.issue.show');
 
+const models = require('../../../models');
 const libs = require('../../../libs');
 
 const formatUpdateFrontData = function (issue) {
