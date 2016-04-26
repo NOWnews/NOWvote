@@ -26,6 +26,10 @@ module.exports = function(req, res, next) {
             endTime = moment( `${data.endAtDay} ${data.endAtHour}` );
         }
 
+        if(data.title && data.title.length > 6) {
+            return yield Promise.reject(new Error('標題字數超過限制'));
+        }
+
         let newCategory = yield models.category.createAsync({
             title: data.title,
             desc: data.desc,

@@ -102,21 +102,29 @@ schema.statics.findBySn = co.wrap(function*(sn) {
 
 /*
  * 找出有效的 categoryMenu
+ * 帶入 limit 就只會找幾筆
  */
-schema.statics.findEffective = co.wrap(function*() {
+schema.statics.findEffective = co.wrap(function*(limit) {
+
+    limit = parseInt(limit, 10);
 
     let self = this;
     let now = Date.now();
 
-    return yield self.find()
+    let q = self.find()
         .where('trashed').equals(false)
         .where('status').equals(true)
         .or([
             { continued: true },
             { startTime: { $lte: now }, endTime: { $gte: now } }
         ])
-        .sort('weight')
-        .execAsync();
+        .sort('weight');
+
+    if(is.number(limit)){
+        q.limit(limit);
+    }
+
+    return yield q.execAsync();
 });
 
 schema.plugin(autoIncrement.plugin, {

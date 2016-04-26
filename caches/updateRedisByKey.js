@@ -25,7 +25,7 @@ module.exports = co.wrap(function*(key) {
     }
 
     if(key === 'category') {
-        let menu = yield models.category.findEffective();
+        let menu = yield models.category.findEffective(6);
         debug('menu = %j', menu);
         return yield setRedisValue('category', menu, config.redis.expireSeconds);
     }
