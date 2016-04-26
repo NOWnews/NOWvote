@@ -13,37 +13,73 @@ module.exports = function(req, res, next) {
     let sn = parseInt(req.params.sn, 10);
     co(function*() {
 
-        let issue = yield models.issue.findBySn(sn);
+        let issue = yield models.issue.findOne()
+            .where('sn').equals(sn)
+            .populate('questions')
+            .execAsync();
 
         let relations = yield models.issueRelation.find()
             .where('issue').equals(issue._id)
-            .populate('user')
             .execAsync();
 
-        let users = [];
-
-        _.forEach(relations, function(relation) {
-
-            if(!relation.user) {
-                return;
-            }
-
-            users.push(relation.user);
-            return;
+        let userIds = _.map(relations, function(relation) {
+            return relation.user + '';
         });
-        debug('users = %j', users);
+
+        userIds = _.uniq(userIds);
+
+        let users = yield models.user.find()
+            .where('_id').in(userIds)
+            .execAsync();
 
         let fields = ['name', 'email', 'address', 'gender', 'phone'];
 
-        let data = _.map(users, function(user) {
-            return {
-                'name': user.name,
-                'email': user.email || '',
-                'address': user.address || '',
-                'gender': user.gender || '',
-                'phone': user.phone || ''
-            };
+        _.forEach(issue.questions, function(question) {
+            fields.push(`問題: ${question.content}`);
         });
+
+        debug('fields = %j', fields);
+
+        let data = yield Promise.map(users, function(user) {
+
+            return models.issueRelation.find()
+                .where('user').equals(user._id)
+                .where('issue').equals(issue._id)
+                .populate('option question')
+                .execAsync()
+                .then(function(relations) {
+
+                    let question = {};
+                    _.forEach(relations, function(relation) {
+                        debug(relation);
+                        question[relation.question.content] = relation.option.content;
+                    });
+
+                    return Promise.resolve(question);
+                })
+                .then(function(question) {
+
+                    debug(question);
+
+                    let data = {
+                        'name': user.name,
+                        'email': user.email || '',
+                        'address': user.address || '',
+                        'gender': user.gender || '',
+                        'phone': user.phone || '',
+                    };
+
+                    _.forIn(question, function(value, key) {
+                        data[`問題: ${key}`] = `選擇: ${value}`;
+                    });
+
+                    debug(data);
+
+                    return Promise.resolve(data);
+                });
+        });
+
+        debug('data = %j', data);
 
         let time = moment(Date.now()).format('YYYYMMDDHHmm');
         let fileName = `issue_${issue.sn}_VotedUsers_${time}.csv`;
