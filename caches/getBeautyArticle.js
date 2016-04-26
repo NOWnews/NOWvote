@@ -29,7 +29,7 @@ module.exports = co.wrap(function*() {
         }).then(function(json) {
             return Promise.resolve(json);
         });
-    debug('HotNews From Api = %j', beautyArticleFromApi);
+    debug('beautyArticle From Api = %j', beautyArticleFromApi);
 
     let updateRedisHotNews = yield setRedisValue('beautyArticle', beautyArticleFromApi, 300);
 
