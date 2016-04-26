@@ -1,0 +1,87 @@
+<div class="large-15 medium-15 columns">
+    <div class="news-block">
+        <div class="news-block-title">
+            <h3>熱門文章</h3>
+        </div>
+
+        <!-- <ul class="tabs " id="example-vert-tabs" data-tabs>
+            <li class="tabs-title is-active"><a href="#panel1v" aria-selected="true">分類新聞</a></li>
+            <li class="tabs-title"><a href="#panel2v">新聞</a></li>
+            <li class="tabs-title"><a href="#panel3v">新聞</a></li>
+            <li class="tabs-title"><a href="#panel4v">新聞</a></li>
+            <li class="tabs-title"><a href="#panel5v">新聞</a></li>
+            <li class="tabs-title"><a href="#panelv">新聞</a></li>
+        </ul> -->
+        <div class="clearfix"></div>
+    </div>
+    <div class="tabs-content " data-tabs-content="example-vert-tabs">
+        <div class="tabs-panel is-active" id="panel1v">
+            <div class="row" data-equalizer data-equalize-on="medium" id="test-eq">
+                {% for idx in range(3, 6) %}
+                    {% set title = news36[idx].title %}
+                    {% set img = news36[idx].imgs[0].img %}
+                    {% set imgtitle = news36[idx].imgs[0].title %}
+                    {% set date = news36[idx].d %}
+                    {% set time = news36[idx].t %}
+                    {% set url = "http://www.nownews.com" + news36[idx].url %}
+                    <div class="medium-5 columns">
+                        <div class="callout" data-equalizer-watch>
+                            <a href="{{ url }}" target="_blank">
+                                <img src="http://imgapi.nownews.com/?w=540&h=365&q=60&src={{ img }}" class="thumbnail" alt="{{ title }}">
+                                <h4>{{ title }}</h4>
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+        <!-- <div class="tabs-panel" id="panel2v">
+            <div class="row" data-equalizer data-equalize-on="medium" id="test-eq2">
+                <div class="medium-5 columns">
+                    <div class="callout" data-equalizer-watch="bbb">
+                        <img src="http://filedisk.talk.tw/ArticlePic/34420160317231414_2.jpg">
+                    </div>
+                </div>
+                <div class="medium-5 columns">
+                    <div class="callout" data-equalizer-watch="bbb">
+                        <p>Pellentesque habitant morbi tristique senectus et netus et, ante.</p>
+                    </div>
+                </div>
+                <div class="medium-5 columns">
+                    <div class="callout" data-equalizer-watch="bbb">
+                        <img src="http://filedisk.talk.tw/ArticlePic/39320160323164717_2.jpg">
+                    </div>
+                </div>
+                <div class="medium-5 columns">
+                    <div class="callout" data-equalizer-watch="bbb">
+                        <img src="http://filedisk.talk.tw/ArticlePic/34420160317231414_2.jpg">
+                    </div>
+                </div>
+                <div class="medium-5 columns">
+                    <div class="callout" data-equalizer-watch="bbb">
+                        <p>Pellentesque habitant morbi tristique senectus et netus et, ante.</p>
+                    </div>
+                </div>
+                <div class="medium-5 columns">
+                    <div class="callout" data-equalizer-watch="bbb">
+                        <img src="http://filedisk.talk.tw/ArticlePic/39320160323164717_2.jpg">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="tabs-panel" id="panel3v">
+            <img class="thumbnail" src="assets/img/generic/rectangle-3.jpg">
+        </div>
+        <div class="tabs-panel" id="panel4v">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+        <div class="tabs-panel" id="panel5v">
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+        <div class="tabs-panel" id="panel6v">
+            <img class="thumbnail" src="assets/img/generic/rectangle-5.jpg">
+        </div> -->
+    </div>
+</div>
