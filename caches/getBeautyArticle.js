@@ -9,7 +9,7 @@ const getRedisValue = require('./getRedisValue');
 const setRedisValue = require('./setRedisValue');
 
 /*
- * 撈取熱門新聞
+ * 撈取美人幫文章
  */
 module.exports = co.wrap(function*() {
 
