@@ -31,7 +31,7 @@ module.exports = co.wrap(function*() {
         });
     debug('beautyArticle From Api = %j', beautyArticleFromApi);
 
-    let updateRedisHotNews = yield setRedisValue('beautyArticle', beautyArticleFromApi, 300);
+    let updateBeautyArticles = yield setRedisValue('beautyArticle', beautyArticleFromApi, 300);
 
-    return yield Promise.resolve(updateRedisHotNews);
+    return yield Promise.resolve(updateBeautyArticles);
 });
