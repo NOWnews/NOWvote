@@ -15,4 +15,7 @@ module.exports = {
 
     // 取得熱門 issues
     getHotIssues: require('./getHotIssues'),
+
+    // 取得美人幫文章
+    getBeautyArticle: require('./getBeautyArticle'),
 };

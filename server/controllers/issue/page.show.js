@@ -29,7 +29,10 @@ module.exports = function(req, res, next) {
             redis.getHotIssues(),
 
             // 取得 issue
-            models.issue.findBySn(req.params.sn)
+            models.issue.findBySn(req.params.sn),
+
+            // 取得美人幫文章
+            redis.getBeautyArticle()
         ];
 
         let issue = results[5];
@@ -53,6 +56,9 @@ module.exports = function(req, res, next) {
 
         let hotIssues = results[4];
         debug('hotIssues = %j', hotIssues);
+
+        let beautyArticle = results[6];
+        debug('beautyArticle = %j', beautyArticle);
 
         issue.isVoted = false;
         issue.startTime = libs.formatDate(issue.startTime);
