@@ -22,7 +22,7 @@ module.exports = co.wrap(function*() {
         return yield Promise.resolve(menu);
     }
 
-    let menuFromModels = yield models.category.findEffective();
+    let menuFromModels = yield models.category.findEffective(6);
     debug('mongodb menu data = %j', menuFromModels);
 
     let updateRedisMenu = yield setRedisValue('category', menuFromModels, config.redis.expireSeconds);
