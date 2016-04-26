@@ -128,7 +128,8 @@ module.exports = function(req, res, next) {
           news36: news36,
           hotIssues: hotIssues,
           nextIssue: nextAndPrevIssue.next[0],
-          prevIssue: nextAndPrevIssue.prev[0]
+          prevIssue: nextAndPrevIssue.prev[0],
+          beautyArticle: beautyArticle
         });
     })
     .catch(next);
