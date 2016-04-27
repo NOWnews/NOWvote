@@ -110,7 +110,6 @@
                                     {# ---- 沒登入的按鈕 ---- #}
                                     <a href="#login-modal" class="button success">請登入進行投票</a>
                                 {% endif %}
-
                             </form>
                         </div>
                         <div class="arrow-prev-next">
@@ -147,12 +146,16 @@
                             {% endif %}
                         </div>
                     </article>
+                    {# {% include "../blocks/ads/dfp900x90.html" %} #}
                     {% include "../blocks/beautynews.html" %}
                 </section>
             </div>
         </main>
         {# ---- 側邊欄 ---- #}
-        {% include "./partials/hotIssues.html" %}
-        {% include "./partials/aside.html" %}
+        <aside class="aside-left column large-5">
+            {% include "./partials/hotIssues.html" %}
+            {% include "../blocks/ads/dfp300x600.html" %}
+            {% include "./partials/hotNews.html" %}
+        </aside>
     </div>
 {% endblock %}
