@@ -67,14 +67,14 @@ schema.statics.increaseCounterByIds = co.wrap(function*(ids) {
         return yield Promise.reject(new Error('ids must array'));
     }
 
-    let options = yield self.find()
-        .where('_id').in(ids)
-        .execAsync();
-
-    return yield Promise.map(options, function(option) {
-            option.set('counter', option.counter + 1);
-            return option.saveAsync();
-        });
+    return yield Promise.map(ids, function(id) {
+        return self.findByIdAndUpdate(id, {
+                $inc: { counter: 1 }
+            }, {
+                new: true
+            })
+            .execAsync();
+    });
 });
 
 schema.plugin(autoIncrement.plugin, {

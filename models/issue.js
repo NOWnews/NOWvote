@@ -135,12 +135,14 @@ schema.statics.increaseCounterById = co.wrap(function*(id) {
         return yield Promise.reject(new Error('id must string'));
     }
 
-    let issue = yield self.findOne()
-        .where('_id').in(id)
+    let issue = yield self.findByIdAndUpdate(id, {
+            $inc: { counter: 1 }
+        }, {
+            new: true
+        })
         .execAsync();
 
-    issue.set('counter', issue.counter + 1);
-    return yield issue.saveAsync();
+    return yield Promise.resolve(issue);
 });
 
 schema.plugin(deepPopulate);
