@@ -26,7 +26,7 @@ $(function() {
     });
 
     // user-receipt 建議的議題
-    $('#user-receipt').on('click', function(){
+    $('.user-receipt').on('click', function(){
         swal({
             title: '大膽做自己',
             text: '您可以將您的想法提供給我們！<br>讓我們一起讓世界變好。',
