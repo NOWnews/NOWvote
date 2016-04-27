@@ -1,4 +1,7 @@
 
+import rollbar from 'rollbar';
+rollbar.init('675fbb077c654eca8bdc8ffa4042da6d');
+
 const models = require('../../models');
 
 module.exports = function(app) {
@@ -6,16 +9,18 @@ module.exports = function(app) {
     // 處理 404 頁面
     app.use(function(req, res, next) {
         res.status(404);
-        res.redirect('/404')
+        res.redirect('/404');
         // return res.render('404');
     });
 
     // 處理底層的錯誤
     app.use(function(err, req, res, next) {
 
+        rollbar.handleError(err, req);
+
         let errObject = {
-            error: err.code,
-            type: err.type,
+            error: err.code || '10000',
+            type: err.type || 'VERY IMPORTANT ERROR',
             message: err.message,
             stack: err.stack
         };

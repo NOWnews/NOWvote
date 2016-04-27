@@ -1,10 +1,10 @@
 
-const debug = require('debug')('NOWvote:server:controllers:issue:page.show');
-
 import co from 'co';
-import models from '../../../models';
-import redis from '../../../caches';
+import Promise from 'bluebird';
 
+const debug = require('debug')('NOWvote:server:controllers:issue:page.show');
+const models = require('../../../models');
+const redis = require('../../../caches');
 const libs = require('../../../libs');
 
 module.exports = function(req, res, next) {
