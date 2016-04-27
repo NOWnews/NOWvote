@@ -4,11 +4,28 @@
 {% set shareimage = issue.mainImage %}
 {% block head %}
     <script type='text/javascript' data-cfasync='false' src='//dsms0mj1bbhn4.cloudfront.net/assets/pub/shareaholic.js' data-shr-siteid='4b1680817c1becbb542777133c8125b1' async='async'></script>
+
+    {# DFP code #}
+    <script type='text/javascript'>
+        var googletag = googletag || {};
+        googletag.cmd = googletag.cmd || [];
+        (function () {
+            var gads = document.createElement('script');
+            gads.async = true;
+            gads.type = 'text/javascript';
+            var useSSL = 'https:' == document.location.protocol;
+            gads.src = (useSSL
+                ? 'https:'
+                : 'http:') + '//www.googletagservices.com/tag/js/gpt.js';
+            var node = document.getElementsByTagName('script')[0];
+            node.parentNode.insertBefore(gads, node);
+        })();
+    </script>
 {% endblock %}
 
 {% block container %}
     <div class="row content-margin-top">
-        <main class="main-right column large-10">
+        <main class="main-right column large-11">
             <div class="container" id="content">
                 <section class="container" flex-container="row">
 
@@ -146,13 +163,13 @@
                             {% endif %}
                         </div>
                     </article>
-                    {# {% include "../blocks/ads/dfp900x90.html" %} #}
+                    {% include "../blocks/ads/dfp970x90.html" %}
                     {% include "../blocks/beautynews.html" %}
                 </section>
             </div>
         </main>
         {# ---- 側邊欄 ---- #}
-        <aside class="aside-left column large-5">
+        <aside class="aside-left column large-4">
             {% include "./partials/hotIssues.html" %}
             {% include "../blocks/ads/dfp300x600.html" %}
             {% include "./partials/hotNews.html" %}
