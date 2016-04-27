@@ -1,27 +1,27 @@
-<aside class="aside-left column large-5">
-    <section>
-        <h3 class="news-title">
-            熱門議題
-        </h3>
-        <div class="vote_list">
-            {% for issue in hotIssues %}
-                <div class="vote_item">
-                    <div class="div-circle">{{ loop.index}}</div>
-                    <div class="vote_img">
-                        <a target="_blank" href="/issues/{{issue.sn}}">
-                            <img style="border: solid 1px #ccc;" src="{{ issue.thumbnail }}">
-                        </a>
-                    </div>
-                    <div class="vote_description">
-                        <div class="vote_title">
-                            <a target="_blank" href="/issues/{{issue.sn}}">{{issue.title}}</a>
-                        </div>
-                        <a href="/category/{{issue.category.title}}">
-                            <span class="vote_category">{{issue.category.title}}</span>
-                        </a>
-                    </div>
+<!-- <section class="column large-5"> -->
+<section>
+    <h3 class="news-title">
+        熱門議題
+    </h3>
+    <div class="vote_list">
+        {% for issue in hotIssues %}
+            <div class="vote_item">
+                <div class="div-circle">{{ loop.index}}</div>
+                <div class="vote_img">
+                    <a target="_blank" href="/issues/{{issue.sn}}">
+                        <img style="border: solid 1px #ccc;" src="{{ issue.thumbnail }}">
+                    </a>
                 </div>
-            {% endfor %}
-        </div>
-    </section>
-</aside>
+                <div class="vote_description">
+                    <div class="vote_title">
+                        <a target="_blank" href="/issues/{{issue.sn}}">{{issue.title}}</a>
+                    </div>
+                    <a href="/category/{{issue.category.title}}">
+                        <span class="vote_category">{{issue.category.title}}</span>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+        <div class="clearfix"></div>
+    </div>
+</section>

@@ -3,6 +3,26 @@
 {% set title = '議題票選首頁' %}
 {% set description = '投票網站詳細內容請洽官網' %}
 
+{% block head %}
+    {# DFP code #}
+    <script type='text/javascript'>
+        var googletag = googletag || {};
+        googletag.cmd = googletag.cmd || [];
+        (function () {
+            var gads = document.createElement('script');
+            gads.async = true;
+            gads.type = 'text/javascript';
+            var useSSL = 'https:' == document.location.protocol;
+            gads.src = (useSSL
+                ? 'https:'
+                : 'http:') + '//www.googletagservices.com/tag/js/gpt.js';
+            var node = document.getElementsByTagName('script')[0];
+            node.parentNode.insertBefore(gads, node);
+        })();
+    </script>
+{% endblock %}
+
+
 {% block container %}
     <div class="row column text-center">
         <h2 class="main-title">最新議題</h2>
@@ -12,4 +32,7 @@
     </div>
 
     {% include "../blocks/news.html" %}
+
+    {# DFP 廣告#}
+    {% include "../blocks/ads/dfp970x90.html" %}
 {% endblock %}
