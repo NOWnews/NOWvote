@@ -48,8 +48,9 @@
 }
 /* Hamburger Icon */
 .hamburger {
-    padding: 13px 7px 10px;
+    padding: 12px 7px 8px;
     position: relative;
+    z-index: 10;
 }
 .hamburger-inner,
 .hamburger-inner::before,
