@@ -150,9 +150,11 @@ $(function() {
 
     //hamburger menu
     var $hamburger = $('.hamburger');
+    var $container = $('.container');
     var $jsOffCanvasExit = $('.js-off-canvas-exit');
     var hamburgerClickFunc = function() {
         $hamburger.toggleClass('is-active');
+        $container.toggleClass('show-sidebar');
     };
 
     $hamburger.on('click', hamburgerClickFunc);
@@ -208,4 +210,8 @@ $(function() {
         });
     });
 
+    $('.header').sticky({topSpacing:0});
+    $('.mask').on('click', function(){
+        $('.hamburger').click();
+    });
 });

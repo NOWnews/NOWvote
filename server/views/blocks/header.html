@@ -1,11 +1,11 @@
-<header class="header" id="widemenu">
-    <div class="header-sticky-container" data-sticky-container>
-        <div class="title-bar" data-sticky data-options="marginTop:0;">
+<header class="header">
+    <div class="header-sticky-container">
+        <div class="title-bar show-for-large">
             <div class="title-bar-left">
                 <a id="logo" href="/">
                     <img src="/static/images/logo.png"/>
                 </a>
-                <ul class="category-menu menu float-left">
+                <ul class="category-menu menu" style="margin-left: 170px;">
                     {% for category in categories %}
                         {% if category.externalLink %}
                             <li class="has-submenu">
@@ -19,6 +19,7 @@
                         {% endif %}
                     {% endfor %}
                 </ul>
+                <div class="clearfix"></div>
             </div>
             <div class="title-bar-right">
                 {% if previewData %}
@@ -44,6 +45,23 @@
                     </ul>
                 {% endif %}
             </div>
+        </div>
+        <div class="mobile-title-bar" data-responsive-toggle="widemenu" data-hide-for="large">
+            <div class="title-bar-left">
+                <button class="menu-icon">
+                    <div class="hamburger hamburger--slider js-hamburger" type="button">
+                        <div class="hamburger-box">
+                            <div class="hamburger-inner"></div>
+                        </div>
+                    </div>
+                </button>
+            </div>
+            <h1>
+                <a id="mobile-logo" href="/">
+                    <img src="/static/images/logo.png"/>
+                    <span style="display:none">NOWvote議題票選 | NOWnews今日傳媒</span>
+                </a>
+            </h1>
         </div>
     </div>
 </header>
