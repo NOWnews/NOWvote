@@ -16,71 +16,21 @@
     </head>
     <body>
         <!--[if lt IE 8]> <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p> <![endif]-->
+        <div class="container">
+            <div class="mask"></div>
 
-        <div class="off-canvas-wrapper">
-            <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+            {% include "./blocks/header.html" %}
 
-                <!-- off-canvas title bar for 'small' screen -->
-                <div class="title-bar" data-responsive-toggle="widemenu" data-hide-for="large">
-                    <div class="title-bar-left">
-                        <button class="menu-icon" data-open="offCanvasLeft">
-                            <div class="hamburger hamburger--slider js-hamburger" type="button">
-                                <div class="hamburger-box">
-                                    <div class="hamburger-inner"></div>
-                                </div>
-                            </div>
-                        </button>
-                    </div>
-                    <h1>
-                        <a id="logo" href="/">
-                            <img src="/static/images/logo.png"  width="80px"/>
-                            <span style="display:none">NOWvote議題票選 | NOWnews今日傳媒</span>
-                        </a>
-                    </h1>
-                </div>
+            <main class="main">
+                {% include "./blocks/slider.html" %}
+                {% block container %}{% endblock %}
+                {% include "./blocks/footer.html" %}
+            </main>
 
-                <!-- off-canvas left menu -->
-                <div class="off-canvas position-left" id="offCanvasLeft" data-off-canvas>
-                    <ul class="vertical dropdown menu" data-dropdown-menu>
-                        <li>
-                            <a id="mobile-logo" href="/">
-                                <img src="/static/images/logo.png" />NOWVOTE
-                            </a>
-                        </li>
-                        {% for category in categories %}
-                            <li class="left_item{{ loop.index }}">
-                                <a class="hollow" href="{{ category.url }}">
-                                    <i class="fa fa-star"></i>{{ category.title }}</a>
-                            </li>
-                        {% endfor %}
-                        {# 從 middlewares auth 裡面的 res.locals.user 取得 #}
-                        {% if user %}
-                            <li class="title title-custom">會員專區</li>
-                            <li>
-                                <a href="/user/me"><i class="fa fa-user fa-fw"></i>我的帳戶</a>
-                            </li>
-                            <li>
-                                <a class="user-receipt" href="#"><i class="fa fa-wpforms fa-fw"></i>建議議題</a>
-                            </li>
-                            <li>
-                                <a class="button" href="/auth/logout"><i class="fa-fw fa fa-sign-out"></i>登出</a>
-                            </li>
-                        {% else %}
-                            <li>
-                                <a class="button" href="#login-modal"><i class="fa-fw fa fa-sign-in"></i>登入</a>
-                            </li>
-                        {% endif %}
-                    </ul>
-                </div>
+            {% include "./blocks/menuSidebar.html" %}
 
-                {% include "./blocks/header.html" %}
-                <div class="off-canvas-content" data-off-canvas-content>
-                    {% include "./blocks/slider.html" %}
-                    {% block container %}{% endblock %}
-                    {% include "./blocks/footer.html" %}
-                </div>
-            </div>
         </div>
+
         {% include "./blocks/loginModal.html" %}
     </body>
 </html>

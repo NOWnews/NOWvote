@@ -12,8 +12,9 @@
 @import "custom/pages/404";
 @import "custom/pages/arrow";
 @import "custom/partials/ads";
+@import "custom/partials/offCanvas";
 
-a {
+a, button {
     outline: none;
 }
 
@@ -90,19 +91,12 @@ a {
     height: 100px;
     margin-right: 0.5rem;
 }
-.vote_list {}
 .vote_item {
     border-bottom: 1px dashed #BDBDBD;
     display: block;
     width: 100%;
     float: left;
     padding: 0.5rem;
-}
-.title-bar {
-    background: #fff;
-}
-.menu-icon {
-    color: #333;
 }
 @media screen and (max-width: 39.9375em) {
     .orbit-slide {
@@ -137,7 +131,6 @@ a {
     }
 }
 .browser-info {
-    // font-size: 20px;
     line-height: 150%;
     .chrome {
         color: #fbbc05;
@@ -165,7 +158,6 @@ span.issuemark {
     font-size: 0.8rem;
     text-align: center;
     border-radius: 0.2rem;
-    z-index: 9;
 }
 span.votemark {
     position: absolute;
@@ -178,7 +170,6 @@ span.votemark {
     font-size: 0.8rem;
     text-align: center;
     border-radius: 0.2rem;
-    z-index: 9;
 }
 span.issuediscuss {
     margin-bottom: 12px;
@@ -209,17 +200,6 @@ span.issuediscuss {
     margin-left: -155px;
     border-radius: 10px 10px 15px 15px;
 }
-
-.header .category-menu .button {
-    border: 3px solid transparent;
-
-}
-.header .category-menu li:hover .button {
-    border: none;
-    border: 3px solid transparent;
-    border-bottom: 3px solid #1fabd8;
-}
-
 
 @media screen and (min-width: 35.5em) {
     h1 {
