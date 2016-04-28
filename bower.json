@@ -29,7 +29,7 @@
     "slick-carousel": "1.5.9",
     "inputs": "0.9.2",
     "animate.css": "3.5.1",
-    "jquery-sticky": "sticky#^1.0.3"
+    "jquery-sticky": "1.0.3"
   },
   "resolutions": {
     "jquery": "2.2.3"
