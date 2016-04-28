@@ -90,7 +90,8 @@ var serverBowerJsPaths = [
     './bower_components/sweetalert/dist/sweetalert.min.js',
     './bower_components/slick-carousel/slick/slick.js',
     './node_modules/is_js/is.js',
-    './bower_components/inputs/assets/javascripts/inputs.js'
+    './bower_components/inputs/assets/javascripts/inputs.js',
+    './bower_components/jquery-sticky/jquery.sticky.js'
 ];
 var serverBowerScssPaths = [
     './server/public/scss/*.scss',

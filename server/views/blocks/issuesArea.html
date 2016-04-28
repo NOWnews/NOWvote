@@ -55,9 +55,8 @@
                         <i class="fa-fw fa fa-hand-pointer-o"></i>觀看此議題</a>
                 {% else %}
                     <a href="/issues/{{ issue.sn }}" class="button bold">
-                        <i class="fa-fw fa fa-paper-plane" aria-hidden="true"></i>
-                    </i>VOTE NOW!</a>
-            {% endif %}
+                        <i class="fa-fw fa fa-paper-plane" aria-hidden="true"></i>VOTE NOW!</a>
+                {% endif %}
+            </div>
         </div>
-    </div>
-{% endfor %}
+    {% endfor %}
