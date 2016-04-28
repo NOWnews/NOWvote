@@ -12,17 +12,15 @@
     .mobile-title-bar {
         display: none;
     }
+    .mobile-logo img {
+        margin-top: 5px;
+    }
     #logo {
         position: absolute;
         margin-left: 20px;
         z-index: 10;
     }
-    #mobile-logo {
-        img {
-            margin-top: 5px;
-            width: 80px;
-        }
-    }
+
     .category-menu {
         margin-left: 170px;
         .straight-line {
@@ -45,4 +43,8 @@
             }
         }
     }
+}
+// 因為 menu 也會有，所以拉出來
+.mobile-logo img {
+    width: 80px;
 }
