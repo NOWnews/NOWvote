@@ -50,6 +50,7 @@
     "rand-token": "0.2.1",
     "redis": "2.5.3",
     "request-ip": "1.2.2",
+    "rollbar": "0.6.0",
     "serve-favicon": "2.3.0",
     "utf8": "2.1.1"
   },
