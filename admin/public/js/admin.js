@@ -33,7 +33,7 @@ $(function() {
         };
         data.desc = CKEDITOR.instances.editor.getData();
         data.tags = data['tags[]'];
-        data.mainImage = $('#main-img + label > img').attr('src');
+        data.mainImage = $('.image-box > img').attr('src');
         data.thumbnail = $('#vice-img + label > img').attr('src');
         delete data._method;
         delete data['tags[]'];
