@@ -10,9 +10,15 @@ module.exports = function(req, res, next) {
 
     co(function*() {
 
-        let user = yield models.user.findBySn(sn);
+        let results = yield [
+            models.user.findBySn(sn),
+            redis.getCategory()
+        ];
+
+        let user = results[0];
+        let categories = results[1];
+
         debug('user = %j', user);
-        let categories = yield redis.getCategory();
 
         return res.render('user/show', {
             user: user,
