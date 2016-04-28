@@ -2,6 +2,7 @@ import co from 'co';
 
 const debug = require('debug')('NOWvote:server:controllers:user:page.myIssues');
 const models = require('../../../models');
+const redis = require('../../../caches');
 const libs = require('../../../libs');
 
 module.exports = function(req, res, next) {
@@ -12,7 +13,6 @@ module.exports = function(req, res, next) {
 
     co(function*() {
 
-
         let results = yield [
             models.issueRelation.find()
                 .where('user').equals(userId)
@@ -21,11 +21,14 @@ module.exports = function(req, res, next) {
             models.issueRelation.find()
                 .where('user').equals(userId)
                 .count()
-                .execAsync()
+                .execAsync(),
+
+            redis.getCategory()
         ];
 
         let issueRelations = results[0];
         let totalIssues = results[1];
+        let categories = results[2];
 
         let issueIds = _.map(issueRelations, function(issueRelation) {
             return issueRelation.issue;
@@ -51,7 +54,8 @@ module.exports = function(req, res, next) {
         // });
         return res.render('user/meIssues', {
             issues: issues,
-            pageInfo: pageInfo
+            pageInfo: pageInfo,
+            categories: categories
         });
     })
     .catch(next);
