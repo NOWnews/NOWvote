@@ -98,10 +98,19 @@ article {
     .social-btn {
         position: absolute;
         right: 0;
+        width:35%;
+        height:75px;
     }
 }
 .issue-title-font {
     h3 {
         font-size: 1.5rem;
     }
+}
+
+.social-block {
+    position:fixed;
+    bottom:0;background:#fff;
+    width:100%;
+    z-index:5;
 }
