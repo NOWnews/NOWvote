@@ -66,7 +66,6 @@ img.main-image {
     -moz-box-shadow: 0 0 2px 1px rgba(0,0,0,0.07);
     box-shadow: 0 0 2px 1px rgba(0,0,0,0.07);
 }
-
 .issue-category {
     display: inline-block;
     margin-bottom: 0;
@@ -83,12 +82,10 @@ img.main-image {
     -ms-user-select: none;
     user-select: none;
 }
-
 .last-block {
     border-bottom: 1px solid #ddd;
     padding-bottom: 1rem;
 }
-
 img.social-btn {
     height: 55px;
     float: right;
@@ -98,10 +95,22 @@ article {
     .social-btn {
         position: absolute;
         right: 0;
+        width: 35%;
+        height: 75px;
     }
 }
 .issue-title-font {
     h3 {
         font-size: 1.5rem;
+    }
+}
+.social-block {
+    position: fixed;
+    bottom: 0;
+    background: rgba(255,255,255,0.8);
+    width: 100%;
+    z-index: 5;
+    .shareaholic-share-buttons-container  ul.shareaholic-share-buttons {
+        padding: 0 !important;
     }
 }

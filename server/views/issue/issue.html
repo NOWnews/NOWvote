@@ -28,12 +28,14 @@
         <div class="main-right column large-11">
             <div class="container" id="content">
                 <section class="container" flex-container="row">
-
+                    <div class="social-block hide-for-large">
+                        <div class='shareaholic-canvas' data-app='share_buttons' data-app-id='24482866'></div>
+                    </div>
                     <article class="m-main-content m-competition" flex-item="8" itemprop="articleBody">
                         <h1 class="vote-title">
                             {{ issue.title }}
                         </h1>
-                        <div class="margin10 info-block">
+                        <div class="margin10 info-block show-for-large">
                             <div class="social-btn">
                                 <div class="shareaholic-canvas" data-app='share_buttons' data-app-id='24434417'></div>
                             </div>
@@ -129,6 +131,7 @@
                                 {% endif %}
                             </form>
                         </div>
+
                         <div class="arrow-prev-next">
                             {% if prevIssue %}
                                 <a href="/issues/{{ prevIssue.sn }}" target="_blank">
@@ -165,7 +168,7 @@
                     </article>
 
                     {# DFP 廣告#}
-                    {% include "../blocks/ads/dfp970x90.html" %}
+                    {#{% include "../blocks/ads/dfp970x90.html" %}#}
 
                     {% include "../blocks/beautynews.html" %}
                 </section>
