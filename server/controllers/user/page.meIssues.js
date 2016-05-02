@@ -16,6 +16,8 @@ module.exports = function(req, res, next) {
         let results = yield [
             models.issueRelation.find()
                 .where('user').equals(userId)
+                .limit(limit)
+                .skip(skip)
                 .execAsync(),
 
             models.issueRelation.find()
