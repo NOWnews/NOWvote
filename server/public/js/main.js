@@ -210,7 +210,7 @@ $(function() {
         });
     });
 
-    $('.header').sticky({topSpacing:0});
+    // $('.header').sticky({topSpacing:0});
     $('.mask').on('click', function(){
         $('.hamburger').click();
     });

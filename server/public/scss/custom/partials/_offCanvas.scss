@@ -43,8 +43,10 @@
     }
 }
 
-.container {
+.container.layout {
     position: relative;
+    overflow: hidden;
+    padding-top: 52px;
 }
 /* Hamburger Icon */
 .hamburger {
