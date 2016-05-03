@@ -17,6 +17,8 @@ module.exports = function(req, res, next) {
             models.userReceipt.find()
                 .where('trashed').equals(false)
                 .populate('user')
+                .limit(limit)
+                .skip(skip)
                 .execAsync(),
 
             models.userReceipt.find()
