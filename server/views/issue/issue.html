@@ -4,23 +4,6 @@
 {% set shareimage = issue.mainImage %}
 {% block head %}
     <script type='text/javascript' data-cfasync='false' src='//dsms0mj1bbhn4.cloudfront.net/assets/pub/shareaholic.js' data-shr-siteid='4b1680817c1becbb542777133c8125b1' async='async'></script>
-
-    {# DFP code #}
-    <script type='text/javascript'>
-        var googletag = googletag || {};
-        googletag.cmd = googletag.cmd || [];
-        (function () {
-            var gads = document.createElement('script');
-            gads.async = true;
-            gads.type = 'text/javascript';
-            var useSSL = 'https:' == document.location.protocol;
-            gads.src = (useSSL
-                ? 'https:'
-                : 'http:') + '//www.googletagservices.com/tag/js/gpt.js';
-            var node = document.getElementsByTagName('script')[0];
-            node.parentNode.insertBefore(gads, node);
-        })();
-    </script>
 {% endblock %}
 
 {% block container %}
@@ -168,7 +151,7 @@
                     </article>
 
                     {# DFP 廣告#}
-                    {#{% include "../blocks/ads/dfp970x90.html" %}#}
+                    {% include "../blocks/ads/pageFooterAds.html" %}
 
                     {% include "../blocks/beautynews.html" %}
                 </section>
@@ -179,7 +162,7 @@
             {% include "./partials/hotIssues.html" %}
 
             {# DFP 廣告#}
-            {% include "../blocks/ads/dfp300x600.html" %}
+            {% include "../blocks/ads/pageAsideAds.html" %}
 
             {% include "./partials/hotNews.html" %}
         </aside>
