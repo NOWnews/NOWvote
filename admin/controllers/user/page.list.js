@@ -16,6 +16,8 @@ module.exports = function(req, res, next) {
         let results = yield [
             models.user.find()
                 .where('trashed').equals(false)
+                .limit(limit)
+                .skip(skip)
                 .execAsync(),
 
             models.user.find()
