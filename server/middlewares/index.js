@@ -37,12 +37,16 @@ module.exports = function(app) {
 
     // view engine 設定與 views 擺放位置設定
     app.set('view engine', 'html');
-    nunjucks.configure('server/views', { autoescape: true, express: app });
+    nunjucks.configure('server/views', {
+        autoescape: true,
+        express: app,
+        watch: true
+    });
 
     // 靜態檔案位置
     app.use('/static', express.static(rootPath + '/server/public/'));
     app.use('/images', express.static(rootPath + '/imageStorage/'));
-    
+
     // 將前台網址加入 locals 給 og 用
     app.use(function(req, res, next) {
         res.locals.serviceUrl = config.webSite.serviceUrl;
