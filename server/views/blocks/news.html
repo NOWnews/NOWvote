@@ -16,7 +16,7 @@
                     {% set url = "http://www.nownews.com" + news36[idx].url %}
 
                     <div>
-                        <a href="{{ url }}" target="_blank" class="orbit-image" style="background-image:url(http://imgapi.nownews.com/?h=280&q=60&src={{ img }}); background-repeat:no-repeat">
+                        <a href="{{ url }}?from=NOWvote" target="_blank" class="orbit-image" style="background-image:url(http://imgapi.nownews.com/?h=280&q=60&src={{ img }}); background-repeat:no-repeat">
                             <figcaption class="orbit-caption"><h4>{{ title }}</h4></figcaption>
                         </a>
                     </div>
@@ -53,7 +53,7 @@
                         {% set url = "http://www.nownews.com" + news36[idx].url %}
                         <div class="medium-5 columns">
                             <div class="callout" data-equalizer-watch>
-                                <a href="{{ url }}" target="_blank">
+                                <a href="{{ url }}?from=NOWvote" target="_blank">
                                     <img src="http://imgapi.nownews.com/?w=540&h=365&q=60&src={{ img }}" class="thumbnail" alt="{{ title }}">
                                     <h4>{{ title }}</h4>
                                 </a>
