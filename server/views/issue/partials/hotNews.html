@@ -13,11 +13,11 @@
             <div class="vote_item">
                 <div class="div-circle">{{ loop.index}}</div>
                 <div class="vote_img">
-                    <a target="_blank" href="{{ url }}"><img src="http://imgapi.nownews.com/?w=100&h=100&q=60&src={{ img }}"></a>
+                    <a target="_blank" href="{{ url }}?from=NOWvote"><img src="http://imgapi.nownews.com/?w=100&h=100&q=60&src={{ img }}"></a>
                 </div>
                 <div class="vote_description">
                     <div class="vote_title">
-                        <a target="_blank" href="{{ url }}">{{ shortTitle }}</a>
+                        <a target="_blank" href="{{ url }}?from=NOWvote">{{ shortTitle }}</a>
                     </div>
                     <span class="vote_category">熱門新聞 |</span>
                     <span class="vote_date">{{ date }} {{ time }}</span>
