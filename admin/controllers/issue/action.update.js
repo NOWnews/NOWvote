@@ -51,14 +51,23 @@ module.exports = function(req, res, next) {
 
         // 將魔術數字補上去
         let fackNumberTotal = 0;
+        let optionCounterTotal = 0;
         let optionsUpdateArray = [];
 
         _.forEach(issue.questions, function(question, questionIndex){
             _.forEach(question.options, function(option, optionIndex){
                 let obj = {};
+                let fackNumber = parseInt(data.fackNumber[questionIndex][optionIndex], 10);
+
+                // 非數字的判斷
+                if(isNaN(fackNumber)){
+                    fackNumber = 0;
+                }
+
                 obj.model = option;
-                obj.value = parseInt(data.fackNumber[questionIndex][optionIndex], 10) || 0;
-                fackNumberTotal = fackNumberTotal + parseInt(data.fackNumber[questionIndex][optionIndex], 10);
+                obj.value = fackNumber;
+                fackNumberTotal = fackNumberTotal + fackNumber;
+                optionCounterTotal = optionCounterTotal + parseInt(option.counter, 10);
                 optionsUpdateArray.push(obj);
             });
         });
@@ -110,8 +119,7 @@ module.exports = function(req, res, next) {
             issue.tags = data.tags;
         }
 
-        let counterTotal = fackNumberTotal + issue.counter;
-
+        let counterTotal = fackNumberTotal + optionCounterTotal;
         issue.set('counter', counterTotal);
 
         yield issue.saveAsync();
