@@ -50,23 +50,23 @@ module.exports = function(req, res, next) {
         issue.set('continued', continued);
 
         // 將魔術數字補上去
-        let fackNumberTotal = 0;
+        let fakeNumberTotal = 0;
         let optionCounterTotal = 0;
         let optionsUpdateArray = [];
 
         _.forEach(issue.questions, function(question, questionIndex){
             _.forEach(question.options, function(option, optionIndex){
                 let obj = {};
-                let fackNumber = parseInt(data.fackNumber[questionIndex][optionIndex], 10);
+                let fakeNumber = parseInt(data.fakeNumber[questionIndex][optionIndex], 10);
 
                 // 非數字的判斷
-                if(isNaN(fackNumber)){
-                    fackNumber = 0;
+                if(isNaN(fakeNumber)){
+                    fakeNumber = 0;
                 }
 
                 obj.model = option;
-                obj.value = fackNumber;
-                fackNumberTotal = fackNumberTotal + fackNumber;
+                obj.value = fakeNumber;
+                fakeNumberTotal = fakeNumberTotal + fakeNumber;
                 optionCounterTotal = optionCounterTotal + parseInt(option.counter, 10);
                 optionsUpdateArray.push(obj);
             });
@@ -75,7 +75,7 @@ module.exports = function(req, res, next) {
         debug('optionsUpdateArray = %j', optionsUpdateArray);
 
         yield Promise.map(optionsUpdateArray, function(optionUpdateData) {
-            return optionUpdateData.model.set('fackNumber', optionUpdateData.value).saveAsync();
+            return optionUpdateData.model.set('fakeNumber', optionUpdateData.value).saveAsync();
         });
 
         debug('issue = %j', issue);
@@ -119,7 +119,7 @@ module.exports = function(req, res, next) {
             issue.tags = data.tags;
         }
 
-        let counterTotal = fackNumberTotal + optionCounterTotal;
+        let counterTotal = fakeNumberTotal + optionCounterTotal;
         issue.set('counter', counterTotal);
 
         yield issue.saveAsync();

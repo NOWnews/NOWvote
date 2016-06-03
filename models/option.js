@@ -24,7 +24,7 @@ const schema = new Schema({
         default: 0
     },
 
-    fackNumber: {
+    fakeNumber: {
         type: Number,
         default: 0
     },
