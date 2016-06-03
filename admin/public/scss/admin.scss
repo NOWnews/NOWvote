@@ -110,10 +110,10 @@ input.end-time {
 }
 /* Issue ----------------------- */
 .option-box {
-    margin: 20;
-    list-style-type: decimal;
-    > li {
-        display: list-item;
+    margin-left: 5%;
+    > p {
+        margin-bottom: 5px;
+        color: #555;
     }
 }
 
@@ -258,4 +258,9 @@ span.alert-schedule {
         padding: 2px 5px;
         outline: medium none;
     }
+}
+
+.option-counter {
+    display: inline-block;
+    width: 50px;
 }

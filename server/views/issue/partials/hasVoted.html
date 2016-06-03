@@ -5,13 +5,13 @@
             <div class="radioresult activeradioholder">
                 <span class="tick"></span>
                 <span class="desc">{{ option.content }}</span>
-                <span class="count">（{{ option.counter }}票）</span>
+                <span class="count">（{{ option.counter + option.fakeNumber }}票）</span>
             </div>
         {% else %}
             <div class="radioresult">
                 <span class="tick"></span>
                 <span class="desc">{{ option.content }}</span>
-                <span class="count">（{{ option.counter }}票）</span>
+                <span class="count">（{{ option.counter + option.fakeNumber }}票）</span>
             </div>
         {% endif %}
     {% endfor %}

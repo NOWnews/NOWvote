@@ -1,5 +1,6 @@
 
 import co from 'co';
+import Promise from 'bluebird';
 import is from 'is_js';
 import moment from 'moment-timezone';
 import models from '../../../models';
@@ -48,6 +49,35 @@ module.exports = function(req, res, next) {
         issue.set('status', status);
         issue.set('continued', continued);
 
+        // 將魔術數字補上去
+        let fakeNumberTotal = 0;
+        let optionCounterTotal = 0;
+        let optionsUpdateArray = [];
+
+        _.forEach(issue.questions, function(question, questionIndex){
+            _.forEach(question.options, function(option, optionIndex){
+                let obj = {};
+                let fakeNumber = parseInt(data.fakeNumber[questionIndex][optionIndex], 10);
+
+                // 非數字的判斷
+                if(isNaN(fakeNumber)){
+                    fakeNumber = 0;
+                }
+
+                obj.model = option;
+                obj.value = fakeNumber;
+                fakeNumberTotal = fakeNumberTotal + fakeNumber;
+                optionCounterTotal = optionCounterTotal + parseInt(option.counter, 10);
+                optionsUpdateArray.push(obj);
+            });
+        });
+
+        debug('optionsUpdateArray = %j', optionsUpdateArray);
+
+        yield Promise.map(optionsUpdateArray, function(optionUpdateData) {
+            return optionUpdateData.model.set('fakeNumber', optionUpdateData.value).saveAsync();
+        });
+
         debug('issue = %j', issue);
 
         // 檢查 主圖資訊
@@ -88,6 +118,9 @@ module.exports = function(req, res, next) {
         if(data.tags && is.array(data.tags)){
             issue.tags = data.tags;
         }
+
+        let counterTotal = fakeNumberTotal + optionCounterTotal;
+        issue.set('counter', counterTotal);
 
         yield issue.saveAsync();
 

@@ -44,7 +44,11 @@ module.exports = function(app) {
 
     // view engine 設定與 views 擺放位置設定
     app.set('view engine', 'html');
-    nunjucks.configure('admin/views', { autoescape: true, express: app });
+    nunjucks.configure('admin/views', {
+        autoescape: true,
+        express: app,
+        watch: true
+    });
 
     // 靜態檔案位置
     app.use('/static', express.static(rootPath + '/admin/public/'));

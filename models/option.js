@@ -24,6 +24,11 @@ const schema = new Schema({
         default: 0
     },
 
+    fakeNumber: {
+        type: Number,
+        default: 0
+    },
+
     createdBy: {
         type: Schema.Types.ObjectId,
         ref: 'user'
