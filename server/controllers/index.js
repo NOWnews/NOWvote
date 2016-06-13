@@ -1,6 +1,7 @@
 
 const login = require('./login');
 const auth = require('./auth');
+const sitemap = require('./sitemap');
 const home = require('./home');
 const user = require('./user');
 const category = require('./category');
@@ -21,7 +22,8 @@ module.exports = function(app) {
     app.use('/', tag);
     app.use('/', vote);
     app.use('/', preview);
-    app.use('/', errorpage)
+    app.use('/', errorpage);
+    app.use('/', sitemap);
 
     return function(req, res, next) {
         return next();
