@@ -7,11 +7,11 @@ const models = require('../../models');
 module.exports = function(app) {
 
     // 處理 404 頁面
-    app.use(function(req, res, next) {
-        res.status(404);
-        res.redirect('/404');
-        // return res.render('404');
-    });
+    // app.use(function(err, req, res, next) {
+    //     res.status(404);
+    //     res.redirect('/404');
+    //     // return res.render('404');
+    // });
 
     // 處理底層的錯誤
     app.use(function(err, req, res, next) {
