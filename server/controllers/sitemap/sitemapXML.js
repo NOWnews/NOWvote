@@ -15,7 +15,7 @@ module.exports = function(req, res, next) {
         // 找出所有議題或投票
         let issues = yield models.issue.find()
             .where('trashed', false)
-            .sort({_id: -1})
+            .sort('-createdAt')
             .limit(1000)
             .execAsync();
         debug('issues = %j', issues);
@@ -33,7 +33,7 @@ module.exports = function(req, res, next) {
                 url: `http://vote.nownews.com/issues/${issue.sn}`,
                 changefreq: 'daily',
                 priority: 1,
-                lastmodISO: issue.updatedAt
+                lastmodISO: moment(issue.updatedAt).format('YYYY-MM-DD')
             };
         });
 
