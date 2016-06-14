@@ -81,6 +81,7 @@ module.exports = function(req, res, next) {
         _.forEach(issue.questions, function(question){
             _.forEach(question.options, function(option){
                 option.isVoted = false;
+                option.fakeNumber = option.fakeNumber || 0;
                 if(votedOptionIds.indexOf(option._id + '') >= 0){
                     option.isVoted = true;
                     return;
