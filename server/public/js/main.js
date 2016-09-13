@@ -129,6 +129,8 @@ $(function() {
             $(this).children('input').trigger('change');
         });
     });
+
+
     // 當 radio 被更改，更動 redio 區塊裡面的 classes
     $('.radioholder > input[type=radio]').change(function() {
         $('input[type=radio]').each(function() {
@@ -140,6 +142,52 @@ $(function() {
     });
     // 第一次啟動
     $('.radioholder > input[type=radio]').change();
+
+
+    //複選題使用
+
+    // 設定 checkbox 樣式
+    $('.checkboxholder').each(function() {
+        $(this).children().hide();
+        var description = $(this).children('label').html();
+        $(this).append('<span class="desc">' + description + '</span>');
+        $(this).prepend('<span class="tick"></span>');
+        // click 後更新 checkbox 區塊
+
+        $(this).click(function() {
+            //尋找複選提設定數字
+            var dataNum = $(this).parent().find('.qusetion-title').attr('data-num');
+            var checkedValue = $(this).children('input').prop('checked');
+            //勾選或取消數字
+            var addOrCancelNum = checkedValue ? -1 : 1;
+            //總已勾選數字
+            var checkedActives = $(this).parent().find('.activeradioholder').length + addOrCancelNum;
+
+            // console.log('checkedActives:'+ checkedActives );
+            // console.log(checkedValue);
+            //如果總勾選數字大於設定數字
+            if( checkedActives > dataNum ){
+                return;
+            }
+            $(this).children('input').prop('checked', !checkedValue);
+            $(this).children('input').trigger('change');
+        });
+    });
+
+
+    // 當 checkbox 被更改，更動 checkbox 區塊裡面的 classes
+    $('.checkboxholder > input[type=checkbox]').change(function() {
+        $('input[type=checkbox]').each(function() {
+            $(this).parent().removeClass('activeradioholder');
+            if ($(this).prop('checked') === true) {
+                $(this).parent().addClass('activeradioholder');
+            }
+        });
+    });
+
+    // 第一次啟動
+
+    $('.checkboxholder > input[type=checkbox]').change();
 
     //大三小六
     $('.tabs').on('change.zf.tabs', function(e, tgt) {

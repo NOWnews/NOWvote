@@ -77,6 +77,7 @@ module.exports = function(req, res, next) {
         debug('image = %j', imgUrl);
         debug('mainImage = %j', mainImgUrl);
         debug('questions = %j', questions);
+        debug('multiselect = %j', data.multiselect);
         debug('tags = %j', data.tags);
 
         let newIssueId = mongoose.Types.ObjectId();
@@ -134,6 +135,7 @@ module.exports = function(req, res, next) {
             newQuestion._id = newQuestionId;
             newQuestion.content = question.name;
             newQuestion.options = optionIds;
+            newQuestion.multiselect = question.multiselect;
             questionsData.push(newQuestion);
         });
 

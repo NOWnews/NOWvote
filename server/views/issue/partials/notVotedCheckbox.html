@@ -1,0 +1,9 @@
+<div class="callout custom-border">
+    <h3 class="qusetion-title" data-num="{{ question.multiselect }}">(複選){{ question.content }}</h3>
+    {% for option in question.options %}
+        <div class="checkboxholder">
+            <input type="checkbox" name="{{ question._id }}" value="{{ option._id }}">
+            <label>{{ option.content }}</label>
+        </div>
+    {% endfor %}
+</div>

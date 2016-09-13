@@ -322,6 +322,13 @@ $(function() {
             var liHtml =
                 '<li class="accordion-item is-active" data-accordion-item>' +
                     '<a href="#" class="accordion-title">' + itemTitle + '</a>' +
+                    '<div class="">' +
+                        '<div class="large-6 columns">' +
+                        '<label>最多可選 (Multiselect) 預設為1為單選題 請填寫數字' +
+                        '<input type="text" name="multiselect" value="3">' +
+                        '</label>' +
+                        '</div>' +
+                    '</div>' +
                     '<button class="close-button" type="button">' +
                         '<i aria-hidden="true" class="fa fa-close"></i>' +
                     '</button>' +
@@ -361,7 +368,8 @@ $(function() {
             $('.question-box > li').each( function(index, value) {
                 question[index] = {
                     name: $(value).find('.accordion-title').text(),
-                    option: []
+                    option: [],
+                    multiselect: $(value).find('input[name="multiselect"]').val()
                 };
                 $(value).find('li').each( function(i, v) {
                     question[index].option[i] = $(v).text();
