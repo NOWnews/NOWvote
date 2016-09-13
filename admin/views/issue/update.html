@@ -112,13 +112,13 @@
                                     </p>
                                     <p class="text-center">共 {{ option.counter }} 票 ＋ 魔術數字 <input name="fakeNumber[{{ q_index}}]" class="option-counter" type="text" value="{{ option.fakeNumber }}" /></p>
                                 {% endfor %}
-                            <div class="row">
-                                        <div class="large-6 columns">
-                                            <label>最多可選 (Multiselect) 預設為1為單選題 請填寫數字
-                                                <input type="text" name="multiselect" value="{{ question.multiselect }}">
-                                            </label>
-                                        </div>
+                                <div class="row">
+                                    <div class="large-6 columns">
+                                        <label>最多可選 (Multiselect) 預設為1為單選題 請填寫數字
+                                            <input type="text" name="multiselect" value="{{ question.multiselect }}">
+                                        </label>
                                     </div>
+                                </div>
                             </div>
                     {% endfor %}
                 </fieldset>
