@@ -19,6 +19,11 @@ const schema = new Schema({
         required: true
     },
 
+    multiselect: {
+        type: Number,
+        default: '1'
+    },
+
     options: [{
         type: Schema.Types.ObjectId,
         ref: 'option'

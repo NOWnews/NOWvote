@@ -53,8 +53,14 @@ module.exports = function(req, res, next) {
         let fakeNumberTotal = 0;
         let optionCounterTotal = 0;
         let optionsUpdateArray = [];
+        let questionsUpdateArray = [];
 
         _.forEach(issue.questions, function(question, questionIndex){
+            let questionObj = {};
+            questionObj.model = question;
+            questionObj.value = data.multiselect[questionIndex];
+            questionsUpdateArray.push(questionObj);
+
             _.forEach(question.options, function(option, optionIndex){
                 let obj = {};
                 let fakeNumber = parseInt(data.fakeNumber[questionIndex][optionIndex], 10);
@@ -73,9 +79,15 @@ module.exports = function(req, res, next) {
         });
 
         debug('optionsUpdateArray = %j', optionsUpdateArray);
+        debug('questionsUpdateArray = %j', questionsUpdateArray);
 
         yield Promise.map(optionsUpdateArray, function(optionUpdateData) {
             return optionUpdateData.model.set('fakeNumber', optionUpdateData.value).saveAsync();
+        });
+
+        // 每個 question 的 multiselect
+        yield Promise.map(questionsUpdateArray, function(questionUpdateData) {
+            return questionUpdateData.model.set('multiselect', questionUpdateData.value).saveAsync();
         });
 
         debug('issue = %j', issue);

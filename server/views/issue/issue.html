@@ -99,7 +99,12 @@
                                         {% include "./partials/hasVoted.html" %}
                                         {% elif user %}
                                         {# ---- 有登入且沒有投過票的版面 ---- #}
-                                        {% include "./partials/notVoted.html" %}
+                                        {#{% include "./partials/notVoted.html" %}#}
+                                        {% if question.multiselect == 1 %}
+                                            {% include "./partials/notVoted.html" %}
+                                        {% elif question.multiselect %}
+                                            {% include "./partials/notVotedCheckbox.html" %}
+                                        {% endif %}
                                     {% else %}
                                         {# ---- 沒有登入 ---- #}
                                         {% include "./partials/notLogin.html" %}
