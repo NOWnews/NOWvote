@@ -10,7 +10,7 @@ module.exports = {
 
     // 把 api 取得的新聞存到 Redis
     getHotNews: require('./getHotNews'),
-    get36News: require('./get36News'),
+    getHeadlineNews: require('./getHeadlineNews'),
     getInstantNews: require('./getInstantNews'),
 
     // 取得熱門 issues
