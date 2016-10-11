@@ -2,19 +2,16 @@
     <div class="large-6 medium-6 columns">
         <div class="slide-title">
             <h3>
-                <i class="fa fa-diamond"></i>今日熱門新聞
+                <i class="fa fa-diamond"></i>今日頭條新聞
             </h3>
         </div>
         <div class="images-contain">
             <div class="image-slick">
                 {% for idx in range(0, 3) %}
-                    {% set title = news36[idx].title %}
-                    {% set img = news36[idx].imgs[0].img %}
-                    {% set imgtitle = news36[idx].imgs[0].title %}
-                    {% set date = news36[idx].d %}
-                    {% set time = news36[idx].t %}
-                    {% set url = "http://www.nownews.com" + news36[idx].url %}
-
+                    {% set title = newsHeadline.newsList[idx].field_short_title.value %}
+                    {% set img = newsHeadline.newsList[idx].image.thumbnail %}
+                    {% set imgtitle = newsHeadline.newsList[idx].image.title %}
+                    {% set url = "http://www.nownews.com/n/2016/01/01/" + newsHeadline.newsList[idx]._id %}
                     <div>
                         <a href="{{ url }}?from=NOWvote" target="_blank" class="orbit-image" style="background-image:url(http://imgapi.nownews.com/?h=280&q=60&src={{ img }}); background-repeat:no-repeat">
                             <figcaption class="orbit-caption"><h4>{{ title }}</h4></figcaption>
@@ -45,12 +42,10 @@
             <div class="tabs-panel is-active" id="panel1v">
                 <div class="row" data-equalizer data-equalize-on="medium" id="test-eq">
                     {% for idx in range(3, 6) %}
-                        {% set title = news36[idx].title %}
-                        {% set img = news36[idx].imgs[0].img %}
-                        {% set imgtitle = news36[idx].imgs[0].title %}
-                        {% set date = news36[idx].d %}
-                        {% set time = news36[idx].t %}
-                        {% set url = "http://www.nownews.com" + news36[idx].url %}
+                        {% set title = newsHeadline.newsList[idx].field_short_title.value %}
+                        {% set img = newsHeadline.newsList[idx].image.thumbnail %}
+                        {% set imgtitle = newsHeadline.newsList[idx].image.title %}
+                        {% set url = "http://www.nownews.com/n/2016/01/01/" + newsHeadline.newsList[idx]._id %}
                         <div class="medium-5 columns">
                             <div class="callout" data-equalizer-watch>
                                 <a href="{{ url }}?from=NOWvote" target="_blank">

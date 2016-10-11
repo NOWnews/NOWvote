@@ -5,11 +5,10 @@
     </h3>
     <div class="vote_list">
         {% for idx in range(0, 5) %}
-            {% set shortTitle = hotNews[idx].stitle %}
-            {% set img = hotNews[idx].imgs[0].img %}
-            {% set date = hotNews[idx].d %}
-            {% set time = hotNews[idx].t %}
-            {% set url = "http://www.nownews.com" + hotNews[idx].url %}
+            {% set shortTitle = hotNews.newsList[idx].field_short_title.value %}
+            {% set img = hotNews.newsList[idx].image.originImage %}
+            {% set date = hotNews.newsList[idx].createdAt %}
+            {% set url = "http://www.nownews.com/n/2016/01/01/" + hotNews.newsList[idx]._id %}
             <div class="vote_item">
                 <div class="div-circle">{{ loop.index}}</div>
                 <div class="vote_img">

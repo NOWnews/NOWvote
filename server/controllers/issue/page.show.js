@@ -24,7 +24,7 @@ module.exports = function(req, res, next) {
 
             // 取得新聞
             redis.getHotNews(),
-            redis.get36News(),
+            redis.getHeadlineNews(),
 
             redis.getHotIssues(),
 
@@ -51,8 +51,8 @@ module.exports = function(req, res, next) {
         let hotNews = results[2];
         debug('hotNews = %j', hotNews);
 
-        let news36 = results[3];
-        debug('news36 = %j', news36);
+        let newsHeadline = results[3];
+        debug('newsHeadline = %j', newsHeadline);
 
         let hotIssues = results[4];
         debug('hotIssues = %j', hotIssues);
@@ -126,7 +126,7 @@ module.exports = function(req, res, next) {
           categories: categories,
           issue: issue,
           hotNews: hotNews,
-          news36: news36,
+          newsHeadline: newsHeadline,
           hotIssues: hotIssues,
           nextIssue: nextAndPrevIssue.next[0],
           prevIssue: nextAndPrevIssue.prev[0],

@@ -18,11 +18,14 @@ module.exports = co.wrap(function*() {
     debug('hotNews = %j', hotNews);
     if(is.array(hotNews) && hotNews.length !== 0) {
         debug('redis hotNews data = %j', hotNews);
-        return yield Promise.resolve(hotNews);
+        return Promise.resolve(hotNews);
     }
 
-    let hotNewsFromApi = yield fetch('http://v2.api.nownews.com/hot', {
-            timeout: 3000
+    let hotNewsFromApi = yield fetch('http://v3.api.nownews.com/news/hotNews', {
+            timeout: 3000,
+            headers: {
+                'X-NOWnews-API': 'NOWnewsTaiwanNumberOne'
+            }
         })
         .then(function(res) {
             return res.json();
@@ -33,5 +36,5 @@ module.exports = co.wrap(function*() {
 
     let updateRedisHotNews = yield setRedisValue('hotNews', hotNewsFromApi, 300);
 
-    return yield Promise.resolve(updateRedisHotNews);
+    return Promise.resolve(updateRedisHotNews);
 });

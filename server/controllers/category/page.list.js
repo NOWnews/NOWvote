@@ -74,12 +74,12 @@ module.exports = function(req, res, next) {
         let results = yield [
             isseusQuery.execAsync(),
             countQuery.execAsync(),
-            redis.get36News(),
+            redis.getHeadlineNews(),
         ];
 
         let issues = results[0];
         let issuesTotal = results[1];
-        let news36 = results[2];
+        let newsHeadline = results[2];
 
         /*
          * 判斷使用者是否投過票了
@@ -130,7 +130,7 @@ module.exports = function(req, res, next) {
             categories: categories,
             issues: issues,
             pageInfo: pageInfo,
-            news36: news36,
+            newsHeadline: newsHeadline,
             urlPath: urlPath,
             categoryName: categoryName
         });

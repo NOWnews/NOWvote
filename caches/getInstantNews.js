@@ -18,11 +18,14 @@ module.exports = co.wrap(function*() {
 
     if(is.array(newsInstant) && newsInstant.length !== 0) {
         debug('redis newsInstant data = %j', newsInstant);
-        return yield Promise.resolve(newsInstant);
+        return Promise.resolve(newsInstant);
     }
 
-    let newsInstantFromApi = yield fetch('http://v2.api.nownews.com/instant', {
-            timeout: 2000
+    let newsInstantFromApi = yield fetch('http://v3.api.nownews.com/news/instant', {
+            timeout: 3000,
+            headers: {
+                'X-NOWnews-API': 'NOWnewsTaiwanNumberOne'
+            }
         })
         .then(function(res) {
             return res.json();
@@ -33,5 +36,5 @@ module.exports = co.wrap(function*() {
 
     let updateRedisInstantNews = yield setRedisValue('newsInstant', newsInstantFromApi, 300);
 
-    return yield Promise.resolve(updateRedisInstantNews);
+    return Promise.resolve(updateRedisInstantNews);
 });
