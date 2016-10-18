@@ -71,6 +71,11 @@ module.exports = {
     webSite: {
         serviceUrl: serviceUrl,
         adminUrl: adminUrl
-    }
+    },
+
+    /*
+     * v3 api 的端點
+     */
+    v3api: process.env.NODE_ENV === 'production' ? 'v3.api.nownews.pri:5000' : 'v3.api.nownews.com'
 
 };

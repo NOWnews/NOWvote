@@ -21,8 +21,8 @@ module.exports = co.wrap(function*() {
         return Promise.resolve(newsInstant);
     }
 
-    let newsInstantFromApi = yield fetch('http://v3.api.nownews.com/news/instant', {
-            timeout: 3000,
+    let newsInstantFromApi = yield fetch(`http://${config.v3api}/news/instant`, {
+            timeout: 6000,
             headers: {
                 'X-NOWnews-API': 'NOWnewsTaiwanNumberOne'
             }

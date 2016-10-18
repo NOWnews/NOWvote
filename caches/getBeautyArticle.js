@@ -22,7 +22,7 @@ module.exports = co.wrap(function*() {
     }
 
     let beautyArticleFromApi = yield fetch('http://beauty.nownews.com/rest/feedpath', {
-            timeout: 3000
+            timeout: 6000
         })
         .then(function(res) {
             return res.json();
