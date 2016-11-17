@@ -81,7 +81,8 @@ module.exports = function(app) {
     passport.use(new FacebookStrategy({
             clientID: config.facebook.clientID,
             clientSecret: config.facebook.clientSecret,
-            callbackURL: config.facebook.callbackURL
+            callbackURL: config.facebook.callbackURL,
+            profileFields: ['id', 'displayName', 'photos', 'email']
         },
         async function(accessToken, refreshToken, profile, done) {
 
@@ -98,7 +99,7 @@ module.exports = function(app) {
                 name: profile.username || profile.displayName || profile._json.name,
                 nickname: profile.displayName || profile.username || profile._json.name,
                 oauthType: 'FACEBOOK',
-                email: profile.email || '',
+                email: profile.emails ? profile.emails[0].value : '',
                 oauthId: profile.id
             });
 
