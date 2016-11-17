@@ -8,19 +8,22 @@ const pageIssueList = require('./page.issue.list.js');
 const pageIssueShow = require('./page.issue.show.js');
 const pageUserReceiptList = require('./page.userReceipt.list.js');
 
+// 驗證是否登入
+const isLogin = require('../../middlewares/isLogin');
+
 router.route('/')
-    .get(pageList);
+    .get(isLogin, pageList);
 
 router.route('/receipts')
-    .get(pageUserReceiptList);
+    .get(isLogin, pageUserReceiptList);
 
 router.route('/:sn')
-    .get(pageShow);
+    .get(isLogin, pageShow);
 
 router.route('/:sn/issues')
-    .get(pageIssueList);
+    .get(isLogin, pageIssueList);
 
 router.route('/:sn/issues/:issueSn')
-    .get(pageIssueShow);
+    .get(isLogin, pageIssueShow);
 
 module.exports = router;
