@@ -98,6 +98,7 @@ module.exports = function(app) {
                 name: profile.username || profile.displayName || profile._json.name,
                 nickname: profile.displayName || profile.username || profile._json.name,
                 oauthType: 'FACEBOOK',
+                email: profile.email || '',
                 oauthId: profile.id
             });
 
