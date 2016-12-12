@@ -30,7 +30,7 @@ module.exports = co.wrap(function*() {
 
             // 將美人的圖片加上 imgapi
             let formatImageUrl = _.map(json, function(item) {
-                item.featured_image = `http://imgapi.nownews.com/?w=300&q=60&src=${item.featured_image}`;
+                item.featured_image = `http://imgapi.nownews.com/?w=300&q=90&src=${item.featured_image}`;
                 return item;
             });
 
