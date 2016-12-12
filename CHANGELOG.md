@@ -2,6 +2,12 @@
 
 NOWvote所有的變更紀錄都在這份文件中
 
+## [1.0.3] - 2016-12-12
+
+### Changed
+- 更新所有現在的套件 @SimonSun.
+- 內頁的美人幫 api 將圖片加上 imgapi @SimonSun
+
 ## [1.0.2] - 2016-10-18
 
 ### Changed

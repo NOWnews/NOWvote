@@ -27,7 +27,14 @@ module.exports = co.wrap(function*() {
         .then(function(res) {
             return res.json();
         }).then(function(json) {
-            return Promise.resolve(json);
+
+            // 將美人的圖片加上 imgapi
+            let formatImageUrl = _.map(json, function(item) {
+                item.featured_image = `http://imgapi.nownews.com/?w=300&q=60&src=${item.featured_image}`;
+                return item;
+            });
+
+            return Promise.resolve(formatImageUrl);
         });
     debug('beautyArticle From Api = %j', beautyArticleFromApi);
 
