@@ -9,7 +9,7 @@
             <div class="image-slick">
                 {% for idx in range(0, 3) %}
                     {% set title = newsHeadline.newsList[idx].field_short_title.value %}
-                    {% set img = newsHeadline.newsList[idx].image.thumbnail %}
+                    {% set img = newsHeadline.newsList[idx].image.originImage %}
                     {% set imgtitle = newsHeadline.newsList[idx].image.title %}
                     {% set url = "http://www.nownews.com/n/2016/01/01/" + newsHeadline.newsList[idx]._id %}
                     <div>
@@ -43,7 +43,7 @@
                 <div class="row" data-equalizer data-equalize-on="medium" id="test-eq">
                     {% for idx in range(3, 6) %}
                         {% set title = newsHeadline.newsList[idx].field_short_title.value %}
-                        {% set img = newsHeadline.newsList[idx].image.thumbnail %}
+                        {% set img = newsHeadline.newsList[idx].image.originImage %}
                         {% set imgtitle = newsHeadline.newsList[idx].image.title %}
                         {% set url = "http://www.nownews.com/n/2016/01/01/" + newsHeadline.newsList[idx]._id %}
                         <div class="medium-5 columns">
