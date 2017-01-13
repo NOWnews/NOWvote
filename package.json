@@ -1,6 +1,6 @@
 {
   "name": "NOWvote",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "private": true,
   "scripts": {
     "start": "npm install && ./node_modules/bower/bin/bower install && DEBUG=NOWvote* ./node_modules/nodemon/bin/nodemon.js ./bin/www.js",
