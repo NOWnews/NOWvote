@@ -10,6 +10,7 @@ const issue = require('./issue');
 const vote = require('./vote');
 const preview = require('./preview');
 const errorpage = require('./errorpage');
+const files = require('./files');
 
 module.exports = function(app) {
 
@@ -24,6 +25,7 @@ module.exports = function(app) {
     app.use('/', preview);
     app.use('/', errorpage);
     app.use('/', sitemap);
+    app.use('/', files);
 
     return function(req, res, next) {
         return next();
