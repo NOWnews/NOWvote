@@ -17,9 +17,9 @@
         {% for banner in banners %}
             <div>
                 {% if banner.url %}
-                    <a href="{{ banner.url }}" target="_blank"><img src="{{banner.mobileImage}}"></a>
+                    <a href="{{ banner.url }}" target="_blank"><img src="{{banner.mobileImage}}" alt="{{banner.desc}}"></a>
                 {% else %}
-                    <img src="{{banner.mobileImage}}">
+                    <img src="{{banner.mobileImage}}" alt="{{banner.desc}}">
                 {% endif %}
             </div>
         {% endfor %}
