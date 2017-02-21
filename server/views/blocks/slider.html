@@ -3,9 +3,9 @@
         {% for banner in banners %}
             <div>
                 {% if banner.url %}
-                    <a href="{{ banner.url }}" target="_blank"><img src="{{banner.desktopImage}}"></a>
+                    <a href="{{ banner.url }}" target="_blank"><img src="{{banner.desktopImage}}" alt="{{banner.desc}}"></a>
                 {% else %}
-                    <img src="{{banner.desktopImage}}">
+                    <img src="{{banner.desktopImage}}" alt="{{banner.desc}}">
                 {% endif %}
             </div>
         {% endfor %}
@@ -31,9 +31,9 @@
         {% for banner in banners %}
             <div>
                 {% if banner.url %}
-                    <a href="{{ banner.url }}" target="_blank"><img src="{{banner.desktopImage}}"></a>
+                    <a href="{{ banner.url }}" target="_blank"><img src="{{banner.desktopImage}}" alt="{{banner.desc}}"></a>
                 {% else %}
-                    <img src="{{banner.desktopImage}}">
+                    <img src="{{banner.desktopImage}}" alt="{{banner.desc}}">
                 {% endif %}
             </div>
         {% endfor %}
